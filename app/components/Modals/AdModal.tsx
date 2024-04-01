@@ -178,20 +178,37 @@ const RentModal = () => {
         )
     }
 
+    const [isVirtual, setIsVirtual] = useState(true);
+
     if (step === STEPS.LOCATION) {
         bodyContent = (
             <div className='flex flex-col gap-8'>
-                <Heading
-                title='Aonde fica o local da consulta?'
-                subtitle='Selecione a cidade coorespondente'
-                />
-                <CitySelect 
-                value={location}
-                onChange={(value) => setCustomValue('location', value)}
-                />
-                <Map
-                center={location?.latlng}
-                />
+    <label>
+ <input
+    type="checkbox"
+    checked={isVirtual}
+    onChange={(e) => {
+      setIsVirtual(e.target.checked);
+    }}
+ />
+ É uma consulta virtual?
+</label>
+
+    {!isVirtual && (
+      <>
+        <Heading
+          title='Aonde fica o local da consulta?'
+          subtitle='Selecione a cidade coorespondente'
+        />
+        <CitySelect 
+          value={location}
+          onChange={(value) => setCustomValue('location', value)}
+        />
+        <Map
+          center={location?.latlng}
+        />
+      </>
+    )}
             </div>
         )
     }
@@ -331,7 +348,7 @@ const RentModal = () => {
                         />
                     </div>
                     <div className="selected-dates-list w-1/2 p-2 max-h-56 rounded-lg overflow-y-auto cursor-pointer gap-1 border-2 border-blue-100 border-t-0">
-                        {selectedDates.map((date, index) => (
+                        {selectedDates.sort((a, b) => a.getTime() - b.getTime()).map((date, index) => (
                             <div key={index} className="border-2 border-blue-200 text-blue-600 p-2 rounded-lg hover:text-white hover:font-semibold hover:bg-blue-400" onClick={() => handleDayClick(date)}>
                                 {date.toDateString()}
                             </div>
