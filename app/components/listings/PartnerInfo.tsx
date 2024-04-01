@@ -14,6 +14,10 @@ const Map = dynamic(() => import('../Map'), {
 
 interface PartnerInfoProps {
     description: string;
+    firstComeFirstServe?: boolean;
+    byAppointment?: boolean;
+    payNow?: number;
+    payThere?: number;
     companies: {
         imageSrc: string;
         label: string;
@@ -24,6 +28,10 @@ interface PartnerInfoProps {
 
 const PartnerInfo: React.FC<PartnerInfoProps> = ({
   description,
+  firstComeFirstServe,
+  byAppointment,
+  payNow,
+  payThere,
   companies,
   locationValue,
 }) => {
@@ -40,14 +48,14 @@ return (
             <div>Parceiro Atual: {companies?.label}</div>
           </div>
           <div className="flex flex-row items-center gap-4 font-light text-neutral-500">
-            <div>
-            <CheckmarkIcon /> {} Ordem de Chegada
-            </div>
+          <div>
+            {firstComeFirstServe ? <CheckmarkIcon /> : <PiXFill />} Ordem de Chegada
+          </div>
             <div>
                 <CheckmarkIcon />{} Horario Marcado
             </div>
             <div className='text-red'>
-                <PiXFill color='red'/> {} consultsas Online
+                <PiXFill color='red'/> {} consultsas Online (create Bool that stays in place of location STEP)
             </div>
             <hr />
           </div>
@@ -67,13 +75,14 @@ return (
         </div>
         </div>
         <div className='w-1/2 p-2 border-gray-600 h-1/2'>
-          <Map center={coordinates}/>
+          <Map center={coordinates}
+          />
         </div>
       </div>
       <hr />
       <div className='flex flex-row overflow-x-auto hide-scrollbar w-full'>
         <div className='p-5 text-center hover:bg-sky-100 cursor-pointer '>
-            <BiCopy /> Cidade: <br/>Sao Paulo
+            <BiCopy /> Cidade: <br/>{locationValue}
         </div>
         <div className='p-5 text-center hover:bg-sky-100 cursor-pointer '>
             <BiCopy /> Endereço: <br/>av. Brasil, 1234

@@ -9,7 +9,6 @@ import Image from 'next/image';
 import HeartButton from '../CloudButton';
 import Button from '../Button';
 import useFavorite from '@/app/hooks/useFavorite';
-import { CheckmarkIcon } from 'react-hot-toast';
 
 interface ListingCardProps {
     data: SafeListing;
@@ -19,11 +18,13 @@ interface ListingCardProps {
     actionLabel?: string;
     actionId?: string;
     currentUser?: SafeUser | null;
+    locationValue: string;
 }
 
 const ListingCard: React.FC<ListingCardProps> = ({
     data,
     reservation,
+    locationValue,
     onAction,
     actionLabel,
     disabled,
@@ -50,14 +51,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
 
             onAction?.(actionId);
         }, [onAction, actionId, disabled]);
-
-    const price = useMemo(() => {
-        if (reservation) {
-            return reservation.totalPrice;
-        }
-
-        return data.price;
-    }, [reservation, data.price]);
 
     const reservationDate = useMemo(() => {
         if (!reservation) {
@@ -111,26 +104,29 @@ const ListingCard: React.FC<ListingCardProps> = ({
         </div>
         <div className="flex flex-col">
         <div className="flex flex-row items-center gap-0.5">
-            {location?.region}
+            {locationValue}
         </div>
         { currentUser && (
             <div className='text-neutral-500 text-xs font-light'>
                 {data.company} 
                 <div className='text-neutral-500 text-sm'>
-                    Pagament Pix: {price} <br/>
-                    Pagament no Local: {price} <br/>
+                    Pagament Pix: {data.payNow} <br/>
+                    Pagament no Local: {data.payThere} <br/>
                     <div className='text-neutral-500 text-xs font-light'>
-                        ordem de chegada<br/>
-                        </div>
+                        {data.firstComeFirstServe && data.byAppointmentOnly ? 'Ligue ja para informaçoes' :
+                        data.firstComeFirstServe ? 'Ordem de Chegada' :
+                        data.byAppointmentOnly ? 'Horario Marcado' : null}
+                    </div>
                 </div> 
                
             </div>
             )}
               <div className='text-neutral-500 text-xs'>
-                        proximo atendimento: 10/10/24<br/>
-                        horario: 10:00-16:00<br/>
-                    </div>  
-        </div>
+                    proximo atendimento: {format(new Date(data.dates[0]), 'dd/MM/yyyy')}
+                    <br/>
+                    horario: 10:00-16:00<br/>
+                </div>  
+            </div>
         </div>
         {onAction && actionLabel && (
             <Button 

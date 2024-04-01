@@ -105,6 +105,7 @@ const RentModal = () => {
         axios.post('/api/listings', data)
         .then(() => {
             toast.success("Anuncio Criado com Successo!")
+            setSelectedDates([]);
             router.refresh();
             reset();
             setStep(STEPS.CATEGORY);
@@ -209,7 +210,7 @@ const RentModal = () => {
                 disabled={isLoading}
                 register={register}
                 errors={errors}
-                required
+                
                 />
                 <Input 
                 id="payThere"
@@ -218,7 +219,7 @@ const RentModal = () => {
                 disabled={isLoading}
                 register={register}
                 errors={errors}
-                required
+                
                 />
                 <Input 
                 id="firstComeFirstServe"
@@ -270,7 +271,7 @@ const RentModal = () => {
                 disabled={isLoading}
                 register={register}
                 errors={errors}
-                required
+                
                 />
                 <hr/>
                 <Input 
@@ -279,11 +280,12 @@ const RentModal = () => {
                 disabled={isLoading}
                 register={register}
                 errors={errors}
-                required
+                
                 />
             </div>
         )
     }
+    
     const isSelected = (date: Date) => {
         return selectedDates.some(selectedDate => selectedDate.getTime() === date.getTime());
     };
@@ -307,19 +309,28 @@ const RentModal = () => {
                     title='Selecione os dias do Atendimento'
                     subtitle='Selecione todos os dias que tera atendimento disponivel'
                 />
-                <div className='max-h-64 flex flex-col-2'>
-                    <div className='w-1/2 text-blue-800'>
+                <div className='max-h-64 flex flex-col-2 border-t-2'>
+                    <div className='w-1/2 text-blue-800 border-l-2 p-2 border-b-2'>
                         <DayPicker
                             mode="multiple"
                             selected={selectedDates}
                             onSelect={(date) => setSelectedDates(date || [])}
                             onDayClick={handleDayClick}
                             modifiers={{
-                                selected: isSelected,
-                            }}
+                            selected: isSelected,
+                        }}
+                        modifiersStyles={{
+                            selected: {
+                            backgroundColor: '#007BFF', // Modern blue color
+                            color: 'white',
+                            borderRadius: '1rem',
+                            border: '1px solid #007BFF', // Add a border for a modern touch
+                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Add a subtle shadow for depth
+                            },
+                        }}
                         />
                     </div>
-                    <div className="selected-dates-list w-1/2 p-2 rounded-lg overflow-y-auto cursor-pointer gap-1">
+                    <div className="selected-dates-list w-1/2 p-2 max-h-56 rounded-lg overflow-y-auto cursor-pointer gap-1 border-2 border-blue-100 border-t-0">
                         {selectedDates.map((date, index) => (
                             <div key={index} className="border-2 border-blue-200 text-blue-600 p-2 rounded-lg hover:text-white hover:font-semibold hover:bg-blue-400" onClick={() => handleDayClick(date)}>
                                 {date.toDateString()}
