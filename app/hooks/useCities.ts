@@ -31,39 +31,14 @@ const useCities = () => {
       'Porto Alegre', // Assuming this is the starting point
       'Pelotas', // Closest city to Porto Alegre
       'Caxias do Sul', // Second closest
-      'Santa Maria', // Third closest
       'Canoas', // Fourth closest
       'Gravataí', // Fifth closest
       'Viamão', // Sixth closest
       'Novo Hamburgo', // Seventh closest
       'São Leopoldo', // Eighth closest
-      'Rio Grande', // Ninth closest
-      'Alvorada', // Tenth closest
-      'Passo Fundo', // Eleventh closest
-      'Sapucaia do Sul', // Twelfth closest
-      'Uruguaiana', // Thirteenth closest
-      'Santa Cruz do Sul', // Fourteenth closest
-      'Cachoeirinha', // Fifteenth closest
-      'Bagé', // Sixteenth closest
-      'Bento Gonçalves', // Seventeenth closest
-      'Erechim', // Eighteenth closest
       'Guaíba', // Nineteenth closest
-      'Santana do Livramento', // Twentieth closest
-      'Ijuí', // Twenty-first closest
-      'Alegrete', // Twenty-second closest
-      'São Borja', // Twenty-third closest
-      'Vacaria', // Twenty-fourth closest
-      'Sapiranga', // Twenty-fifth closest
       'Esteio', // Twenty-sixth closest
-      'Camaquã', // Twenty-seventh closest
-      'São Gabriel', // Twenty-eighth closest
-      'Farroupilha', // Twenty-ninth closest
       'Torres', // Thirtieth closest
-      'Taquara', // Thirty-first closest
-      'Montenegro', // Thirty-second closest
-      'São Sebastião do Caí', // Thirty-third closest
-      'São Lourenço do Sul', // Thirty-fourth closest
-      'Santo Ângelo', // Farthest from Porto Alegre
     ];
  
 

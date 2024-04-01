@@ -1,16 +1,16 @@
 "use client";
 
 import React from 'react'
-import Calendar from '../Inputs/Calendar';
 import { Range } from 'react-date-range';
 import Button from '../Button';
+import { DayPicker } from 'react-day-picker';
+
 
 interface ListingReservationProps {
     dateRange: Range;
     onChangeDate: (value: Range) => void;
     onSubmit: () => void;
     disabled?: boolean;
-    disabledDates: Date[]
 }
 
 const ListingReservation: React.FC<ListingReservationProps> = ({
@@ -18,8 +18,9 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   onChangeDate,
   onSubmit,
   disabled,
-  disabledDates
 }) => {
+
+  
 
   return (
     <div className='bg-white rounded-xl border-[1px] border-neutral-200 overflow-hidden'>
@@ -32,11 +33,18 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
         </div>
       </div>
       <hr />
-        <Calendar
-        value={dateRange}
-        disabledDates={disabledDates}
-        onChange={(value) => onChangeDate(value.selection)}
-        />
+      <DayPicker
+          modifiersStyles={{
+          selected: {
+          backgroundColor: '#007BFF', // Modern blue color
+          color: 'white',
+          borderRadius: '1rem',
+          border: '1px solid #007BFF', // Add a border for a modern touch
+          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Add a subtle shadow for depth
+          },
+      }}
+      />
+
         <hr/>
         <div className="p-4">
           <Button
