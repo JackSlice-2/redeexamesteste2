@@ -7,9 +7,7 @@ import Heading from '../Heading';
 import { categories } from '../navbar/Categories';
 import CategoryInput from '../Inputs/CategoryInput';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import CountrySelect from '../Inputs/CountrySelect';
 import dynamic from 'next/dynamic';
-import Counter from '../Inputs/Counter';
 import ImageUpload from '../Inputs/ImageUpload';
 import Input from '../Inputs/Input';
 import axios from 'axios';
@@ -18,6 +16,7 @@ import toast from 'react-hot-toast';
 import { companies } from '../../(routes)/myPartners/MyPartners';
 import CompanyInput from '../Inputs/CompanyInput';
 import CitySelect from '../Inputs/CitySelect';
+import { DayPicker } from 'react-day-picker';
 
 enum STEPS {
     CATEGORY = 0,
@@ -27,12 +26,12 @@ enum STEPS {
     IMAGES = 4,
     DESCRIPTION = 5,
     CALENDAR = 6,
-    PRICE = 7
 }
 
 const RentModal = () => {
     const rentModal = useRentModal();
     const router = useRouter();
+    const [selectedDates, setSelectedDates] = useState<Date[]>([]);
 
     const [step, setStep] = useState(STEPS.CATEGORY);
     const [isLoading, setIsLoading] = useState(false);
@@ -51,11 +50,13 @@ const RentModal = () => {
             category: '',
             company: '',
             location: null,
-            guestCount: 1,
-            roomCount: 1,
-            bathroomCount: 1,
+            payNow: '',
+            payThere: '',
+            firstComeFirstServe: false,
+            byAppointmentOnly: false,
+            dates: [],
+            selectedDates: [],
             imageSrc: '',
-            price: '',
             title: '',
             description: ''
         }
@@ -64,9 +65,6 @@ const RentModal = () => {
     const category = watch('category');
     const company = watch('company');
     const location = watch('location');
-    const guestCount = watch('guestCount');
-    const roomCount = watch('roomCount');
-    const bathroomCount = watch('bathroomCount');
     const imageSrc = watch('imageSrc');
 
     const Map = useMemo(() => dynamic(() => import('../Map'), {
@@ -89,12 +87,21 @@ const RentModal = () => {
         setStep((value) => value +1)
     }
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        if (step != STEPS.PRICE) {
+        if (step != STEPS.CALENDAR) {
             return onNext();
         }
-
+    
         setIsLoading(true);
-
+        // Convert selectedDates to strings
+        const datesStringArray = selectedDates.map(date => date.toISOString());
+        data.dates = datesStringArray; // Assuming 'dates' is the field name in your form
+        data.selectedDates = selectedDates;
+    
+        // Parse payNow and payThere as integers
+        data.payNow = parseInt(data.payNow, 10);
+        data.payThere = parseInt(data.payThere, 10);
+        (console.log(data))
+        
         axios.post('/api/listings', data)
         .then(() => {
             toast.success("Anuncio Criado com Successo!")
@@ -109,9 +116,9 @@ const RentModal = () => {
             setIsLoading(false);
         })
     }
-
+    
     const actionLabel = useMemo(() => {
-        if (step === STEPS.PRICE) {
+        if (step === STEPS.CALENDAR) {
             return 'Create';
         }
 
@@ -192,28 +199,42 @@ const RentModal = () => {
         bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading
-                title='Share some Basics About your Place'
-                subtitle='What Amenities do you have?'
+                title='Detalhes do Atendimento'
+                subtitle='Preencha os campos com atenção'
                 />
-                <Counter
-                title='Number of Guests'
-                subtitle='How Manu guests?'
-                value={guestCount}
-                onChange={(value) => setCustomValue('guestCount', value)}
+                <Input 
+                id="payNow"
+                label="Valor a ser Pago No Pix"
+                formatPrice
+                disabled={isLoading}
+                register={register}
+                errors={errors}
+                required
                 />
-                <hr />
-                <Counter
-                title='Number of Guests'
-                subtitle='How Manu rooms?'
-                value={roomCount}
-                onChange={(value) => setCustomValue('roomCount', value)}
+                <Input 
+                id="payThere"
+                label="Valor a ser Pago No Local"
+                formatPrice
+                disabled={isLoading}
+                register={register}
+                errors={errors}
+                required
                 />
-                <hr />
-                <Counter
-                title='Number of Guests'
-                subtitle='How Manu baths?'
-                value={bathroomCount}
-                onChange={(value) => setCustomValue('bathroomCount', value)}
+                <Input 
+                id="firstComeFirstServe"
+                label="O Atendimento é por Orderm de Chegada?"
+                disabled={isLoading}
+                firstComeFirstServe
+                register={register}
+                errors={errors}
+                />
+                <Input 
+                id="byAppointmentOnly"
+                label="O Atendimento é por Agendamento?"
+                disabled={isLoading}
+                byAppointmentOnly
+                register={register}
+                errors={errors}
                 />
             </div>
         )
@@ -240,12 +261,12 @@ const RentModal = () => {
         bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading 
-                title='How would you describe?'
-                subtitle='Short and sweet'
+                title='Qual o Nome do Atendimento?'
+                subtitle='Nome do Exame ou Especialidade do Medico'
                 />
                 <Input 
                 id="title"
-                label="Title"
+                label="Nome do Exame/Consulta"
                 disabled={isLoading}
                 register={register}
                 errors={errors}
@@ -254,7 +275,7 @@ const RentModal = () => {
                 <hr/>
                 <Input 
                 id="description"
-                label="Description"
+                label="Que tipo de Medico ou Exame será?"
                 disabled={isLoading}
                 register={register}
                 errors={errors}
@@ -263,44 +284,53 @@ const RentModal = () => {
             </div>
         )
     }
-
+    const isSelected = (date: Date) => {
+        return selectedDates.some(selectedDate => selectedDate.getTime() === date.getTime());
+    };
+    
+    const handleDayClick = (date: Date) => {
+        setSelectedDates(prevSelectedDates => {
+            if (prevSelectedDates.some(selectedDate => selectedDate.getTime() === date.getTime())) {
+                // If the date is already selected, remove it from the array
+                return prevSelectedDates.filter(selectedDate => selectedDate.getTime() !== date.getTime());
+            } else {
+                // If the date is not selected, add it to the array
+                return [...prevSelectedDates, date];
+            }
+        });
+    };
+    
     if (step === STEPS.CALENDAR) {
-
-        bodyContent = (
-            <div className="flex flex-col gap-8">
-            <Heading 
-            title='Selecione os Dias disponiveis'
-            subtitle='Selecione os dias que terao atgendimento'
-            />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
-               {/*Calendar*/}
-            </div>
-        </div>
-    )
-    }
-
-    if (step === STEPS.PRICE) {
         bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading 
-                title='Now set your Price'
-                subtitle='How much per night?'
+                    title='Selecione os dias do Atendimento'
+                    subtitle='Selecione todos os dias que tera atendimento disponivel'
                 />
-                <Input 
-                id="price"
-                label="Price"
-                formatPrice
-                type='number'
-                disabled={isLoading}
-                register={register}
-                errors={errors}
-                required
-                />
+                <div className='max-h-64 flex flex-col-2'>
+                    <div className='w-1/2 text-blue-800'>
+                        <DayPicker
+                            mode="multiple"
+                            selected={selectedDates}
+                            onSelect={(date) => setSelectedDates(date || [])}
+                            onDayClick={handleDayClick}
+                            modifiers={{
+                                selected: isSelected,
+                            }}
+                        />
+                    </div>
+                    <div className="selected-dates-list w-1/2 p-2 rounded-lg overflow-y-auto cursor-pointer gap-1">
+                        {selectedDates.map((date, index) => (
+                            <div key={index} className="border-2 border-blue-200 text-blue-600 p-2 rounded-lg hover:text-white hover:font-semibold hover:bg-blue-400" onClick={() => handleDayClick(date)}>
+                                {date.toDateString()}
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         )
     }
-
-
+    
 
   return (
     <Modal 

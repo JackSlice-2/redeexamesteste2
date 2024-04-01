@@ -6,9 +6,7 @@ import { Range } from 'react-date-range';
 import Button from '../Button';
 
 interface ListingReservationProps {
-    price: number;
     dateRange: Range;
-    totalPrice: number;
     onChangeDate: (value: Range) => void;
     onSubmit: () => void;
     disabled?: boolean;
@@ -16,9 +14,7 @@ interface ListingReservationProps {
 }
 
 const ListingReservation: React.FC<ListingReservationProps> = ({
-  price,
   dateRange,
-  totalPrice,
   onChangeDate,
   onSubmit,
   disabled,

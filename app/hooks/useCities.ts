@@ -67,16 +67,24 @@ const useCities = () => {
     ];
  
 
-    const fetchCityGeocode = async (city: string): Promise<FormattedCityData[]> => {
-      const response = await axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(city)}&key=c92e696b860e4606aae09466c9f055b5`);
-      const formattedCities: FormattedCityData[] = response.data.results.map((cityData: CityData) => ({
-        value: cityData.components.city,
-        label: `${cityData.components.city}, RS`,
-        latlng: [cityData.geometry.lat, cityData.geometry.lng],
-        region: cityData.components.country,
-      }));
-      return formattedCities;
-    };
+const fetchCityGeocode = async (city: string): Promise<FormattedCityData[]> => {
+ console.log(`Fetching geocode for city: ${city}`); // Log the city being fetched
+ try {
+    const response = await axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(city)}&key=c92e696b860e4606aae09466c9f055b5`);
+    console.log('Response:', response); // Log the response
+    const formattedCities: FormattedCityData[] = response.data.results.map((cityData: CityData) => ({
+      value: cityData.components.city,
+      label: `${cityData.components.city}, RS`,
+      latlng: [cityData.geometry.lat, cityData.geometry.lng],
+      region: cityData.components.country,
+    }));
+    return formattedCities;
+ } catch (error) {
+    console.error('Error fetching city geocode:', error); // Log any errors
+    throw error; // Rethrow the error to be handled by the calling function
+ }
+};
+
 
     // Fetch geocoding information for each city concurrently
     const allCitiesData = await Promise.all(citiesList.map(fetchCityGeocode));

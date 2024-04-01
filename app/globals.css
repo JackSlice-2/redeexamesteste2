@@ -46,3 +46,23 @@ body,
 * {
     scrollbar-color: #60A5FA lightgray;
 }
+
+/* DayPickerStyles.css */
+
+.DayPicker {
+    border-radius: 10px; /* Rounded corners */
+    background-color: #f0f8ff; /* Light blue background */
+}
+
+.DayPicker-Day {
+    border-radius: 50%; /* Rounded day cells */
+}
+
+.DayPicker-Day--selected {
+    background-color: #add8e6; /* Light blue for selected days */
+    color: white; /* White text for selected days */
+}
+
+.DayPicker-Day--today {
+    color: #add8e6; /* Light blue for today's date */
+}

@@ -13,7 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   name String?
@@ -24,6 +23,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   favoriteIds String[] @db.ObjectId
+  inactiveAdIds String[] @db.ObjectId
 
   accounts Account[]
   listings Listing[]
@@ -57,26 +57,29 @@ model Listing {
   createdAt DateTime @default(now())
   category String
   company String?
-  roomCount Int
-  bathroomCount Int
-  guestCount Int
+  payNow Int?
+  payThere Int?
+  firstComeFirstServe Boolean?
+  byAppointmentOnly Boolean?
   locationValue String
   userId String @db.ObjectId
-  price Int
+  dates String[]
+  price Int?
+
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservations Reservation []
 }
 
 model Reservation {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
-  listingId String @db.ObjectId
-  startDate DateTime
-  endDate DateTime
-  totalPrice Int
-  createdAt DateTime @default(now())
+ id String @id @default(auto()) @map("_id") @db.ObjectId
+ userId String @db.ObjectId
+ listingId String @db.ObjectId
+startDate DateTime
+endDate DateTime
+totalPrice Int?
+createdAt DateTime @default(now())
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  listing Listing @relation(fields: listingId, references: [id], onDelete: Cascade)
+ user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+ listing Listing @relation(fields: listingId, references: [id], onDelete: Cascade)
 }

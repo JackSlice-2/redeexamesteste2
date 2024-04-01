@@ -118,15 +118,10 @@ const ListingClient: React.FC<ListingClientProps> = ({
                         user={listing.user}
                         category={category}
                         description={listing.description}
-                        roomCount={listing.roomCount}
-                        guestCount={listing.guestCount}
-                        bathroomCount={listing.bathroomCount}
                         locationValue={listing.locationValue}
                         />
                         <div className="order-first mb-10 md:order-last md:col-span-3">
                             <ListingReservation 
-                            price={listing.price}
-                            totalPrice={totalPrice}
                             onChangeDate={(value) => setDateRange(value)}
                             dateRange={dateRange}
                             onSubmit={onCreateReservation}

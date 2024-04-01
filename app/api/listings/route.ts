@@ -18,11 +18,12 @@ export async function POST(
         imageSrc,
         category,
         company,
-        roomCount,
-        bathroomCount,
-        guestCount,
+        payNow,
+        payThere,
+        firstComeFirstServe,
+        byAppointmentOnly,
+        dates,
         location,
-        price
     } = body;
  
     const listing = await prisma.listing.create({
@@ -32,11 +33,14 @@ export async function POST(
             imageSrc,
             category,
             company,
-            roomCount,
-            bathroomCount,
-            guestCount,
+            payNow,
+            payThere,
+            firstComeFirstServe,
+            byAppointmentOnly,
+            dates: {
+                set: dates
+            },
             locationValue: location.value,
-            price: parseInt(price, 10),
             userId: currentUser.id
         }
     })
