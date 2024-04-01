@@ -183,7 +183,7 @@ const RentModal = () => {
     if (step === STEPS.LOCATION) {
         bodyContent = (
             <div className='flex flex-col gap-8'>
-    <label>
+  { /* <label>
  <input
     type="checkbox"
     checked={isVirtual}
@@ -194,7 +194,7 @@ const RentModal = () => {
  É uma consulta virtual?
 </label>
 
-    {!isVirtual && (
+    {!isVirtual && (*/}
       <>
         <Heading
           title='Aonde fica o local da consulta?'
@@ -208,7 +208,7 @@ const RentModal = () => {
           center={location?.latlng}
         />
       </>
-    )}
+   {/* )}*/}
             </div>
         )
     }

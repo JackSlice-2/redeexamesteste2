@@ -104,7 +104,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
         </div>
         <div className="flex flex-col">
         <div className="flex flex-row items-center gap-0.5">
-            {locationValue}
+            {data.locationValue}
         </div>
         { currentUser && (
             <div className='text-neutral-500 text-xs font-light'>
