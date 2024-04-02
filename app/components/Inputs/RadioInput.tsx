@@ -1,78 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
-import { BiDollar } from 'react-icons/bi';
 
-interface InputProps {
+interface RadioInputProps {
     id: string;
     label: string;
-    type?: string;
     disabled?: boolean;
-    formatPrice?: boolean;
-    required?: boolean;
     register: UseFormRegister<FieldValues>;
     errors: FieldErrors;
-    payNow?: boolean;
-    payThere?: boolean;
-    firstComeFirstServe?: boolean;
-    byAppointmentOnly?: boolean;
 }
 
-const Input: React.FC<InputProps> = ({
+const RadioInput: React.FC<RadioInputProps> = ({
     id,
     label,
-    type = "text",
     disabled,
-    formatPrice,
     register,
-    required,
-    errors,
-    payNow,
-    payThere,
-    firstComeFirstServe,
-    byAppointmentOnly
+    errors
 }) => {
-    // Check if the input is for boolean values
-    const isBooleanInput = id === 'firstComeFirstServe' || id === 'byAppointmentOnly';
+    
+// Assuming you have a state or a way to manage the boolean value
+const [isTrue, setIsTrue] = useState(true);
 
-    // Check if the input is for money/number values
-    const isMoneyInput = formatPrice;
+// Function to handle radio button change
+const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Convert the string value back to a boolean
+    const value = e.target.value === 'true';
+    setIsTrue(value);
+};
 
     return (
         <div className='w-full relative'>
-            {isMoneyInput && (
-                <span className='text-neutral-700 absolute top-5 left-2'>$</span>
-            )}
-            {isBooleanInput ? (
-                <input 
-                id={id}
+            <input 
+                id={`${id}-true`}
                 disabled={disabled}
                 {...register(id)}
-                type="checkbox"
+                type="radio"
+                value="true"
+                onChange={handleRadioChange}
                 className={`
                 peer w-full p-4 pt-6 font-light bg-white border-2 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed
-                ${formatPrice ? 'pl-9' : 'pl-4'}
                 ${errors[id] ? 'border-rose-500' : 'border-neutral-300'}
                 ${errors[id] ? 'focus:border-rose-500' : 'focus:border-black'}
                 `}
-                />
-            ) : (
-                <input 
-                id={id}
+            />
+            <label htmlFor={`${id}-true`}>Yes</label>
+            <input 
+                id={`${id}-false`}
                 disabled={disabled}
-                {...register(id, { required })}
-                placeholder=' '
-                type={type}
+                {...register(id)}
+                type="radio"
+                value="false"
+                onChange={handleRadioChange}
                 className={`
                 peer w-full p-4 pt-6 font-light bg-white border-2 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed
-                ${formatPrice ? 'pl-9' : 'pl-4'}
                 ${errors[id] ? 'border-rose-500' : 'border-neutral-300'}
                 ${errors[id] ? 'focus:border-rose-500' : 'focus:border-black'}
                 `}
-                />
-            )}
+            />
+            <label htmlFor={`${id}-false`}>No</label>
             <label className={`
             absolute text-md duration-150 transform -translate-y-3 top-5 z-10 origin-[0]
-            ${formatPrice ? 'left-9' : 'left-4'}
+            left-4
             peer-placeholder-shown:scale-100
             peer-placeholder-shown:translate-y-0
             peer-focus:scale-75
@@ -85,4 +72,4 @@ const Input: React.FC<InputProps> = ({
     )
 }
 
-export default Input;
+export default RadioInput;

@@ -19,6 +19,7 @@ interface ListingCardProps {
     actionId?: string;
     currentUser?: SafeUser | null;
     locationValue: string;
+    hours?: string[0];
 }
 
 const ListingCard: React.FC<ListingCardProps> = ({
@@ -27,6 +28,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
     locationValue,
     onAction,
     actionLabel,
+    hours,
     disabled,
     actionId = '',
     currentUser
@@ -39,7 +41,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
         currentUser
     });
 
-    const location = getByValue(data.locationValue)
 
     const handleCancel = useCallback(
         (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -124,7 +125,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
               <div className='text-neutral-500 text-xs'>
                     proximo atendimento: {format(new Date(data.dates[0]), 'dd/MM/yyyy')}
                     <br/>
-                    horario: 10:00-16:00<br/>
+                    A partir das:{data.hours} <br/>
                 </div>  
             </div>
         </div>

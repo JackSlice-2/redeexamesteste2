@@ -58,7 +58,8 @@ const RentModal = () => {
             selectedDates: [],
             imageSrc: '',
             title: '',
-            description: ''
+            description: '',
+            hours: [],
         }
     });
 
@@ -213,6 +214,9 @@ const RentModal = () => {
         )
     }
 
+
+    
+
     if (step === STEPS.INFO) {
         bodyContent = (
             <div className="flex flex-col gap-8">
@@ -227,7 +231,6 @@ const RentModal = () => {
                 disabled={isLoading}
                 register={register}
                 errors={errors}
-                
                 />
                 <Input 
                 id="payThere"
@@ -236,7 +239,6 @@ const RentModal = () => {
                 disabled={isLoading}
                 register={register}
                 errors={errors}
-                
                 />
                 <Input 
                 id="firstComeFirstServe"
@@ -254,9 +256,18 @@ const RentModal = () => {
                 register={register}
                 errors={errors}
                 />
+                <Input
+                id="hours"
+                label="Inicio de Atendimento"
+                disabled={isLoading}
+                register={register}
+                errors={errors}
+                />
             </div>
         )
+        
     }
+    
 
     if (step === STEPS.IMAGES) {
         bodyContent = (
@@ -288,7 +299,6 @@ const RentModal = () => {
                 disabled={isLoading}
                 register={register}
                 errors={errors}
-                
                 />
                 <hr/>
                 <Input 
@@ -297,7 +307,6 @@ const RentModal = () => {
                 disabled={isLoading}
                 register={register}
                 errors={errors}
-                
                 />
             </div>
         )

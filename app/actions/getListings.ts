@@ -2,9 +2,12 @@ import prisma from "@/app/libs/prismadb";
 
 export interface IListingsParams {
   userId?: string;
-  guestCount?: number;
-  roomCount?: number;
-  bathroomCount?: number;
+  payNow?: boolean;
+  payThere?: boolean;
+  firstComeFirstServe?: boolean;
+  byAppointmentOnly?: boolean;
+  hours?: string[];
+  dates?: string[];
   startDate?: string;
   endDate?: string;
   locationValue?: string;
@@ -18,9 +21,12 @@ export default async function getListings(
   try {
     const {
       userId,
-      roomCount, 
-      guestCount, 
-      bathroomCount, 
+      payNow,
+      payThere,
+      firstComeFirstServe,
+      byAppointmentOnly,
+      hours,
+      dates,
       locationValue,
       startDate,
       endDate,
@@ -42,21 +48,31 @@ export default async function getListings(
       query.company = company;
     }
 
-    if (roomCount) {
-      query.roomCount = {
-        gte: +roomCount
+    if (payNow) {
+      query.payNow = payNow;
+    }
+
+    if (payThere) {
+      query.payThere = payThere;
+    }
+
+    if (firstComeFirstServe) {
+      query.firstComeFirstServe = firstComeFirstServe;
+    }
+
+    if (byAppointmentOnly) {
+      query.byAppointmentOnly = byAppointmentOnly;
+    }
+
+    if (hours) {
+      query.hours = {
+        hasSome: hours
       }
     }
 
-    if (guestCount) {
-      query.guestCount = {
-        gte: +guestCount
-      }
-    }
-
-    if (bathroomCount) {
-      query.bathroomCount = {
-        gte: +bathroomCount
+    if (dates) {
+      query.dates = {
+        hasSome: dates
       }
     }
 

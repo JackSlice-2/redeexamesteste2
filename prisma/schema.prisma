@@ -64,6 +64,7 @@ model Listing {
   locationValue String?
   userId String @db.ObjectId
   dates String[]
+  hours String[]
   price Int?
 
 
