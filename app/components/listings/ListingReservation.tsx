@@ -34,7 +34,8 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       </div>
       <hr />
       <DayPicker
-          modifiersStyles={{
+    
+      modifiersStyles={{
           selected: {
           backgroundColor: '#007BFF', // Modern blue color
           color: 'white',

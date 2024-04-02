@@ -27,7 +27,7 @@ interface ListingInfoProps {
         label: string;
         description: string;
     } | undefined
-    locationValue: string;
+    locationValue?: string;
 }
 
 const ListingInfo: React.FC<ListingInfoProps> = ({
@@ -40,7 +40,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
 }) => {
     const { getByValue } = useCountries();
     const [isLoading, setIsLoading] = useState(false);
-    const coordinates = getByValue(locationValue)?.latlng;
+    const coordinates = getByValue(locationValue || 'BR')?.latlng;
 
 
     const {
