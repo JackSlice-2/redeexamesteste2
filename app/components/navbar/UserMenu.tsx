@@ -77,6 +77,11 @@ const UserMenu: React.FC<UserMenuProps> = ({
             <div className="flex flex-col cursor-pointer">
                 {currentUser ? (
                 <>
+                <div className='capitalize bg-blue-300 text-center'>
+                <MenuItem onClick={() => {router.push('/'); closeMenu();}}
+                  label={currentUser?.name || ''}
+                  />
+                </div>
                   <MenuItem onClick={() => {router.push('/'); closeMenu();}}
                   label='Inico'
                   />

@@ -53,6 +53,7 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
             onAction={onCancel}
             disabled={deletingId === listing.id}
             actionLabel="Apagar Anuncio"
+            secondaryActionLabel="Editar Anuncio"
             currentUser={currentUser}
           />
         ))}

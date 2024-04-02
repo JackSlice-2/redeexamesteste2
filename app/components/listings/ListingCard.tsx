@@ -9,17 +9,20 @@ import Image from 'next/image';
 import HeartButton from '../CloudButton';
 import Button from '../Button';
 import useFavorite from '@/app/hooks/useFavorite';
+import { BiPencil, BiTrash } from 'react-icons/bi';
 
 interface ListingCardProps {
     data: SafeListing;
     reservation?: SafeReservation;
     onAction?: (id: string) => void;
+    onSecondaryAction?: (id: string) => void;
     disabled?: boolean;
     actionLabel?: string;
     actionId?: string;
     currentUser?: SafeUser | null;
     locationValue: string;
     hours?: string[0];
+    secondaryActionLabel?: string;
 }
 
 const ListingCard: React.FC<ListingCardProps> = ({
@@ -28,6 +31,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
     locationValue,
     onAction,
     actionLabel,
+    secondaryActionLabel,
     hours,
     disabled,
     actionId = '',
@@ -122,7 +126,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
                
             </div>
             )}
-              <div className='text-neutral-500 text-xs'>
+              <div className='text-neutral-500 text-xs pb-2'>
                     proximo atendimento: {format(new Date(data.dates[0]), 'dd/MM/yyyy')}
                     <br/>
                     A partir das:{data.hours} <br/>
@@ -135,6 +139,15 @@ const ListingCard: React.FC<ListingCardProps> = ({
             label={actionLabel}
             onClick={handleCancel}
             red
+            icon={BiTrash}
+            />
+        )}
+        {onAction && secondaryActionLabel && (
+            <Button
+            disabled={disabled}
+            label={secondaryActionLabel}
+            onClick={() => onAction(data.id)}
+            icon={BiPencil}
             />
         )}
     </div>
