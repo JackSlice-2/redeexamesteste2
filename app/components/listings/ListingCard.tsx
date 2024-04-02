@@ -30,6 +30,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
     reservation,
     locationValue,
     onAction,
+    onSecondaryAction,
     actionLabel,
     secondaryActionLabel,
     hours,
