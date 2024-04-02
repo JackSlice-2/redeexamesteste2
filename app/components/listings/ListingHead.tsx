@@ -9,7 +9,7 @@ import HeartButton from '../CloudButton';
 
 interface ListingHeadProps {
     title: string;
-    locationValue?: string;
+    locationValue: string;
     imageSrc: string;
     id: string;
     currentUser?: SafeUser | null;
@@ -23,7 +23,7 @@ const ListingHead: React.FC<ListingHeadProps> = ({
     currentUser
 }) => {
     const { getByValue } = useCountries();
-    const location = getByValue(locationValue || 'BR')
+    const location = getByValue(locationValue)
 
   return (
     <>
