@@ -91,7 +91,7 @@ const RentModal = () => {
         if (step != STEPS.CALENDAR) {
             return onNext();
         }
-    
+
         setIsLoading(true);
         // Convert selectedDates to strings
         const datesStringArray = selectedDates.map(date => date.toISOString());
