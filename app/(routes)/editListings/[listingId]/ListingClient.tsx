@@ -127,7 +127,9 @@ const ListingClient: React.FC<ListingClientProps> = ({
                         locationValue={listing.locationValue}
                         />
                         <div className="order-first mb-10 md:order-last md:col-span-3">
-                            <ListingReservation 
+                            <ListingReservation
+                            data={listing}
+                            dates={listing.dates}
                             onChangeDate={(value) => setDateRange(value)}
                             dateRange={dateRange}
                             onSubmit={onCreateReservation}

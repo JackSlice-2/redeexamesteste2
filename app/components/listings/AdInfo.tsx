@@ -1,7 +1,7 @@
 "use client";
 
 import useCountries from '@/app/hooks/useCountries';
-import { SafeUser } from '@/app/types';
+import { SafeListing, SafeUser } from '@/app/types';
 import React, { useMemo, useState } from 'react'
 import { IconType } from 'react-icons';
 import ListingCategory from './ListingCategory';
@@ -19,6 +19,7 @@ const Map = dynamic(() => import('../Map'), {
 
 interface ListingInfoProps {
     user: SafeUser;
+    data: SafeListing;
     description: string;
     firstComeFirstServe: boolean;
     byAppointmentOnly: boolean;
@@ -29,6 +30,7 @@ interface ListingInfoProps {
     } | undefined
     locationValue: string;
     hours: string[0];
+    dates: string[];
 }
 
 const ListingInfo: React.FC<ListingInfoProps> = ({
@@ -38,7 +40,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     byAppointmentOnly,
     category,
     locationValue,
-    hours
+    hours,
+    dates
 }) => {
     const { getByValue } = useCountries();
     const [isLoading, setIsLoading] = useState(false);
@@ -61,13 +64,6 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       //Map Depends on location, Ignore warning below
   }), [location])
 
-      const setCustomValue = (id: string, value: any) => {
-        setValue(id, value, {
-            shouldValidate: true,
-            shouldDirty: true,
-            shouldTouch: true,
-        })
-    }
 
   return (
     <div className='col-span-4 flex flex-col gap-8'>
@@ -123,7 +119,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           {description}
       </div>
       <hr />
-      {locationValue}
+      {locationValue} <br />
+    
       <hr />
 
         <Map

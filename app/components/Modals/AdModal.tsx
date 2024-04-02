@@ -88,10 +88,10 @@ const RentModal = () => {
         setStep((value) => value +1)
     }
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        if (step != STEPS.CALENDAR) {
+        if (step != STEPS.CALENDAR) 
+        {
             return onNext();
         }
-
         setIsLoading(true);
         // Convert selectedDates to strings
         const datesStringArray = selectedDates.map(date => date.toISOString());

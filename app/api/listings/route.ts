@@ -28,6 +28,7 @@ export async function POST(
     } = body;
 
     const hoursArray = Array.isArray(hours) ? hours : [hours];
+    const datesArray = Array.isArray(dates) ? dates : [dates];
 
  
     const listing = await prisma.listing.create({
@@ -45,7 +46,7 @@ export async function POST(
             firstComeFirstServe,
             byAppointmentOnly,
             dates: {
-                set: dates
+                set: datesArray
             },
             locationValue: location.value,
             userId: currentUser.id
