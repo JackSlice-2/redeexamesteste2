@@ -107,7 +107,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
             <div className="max-w-screen-lg mx-auto">
                 <div className="flex flex-col gap-6">
                     <ListingHead
-                    title={listing.title}
+                       title={`Voce esta Editando: ${listing.title}
+                       é um(a) ${category?.label} da empresa ${listing.company} de ${listing.locationValue}`}
                     imageSrc={listing.imageSrc}
                     //@ts-ignore
                     locationValue={listing.locationValue}

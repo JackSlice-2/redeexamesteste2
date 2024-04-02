@@ -23,7 +23,6 @@ const Button: React.FC<ButtonProps> = ({
     icon: Icon
 }) => {
   return (
-    <div className='p-1 gap-1'>
     <button 
     onClick={onClick}
     disabled={disabled}
@@ -46,7 +45,6 @@ const Button: React.FC<ButtonProps> = ({
         )}
       {label}
     </button>
-    </div>
   )
 }
 

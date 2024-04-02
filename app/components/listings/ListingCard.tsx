@@ -84,9 +84,11 @@ const ListingCard: React.FC<ListingCardProps> = ({
     }
 
   return (
+    <div className='col-span-1 cursor-pointer group rounded-md hover:bg-blue-200 hover:text-blue-700 p-2 font-semibold'
+    >
     <div 
     onClick={() => router.push(`/listings/${data.id}`)}
-    className='col-span-1 cursor-pointer group rounded-md hover:bg-blue-200 hover:text-blue-700 p-2 font-semibold'>
+    >
       <div className="flex flex-col w-full">
         <div className="aspect-square w-full relative overflow-hidden rounded-xl">
             <Image 
@@ -134,6 +136,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
                 </div>  
             </div>
         </div>
+        </div>
         {onAction && actionLabel && (
             <Button 
             disabled={disabled}
@@ -147,7 +150,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <Button
             disabled={disabled}
             label={secondaryActionLabel}
-            onClick={() => onAction(data.id)}
+            onClick={() => router.push(`/editListings/${data.id}`)}
             icon={BiPencil}
             />
         )}
