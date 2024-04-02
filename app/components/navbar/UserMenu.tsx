@@ -80,12 +80,12 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   <MenuItem onClick={() => {router.push('/'); closeMenu();}}
                   label='Inico'
                   />
-                  <MenuItem onClick={() => {router.push('/trips'); closeMenu();}}
+                  {/*<MenuItem onClick={() => {router.push('/trips'); closeMenu();}}
                   label='My trips(TBD)'
-                  />
-                  <MenuItem onClick={() => {router.push('/reservations'); closeMenu();}}
+                  />*/}
+                  {/*<MenuItem onClick={() => {router.push('/reservations'); closeMenu();}}
                   label='My Reservations(TBD)'
-                  />
+                  />*/}
                   <MenuItem onClick={() => {router.push('/inactiveAds'); closeMenu();}}
                   label='Anuncios Inativos'
                   />

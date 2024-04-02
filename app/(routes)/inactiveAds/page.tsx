@@ -14,8 +14,8 @@ const ListingPage = async () => {
   return (
     <ClientOnly>
         <EmptyState 
-        title='No Favorites found'
-        subtitle='looks like you have no Faves'
+        title='Nenhum Anuncio Inativo Encontrado'
+        subtitle='Todos os anuncios estão ativos.'
         />
     </ClientOnly>
   )

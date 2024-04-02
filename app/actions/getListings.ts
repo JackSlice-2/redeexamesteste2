@@ -20,7 +20,6 @@ export default async function getListings(
 ) {
   try {
     const {
-      userId,
       payNow,
       payThere,
       firstComeFirstServe,
@@ -35,10 +34,6 @@ export default async function getListings(
     } = params;
 
     let query: any = {};
-
-    if (userId) {
-      query.userId = userId;
-    }
 
     if (category) {
       query.category = category;
