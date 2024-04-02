@@ -15,13 +15,21 @@ const Map = dynamic(() => import('../Map'), {
 interface PartnerInfoProps {
     description: string;
     firstComeFirstServe?: boolean;
-    byAppointment?: boolean;
+    byAppointmentOnly?: boolean;
     payNow?: number;
     payThere?: number;
     companies: {
         imageSrc: string;
         label: string;
         description: string;
+        cnpj: string;
+        address: string;
+        phone: string;
+        email: string;
+        whatsApp: string;
+        telegram: string;
+        website: string;
+        city: string;
     } | undefined
     locationValue: string;
 }
@@ -29,7 +37,7 @@ interface PartnerInfoProps {
 const PartnerInfo: React.FC<PartnerInfoProps> = ({
   description,
   firstComeFirstServe,
-  byAppointment,
+  byAppointmentOnly,
   payNow,
   payThere,
   companies,
@@ -52,7 +60,7 @@ return (
             {firstComeFirstServe ? <CheckmarkIcon /> : <PiXFill />} Ordem de Chegada
           </div>
             <div>
-                <CheckmarkIcon />{} Horario Marcado
+            {byAppointmentOnly ? <CheckmarkIcon /> : <PiXFill />} Horario Marcado
             </div>
             <div className='text-red'>
                 <PiXFill color='red'/> {} consultsas Online (create Bool that stays in place of location STEP)
@@ -67,10 +75,10 @@ return (
             description={description}
             />
           )}<br/>
-          CNPJ: 000000-000/00
+          CNPJ: {companies?.cnpj}
           <hr />
           <div className='w-2/3 p-2 border-gray-600 flex justify-center items-center'>
-            {description} Descriçao dois pode ser mais detalhada
+            {description}
           </div>
         </div>
         </div>
@@ -82,22 +90,22 @@ return (
       <hr />
       <div className='flex flex-row overflow-x-auto hide-scrollbar w-full'>
         <div className='p-5 text-center hover:bg-sky-100 cursor-pointer '>
-            <BiCopy /> Cidade: <br/>{locationValue}
+            <BiCopy /> Cidade: <br/>{companies?.city}
         </div>
         <div className='p-5 text-center hover:bg-sky-100 cursor-pointer '>
-            <BiCopy /> Endereço: <br/>av. Brasil, 1234
+            <BiCopy /> Endereço: <br/>{companies?.address}
         </div>
         <div className='p-5 text-center hover:bg-sky-100 cursor-pointer '>
-            <BiCopy /> Telefone: <br/>555555555
+            <BiCopy /> Telefone: <br/>{companies?.phone}
         </div>
         <div className='p-5 text-center hover:bg-sky-100 cursor-pointer '>
-            <BiCopy /> WhatsApp: <br/>555555555
+            <BiCopy /> WhatsApp: <br/>{companies?.whatsApp}
         </div>
         <div className='p-5 text-center hover:bg-sky-100 cursor-pointer '>
-            <BiCopy /> Telegram: <br/>555555555
+            <BiCopy /> Telegram: <br/>{companies?.telegram}
         </div>
         <div className='p-5 text-center hover:bg-sky-100 cursor-pointer '>
-            <BiCopy /> e-mail: <br/>email@email.com
+            <BiCopy /> e-mail: <br/>{companies?.email}
         </div>
     </div>
     <hr />
