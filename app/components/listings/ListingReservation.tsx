@@ -11,6 +11,7 @@ interface ListingReservationProps {
     onChangeDate: (value: Range) => void;
     onSubmit: () => void;
     disabled?: boolean;
+    dates: Date[];
 }
 
 const ListingReservation: React.FC<ListingReservationProps> = ({
@@ -34,7 +35,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       </div>
       <hr />
       <DayPicker
-    
+
       modifiersStyles={{
           selected: {
           backgroundColor: '#007BFF', // Modern blue color
