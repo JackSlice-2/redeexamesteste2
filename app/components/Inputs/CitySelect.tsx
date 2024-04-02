@@ -13,8 +13,8 @@ export type CitySelectValue = {
 }
 
 interface CitySelectProps {
-    value?: CitySelectValue;
-    onChange: (value: CitySelectValue) => void;
+  value?: CitySelectValue;
+  onChange: (value: CitySelectValue) => void;
 }
 
 const CitySelect: React.FC<CitySelectProps> = ({

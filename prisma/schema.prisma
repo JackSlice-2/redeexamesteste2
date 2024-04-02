@@ -61,7 +61,7 @@ model Listing {
   payThere Int?
   firstComeFirstServe Boolean?
   byAppointmentOnly Boolean?
-  locationValue String
+  locationValue String?
   userId String @db.ObjectId
   dates String[]
   price Int?

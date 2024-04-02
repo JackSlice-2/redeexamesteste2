@@ -26,19 +26,12 @@ const useCities = () => {
  useEffect(() => {
     const fetchCities = async () => {
       try {
-    // List of cities in Rio Grande do Sul, ordered from closest to Porto Alegre to the farthest
+    // List of cities in Rio Grande do Sul
     const citiesList = [
-      'Porto Alegre', // Assuming this is the starting point
-      'Pelotas', // Closest city to Porto Alegre
-      'Caxias do Sul', // Second closest
-      'Canoas', // Fourth closest
-      'Gravataí', // Fifth closest
-      'Viamão', // Sixth closest
-      'Novo Hamburgo', // Seventh closest
-      'São Leopoldo', // Eighth closest
-      'Guaíba', // Nineteenth closest
-      'Esteio', // Twenty-sixth closest
-      'Torres', // Thirtieth closest
+      'Porto Alegre',
+      'Canoas',
+      'Viamão',
+      'Alvorada'
     ];
  
 
