@@ -249,26 +249,24 @@ const RentModal = () => {
                 </div>
                 <button onClick={() => {
                     setSelectedOption('byAppointmentOnly');
-                    // Assuming you have the setValue function from react-hook-form
                     setValue('byAppointmentOnly', true);
                     setValue('firstComeFirstServe', false);
                     console.log('Unselected:', 'firstComeFirstServe');
                 }}
-                    className={`p-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out hover:text-white hover:font-medium
-                    ${selectedOption === 'byAppointmentOnly' ? 'bg-blue-600 text-white font-bold shadow-md' : 'bg-blue-200 text-gray'}`}
+                    className={`p-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-outhover:font-medium
+                    ${selectedOption === 'byAppointmentOnly' ? 'bg-blue-600 text-white font-bold shadow-lg border-2 border-blue-600' : 'bg-blue-200 text-gray-400'}`}
                 >
                     Horario Marcado
                 </button>
                 
                 <button onClick={() => {
                     setSelectedOption('firstComeFirstServe');
-                    // Assuming you have the setValue function from react-hook-form
                     setValue('byAppointmentOnly', false);
                     setValue('firstComeFirstServe', true);
                     console.log('Unselected:', 'byAppointmentOnly');
                 }}
-                    className={`p-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out hover:text-white hover:font-medium
-                    ${selectedOption === 'firstComeFirstServe' ? 'bg-blue-600 text-white font-bold shadow-md' : 'bg-blue-200 text-gray'}`}
+                    className={`p-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-outhover:font-medium
+                    ${selectedOption === 'firstComeFirstServe' ? 'bg-blue-600 text-white font-bold shadow-lg border-2 border-blue-600' : 'bg-blue-200 text-gray-400'}`}
                 >
                     Por Ordem de Chegada
                 </button>
@@ -392,6 +390,7 @@ const RentModal = () => {
                     <div className='w-1/2 text-blue-800 border-l-2 p-2 border-b-2'>
                         <DayPicker
                             mode="multiple"
+                            className='customDayPickerAdModel'
                             selected={selectedDates}
                             onSelect={(date) => setSelectedDates(date || [])}
                             onDayClick={handleDayClick}
@@ -409,7 +408,7 @@ const RentModal = () => {
                         }}
                         />
                     </div>
-                    <div className="selected-dates-list w-1/2 p-2 max-h-56 rounded-lg overflow-y-auto cursor-pointer gap-1 border-2 border-blue-100 border-t-0">
+                    <div className="selected-dates-list w-1/2 p-2 max-h-auto rounded-lg overflow-y-auto cursor-pointer gap-1 border-2 border-blue-100 border-t-0">
                         {selectedDates.sort((a, b) => a.getTime() - b.getTime()).map((date, index) => (
                             <div key={index} className="border-2 border-blue-200 text-blue-600 p-2 rounded-lg hover:text-white hover:font-semibold hover:bg-blue-400" onClick={() => handleDayClick(date)}>
                                 {date.toDateString()}

@@ -50,21 +50,22 @@ body,
 /* DayPickerStyles.css */
 .customDayPicker {
   font-size: 1.7em;
-  margin: 1 auto;
+  justify-content: center;
+  items-align: center;
+  font-weight: semibold;
+  border-radius: 50px;
+  background-color: #f0f8ff;
+  padding: 1em;
 }
-.customDayPicker {
+.customDayPickerAdModel {
+    font-size: 1em;
+    justify-content: center;
+    items-align: center;
+    font-weight: bold;
     border-radius: 50px;
     background-color: #f0f8ff;
     padding: 1em;
-}
-
-.customDayPicker-Day {
-    border-radius: 30%;
-    cursor: pointer;
-}
-
-.customDayPicker .DayPicker-Day {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  }
+  .line-through {
+    text-decoration: line-through;
+  }
