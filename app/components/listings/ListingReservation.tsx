@@ -34,14 +34,14 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
     <div className='bg-white rounded-xl border-[1px] border-neutral-200 overflow-hidden'>
       <div className="flex flex-col items-center gap-1 p-4">
         <div className="text-2xl font-semibold">
-          Selecione os dias que tem disponibilidade
+          Temos atendimento nos dias abaixo:
         </div>
         <div className="font-light text-sm text-neutral-600">
-          Selecione os dias e clique em Mensagem Personalizada! para enviar uma menasagem personalizada solicitando este atendimento
+          Ligue ja e confira se ainda ha vaga para os dias abaixo!
         </div>
       </div>
       <hr />
-      <div className='flex justify-center items-center w-full'>
+      <div className='flex justify-center items-center w-full py-4'>
       <DayPicker
         selected={dateObjects}
         disabled={{ before: new Date() }}
@@ -68,13 +68,13 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       />
       </div>
         <hr/>
-        <div className="p-4">
+       {/* <div className="p-4">
           <Button
           disabled={disabled}
           label="Mensagem Personalizada!"
           onClick={onSubmit}
           />
-        </div>
+    </div>*/}
     </div>
 <div className='p-2 max-h-56 rounded-lg overflow-y-auto cursor-pointer gap-1 border-2 border-blue-100 border-t-0'>
     {dates?.map(date => (

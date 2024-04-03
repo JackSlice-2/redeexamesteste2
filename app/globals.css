@@ -60,7 +60,6 @@ body,
 
 .customDayPicker-Day {
     border-radius: 30%;
-    gap: 1em;
     cursor: pointer;
 }
 
