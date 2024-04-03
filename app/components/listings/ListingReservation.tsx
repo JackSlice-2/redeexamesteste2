@@ -91,10 +91,10 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   const dateClass = isDisabled ? 'line-through' : '';
   const isToday = currentDate.getTime() === today.getTime();
   return (
-    <div key={date} className={`border-2 border-blue-200 text-blue-600 p-2 rounded-lg hover:text-white hover:font-semibold hover:bg-blue-400 ${dateClass}`}>
+    <div key={date} className={`capitalize border-2 border-blue-200 text-blue-600 p-2 rounded-lg hover:text-white hover:font-semibold hover:bg-blue-400 ${dateClass}`}>
       {new Date(date).toLocaleDateString('pt-BR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
       <br />
-      {isToday && `Atendimento Encerra as: ${endTime}`}
+      {isToday && <div className='font-semibold text-red-400'>{`Atendimento Encerra as: ${endTime}`}</div>}
     </div>
   );
 })} 
