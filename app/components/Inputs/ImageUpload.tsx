@@ -40,7 +40,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 
         if (isLoading) {
             return (
-                <div className='h-2/6'>
+                <div className=''>
                     <Loader />
                 </div>
             );

@@ -58,7 +58,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
             backgroundColor: 'lightblue',
             color: 'blue',
             borderRadius: '1rem',
-            border: '2px solid lightblue',
+            border: '1px solid lightblue',
             boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
           },
           disabled: {

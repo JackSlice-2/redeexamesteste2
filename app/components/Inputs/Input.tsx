@@ -15,6 +15,7 @@ interface InputProps {
     payThere?: boolean;
     firstComeFirstServe?: boolean;
     byAppointmentOnly?: boolean;
+    checked?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Modal from './Modal'
 import useRentModal from '@/app/hooks/useRentModal'
 import Heading from '../Heading';
@@ -214,8 +214,11 @@ const RentModal = () => {
         )
     }
 
+    const [selectedOption, setSelectedOption] = useState('');
 
-    
+    useEffect(() => {
+        console.log(selectedOption, "TRUE");
+    }, [selectedOption]);
 
     if (step === STEPS.INFO) {
         bodyContent = (
@@ -240,34 +243,76 @@ const RentModal = () => {
                 register={register}
                 errors={errors}
                 />
-                <Input 
-                id="firstComeFirstServe"
-                label="O Atendimento é por Orderm de Chegada?"
-                disabled={isLoading}
-                firstComeFirstServe
-                register={register}
-                errors={errors}
-                />
-                <Input 
-                id="byAppointmentOnly"
-                label="O Atendimento é por Agendamento?"
-                disabled={isLoading}
-                byAppointmentOnly
-                register={register}
-                errors={errors}
-
-                />
-                <Input
-                id="hours"
-                label="Inicio de Atendimento"
-                type="time"
-                disabled={isLoading}
-                register={register}
-                errors={errors}
-                />
+                <div className='flex flex-row gap-2 text-blue-500 justify-between'>
+                <button onClick={() => {
+                    setSelectedOption('byAppointmentOnly');
+                    // Assuming you have the setValue function from react-hook-form
+                    setValue('byAppointmentOnly', true);
+                    setValue('firstComeFirstServe', false);
+                    console.log('Unselected:', 'firstComeFirstServe');
+                }}
+                    className={`p-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out 
+                    ${selectedOption === 'firstComeFirstServe' ? 'bg-blue-200 text-gray' : 'bg-blue-600 text-white font-bold shadow-md'}`}
+                >
+                    By Appointment Only
+                </button>
+                
+                <button onClick={() => {
+                    setSelectedOption('firstComeFirstServe');
+                    // Assuming you have the setValue function from react-hook-form
+                    setValue('byAppointmentOnly', false);
+                    setValue('firstComeFirstServe', true);
+                    console.log('Unselected:', 'byAppointmentOnly');
+                }}
+                    className={`p-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out 
+                    ${selectedOption === 'firstComeFirstServe' ? 'bg-blue-600 text-white font-bold shadow-md' : 'bg-blue-200 text-gray'}`}
+                >
+                    First Come First Serve
+                </button>
+                </div>
+                {selectedOption === 'byAppointmentOnly' && (
+                    <>
+                        <Input 
+                            id="byAppointmentOnly"
+                            label="By Appointment Only"
+                            type='checkbox'
+                            disabled={isLoading}
+                            byAppointmentOnly
+                            register={register}
+                            errors={errors}
+                            checked={selectedOption === 'byAppointmentOnly'}
+                        />
+                        <Input 
+                            id="hours"
+                            label="Appointment Hours"
+                            disabled={isLoading}
+                            register={register}
+                            errors={errors}
+                        />
+                    </>
+                )}
+                {selectedOption === 'firstComeFirstServe' && (
+                    <>
+                        <Input 
+                            id="firstComeFirstServe"
+                            label="First Come First Serve"
+                            firstComeFirstServe
+                            disabled={isLoading}
+                            register={register}
+                            errors={errors}
+                            checked={selectedOption === 'firstComeFirstServe'}
+                        />
+                        <Input 
+                            id="hours"
+                            label="Serve Hours"
+                            disabled={isLoading}
+                            register={register}
+                            errors={errors}
+                        />
+                    </>
+                )}
             </div>
         )
-        
     }
     
 
