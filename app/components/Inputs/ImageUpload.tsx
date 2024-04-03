@@ -33,14 +33,14 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     }}
 >
     {({ open, cloudinary, widget, error, isLoading, results }) => {
+
         if (error) {
             console.error(error);
             return <div>Error occurred</div>;
         }
-
         if (isLoading) {
             return (
-                <div className=''>
+                <div style={{ transform: 'translateY(-200px)' }}>
                     <Loader />
                 </div>
             );

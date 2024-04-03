@@ -41,7 +41,7 @@ const Input: React.FC<InputProps> = ({
     return (
         <div className='w-full relative'>
             {isMoneyInput && (
-                <span className='text-neutral-700 absolute top-5 left-2'>$</span>
+                <span className='text-neutral-700 absolute top-5 left-4'>$</span>
             )}
             {isBooleanInput ? (
                 <input 
@@ -49,7 +49,7 @@ const Input: React.FC<InputProps> = ({
                 disabled={disabled}
                 {...register(id)}
                 type="checkbox"
-                className={`
+                className={` hidden
                 text-center font-wrap p-6 font-light bg-white border-2 rounded-md outline-none disabled:opacity-70 disabled:cursor-not-allowed
                 ${formatPrice ? 'pl-9' : 'pl-4'}
                 ${errors[id] ? 'border-rose-500' : 'border-neutral-300'}

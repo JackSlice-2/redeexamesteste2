@@ -244,6 +244,9 @@ const RentModal = () => {
                 errors={errors}
                 />
                 <div className='flex flex-row gap-2 text-blue-500 justify-between'>
+                <div className='text-center font-bold text-md'>
+                    Selecione um tipo de atendimento:
+                </div>
                 <button onClick={() => {
                     setSelectedOption('byAppointmentOnly');
                     // Assuming you have the setValue function from react-hook-form
@@ -251,10 +254,10 @@ const RentModal = () => {
                     setValue('firstComeFirstServe', false);
                     console.log('Unselected:', 'firstComeFirstServe');
                 }}
-                    className={`p-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out 
-                    ${selectedOption === 'firstComeFirstServe' ? 'bg-blue-200 text-gray' : 'bg-blue-600 text-white font-bold shadow-md'}`}
+                    className={`p-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out hover:text-white hover:font-medium
+                    ${selectedOption === 'byAppointmentOnly' ? 'bg-blue-600 text-white font-bold shadow-md' : 'bg-blue-200 text-gray'}`}
                 >
-                    By Appointment Only
+                    Horario Marcado
                 </button>
                 
                 <button onClick={() => {
@@ -264,58 +267,61 @@ const RentModal = () => {
                     setValue('firstComeFirstServe', true);
                     console.log('Unselected:', 'byAppointmentOnly');
                 }}
-                    className={`p-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out 
+                    className={`p-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out hover:text-white hover:font-medium
                     ${selectedOption === 'firstComeFirstServe' ? 'bg-blue-600 text-white font-bold shadow-md' : 'bg-blue-200 text-gray'}`}
                 >
-                    First Come First Serve
+                    Por Ordem de Chegada
                 </button>
                 </div>
-                {selectedOption === 'byAppointmentOnly' && (
+                {selectedOption && (
                     <>
-                        <Input 
-                            id="byAppointmentOnly"
-                            label="By Appointment Only"
-                            type='checkbox'
-                            disabled={isLoading}
-                            byAppointmentOnly
-                            register={register}
-                            errors={errors}
-                            checked={selectedOption === 'byAppointmentOnly'}
-                        />
-                        <Input 
-                            id="hours"
-                            label="Appointment Hours"
-                            disabled={isLoading}
-                            register={register}
-                            errors={errors}
-                        />
-                    </>
-                )}
-                {selectedOption === 'firstComeFirstServe' && (
-                    <>
-                        <Input 
-                            id="firstComeFirstServe"
-                            label="First Come First Serve"
-                            firstComeFirstServe
-                            disabled={isLoading}
-                            register={register}
-                            errors={errors}
-                            checked={selectedOption === 'firstComeFirstServe'}
-                        />
-                        <Input 
-                            id="hours"
-                            label="Serve Hours"
-                            disabled={isLoading}
-                            register={register}
-                            errors={errors}
-                        />
+                        {selectedOption === 'byAppointmentOnly' && (
+                            <>
+                                <Input 
+                                    id="byAppointmentOnly"
+                                    label="Horarios Disponiveis para Marcaçao"
+                                    type='checkbox'
+                                    disabled={isLoading}
+                                    byAppointmentOnly
+                                    register={register}
+                                    errors={errors}
+                                    checked={selectedOption === 'byAppointmentOnly'}
+                                />
+                                <Input 
+                                    id="hours"
+                                    label="Ex.: 8:00 - 12:00"
+                                    disabled={isLoading}
+                                    register={register}
+                                    errors={errors}
+                                />
+                            </>
+                        )}
+                        {selectedOption === 'firstComeFirstServe' && (
+                            <>
+                                <Input 
+                                    id="firstComeFirstServe"
+                                    label="Horario de para chegada de Pacientes"
+                                    firstComeFirstServe
+                                    disabled={isLoading}
+                                    register={register}
+                                    errors={errors}
+                                    checked={selectedOption === 'firstComeFirstServe'}
+                                />
+                                <Input 
+                                    id="hours"
+                                    label="Ex.: 8:00 - 12:00"
+                                    disabled={isLoading}
+                                    register={register}
+                                    errors={errors}
+                                />
+                            </>
+                        )}
                     </>
                 )}
             </div>
         )
     }
     
-
     if (step === STEPS.IMAGES) {
         bodyContent = (
             <div className="flex flex-col gap-8">
@@ -416,10 +422,32 @@ const RentModal = () => {
     }
     
 
+    const resetFormAndSteps = () => {
+    // Reset the form to its initial values
+    reset();
+
+    // Reset the STEPS state to its initial value
+    setStep(STEPS.CATEGORY);
+
+    // Reset the calendar to have no selected dates
+    setSelectedDates([]);
+
+    // Set 'byAppointmentOnly' and 'firstComeFirstServe' to false
+    setValue('byAppointmentOnly', false);
+    setValue('firstComeFirstServe', false);
+    selectedOption && setSelectedOption('');
+}
+
+    // Modify the onClose handler of the Modal to reset the form and the STEPS state
+    const handleClose = () => {
+        rentModal.onClose();
+        resetFormAndSteps(); // Reset the form and the STEPS state
+    };
+
   return (
     <Modal 
     isOpen={rentModal.isOpen}
-    onClose={rentModal.onClose}
+    onClose={handleClose}
     onSubmit={handleSubmit(onSubmit)}
     actionLabel={actionLabel}
     secondaryActionLabel={secondaryActionLabel}
