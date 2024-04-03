@@ -53,7 +53,7 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
             onAction={onCancel}
             disabled={deletingId === listing.id}
             actionLabel="Apagar Anuncio"
-            secondaryActionLabel="Editar Anuncio"
+           /* secondaryActionLabel="Editar Anuncio"*/
             onSecondaryAction={() => router.push(`/editListings/${listing.id}`)}
             currentUser={currentUser}
           />
