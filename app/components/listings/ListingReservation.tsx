@@ -41,19 +41,32 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
         </div>
       </div>
       <hr />
+      <div className='flex justify-center items-center w-full'>
       <DayPicker
         selected={dateObjects}
+        disabled={{ before: new Date() }}
+        className="customDayPicker"
         modifiersStyles={{
           selected: {
           backgroundColor: '#007BFF',
           color: 'white',
           borderRadius: '1rem',
-          border: '1px solid #007BFF',
+          border: '1px solid lightblue',
           boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+          },
+          today: {
+            backgroundColor: 'lightblue',
+            color: 'blue',
+            borderRadius: '1rem',
+            border: '2px solid lightblue',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+          },
+          disabled: {
+            color: '#ccc',
           },
       }}
       />
-
+      </div>
         <hr/>
         <div className="p-4">
           <Button
