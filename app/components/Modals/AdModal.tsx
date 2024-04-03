@@ -181,12 +181,25 @@ const RentModal = () => {
     }
 
     const [isVirtual, setIsVirtual] = useState(true);
+     // New useEffect to set default location when isVirtual is true
+     useEffect(() => {
+        if (isVirtual) {
+            setValue('location', {
+                value: "Online",
+                label: "Online",
+                latlng: [0, 0], // Default coordinates
+                region: "Default Region"
+            });
+        }
+    }, [isVirtual, setValue]);
 
     if (step === STEPS.LOCATION) {
         bodyContent = (
             <div className='flex flex-col gap-8'>
-  { /* <label>
- <input
+  <label>
+ <input 
+     className='h-6 w-6 border text-center font-medium border-gray-300 rounded-md checked:bg-blue-600 checked:border-transparent focus:outline-none'
+
     type="checkbox"
     checked={isVirtual}
     onChange={(e) => {
@@ -196,7 +209,7 @@ const RentModal = () => {
  É uma consulta virtual?
 </label>
 
-    {!isVirtual && (*/}
+    {!isVirtual && (
       <>
         <Heading
           title='Aonde fica o local da consulta?'
@@ -210,7 +223,7 @@ const RentModal = () => {
           center={location?.latlng}
         />
       </>
-   {/* )}*/}
+    )}
             </div>
         )
     }

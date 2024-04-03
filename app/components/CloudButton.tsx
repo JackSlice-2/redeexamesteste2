@@ -31,12 +31,12 @@ const HeartButton: React.FC<HeartButtonProps> = ({
         {!hasFavorited ? (
         <PiFloppyDiskFill
         size={35} 
-        className='text-blue-500 bg-gray-400/40 rounded-full p-1'
+        className='text-blue-200 bg-gray-500/80 rounded-full p-1'
         />
         ) : (
             <FaCloudDownloadAlt
             size={35}
-            className='text-blue-500 bg-gray-400/40 rounded-full p-1'
+            className='text-blue-200 bg-gray-500/80 rounded-full p-1'
             />
         )}
     </div>
