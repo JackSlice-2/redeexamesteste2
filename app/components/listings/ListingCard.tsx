@@ -73,9 +73,9 @@ const ListingCard: React.FC<ListingCardProps> = ({
     const company = params?.get('company');
     const pathname = usePathname();
 
-     if (hasFavorited && pathname !== '/inactiveAds') {
+    if (hasFavorited && pathname !== '/inactiveAds' && pathname !== '/myPartners') {
         return null;
-        }
+    }
 
     const isMainPage = pathname === "/myPartners" && !company;
 
