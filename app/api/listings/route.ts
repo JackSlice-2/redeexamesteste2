@@ -24,10 +24,10 @@ export async function POST(
         byAppointmentOnly,
         dates,
         location,
-        hours
+        startTime,
+        endTime
     } = body;
 
-    const hoursArray = Array.isArray(hours) ? hours : [hours];
     const datesArray = Array.isArray(dates) ? dates : [dates];
 
  
@@ -40,9 +40,8 @@ export async function POST(
             company,
             payNow,
             payThere,
-            hours:{
-                set: hoursArray
-            },
+            startTime,
+            endTime,
             firstComeFirstServe,
             byAppointmentOnly,
             dates: {

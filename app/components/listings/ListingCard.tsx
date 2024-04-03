@@ -21,7 +21,6 @@ interface ListingCardProps {
     actionId?: string;
     currentUser?: SafeUser | null;
     locationValue: string;
-    hours?: string[0];
     secondaryActionLabel?: string;
 }
 
@@ -33,7 +32,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
     onSecondaryAction,
     actionLabel,
     secondaryActionLabel,
-    hours,
     disabled,
     actionId = '',
     currentUser
@@ -132,7 +130,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
               <div className='text-neutral-500 text-xs pb-2'>
                     proximo atendimento: {format(new Date(data.dates[0]), 'dd/MM/yyyy')}
                     <br/>
-                    A partir das:{data.hours} <br/>
+                    A partir das: {data.startTime} <br/>
                 </div>  
             </div>
         </div>

@@ -29,8 +29,9 @@ interface ListingInfoProps {
         description: string;
     } | undefined
     locationValue: string;
-    hours: string[0];
     dates: string[];
+    startTime: string;
+    endTime: string;
 }
 
 const ListingInfo: React.FC<ListingInfoProps> = ({
@@ -40,8 +41,9 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     byAppointmentOnly,
     category,
     locationValue,
-    hours,
-    dates
+    dates,
+    startTime,
+    endTime
 }) => {
     const { getByValue } = useCountries();
     const [isLoading, setIsLoading] = useState(false);
@@ -88,7 +90,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
                   Cidade: <br/>{locationValue}
               </div>
               <div className='p-3 text-center hover:bg-sky-100 cursor-pointer'>
-                  Horario: <br/>{hours}
+                  Horario: <br/>{startTime} - {endTime}
               </div>
               <div className='p-3 text-center hover:bg-sky-100 cursor-pointer'>
                   WhatsApp: <br/>51 985647950

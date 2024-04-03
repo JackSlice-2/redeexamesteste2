@@ -59,7 +59,8 @@ const RentModal = () => {
             imageSrc: '',
             title: '',
             description: '',
-            hours: [],
+            startTime: '',
+            endTime: '',
         }
     });
 
@@ -286,8 +287,15 @@ const RentModal = () => {
                                     checked={selectedOption === 'byAppointmentOnly'}
                                 />
                                 <Input 
-                                    id="hours"
-                                    label="Ex.: 8:00 - 12:00"
+                                    id="startTime"
+                                    label="Ex.: 8:00"
+                                    disabled={isLoading}
+                                    register={register}
+                                    errors={errors}
+                                />
+                                <Input 
+                                    id="endTime"
+                                    label="Ex.: 12:00"
                                     disabled={isLoading}
                                     register={register}
                                     errors={errors}
@@ -306,8 +314,15 @@ const RentModal = () => {
                                     checked={selectedOption === 'firstComeFirstServe'}
                                 />
                                 <Input 
-                                    id="hours"
-                                    label="Ex.: 8:00 - 12:00"
+                                    id="startTime"
+                                    label="Ex.: 8:00"
+                                    disabled={isLoading}
+                                    register={register}
+                                    errors={errors}
+                                />
+                                <Input 
+                                    id="endTime"
+                                    label="Ex.: 12:00"
                                     disabled={isLoading}
                                     register={register}
                                     errors={errors}

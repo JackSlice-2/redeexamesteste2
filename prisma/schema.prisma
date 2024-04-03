@@ -64,8 +64,9 @@ model Listing {
   locationValue String?
   userId String @db.ObjectId
   dates String[]
-  hours String[]
   price Int?
+  startTime String?
+  endTime String?
 
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)

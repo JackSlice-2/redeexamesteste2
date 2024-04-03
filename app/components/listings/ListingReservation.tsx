@@ -14,7 +14,7 @@ interface ListingReservationProps {
     onSubmit: () => void;
     disabled?: boolean;
     dates?: string[];
-    hours?: string;
+    endTime?: string;
 }
 
 const ListingReservation: React.FC<ListingReservationProps> = ({
@@ -22,8 +22,8 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   onChangeDate,
   onSubmit,
   disabled,
-  hours,
-  dates
+  dates,
+  endTime
 }) => {
 
   console.log(dates);
@@ -94,7 +94,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
     <div key={date} className={`border-2 border-blue-200 text-blue-600 p-2 rounded-lg hover:text-white hover:font-semibold hover:bg-blue-400 ${dateClass}`}>
       {new Date(date).toLocaleDateString('pt-BR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
       <br />
-      {isToday && `Atendimento Encerra as: ${hours}`}
+      {isToday && `Atendimento Encerra as: ${endTime}`}
     </div>
   );
 })} 

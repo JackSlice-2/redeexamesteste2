@@ -102,8 +102,9 @@ const ListingClient: React.FC<ListingClientProps> = ({
                     />
                     <div className="grid grid-cols-1 md:grid-cols-7 md:gap-10 mt-6">
                         <ListingInfo
+                        startTime={listing.startTime || 'No Start Time'}
+                        endTime={listing.endTime || 'No End Time'}
                         dates={listing.dates}
-                        hours={listing.hours[0]}
                         byAppointmentOnly={listing.byAppointmentOnly ?? false}
                         firstComeFirstServe={listing.firstComeFirstServe ?? false}
                         user={listing.user}
@@ -114,7 +115,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                         />
                         <div className="order-first mb-10 md:order-last md:col-span-3">
                             <ListingReservation
-                            hours={listing.hours[0]}
+                            endTime={listing.endTime || 'No End Time'}
                             dates={listing.dates}
                             onChangeDate={(value) => setDateRange(value)}
                             dateRange={dateRange}

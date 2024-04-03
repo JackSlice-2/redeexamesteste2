@@ -6,13 +6,14 @@ export interface IListingsParams {
   payThere?: boolean;
   firstComeFirstServe?: boolean;
   byAppointmentOnly?: boolean;
-  hours?: string[];
   dates?: string[];
   startDate?: string;
   endDate?: string;
   locationValue?: string;
   category?: string;
   company?: string;
+  startTime?: string;
+  endTime?: string;
 }
 
 export default async function getListings(
@@ -24,13 +25,14 @@ export default async function getListings(
       payThere,
       firstComeFirstServe,
       byAppointmentOnly,
-      hours,
       dates,
       locationValue,
       startDate,
       endDate,
       category,
       company,
+      startTime,
+      endTime
     } = params;
 
     let query: any = {};
@@ -51,18 +53,20 @@ export default async function getListings(
       query.payThere = payThere;
     }
 
+    if (startTime) {
+      query.startTime = startTime;
+    }
+
+    if (endTime) {
+      query.endTime = endTime;
+    }
+
     if (firstComeFirstServe) {
       query.firstComeFirstServe = firstComeFirstServe;
     }
 
     if (byAppointmentOnly) {
       query.byAppointmentOnly = byAppointmentOnly;
-    }
-
-    if (hours) {
-      query.hours = {
-        hasSome: hours
-      }
     }
 
     if (dates) {
