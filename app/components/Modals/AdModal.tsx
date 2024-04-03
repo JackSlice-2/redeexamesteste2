@@ -88,10 +88,10 @@ const RentModal = () => {
         setStep((value) => value +1)
     }
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        if (step != STEPS.CALENDAR) 
-        {
+        if (step != STEPS.CALENDAR) {
             return onNext();
         }
+    
         setIsLoading(true);
         // Convert selectedDates to strings
         const datesStringArray = selectedDates.map(date => date.toISOString());
@@ -255,10 +255,12 @@ const RentModal = () => {
                 byAppointmentOnly
                 register={register}
                 errors={errors}
+
                 />
                 <Input
                 id="hours"
                 label="Inicio de Atendimento"
+                type="time"
                 disabled={isLoading}
                 register={register}
                 errors={errors}
