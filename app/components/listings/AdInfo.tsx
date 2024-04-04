@@ -1,21 +1,14 @@
 "use client";
 
-import useCountries from '@/app/hooks/useCountries';
 import { SafeListing, SafeUser } from '@/app/types';
-import React, { useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
 import { IconType } from 'react-icons';
 import ListingCategory from './ListingCategory';
 import dynamic from 'next/dynamic';
 import { FaTelegram, FaWhatsapp } from 'react-icons/fa';
 import { PiXFill } from 'react-icons/pi';
 import { CheckmarkIcon } from 'react-hot-toast';
-import CitySelect from '../Inputs/CitySelect';
 import { FieldValues, useForm } from 'react-hook-form';
-import SelectedCity from '../Inputs/SelectedCity';
-
-const Map = dynamic(() => import('../Map'), {
-    ssr: false
-});
 
 interface ListingInfoProps {
     user: SafeUser;
@@ -35,23 +28,16 @@ interface ListingInfoProps {
 }
 
 const ListingInfo: React.FC<ListingInfoProps> = ({
-    user,
     description,
     firstComeFirstServe,
     byAppointmentOnly,
     category,
     locationValue,
-    dates,
     startTime,
     endTime
 }) => {
-    const { getByValue } = useCountries();
-    const [isLoading, setIsLoading] = useState(false);
-    const coordinates = getByValue(locationValue)?.latlng;
-
 
     const {
-        setValue,
         watch,
     } = useForm<FieldValues>({
         defaultValues: {
@@ -60,7 +46,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     });
 
     const location = watch('location');
-    
+    const locationCoordinates = locationValue.split(',').map(Number);
+
     const Map = useMemo(() => dynamic(() => import('../Map'), {
       ssr: false
       //Map Depends on location, Ignore warning below
@@ -126,7 +113,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       <hr />
 
         <Map
-        center={coordinates}
+        center={[0,0]}//TODO locationCoordinates
         />
     </div>
   )

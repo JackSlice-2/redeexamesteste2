@@ -14,7 +14,6 @@ export default async function getFavoriteListings() {
             },
         });
 
-        // Convert createdAt to string
         const userFavoritesSafe = userFavorites.map(listing => ({
             ...listing,
             createdAt: listing.createdAt.toISOString()

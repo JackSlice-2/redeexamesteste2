@@ -94,12 +94,10 @@ const RentModal = () => {
         }
     
         setIsLoading(true);
-        // Convert selectedDates to strings
         const datesStringArray = selectedDates.map(date => date.toISOString());
-        data.dates = datesStringArray; // Assuming 'dates' is the field name in your form
+        data.dates = datesStringArray;
         data.selectedDates = selectedDates;
     
-        // Parse payNow and payThere as integers
         data.payNow = parseInt(data.payNow, 10);
         data.payThere = parseInt(data.payThere, 10);
         (console.log(data))
@@ -181,13 +179,13 @@ const RentModal = () => {
     }
 
     const [isVirtual, setIsVirtual] = useState(true);
-     // New useEffect to set default location when isVirtual is true
-     useEffect(() => {
+
+    useEffect(() => {
         if (isVirtual) {
             setValue('location', {
                 value: "Online",
                 label: "Online",
-                latlng: [0, 0], // Default coordinates
+                latlng: [0, 0],
                 region: "Default Region"
             });
         }
@@ -356,7 +354,7 @@ const RentModal = () => {
                 subtitle='Show Guests'
                 />
                 <div className='max-h-64'>
-                    <ImageUpload 
+                    <ImageUpload
                     value={imageSrc}
                     onChange={(value) => setCustomValue('imageSrc', value)}
                     />
@@ -427,11 +425,11 @@ const RentModal = () => {
                         }}
                         modifiersStyles={{
                             selected: {
-                            backgroundColor: '#007BFF', // Modern blue color
+                            backgroundColor: '#007BFF',
                             color: 'white',
                             borderRadius: '1rem',
-                            border: '1px solid #007BFF', // Add a border for a modern touch
-                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Add a subtle shadow for depth
+                            border: '1px solid #007BFF',
+                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', 
                             },
                         }}
                         />
@@ -450,25 +448,16 @@ const RentModal = () => {
     
 
     const resetFormAndSteps = () => {
-    // Reset the form to its initial values
     reset();
-
-    // Reset the STEPS state to its initial value
     setStep(STEPS.CATEGORY);
-
-    // Reset the calendar to have no selected dates
     setSelectedDates([]);
-
-    // Set 'byAppointmentOnly' and 'firstComeFirstServe' to false
     setValue('byAppointmentOnly', false);
     setValue('firstComeFirstServe', false);
     selectedOption && setSelectedOption('');
 }
-
-    // Modify the onClose handler of the Modal to reset the form and the STEPS state
     const handleClose = () => {
         rentModal.onClose();
-        resetFormAndSteps(); // Reset the form and the STEPS state
+        resetFormAndSteps();
     };
 
   return (

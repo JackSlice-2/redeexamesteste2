@@ -1,11 +1,9 @@
 "use client";
 
-import useCountries from '@/app/hooks/useCountries';
 import React from 'react'
 import ListingCategory from './ListingCategory';
 import dynamic from 'next/dynamic';
-import { PiXFill } from 'react-icons/pi';
-import toast, { CheckmarkIcon } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { BiCopy } from 'react-icons/bi';
 
 const Map = dynamic(() => import('../Map'), {
@@ -36,16 +34,10 @@ interface PartnerInfoProps {
 
 const PartnerInfo: React.FC<PartnerInfoProps> = ({
   description,
-  firstComeFirstServe,
-  byAppointmentOnly,
-  payNow,
-  payThere,
   companies,
   locationValue,
 }) => {
-  const { getByValue } = useCountries();
 
-  const coordinates = getByValue(locationValue)?.latlng;
   
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -54,6 +46,8 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
       console.error('Failed to copy text: ', err);
     });
  };
+
+ const locationCoordinates = locationValue.split(',').map(Number);
 
 return (
   <>
@@ -87,8 +81,9 @@ return (
         </div>
         </div>
         <div className='w-1/2 p-2 border-gray-600 h-1/2'>
-         <Map center={coordinates}
-          />
+         <Map 
+        center={[0,0]}//TODO locationCoordinates
+        />
         </div>
       </div>
       <div className='p-1'>

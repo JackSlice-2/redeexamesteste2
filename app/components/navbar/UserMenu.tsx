@@ -85,12 +85,6 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   <MenuItem onClick={() => {router.push('/'); closeMenu();}}
                   label='Inico'
                   />
-                  {/*<MenuItem onClick={() => {router.push('/trips'); closeMenu();}}
-                  label='My trips(TBD)'
-                  />*/}
-                  {/*<MenuItem onClick={() => {router.push('/reservations'); closeMenu();}}
-                  label='My Reservations(TBD)'
-                  />*/}
                   <MenuItem onClick={() => {router.push('/inactiveAds'); closeMenu();}}
                   label='Anuncios Inativos'
                   />
@@ -100,14 +94,14 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   <MenuItem onClick={() => {router.push('/myAds'); closeMenu();}}
                   label='Meus Anuncios'
                   />
-                  <MenuItem onClick={rentModal.onOpen}
+                  <MenuItem onClick={onRent}
                   label='Criar um Exame/Consulta'
                   />
                   <hr />
                   <MenuItem onClick={() => signOut()}
                   label='Fazer Logout'
                   />
-                  <MenuItem onClick={onRent}
+                  <MenuItem onClick={registerModal.onOpen}
                   label='Criar um Novo Usuario'
                   />
                 </>

@@ -2,15 +2,13 @@
 
 import React from 'react'
 import { Range } from 'react-date-range';
-import Button from '../Button';
 import { DayPicker } from 'react-day-picker';
-import { SafeListing, SafeUser } from '@/app/types';
+import { SafeListing } from '@/app/types';
 
 
 interface ListingReservationProps {
     dateRange: Range;
     data?: SafeListing;
-    onChangeDate: (value: Range) => void;
     onSubmit: () => void;
     disabled?: boolean;
     dates?: string[];
@@ -18,10 +16,6 @@ interface ListingReservationProps {
 }
 
 const ListingReservation: React.FC<ListingReservationProps> = ({
-  dateRange,
-  onChangeDate,
-  onSubmit,
-  disabled,
   dates,
   endTime
 }) => {
@@ -29,8 +23,6 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   console.log(dates);
   const dateObjects = dates?.map(date => new Date(date));
   console.log(dateObjects);
-
-  const today = new Date();
 
   return (
     <>
@@ -73,20 +65,13 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       />
       </div>
         <hr/>
-       {/* <div className="p-4">
-          <Button
-          disabled={disabled}
-          label="Mensagem Personalizada!"
-          onClick={onSubmit}
-          />
-    </div>*/}
     </div>
     <div className='p-2 max-h-56 rounded-lg overflow-y-auto cursor-pointer gap-1 border-2 border-blue-100 border-t-0'>
     {dates?.map(date => {
   const today = new Date();
-  today.setHours(0, 0, 0, 0); // set the time to 00:00:00.000
+  today.setHours(0, 0, 0, 0);
   const currentDate = new Date(date);
-  currentDate.setHours(0, 0, 0, 0); // set the time to 00:00:00.000
+  currentDate.setHours(0, 0, 0, 0);
   const isDisabled = currentDate < today;
   const dateClass = isDisabled ? 'line-through' : '';
   const isToday = currentDate.getTime() === today.getTime();

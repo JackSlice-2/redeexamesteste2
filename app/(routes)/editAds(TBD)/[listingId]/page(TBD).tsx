@@ -1,9 +1,9 @@
-import getCurrentUser from '@/app/actions/getCurrentUser';
+/*import getCurrentUser from '@/app/actions/getCurrentUser';
 import getListingById from '@/app/actions/getListingById'
 import ClientOnly from '@/app/components/ClientOnly';
 import EmptyState from '@/app/components/EmptyState';
 import React from 'react'
-import ListingClient from './ListingClient';
+import ListingClient from './ListingClient(TBD)';
 import getReservations from '@/app/actions/getReservations';
 
 interface IParams {
@@ -35,3 +35,4 @@ const ListingPage = async ({ params }: { params: IParams }) => {
 }
 
 export default ListingPage
+*/

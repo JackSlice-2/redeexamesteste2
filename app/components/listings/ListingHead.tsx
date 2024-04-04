@@ -1,6 +1,5 @@
 "use client";
 
-import useCountries from '@/app/hooks/useCountries';
 import { SafeUser } from '@/app/types';
 import React from 'react'
 import Heading from '../Heading';
@@ -22,8 +21,6 @@ const ListingHead: React.FC<ListingHeadProps> = ({
     id,
     currentUser
 }) => {
-    const { getByValue } = useCountries();
-    const location = getByValue(locationValue)
 
   return (
     <>

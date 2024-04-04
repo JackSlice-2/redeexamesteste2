@@ -1,7 +1,6 @@
 'use client';
 
-import useCountries from '@/app/hooks/useCountries';
-import { SafeListing, SafeReservation, SafeUser } from '@/app/types';
+import { SafeListing, SafeUser } from '@/app/types';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useCallback, useMemo } from 'react'
 import { format } from 'date-fns';
@@ -13,9 +12,7 @@ import { BiPencil, BiTrash } from 'react-icons/bi';
 
 interface ListingCardProps {
     data: SafeListing;
-    reservation?: SafeReservation;
     onAction?: (id: string) => void;
-    onSecondaryAction?: (id: string) => void;
     disabled?: boolean;
     actionLabel?: string;
     actionId?: string;
@@ -26,10 +23,7 @@ interface ListingCardProps {
 
 const ListingCard: React.FC<ListingCardProps> = ({
     data,
-    reservation,
-    locationValue,
     onAction,
-    onSecondaryAction,
     actionLabel,
     secondaryActionLabel,
     disabled,
@@ -37,8 +31,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
     currentUser
 }) => {
     const router = useRouter();
-    const { getByValue } = useCountries();
-
     const { hasFavorited } = useFavorite({
         listingId: data.id,
         currentUser
@@ -55,17 +47,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
 
             onAction?.(actionId);
         }, [onAction, actionId, disabled]);
-
-    const reservationDate = useMemo(() => {
-        if (!reservation) {
-            return null;
-        }
-
-        const start = new Date(reservation.startDate)
-        const end = new Date(reservation.endDate)
-
-        return `${format(start, "PP")} - ${format(end, 'PP')}`
-    }, [reservation])
 
     const params = useSearchParams();
     const company = params?.get('company');
@@ -89,7 +70,8 @@ const ListingCard: React.FC<ListingCardProps> = ({
     >
       <div className="flex flex-col w-full">
         <div className="aspect-square w-full relative overflow-hidden rounded-xl">
-            <Image 
+            <Image
+            sizes='100%' 
             fill
             alt='listing'
             src={data.imageSrc}
@@ -106,7 +88,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             {data.title}
         </div>
         <div className="font-light text-neutral-500">
-            {reservationDate || data.category}
+            {data.category}
         </div>
         <div className="flex flex-col">
         <div className="flex flex-row items-center gap-0.5">

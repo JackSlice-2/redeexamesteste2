@@ -1,21 +1,16 @@
 "use client";
 
-import useRegisterModal from '@/app/hooks/useRegisterModal';
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Modal from './Modal';
 import Heading from '../Heading';
 import Input from '../Inputs/Input';
-import toast from 'react-hot-toast';
-import Button from '../Button';
-import { FcGoogle } from 'react-icons/fc';
-import { AiFillGithub } from 'react-icons/ai';
+import toast from 'react-hot-toast';;
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 const LoginModal = () => {
-    const registerModal = useRegisterModal();
     const router = useRouter();
     const loginModal = useLoginModal();
     const [isLoading, setIsLoading] = useState(false);
@@ -54,15 +49,10 @@ const LoginModal = () => {
             }
         })
     }
-
-    const toggle = useCallback(() => {
-        loginModal.onClose();
-        registerModal.onOpen();
-    }, [loginModal, registerModal])
     
     const bodyContent = (
         <div className="flex flex-col gap-4">
-            <Heading title='Welcome back' subtitle='Login to your Account!' 
+            <Heading title='Bem-vindo de volta' subtitle='Faça login na sua conta!' 
             />
             <Input 
             id='email'
@@ -74,7 +64,7 @@ const LoginModal = () => {
             />
             <Input 
             id='password'
-            label='Password'
+            label='Senha'
             type='password'
             disabled={isLoading}
             register={register}
@@ -87,28 +77,17 @@ const LoginModal = () => {
     const footerContent = (
         <div className="flex flex-col gap-4 mt-3">
             <hr />
-            <Button outline 
-            label='Continue With Google'
-            icon={FcGoogle} 
-            onClick={() => {}}
-            />
-            <Button outline 
-            label='Continue With Github'
-            icon={AiFillGithub} 
-            onClick={() => signIn('github')}
-            />
-            {/* <div className="text-neutral-500 text-center mt-4 font-light">
+            <div className="text-neutral-500 text-center mt-4 font-light">
                 <div className='flex flex-row items-center gap-2 justify-center'>
                     <div>
-                First time using RedeExames?
+                Login Somente Para Pessoas Authorizadas
                     </div>
                     <div 
-                    onClick={toggle}
-                    className='text-neutral-800 cursor-pointer hover:underline'>
-                Create an account
+                    className='text-neutral-800'>
+                Duvidas? Ligue: <br />  3434-1422
                     </div>
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 

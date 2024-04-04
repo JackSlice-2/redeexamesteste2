@@ -14,13 +14,10 @@ export type SelectedCityValue = {
 
 interface SelectedCityProps {
     value?: SelectedCityValue;
-    onChange: (value: SelectedCityValue) => void;
     locationValue: string;
 }
 
 const SelectedCity: React.FC<SelectedCityProps> = ({
-    value,
-    onChange,
     locationValue
 }) => {
   const { getAll } = useCities();

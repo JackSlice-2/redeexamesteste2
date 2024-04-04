@@ -6,9 +6,6 @@ import { TbPhotoPlus } from 'react-icons/tb';
 import Image from 'next/image';
 import Loader from '../Loader';
 
-declare global {
-    var cloudinary: any;
-}
 
 interface ImageUploadProps {
     onChange: (value: string) => void;
@@ -32,7 +29,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
         maxFiles: 1
     }}
 >
-    {({ open, cloudinary, widget, error, isLoading, results }) => {
+    {({ open, error, isLoading }) => {
 
         if (error) {
             console.error(error);
@@ -56,6 +53,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
                     {value && (
                         <div className="absolute inset-0 w-full h-full">
                             <Image
+                            sizes='100% 100%'
                             alt='upload'
                             fill
                             style={{ objectFit: 'cover'}}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
-import { BiDollar } from 'react-icons/bi';
 
 interface InputProps {
     id: string;
@@ -27,15 +26,9 @@ const Input: React.FC<InputProps> = ({
     register,
     required,
     errors,
-    payNow,
-    payThere,
-    firstComeFirstServe,
-    byAppointmentOnly
 }) => {
-    // Check if the input is for boolean values
     const isBooleanInput = id === 'firstComeFirstServe' || id === 'byAppointmentOnly';
 
-    // Check if the input is for money/number values
     const isMoneyInput = formatPrice;
 
     return (

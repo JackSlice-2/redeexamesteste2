@@ -4,28 +4,15 @@ import Container from '../../components/Container';
 import Heading from '../../components/Heading';
 import ListingCard from '../../components/listings/ListingCard';
 
-interface User {
-    createdAt: string;
-    updatedAt: string;
-    emailVerified: string | null;
-    id: string;
-    name: string | null;
-    email: string | null;
-    image: string | null;
-    hashedPassword: string | null;
-    favoriteIds: string[];
-}
-
 interface FavoritesClientProps {
     listings: SafeListing[];
     users: SafeUser[];
 }
 
 const FavoritesClient: React.FC<FavoritesClientProps> = ({ listings, users }) => {
-    // Filter out duplicate listings based on their IDs and ensure no undefined values
     const uniqueListings = Array.from(new Set(listings.map(listing => listing.id)))
         .map(id => listings.find(listing => listing.id === id))
-        .filter(listing => listing !== undefined) as SafeListing[]; // Ensure type is SafeListing[]
+        .filter(listing => listing !== undefined) as SafeListing[];
 
     return (
         <Container>

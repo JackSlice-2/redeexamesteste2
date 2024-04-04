@@ -7,8 +7,6 @@ export interface IListingsParams {
   firstComeFirstServe?: boolean;
   byAppointmentOnly?: boolean;
   dates?: string[];
-  startDate?: string;
-  endDate?: string;
   locationValue?: string;
   category?: string;
   company?: string;
@@ -27,8 +25,6 @@ export default async function getListings(
       byAppointmentOnly,
       dates,
       locationValue,
-      startDate,
-      endDate,
       category,
       company,
       startTime,
@@ -77,25 +73,6 @@ export default async function getListings(
 
     if (locationValue) {
       query.locationValue = locationValue;
-    }
-
-    if (startDate && endDate) {
-      query.NOT = {
-        reservations: {
-          some: {
-            OR: [
-              {
-                endDate: { gte: startDate },
-                startDate: { lte: startDate }
-              },
-              {
-                startDate: { lte: endDate },
-                endDate: { gte: endDate }
-              }
-            ]
-          }
-        }
-      }
     }
 
     const listings = await prisma.listing.findMany({

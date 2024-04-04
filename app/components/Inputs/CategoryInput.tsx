@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react'
-import Categories from '../navbar/Categories';
 import { IconType } from 'react-icons';
 
 interface CategoryInputProps {

@@ -6,11 +6,10 @@ import ListingInfo from '@/app/components/listings/AdInfo';
 import ListingReservation from '@/app/components/listings/ListingReservation';
 import { categories } from '@/app/components/navbar/Categories';
 import useLoginModal from '@/app/hooks/useLoginModal';
-import { SafeListing, SafeReservation, SafeUser } from '@/app/types';
+import { SafeListing, SafeUser } from '@/app/types';
 import axios from 'axios';
-import { differenceInCalendarDays, eachDayOfInterval } from 'date-fns';
 import { useRouter } from 'next/navigation';
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { Range } from 'react-date-range';
 import toast from 'react-hot-toast';
 
@@ -21,7 +20,6 @@ const initialDateRange = {
 };
 
 interface ListingClientProps {
-    reservations?: SafeReservation[];
     listing: SafeListing & {
         user: SafeUser
     };
@@ -31,27 +29,12 @@ interface ListingClientProps {
 const ListingClient: React.FC<ListingClientProps> = ({
     listing,
     currentUser,
-    reservations = []
 }) => {
 
     const loginModel = useLoginModal();
     const router = useRouter();
-    const disableDates = useMemo(() => {
-        let dates: Date[] = [];
-
-        reservations.forEach((reservation) => {
-            const range = eachDayOfInterval({
-                start: new Date(reservation.startDate),
-                end: new Date(reservation.endDate)
-            });
-
-            dates = [ ...dates, ...range]
-        });
-        return dates;
-    }, [reservations])
 
     const [isLoading, setIsLoading] = useState(false)
-    const [totalPrice, setTotalprice] = useState(listing.price)
     const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
     const onCreateReservation = useCallback(() => {
@@ -62,7 +45,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
         setIsLoading(true)
         
         axios.post('/api/reservations', {
-            totalPrice,
             startDate: dateRange.startDate,
             endDate: dateRange.endDate,
             listingId: listing?.id
@@ -79,7 +61,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
         .finally(() => {
             setIsLoading(false)
         })
-    }, [totalPrice, dateRange, listing?.id, router, currentUser, loginModel])
+    }, [dateRange, listing?.id, router, currentUser, loginModel])
 
 
 
@@ -117,7 +99,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
                             <ListingReservation
                             endTime={listing.endTime || 'No End Time'}
                             dates={listing.dates}
-                            onChangeDate={(value) => setDateRange(value)}
                             dateRange={dateRange}
                             onSubmit={onCreateReservation}
                             disabled={isLoading}

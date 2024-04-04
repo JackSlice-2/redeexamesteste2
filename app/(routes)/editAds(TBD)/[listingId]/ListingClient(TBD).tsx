@@ -1,5 +1,5 @@
 "use client";
-
+/*
 import Container from '@/app/components/Container';
 import ListingHead from '@/app/components/listings/ListingHead';
 import ListingInfo from '@/app/components/listings/AdInfo';
@@ -146,3 +146,4 @@ const ListingClient: React.FC<ListingClientProps> = ({
 }
 
 export default ListingClient
+*/
