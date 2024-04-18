@@ -36,6 +36,7 @@ const RentModal = () => {
     const [step, setStep] = useState(STEPS.CATEGORY);
     const [isLoading, setIsLoading] = useState(false);
 
+
     const {
         register,
         handleSubmit,
@@ -49,7 +50,15 @@ const RentModal = () => {
         defaultValues: {
             category: '',
             company: '',
-            location: null,
+            location: {
+                "value": "Online",
+                "label": "Online",
+                "latlng": [
+                    0,
+                    0
+                ],
+                "region": "Default Region"
+            },
             payNow: '',
             payThere: '',
             firstComeFirstServe: false,
@@ -85,12 +94,55 @@ const RentModal = () => {
     const onBack = () => {
         setStep((value) => value -1)
     }
-    const onNext = () => {
-        setStep((value) => value +1)
+const onNext = () => {
+    // Check for required fields based on the current step
+    switch (step) {
+        case STEPS.CATEGORY:
+            if (!category) {
+                toast.error('Category is required');
+                return;
+            }
+            break;
+        case STEPS.COMPANY:
+            if (!company) {
+                toast.error('Company is required');
+                return;
+            }
+            break;
+            case STEPS.LOCATION:
+            if (location == null) {
+                toast.error('Location is required');
+                return;
+            }
+            break;
+            case STEPS.INFO:
+                const byAppointmentOnly = watch('byAppointmentOnly');
+                const firstComeFirstServe = watch('firstComeFirstServe');
+                if (byAppointmentOnly === firstComeFirstServe) {
+                    toast.error('PorFavor Selecione o tipo de atendimento');
+                    return;
+                }
+                break;
+        case STEPS.IMAGES:
+            if (!imageSrc) {
+                toast.error('Image is required');
+                return;
+            }
+            break;
+        default:
+            break;
     }
+
+    setStep((value) => value + 1);
+};
+
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         if (step != STEPS.CALENDAR) {
             return onNext();
+        }
+        if (step === STEPS.CALENDAR && selectedDates.length === 0) {
+            toast.error('At least one date must be selected');
+            return; // Prevent form submission
         }
     
         setIsLoading(true);
@@ -105,10 +157,15 @@ const RentModal = () => {
         axios.post('/api/listings', data)
         .then(() => {
             toast.success("Anuncio Criado com Successo!")
-            setSelectedDates([]);
             router.refresh();
-            reset();
+            router.push('/')
             setStep(STEPS.CATEGORY);
+            setSelectedDates([]);
+            reset({
+                byAppointmentOnly: false,
+                firstComeFirstServe: false,
+                location: location
+            });
             rentModal.onClose();
         })
         .catch(() => {
@@ -246,6 +303,7 @@ const RentModal = () => {
                 disabled={isLoading}
                 register={register}
                 errors={errors}
+                required
                 />
                 <Input 
                 id="payThere"
@@ -254,6 +312,7 @@ const RentModal = () => {
                 disabled={isLoading}
                 register={register}
                 errors={errors}
+                required
                 />
                 <div className='flex flex-row gap-2 text-blue-500 justify-between'>
                 <div className='text-center font-bold text-md'>
@@ -263,7 +322,7 @@ const RentModal = () => {
                     setSelectedOption('byAppointmentOnly');
                     setValue('byAppointmentOnly', true);
                     setValue('firstComeFirstServe', false);
-                    console.log('Unselected:', 'firstComeFirstServe');
+                    console.log('firstComeFirstServe:', 'FALSE');
                 }}
                     className={`p-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-outhover:font-medium
                     ${selectedOption === 'byAppointmentOnly' ? 'bg-blue-600 text-white font-bold shadow-lg border-2 border-blue-600' : 'bg-blue-200 text-gray-400'}`}
@@ -275,7 +334,7 @@ const RentModal = () => {
                     setSelectedOption('firstComeFirstServe');
                     setValue('byAppointmentOnly', false);
                     setValue('firstComeFirstServe', true);
-                    console.log('Unselected:', 'byAppointmentOnly');
+                    console.log('byAppointmentOnly:', 'FALSE');
                 }}
                     className={`p-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-outhover:font-medium
                     ${selectedOption === 'firstComeFirstServe' ? 'bg-blue-600 text-white font-bold shadow-lg border-2 border-blue-600' : 'bg-blue-200 text-gray-400'}`}
@@ -303,6 +362,7 @@ const RentModal = () => {
                                     disabled={isLoading}
                                     register={register}
                                     errors={errors}
+                                    required
                                 />
                                 <Input 
                                     id="endTime"
@@ -310,6 +370,7 @@ const RentModal = () => {
                                     disabled={isLoading}
                                     register={register}
                                     errors={errors}
+                                    required
                                 />
                             </>
                         )}
@@ -330,6 +391,7 @@ const RentModal = () => {
                                     disabled={isLoading}
                                     register={register}
                                     errors={errors}
+                                    required
                                 />
                                 <Input 
                                     id="endTime"
@@ -337,6 +399,7 @@ const RentModal = () => {
                                     disabled={isLoading}
                                     register={register}
                                     errors={errors}
+                                    required
                                 />
                             </>
                         )}
@@ -350,8 +413,8 @@ const RentModal = () => {
         bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading 
-                title='Add a Photo'
-                subtitle='Show Guests'
+                title='Adcione uma Foto'
+                subtitle='Uma foto Illustrando o Serviço'
                 />
                 <div className='max-h-64'>
                     <ImageUpload
@@ -376,6 +439,7 @@ const RentModal = () => {
                 disabled={isLoading}
                 register={register}
                 errors={errors}
+                required
                 />
                 <hr/>
                 <Input 
@@ -384,6 +448,7 @@ const RentModal = () => {
                 disabled={isLoading}
                 register={register}
                 errors={errors}
+                required
                 />
             </div>
         )
@@ -465,6 +530,7 @@ const RentModal = () => {
     isOpen={rentModal.isOpen}
     onClose={handleClose}
     onSubmit={handleSubmit(onSubmit)}
+    disabled={isLoading}
     actionLabel={actionLabel}
     secondaryActionLabel={secondaryActionLabel}
     secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}

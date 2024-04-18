@@ -30,7 +30,6 @@ const Modal: React.FC<ModalProps> = ({
     secondaryActionLabel
 
 }) => {
-
     const [showModal, setShowModal] = useState(isOpen);
     useEffect(() => {
         setShowModal(isOpen);
@@ -51,6 +50,7 @@ const Modal: React.FC<ModalProps> = ({
         if (disabled) {
             return;
         }
+        disabled
         onSubmit();
     }, [disabled, onSubmit]);
 
