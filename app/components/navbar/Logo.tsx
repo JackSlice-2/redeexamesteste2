@@ -12,13 +12,13 @@ const Logo = () => {
       <Image
       onClick={() => router.push('/')}
           alt='Logo'
-          className='hidden md:block cursor-pointer'
+          className='block cursor-pointer'
           height="150"
           width="170"
           priority
           src="/images/logo.png"
           />
-          <div className="hidden md:block cursor-pointer" onClick={() => router.push('/')}>
+          <div className="block cursor-pointer" onClick={() => router.push('/')}>
           Rede Exame Online
           </div>
     </div>

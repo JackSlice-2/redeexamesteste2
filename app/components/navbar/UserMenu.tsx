@@ -2,7 +2,6 @@
 
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { AiOutlineMenu } from 'react-icons/ai';
-import Avatar from '../Avatar';
 import MenuItem from './MenuItem';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
@@ -62,13 +61,10 @@ const UserMenu: React.FC<UserMenuProps> = ({
             Crie um Exame/Consulta
         </div>
         ) : null}
-        <div className="p-4 md:py-1 md:px-2 border-[2px] text-neutral-200 border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hovor:shadow-md transition"
+        <div className="p-4 hidden md:py-1 px-8 text-neutral-200 md:flex flex-row items-center gap-3 rounded-full cursor-pointer hovor:shadow-md transition"
         onClick={toggleOpen}
         >
             <AiOutlineMenu size={20} />
-            <div className="hidden md:block">
-                <Avatar src={currentUser?.image}/>
-            </div>
         </div>
       </div>
 
@@ -106,11 +102,11 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   />
                 </>
                   ) : (
-                <>
+                <div className=''>
                   <MenuItem onClick={loginModal.onOpen}
                   label='Login'
                   />
-                </>
+                </div>
                 )}
             </div>
         </div>

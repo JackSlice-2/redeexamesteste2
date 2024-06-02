@@ -17,6 +17,7 @@ import { companies } from '../../(routes)/myPartners/MyPartners';
 import CompanyInput from '../Inputs/CompanyInput';
 import CitySelect from '../Inputs/CitySelect';
 import { DayPicker } from 'react-day-picker';
+import Button from '../Button';
 
 enum STEPS {
     CATEGORY = 0,
@@ -35,7 +36,6 @@ const RentModal = () => {
 
     const [step, setStep] = useState(STEPS.CATEGORY);
     const [isLoading, setIsLoading] = useState(false);
-
 
     const {
         register,
@@ -215,10 +215,18 @@ const onNext = () => {
     if (step === STEPS.COMPANY) {
         bodyContent = (
             <div className="flex flex-col gap-8">
-                <Heading 
-                title='Escolha o Parceiro Coorespondente'
-                subtitle='Escolha uma Empresa'
-                />
+                <div className='flex'>
+                    <Heading 
+                    title='Escolha o Parceiro Coorespondente'
+                    subtitle='Escolha uma Empresa'
+                    />
+                    <div className='w-1/4 ml-auto'>
+                    <Button
+                    onClick={() => {}}
+                    label='+ Novo Parceiro'
+                    />
+                    </div>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
                     {companies.map((item) => (
                         <div key={item.label} className='col-span-1'>
@@ -511,7 +519,6 @@ const onNext = () => {
         )
     }
     
-
     const resetFormAndSteps = () => {
     reset();
     setStep(STEPS.CATEGORY);

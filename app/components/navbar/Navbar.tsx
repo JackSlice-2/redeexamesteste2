@@ -20,7 +20,7 @@ const Navbar: React.FC<Navbarprops> = ({
     <div className='absolute w-full z-10 bg-blue-50'>
       <div className="py-4 bg-blue-400 rounded-b-3xl">
         <Container>
-        <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
+        <div className="flex flex-row items-center text-center justify-center md:justify-between gap-3 md:gap-0">
         <Logo />
         <UserMenu currentUser={currentUser}/>
         </div>
