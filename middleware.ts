@@ -6,6 +6,7 @@ export const config = {
         "/favorites",
         "/myAds",
         "/editAds",
-        "/myPartners"
+        "/myPartners",
+        "/partners"
     ]
 }

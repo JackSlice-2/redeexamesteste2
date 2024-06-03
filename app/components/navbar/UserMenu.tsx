@@ -9,6 +9,7 @@ import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/app/types';
 import useRentModal from '@/app/hooks/useRentModal';
 import { useRouter } from 'next/navigation';
+import usePartnerModal from '@/app/hooks/usePartnerModal';
 
 interface UserMenuProps {
   currentUser?: SafeUser | null
@@ -22,6 +23,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
     const loginModal = useLoginModal();
     const [isOpen, setIsOpen] = useState(false);
     const rentModal = useRentModal();
+    const partnerModal = usePartnerModal();
     const menuRef = useRef<HTMLDivElement | null>(null);    const closeMenu = useCallback(() => {
       setIsOpen(false);
   }, []);
@@ -51,15 +53,29 @@ const UserMenu: React.FC<UserMenuProps> = ({
       rentModal.onOpen();
     }, [currentUser, loginModal, rentModal])
 
+    const onPartner = useCallback(() => {
+      if (!currentUser) {
+        return loginModal.onOpen();
+      }
+      partnerModal.onOpen();
+    }, [currentUser, loginModal, partnerModal])
+
   return (
     <div className='relative' ref={menuRef}>
       <div className="flex flex-rox items-center gap-3">
         {currentUser ? (
+          <>
+            <div className="hidden md:block text-sm font-semibold py-3 text-white px-4 rounded-full hover:bg-blue-300 transition cursor-pointer"
+          onClick={onRent}
+          >
+              Crie um Exame/Consulta
+          </div>
           <div className="hidden md:block text-sm font-semibold py-3 text-white px-4 rounded-full hover:bg-blue-300 transition cursor-pointer"
-        onClick={onRent}
-        >
-            Crie um Exame/Consulta
-        </div>
+          onClick={onPartner}
+          >
+              Adcione um Parceiro
+          </div>
+        </>
         ) : null}
         <div className="p-4 hidden md:py-1 px-8 text-neutral-200 md:flex flex-row items-center gap-3 rounded-full cursor-pointer hovor:shadow-md transition"
         onClick={toggleOpen}
@@ -84,7 +100,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   <MenuItem onClick={() => {router.push('/inactiveAds'); closeMenu();}}
                   label='Anuncios Inativos'
                   />
-                  <MenuItem onClick={() => {router.push('/myPartners'); closeMenu();}}
+                  <MenuItem onClick={() => {router.push('/partners'); closeMenu();}}
                   label='Meus Parceiros'
                   />
                   <MenuItem onClick={() => {router.push('/myAds'); closeMenu();}}

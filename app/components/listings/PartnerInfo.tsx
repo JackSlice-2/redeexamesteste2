@@ -1,7 +1,6 @@
 "use client";
 
 import React from 'react'
-import ListingCategory from './ListingCategory';
 import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
 import { BiCopy } from 'react-icons/bi';
@@ -11,34 +10,33 @@ const Map = dynamic(() => import('../Map'), {
 });
 
 interface PartnerInfoProps {
-    description: string;
-    firstComeFirstServe?: boolean;
-    byAppointmentOnly?: boolean;
-    payNow?: number;
-    payThere?: number;
-    companies: {
-        imageSrc: string;
-        label: string;
-        description: string;
-        cnpj: string;
-        address: string;
-        phone: string;
-        email: string;
-        whatsApp: string;
-        telegram: string;
-        website: string;
-        city: string;
-    } | undefined
-    locationValue: string;
+    description?: string;
+    imageSrc: string;
+    label: string;
+    cnpj?: string;
+    address?: string;
+    phone?: string;
+    email?: string;
+    whatsApp?: string;
+    telegram?: string;
+    website?: string;
+    city?: string;
 }
 
 const PartnerInfo: React.FC<PartnerInfoProps> = ({
   description,
-  companies,
-  locationValue,
+  imageSrc,
+  label,
+  cnpj,
+  address,
+  phone,
+  email,
+  whatsApp,
+  telegram,
+  website,
+  city
 }) => {
 
-  
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {
       toast.success('Copied to clipboard');
@@ -47,15 +45,13 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
     });
  };
 
- const locationCoordinates = locationValue.split(',').map(Number);
-
 return (
   <>
   <div className='flex justify-between w-full'>
     <div className='w-1/2 flex flex-col gap-8'>
       <div className="flex flex-col gap-2">
         <div className="text-3xl font-bold flex flex-row items-center gap-2 pb-8 pt-5">
-            <div>Parceiro Atual: {companies?.label}</div>
+            <div>Parceiro Atual: {label}</div>
           
             <div className='p-1'>
           <hr />
@@ -63,15 +59,9 @@ return (
           </div>
           <div className='p-1'>
           <hr />
-          </div>   
-           {companies && (
-            <ListingCategory
-            imageSrc={companies.imageSrc}
-            label={companies.label}
-            description={description}
-            />
-          )}<br/>
-          CNPJ: {companies?.cnpj}
+          </div>
+          <br/>
+          CNPJ: {cnpj}
           <div className='p-1'>
               <hr />
               </div>         
@@ -92,62 +82,62 @@ return (
         <div className='flex flex-row overflow-x-auto hide-scrollbar w-full p-2 gap-3 justify-center text-center '>
 
         <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
-      onClick={() => copyToClipboard(companies?.city || '')}
+      onClick={() => copyToClipboard(city || '')}
       >
           <BiCopy /> Cidade: <br/>
           <div className='font-medium text-xl'>
-            {companies?.city}
+            {city}
           </div>
         </div>
         <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
-          onClick={() => copyToClipboard(companies?.address || '')}
+          onClick={() => copyToClipboard(address || '')}
           >
             <BiCopy /> Endereço: <br/>
           <div className='font-medium text-xl'>
-            {companies?.address}
+            {address}
           </div>
         </div>
         <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
-          onClick={() => copyToClipboard(companies?.phone || '')}
+          onClick={() => copyToClipboard(phone || '')}
           >
             <BiCopy /> Telefone: <br/>
           <div className='font-medium text-xl'>
-            {companies?.phone}
+            {phone}
           </div>
         </div>
         <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
-          onClick={() => copyToClipboard(companies?.whatsApp || '')}
+          onClick={() => copyToClipboard(whatsApp || '')}
           >
             <BiCopy /> WhatsApp: <br/>
           <div className='font-medium text-xl'>
-            {companies?.whatsApp}
+            {whatsApp}
           </div>
         </div>
         <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
-          onClick={() => copyToClipboard(companies?.telegram || '')}
+          onClick={() => copyToClipboard(telegram || '')}
           >
             <BiCopy /> Telegram: <br/>
           <div className='font-medium text-xl'>
-            {companies?.telegram}
+            {telegram}
           </div>
         </div>
         <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
-          onClick={() => copyToClipboard(companies?.email || '')}
+          onClick={() => copyToClipboard(email || '')}
           >
             <BiCopy /> E-Mail: <br/>
           <div className='font-medium text-xl'>
-            {companies?.email}
+            {email}
           </div>
         </div>
     </div>
       <div className='flex gap-0.5 justify-center text-center transition text-white rounded-xl p-1 w-1/5 cursor-pointer bg-blue-500 hover:bg-blue-400 shadow-md'
         onClick={() => copyToClipboard(
-          `E-Mail: ${companies?.email || ''}\n` +
-          `WhatsApp: ${companies?.whatsApp || ''}\n` +
-          `Telegram: ${companies?.telegram || ''}\n` +
-          `Telefone: ${companies?.phone || ''}\n` +
-          `Endereço: ${companies?.address || ''}\n` +
-          `Cidade: ${companies?.city || ''}`
+          `E-Mail: ${email || ''}\n` +
+          `WhatsApp: ${whatsApp || ''}\n` +
+          `Telegram: ${telegram || ''}\n` +
+          `Telefone: ${phone || ''}\n` +
+          `Endereço: ${address || ''}\n` +
+          `Cidade: ${city || ''}`
         )}
         >
         <BiCopy /> Copiar Todos

@@ -27,6 +27,7 @@ model User {
 
   accounts Account[]
   listings Listing[]
+  partners Partner[]
 }
 
 model Account {
@@ -67,6 +68,16 @@ model Listing {
   startTime String?
   endTime String?
 
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Partner {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  imageSrc String
+  createdAt DateTime @default(now())
+  userId String @db.ObjectId
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

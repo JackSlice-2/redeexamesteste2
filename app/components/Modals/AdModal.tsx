@@ -13,11 +13,11 @@ import Input from '../Inputs/Input';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
-import { companies } from '../../(routes)/myPartners/MyPartners';
 import CompanyInput from '../Inputs/CompanyInput';
 import CitySelect from '../Inputs/CitySelect';
 import { DayPicker } from 'react-day-picker';
-import Button from '../Button';
+import { SafePartner } from '@/app/types';
+import getPartners from '@/app/actions/getPartners';
 
 enum STEPS {
     CATEGORY = 0,
@@ -37,6 +37,15 @@ const RentModal = () => {
     const [step, setStep] = useState(STEPS.CATEGORY);
     const [isLoading, setIsLoading] = useState(false);
 
+const [partners, setPartners] = useState<SafePartner[]>([]);
+
+useEffect(() => {
+    fetch('/api/fetchPartners')
+     .then(response => response.json())
+     .then(data => setPartners(data));
+  }, []);
+  
+      
     const {
         register,
         handleSubmit,
@@ -142,7 +151,7 @@ const onNext = () => {
         }
         if (step === STEPS.CALENDAR && selectedDates.length === 0) {
             toast.error('At least one date must be selected');
-            return; // Prevent form submission
+            return;
         }
     
         setIsLoading(true);
@@ -213,35 +222,31 @@ const onNext = () => {
     )
 
     if (step === STEPS.COMPANY) {
+        if (partners.length === 0) {
+            toast.error('Failed to fetch partners');
+            rentModal.onClose();
+        }
         bodyContent = (
             <div className="flex flex-col gap-8">
-                <div className='flex'>
                     <Heading 
-                    title='Escolha o Parceiro Coorespondente'
+                    title='Escolha o Parceiro Correspondente'
                     subtitle='Escolha uma Empresa'
                     />
-                    <div className='w-1/4 ml-auto'>
-                    <Button
-                    onClick={() => {}}
-                    label='+ Novo Parceiro'
-                    />
-                    </div>
-                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
-                    {companies.map((item) => (
-                        <div key={item.label} className='col-span-1'>
-                                <CompanyInput
-                                onClick={(company) => setCustomValue('company', company)}
-                                selected={company === item.label}
-                                label={item.label}
-                                imageSrc={item.imageSrc}
-                                />
-                            </div>
-                    ))}
+                {partners.map((partner) => (
+    <CompanyInput
+        key={partner.id}
+        partner={partner}
+        selected={company === partner.title}
+        onClick={(value) => setCustomValue('company', value)}
+    />
+))}
+
                 </div>
             </div>
         )
     }
+    
 
     const [isVirtual, setIsVirtual] = useState(true);
 
