@@ -36,10 +36,8 @@ const useCities = () => {
  
 
 const fetchCityGeocode = async (city: string): Promise<FormattedCityData[]> => {
- console.log(`Fetching geocode for city: ${city}`); // Log the city being fetched
  try {
     const response = await axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(city)}&key=c92e696b860e4606aae09466c9f055b5`);
-    console.log('Response:', response); // Log the response
     const formattedCities: FormattedCityData[] = response.data.results.map((cityData: CityData) => ({
       value: cityData.components.city,
       label: `${cityData.components.city}, RS`,

@@ -161,14 +161,12 @@ const onNext = () => {
         data.dates = datesStringArray;
         data.selectedDates = selectedDates;
 
-        console.log("Before mapping, location.latlng:", location.latlng);
         const latlngStringArray = location.latlng.map((coord: number) => coord.toString());
         data.latlng = latlngStringArray;
-        console.log("SUBMITTED LATLNG(data.latlng):",data.latlng)
     
         data.payNow = parseInt(data.payNow, 10);
         data.payThere = parseInt(data.payThere, 10);
-        (console.log("DATA before POST to API",data))
+        //(console.log("DATA before POST to API",data))
         
         axios.post('/api/listings', data)
         .then(() => {
@@ -185,7 +183,7 @@ const onNext = () => {
             rentModal.onClose();
         })
         .catch(() => {
-            console.log(errors)
+            //console.log(errors)
             toast.error('Algo Deu Errado');
         }).finally(() => {
             setIsLoading(false);
@@ -306,10 +304,6 @@ const onNext = () => {
 
     const [selectedOption, setSelectedOption] = useState('');
 
-    useEffect(() => {
-        console.log(selectedOption, "TRUE");
-    }, [selectedOption]);
-
     if (step === STEPS.INFO) {
         bodyContent = (
             <div className="flex flex-col gap-8">
@@ -343,7 +337,6 @@ const onNext = () => {
                     setSelectedOption('byAppointmentOnly');
                     setValue('byAppointmentOnly', true);
                     setValue('firstComeFirstServe', false);
-                    console.log('firstComeFirstServe:', 'FALSE');
                 }}
                     className={`p-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-outhover:font-medium
                     ${selectedOption === 'byAppointmentOnly' ? 'bg-blue-600 text-white font-bold shadow-lg border-2 border-blue-600' : 'bg-blue-200 text-gray-400'}`}
@@ -355,7 +348,6 @@ const onNext = () => {
                     setSelectedOption('firstComeFirstServe');
                     setValue('byAppointmentOnly', false);
                     setValue('firstComeFirstServe', true);
-                    console.log('byAppointmentOnly:', 'FALSE');
                 }}
                     className={`p-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-outhover:font-medium
                     ${selectedOption === 'firstComeFirstServe' ? 'bg-blue-600 text-white font-bold shadow-lg border-2 border-blue-600' : 'bg-blue-200 text-gray-400'}`}

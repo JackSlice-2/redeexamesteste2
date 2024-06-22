@@ -71,7 +71,7 @@ const onNext = () => {
             return onNext();
         }
         setIsLoading(true); 
-        (console.log(data))
+        //(console.log(data))
         
         axios.post('/api/partners', data)
         .then(() => {

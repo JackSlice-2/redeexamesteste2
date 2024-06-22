@@ -20,9 +20,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   endTime
 }) => {
 
-  console.log(dates);
   const dateObjects = dates?.map(date => new Date(date));
-  console.log(dateObjects);
 
   return (
     <>
