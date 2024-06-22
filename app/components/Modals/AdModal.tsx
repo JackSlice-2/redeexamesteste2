@@ -68,6 +68,7 @@ useEffect(() => {
                 ],
                 "region": "Default Region"
             },
+            latlng: [],
             payNow: '',
             payThere: '',
             firstComeFirstServe: false,
@@ -84,13 +85,15 @@ useEffect(() => {
 
     const category = watch('category');
     const company = watch('company');
-    const location = watch('location');
+    const location = watch('location')
+    const latlng = watch('latlng')
+    console.log('LOGGED LATLNG:',location.latlng)
     const imageSrc = watch('imageSrc');
 
     const Map = useMemo(() => dynamic(() => import('../Map'), {
         ssr: false
         //Map Depends on location, Ignore warning below
-    }), [location])
+    }), [location, latlng])
 
     const setCustomValue = (id: string, value: any) => {
         setValue(id, value, {
@@ -158,10 +161,15 @@ const onNext = () => {
         const datesStringArray = selectedDates.map(date => date.toISOString());
         data.dates = datesStringArray;
         data.selectedDates = selectedDates;
+
+        console.log("Before mapping, location.latlng:", location.latlng);
+        const latlngStringArray = location.latlng.map((coord: number) => coord.toString());
+        data.latlng = latlngStringArray;
+        console.log("SUBMITTED LATLNG(data.latlng):",data.latlng)
     
         data.payNow = parseInt(data.payNow, 10);
         data.payThere = parseInt(data.payThere, 10);
-        (console.log(data))
+        (console.log("DATA before POST to API",data))
         
         axios.post('/api/listings', data)
         .then(() => {
@@ -178,6 +186,7 @@ const onNext = () => {
             rentModal.onClose();
         })
         .catch(() => {
+            console.log(errors)
             toast.error('Algo Deu Errado');
         }).finally(() => {
             setIsLoading(false);

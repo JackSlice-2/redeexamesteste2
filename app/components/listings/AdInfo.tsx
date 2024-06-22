@@ -25,6 +25,7 @@ interface ListingInfoProps {
     dates: string[];
     startTime: string;
     endTime: string;
+    latlng: string[];
 }
 
 const ListingInfo: React.FC<ListingInfoProps> = ({
@@ -34,7 +35,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     category,
     locationValue,
     startTime,
-    endTime
+    endTime,
+    latlng
 }) => {
 
     const {
@@ -45,13 +47,15 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         }
     });
 
-    const location = watch('location');
-    const locationCoordinates = locationValue.split(',').map(Number);
+    // Convert latlng from string[] to number[]
+    const convertedLatlng = latlng.map(coord => parseFloat(coord));
+
+    console.log("LOGGED LOCATION INFO:", latlng);
+    console.log("CONVERTED LOCATION INFO:", convertedLatlng);
 
     const Map = useMemo(() => dynamic(() => import('../Map'), {
-      ssr: false
-      //Map Depends on location, Ignore warning below
-  }), [location])
+        ssr: false
+    }), [location, convertedLatlng]);
 
 
   return (
@@ -113,7 +117,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       <hr />
 
         <Map
-        center={[0,0]}//TODO locationCoordinates
+        center={convertedLatlng}
         />
     </div>
   )

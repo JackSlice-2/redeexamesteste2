@@ -8,6 +8,7 @@ export interface IListingsParams {
   byAppointmentOnly?: boolean;
   dates?: string[];
   locationValue?: string;
+  latlng?: String[];
   category?: string;
   company?: string;
   startTime?: string;
@@ -25,6 +26,7 @@ export default async function getListings(
       byAppointmentOnly,
       dates,
       locationValue,
+      latlng,
       category,
       company,
       startTime,
@@ -73,6 +75,10 @@ export default async function getListings(
 
     if (locationValue) {
       query.locationValue = locationValue;
+    }
+
+    if (latlng) {
+      query.latlng = latlng;
     }
 
     const listings = await prisma.listing.findMany({

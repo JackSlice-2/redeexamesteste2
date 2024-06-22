@@ -67,6 +67,7 @@ model Listing {
   price Int?
   startTime String?
   endTime String?
+  latlng String[]
 
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)

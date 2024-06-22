@@ -63,8 +63,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
         })
     }, [dateRange, listing?.id, router, currentUser, loginModel])
 
-
-
     const category = useMemo(() => {
         return categories.find((item) =>
         item.label === listing.category);
@@ -94,6 +92,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                         description={listing.description}
                         //@ts-ignore
                         locationValue={listing.locationValue}
+                        latlng={listing.latlng}
                         />
                         <div className="order-first mb-10 md:order-last md:col-span-3">
                             <ListingReservation
