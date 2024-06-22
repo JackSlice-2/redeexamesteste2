@@ -87,7 +87,6 @@ useEffect(() => {
     const company = watch('company');
     const location = watch('location')
     const latlng = watch('latlng')
-    console.log('LOGGED LATLNG:',location.latlng)
     const imageSrc = watch('imageSrc');
 
     const Map = useMemo(() => dynamic(() => import('../Map'), {

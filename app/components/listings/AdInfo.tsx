@@ -50,9 +50,6 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     // Convert latlng from string[] to number[]
     const convertedLatlng = latlng.map(coord => parseFloat(coord));
 
-    console.log("LOGGED LOCATION INFO:", latlng);
-    console.log("CONVERTED LOCATION INFO:", convertedLatlng);
-
     const Map = useMemo(() => dynamic(() => import('../Map'), {
         ssr: false
     }), [location, convertedLatlng]);
