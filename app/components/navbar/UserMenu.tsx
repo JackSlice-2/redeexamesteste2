@@ -86,13 +86,11 @@ const UserMenu: React.FC<UserMenuProps> = ({
 
       {isOpen && (
         <div className="absolute rounded-xl shadow-md w-[40vw] md:w-4/5 bg-white font-medium overflow-hidden right-0 top-12 text-md">
-            <div className="flex flex-col cursor-pointer">
+            <div className="flex flex-col">
                 {currentUser ? (
                 <>
-                <div className='capitalize bg-blue-300 text-center'>
-                <MenuItem onClick={() => {router.push('/'); closeMenu();}}
-                  label={currentUser?.name || ''}
-                  />
+                  <div className='capitalize bg-blue-300 text-center px-4 py-3 transition cursor-default'>
+                    {currentUser?.name || ''}
                 </div>
                   <MenuItem onClick={() => {router.push('/'); closeMenu();}}
                   label='Inico'
@@ -104,10 +102,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   label='Meus Parceiros'
                   />
                   <MenuItem onClick={() => {router.push('/myAds'); closeMenu();}}
-                  label='Meus Anuncios'
-                  />
-                  <MenuItem onClick={onRent}
-                  label='Criar um Exame/Consulta'
+                  label='Gerenciar Anuncios'
                   />
                   <hr />
                   <MenuItem onClick={() => signOut()}

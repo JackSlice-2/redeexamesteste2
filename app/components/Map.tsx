@@ -31,6 +31,7 @@ const Map: React.FC<MapProps> = ({
     scrollWheelZoom={false}
     className='h-[35vh] rounded-lg'
     dragging={false}
+    zoomControl={false}
     >
     <TileLayer
       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -48,8 +49,8 @@ const Map: React.FC<MapProps> = ({
           },
         }}
       >
-        <Popup>
-          O Mapa só Representa a Cidade,<br /> NÃO o endereço completo.
+        <Popup className="font-medium">
+          O Mapa só Representa a Cidade,<br /><span className='font-bold'>NÃO É</span> o endereço completo.
         </Popup>
       </Marker>
     )}
