@@ -36,9 +36,9 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
                     id={partner.id}
                     currentUser={currentUser}
                     />
-                    <div className="grid grid-cols-1 md:grid-cols-7 md:gap-10 mt-6">
+                    <div className="grid-cols-1 md:grid-cols-7 md:gap-10 mt-6">
                         <PartnerInfo
-                            label={partner.title}
+                            title={partner.title}
                             imageSrc={partner.imageSrc}
                             description={partner.title}
                         />

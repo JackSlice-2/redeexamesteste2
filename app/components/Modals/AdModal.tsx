@@ -105,8 +105,8 @@ useEffect(() => {
     const onBack = () => {
         setStep((value) => value -1)
     }
-const onNext = () => {
-    // Check for required fields based on the current step
+
+    const onNext = () => {
     switch (step) {
         case STEPS.CATEGORY:
             if (!category) {
@@ -228,10 +228,7 @@ const onNext = () => {
     )
 
     if (step === STEPS.COMPANY) {
-        if (partners.length === 0) {
-            toast.error('Failed to fetch partners');
-            rentModal.onClose();
-        }
+        
         bodyContent = (
             <div className="flex flex-col gap-8">
                     <Heading 
@@ -240,13 +237,13 @@ const onNext = () => {
                     />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
                 {partners.map((partner) => (
-    <CompanyInput
-        key={partner.id}
-        partner={partner}
-        selected={company === partner.title}
-        onClick={(value) => setCustomValue('company', value)}
-    />
-))}
+            <CompanyInput
+                key={partner.id}
+                partner={partner}
+                selected={company === partner.title}
+                onClick={(value) => setCustomValue('company', value)}
+            />
+                ))}
 
                 </div>
             </div>

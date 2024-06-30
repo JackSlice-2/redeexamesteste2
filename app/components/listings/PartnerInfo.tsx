@@ -4,15 +4,16 @@ import React from 'react'
 import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
 import { BiCopy } from 'react-icons/bi';
+import Link from 'next/link';
 
 const Map = dynamic(() => import('../Map'), {
     ssr: false
 });
 
 interface PartnerInfoProps {
-    description?: string;
     imageSrc: string;
-    label: string;
+    title: string;
+    description?: string;
     cnpj?: string;
     address?: string;
     phone?: string;
@@ -26,7 +27,7 @@ interface PartnerInfoProps {
 const PartnerInfo: React.FC<PartnerInfoProps> = ({
   description,
   imageSrc,
-  label,
+  title,
   cnpj,
   address,
   phone,
@@ -51,8 +52,7 @@ return (
     <div className='w-1/2 flex flex-col gap-8'>
       <div className="flex flex-col gap-2">
         <div className="text-3xl font-bold flex flex-row items-center gap-2 pb-8 pt-5">
-            <div>Parceiro Atual: {label}</div>
-          
+            <div>Parceiro Atual: {title}</div>          
             <div className='p-1'>
           <hr />
           </div> 
@@ -72,7 +72,7 @@ return (
         </div>
         <div className='w-1/2 p-2 border-gray-600 h-1/2'>
          <Map 
-        center={[0,0]}//TODO locationCoordinates
+        center={[0,0]}
         />
         </div>
       </div>

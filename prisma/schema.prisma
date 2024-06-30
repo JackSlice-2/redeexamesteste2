@@ -75,10 +75,16 @@ model Listing {
 
 model Partner {
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
   title String
   imageSrc String
   createdAt DateTime @default(now())
-  userId String @db.ObjectId
+  cnpj String?
+  phone String?
+  whatsApp String?
+  telegram String?
+  email String?
+  website String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

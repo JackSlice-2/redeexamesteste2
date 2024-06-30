@@ -15,13 +15,25 @@ export async function POST(
     const {
         title,
         imageSrc,
+        cnpj,
+        phone,
+        whatsApp,
+        telegram,
+        email,
+        website
     } = body;
  
     const partner = await prisma.partner.create({
         data: {
             title,
             imageSrc,
-            userId: currentUser.id
+            userId: currentUser.id,
+            cnpj,
+            phone,
+            whatsApp,
+            telegram,
+            email,
+            website
         }
     })
 

@@ -13,7 +13,8 @@ import toast from 'react-hot-toast';
 
 enum STEPS {
     INFO = 0,
-    IMAGES = 1,
+    CONTACT= 1,
+    IMAGES = 2,
 }
 
 const PartnerModal = () => {
@@ -35,10 +36,19 @@ const PartnerModal = () => {
         defaultValues: {
             imageSrc: '',
             title: '',
+            cnpj:  '',
+            cities:  [],
+            phone:  '',
+            whatsApp:  '',
+            telegram:  '',
+            email:  '',
+            website:  '',
         }
     });
 
     const imageSrc = watch('imageSrc');
+    const phone = watch('phone');
+
 
     const setCustomValue = (id: string, value: any) => {
         setValue(id, value, {
@@ -51,7 +61,8 @@ const PartnerModal = () => {
     const onBack = () => {
         setStep((value) => value -1)
     }
-const onNext = () => {
+
+    const onNext = () => {
     switch (step) {
         case STEPS.IMAGES:
             if (!imageSrc) {
@@ -59,12 +70,17 @@ const onNext = () => {
                 return;
             }
             break;
+            case STEPS.CONTACT:
+            if (!phone) {
+                toast.error('Telefone de Contato is required');
+                return;
+            }
+            break;
         default:
             break;
-    }
-
-    setStep((value) => value + 1);
-};
+        }
+        setStep((value) => value + 1);
+    };
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         if (step != STEPS.IMAGES) {
@@ -105,8 +121,8 @@ const onNext = () => {
     let bodyContent = (
         <div className="flex flex-col gap-8">
         <Heading 
-        title='Qual o Nome do Novo Parceiro?'
-        subtitle='Nome ou Fantasia da Empresa'
+        title='Informaçoes Basicas do Parceiro'
+        subtitle='Informaçoes de Identificaçao'
         />
         <Input 
         id="title"
@@ -116,8 +132,62 @@ const onNext = () => {
         errors={errors}
         required
         />
+        <Input 
+        id="cnpj"
+        label="C.N.P.J."
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        />
+        </div>
+    )
+
+    if (step === STEPS.CONTACT) {
+    bodyContent = (
+        <div className="flex flex-col gap-8">
+        <Heading 
+        title='Informaçoes de Contato'
+        subtitle='Informaçoes para Entrar em Contato com o Parceiro'
+        />
+        <Input 
+        id="phone"
+        label="Telefone de Contato"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+        />
+        <Input 
+        id="whatsApp"
+        label="WhatsApp para Contato"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        />
+        <Input 
+        id="telegram"
+        label="Telegram para Contato"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        />
+        <Input 
+        id="email"
+        label="E-Mail para Contato"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        />
+        <Input 
+        id="website"
+        label="Site do Parceiro"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        />
     </div>
     )
+}
 
     if (step === STEPS.IMAGES) {
         bodyContent = (
