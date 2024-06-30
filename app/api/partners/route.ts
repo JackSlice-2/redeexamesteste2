@@ -20,6 +20,8 @@ export async function POST(
         whatsApp,
         telegram,
         email,
+        address,
+        city,
         website
     } = body;
  
@@ -33,6 +35,8 @@ export async function POST(
             whatsApp,
             telegram,
             email,
+            address,
+            city,
             website
         }
     })

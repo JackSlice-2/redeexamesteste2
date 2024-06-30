@@ -14,7 +14,8 @@ import toast from 'react-hot-toast';
 enum STEPS {
     INFO = 0,
     CONTACT= 1,
-    IMAGES = 2,
+    ADDRESS= 2,
+    IMAGES = 3,
 }
 
 const PartnerModal = () => {
@@ -37,7 +38,8 @@ const PartnerModal = () => {
             imageSrc: '',
             title: '',
             cnpj:  '',
-            cities:  [],
+            city:  '',
+            address: '',
             phone:  '',
             whatsApp:  '',
             telegram:  '',
@@ -188,6 +190,31 @@ const PartnerModal = () => {
     </div>
     )
 }
+
+    if (step === STEPS.ADDRESS) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+            <Heading 
+            title='Informaçoes de Endereço'
+            subtitle='Aonde o Parceiro é Localizado?'
+            />
+            <Input 
+            id="city"
+            label="Cidade do Parceiro"
+            disabled={isLoading}
+            register={register}
+            errors={errors}
+            />
+            <Input 
+            id="address"
+            label="Endereço Completo"
+            disabled={isLoading}
+            register={register}
+            errors={errors}
+            />
+        </div>
+        )
+    }
 
     if (step === STEPS.IMAGES) {
         bodyContent = (

@@ -36,29 +36,18 @@ const ListingCard: React.FC<ListingCardProps> = ({
         currentUser
     });
 
-
     const handleCancel = useCallback(
         (e: React.MouseEvent<HTMLButtonElement>) => {
             e.stopPropagation();
-
             if (disabled) {
                 return;
             }
-
             onAction?.(actionId);
         }, [onAction, actionId, disabled]);
 
-    const params = useSearchParams();
-    const company = params?.get('company');
     const pathname = usePathname();
 
-    if (hasFavorited && pathname !== '/inactiveAds' && pathname !== '/myPartners') {
-        return null;
-    }
-
-    const isMainPage = pathname === "/myPartners" && !company;
-
-    if (isMainPage) {
+    if (hasFavorited && pathname !== '/inactiveAds' && pathname !== '/partners') {
         return null;
     }
 
@@ -106,7 +95,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
                         data.byAppointmentOnly ? 'Horario Marcado' : null}
                     </div>
                 </div> 
-               
             </div>
             )}
               <div className='text-neutral-500 text-xs pb-2'>

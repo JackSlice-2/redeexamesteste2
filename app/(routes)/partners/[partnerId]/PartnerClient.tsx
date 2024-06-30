@@ -3,26 +3,46 @@
 import Container from '@/app/components/Container';
 import ListingHead from '@/app/components/listings/ListingHead';
 import { SafePartner, SafeUser } from '@/app/types';
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import PartnerInfo from '@/app/components/listings/PartnerInfo';
-
-const initialDateRange = {
-    startDate: new Date(),
-    endDate: new Date(),
-    key: 'selection'
-};
+import ListingCard from '@/app/components/listings/ListingCard';
+import { SafeListing } from '../../../types/index';
+import Heading from '@/app/components/Heading';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 interface PartnerClientProps {
     partner: SafePartner & {
         user: SafeUser
     };
     currentUser?: SafeUser | null
+    listing?: SafeListing[] | null;
 }
 
 const PartnerClient: React.FC<PartnerClientProps> = ({
     partner,
     currentUser,
+    listing = []
 }) => {
+    const router = useRouter();
+    const [deletingId, setDeletingId] = useState('');
+  
+    const onCancel = useCallback((id: string) => {
+      setDeletingId(id);
+  
+      axios.delete(`/api/listings/${id}`)
+      .then(() => {
+        toast.success('Anuncio Apagado');
+        router.refresh();
+      })
+      .catch((error) => {
+        toast.error(error?.response?.data?.error)
+      })
+      .finally(() => {
+        setDeletingId('');
+      })
+    }, [router]);
     
   return (
         <Container>
@@ -40,9 +60,19 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
                         <PartnerInfo
                             title={partner.title}
                             imageSrc={partner.imageSrc}
-                            description={partner.title}
+                            cnpj={partner.cnpj || ''}
+                            phone={partner.phone || ''}
+                            email={partner.email || ''}
+                            whatsApp={partner.whatsApp || ''}
+                            telegram={partner.telegram || ''}
+                            website={partner.website || ''}
+                            address={partner.address || ''}
+                            city={partner.city || ''}
                         />
                     </div>
+                        <Heading
+                        title={`Lista de Anuncios da ${partner.title}`}
+                        />
                 </div>
             </div>
         </Container>

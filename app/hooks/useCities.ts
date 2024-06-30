@@ -26,7 +26,6 @@ const useCities = () => {
  useEffect(() => {
     const fetchCities = async () => {
       try {
-    // List of cities in Rio Grande do Sul
     const citiesList = [
       'Porto Alegre',
       'Canoas',
@@ -44,13 +43,12 @@ const fetchCityGeocode = async (city: string): Promise<FormattedCityData[]> => {
       latlng: [cityData.geometry.lat, cityData.geometry.lng],
       region: cityData.components.country,
     }));
-    return formattedCities;
- } catch (error) {
+      return formattedCities;
+  } catch (error) {
     console.error('Error fetching city geocode:', error); // Log any errors
     throw error; // Rethrow the error to be handled by the calling function
- }
+  }
 };
-
 
     // Fetch geocoding information for each city concurrently
     const allCitiesData = await Promise.all(citiesList.map(fetchCityGeocode));
@@ -66,12 +64,12 @@ const fetchCityGeocode = async (city: string): Promise<FormattedCityData[]> => {
   }
 };
 
-fetchCities();
+  fetchCities();
 }, []);
 
 return {
-getAll: () => cities,
-};
+  getAll: () => cities,
+  };
 };
 
 export default useCities;

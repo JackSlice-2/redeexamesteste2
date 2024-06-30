@@ -3,7 +3,8 @@
 import React from 'react'
 import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
-import { BiCopy } from 'react-icons/bi';
+import { BiCopy, BiPencil } from 'react-icons/bi';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const Map = dynamic(() => import('../Map'), {
@@ -13,7 +14,6 @@ const Map = dynamic(() => import('../Map'), {
 interface PartnerInfoProps {
     imageSrc: string;
     title: string;
-    description?: string;
     cnpj?: string;
     address?: string;
     phone?: string;
@@ -25,7 +25,6 @@ interface PartnerInfoProps {
 }
 
 const PartnerInfo: React.FC<PartnerInfoProps> = ({
-  description,
   imageSrc,
   title,
   cnpj,
@@ -51,35 +50,45 @@ return (
   <div className='flex justify-between w-full'>
     <div className='w-1/2 flex flex-col gap-8'>
       <div className="flex flex-col gap-2">
-        <div className="text-3xl font-bold flex flex-row items-center gap-2 pb-8 pt-5">
-            <div>Parceiro Atual: {title}</div>          
-            <div className='p-1'>
-          <hr />
-          </div> 
+        <div className="text-3xl font-bold flex flex-row items-center gap-2 pb-8 pt-3">
+            <div>Parceiro Atual: {title}</div>
           </div>
-          <div className='p-1'>
-          <hr />
-          </div>
-          <br/>
           CNPJ: {cnpj}
-          <div className='p-1'>
-              <hr />
-              </div>         
-             <div className='w-2/3 p-3 border-gray-600 flex justify-center items-center'>
-            {description}
+            <br/>
+          <span>
+            Site:
+              <Link href={website || ''}
+                className="underline hover:bg-gray-400 hover:text-white text-medium p-1 rounded-md pl-1">
+                {title}.com
+              </Link>
+            </span>
+            <hr />
+          <div className='pb-2'/>
+             <div className='p-2 border-gray-400 flex justify-center items-center border rounded-xl'>
+             <Image
+              alt='image'
+              src={imageSrc}
+              width={100}
+              height={75}
+              className='object-cover w-full rounded-md'
+              />
           </div>
         </div>
         </div>
-        <div className='w-1/2 p-2 border-gray-600 h-1/2'>
+        <div className='w-1/2 p-2 lg:mt-10 border-gray-300 h-1/2'>
+        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100 my-2'>
+          {city}
+        </div>
+        <div className='p-2 mt-1'>
          <Map 
         center={[0,0]}
         />
         </div>
+        </div>
       </div>
-      <div className='p-1'>
-    <hr />
-    </div>      <div className='justify-center align-center items-center'>      
-        <div className='flex flex-row overflow-x-auto hide-scrollbar w-full p-2 gap-3 justify-center text-center '>
+      <div className='mt-3'/>
+    <div className='justify-center align-center items-center'>      
+        <div className='flex flex-row overflow-x-auto hide-scrollbar w-full pt-2 gap-3 justify-center text-center '>
 
         <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
       onClick={() => copyToClipboard(city || '')}
@@ -130,7 +139,7 @@ return (
           </div>
         </div>
     </div>
-      <div className='flex gap-0.5 justify-center text-center transition text-white rounded-xl p-1 w-1/5 cursor-pointer bg-blue-500 hover:bg-blue-400 shadow-md'
+      <div className='m-2 ml-4 flex gap-0.5 justify-center text-center transition text-white rounded-xl p-2 w-1/5 cursor-pointer bg-blue-500 hover:bg-blue-300 shadow-md hover:text-black hover:font-medium'
         onClick={() => copyToClipboard(
           `E-Mail: ${email || ''}\n` +
           `WhatsApp: ${whatsApp || ''}\n` +
@@ -143,10 +152,8 @@ return (
         <BiCopy /> Copiar Todos
       </div>
       </div>
-
-      <div className='p-1'>
+      <div className='pt-5'/>
     <hr />
-    </div>
       </>
 )
 }
