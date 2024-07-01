@@ -10,6 +10,7 @@ import Input from '../Inputs/Input';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import CitySelect from '../Inputs/CitySelect';
 
 enum STEPS {
     INFO = 0,

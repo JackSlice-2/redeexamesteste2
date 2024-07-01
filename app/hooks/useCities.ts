@@ -1,74 +1,76 @@
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 interface CityData {
- components: {
+  components: {
     city: string;
     country: string;
- };
- formatted: string;
- geometry: {
+  };
+  formatted: string;
+  geometry: {
     lat: number;
     lng: number;
- };
+  };
 }
 
 interface FormattedCityData {
- value: string;
- label: string;
- latlng: [number, number];
- region: string;
+  value: string;
+  label: string;
+  latlng: [number, number];
+  region: string;
 }
 
 const useCities = () => {
- const [cities, setCities] = useState<FormattedCityData[]>([]);
+  const [cities, setCities] = useState<FormattedCityData[]>([]);
 
- useEffect(() => {
+  useEffect(() => {
     const fetchCities = async () => {
       try {
-    const citiesList = [
-      'Porto Alegre',
-      'Canoas',
-      'Viamão',
-      'Alvorada'
-    ];
- 
+        const citiesList = [
+          'Porto Alegre',
+          'Canoas',
+          'Viamão',
+          'Alvorada'
+        ];
 
-const fetchCityGeocode = async (city: string): Promise<FormattedCityData[]> => {
- try {
-    const response = await axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(city)}&key=c92e696b860e4606aae09466c9f055b5`);
-    const formattedCities: FormattedCityData[] = response.data.results.map((cityData: CityData) => ({
-      value: cityData.components.city,
-      label: `${cityData.components.city}, RS`,
-      latlng: [cityData.geometry.lat, cityData.geometry.lng],
-      region: cityData.components.country,
-    }));
-      return formattedCities;
-  } catch (error) {
-    console.error('Error fetching city geocode:', error); // Log any errors
-    throw error; // Rethrow the error to be handled by the calling function
-  }
-};
+        // Hardcoded data
+        const hardcodedCitiesData: FormattedCityData[] = [
+          {
+            value: 'Porto Alegre',
+            label: 'Porto Alegre, RS',
+            latlng: [-51.223611, -30.033333], // Example coordinates
+            region: 'RS'
+          },
+          {
+            value: 'Canoas',
+            label: 'Canoas, RS',
+            latlng: [-48.791944, -29.966667], // Example coordinates
+            region: 'RS'
+          },
+          {
+            value: 'Viamão',
+            label: 'Viamão, RS',
+            latlng: [-43.783333, -31.933333], // Example coordinates
+            region: 'RS'
+          },
+          {
+            value: 'Alvorada',
+            label: 'Alvorada, RS',
+            latlng: [-43.783333, -31.933333], // Example coordinates
+            region: 'RS'
+          }
+        ];
 
-    // Fetch geocoding information for each city concurrently
-    const allCitiesData = await Promise.all(citiesList.map(fetchCityGeocode));
-    // Flatten the array, filter out duplicates based on city name, and ensure only cities in Brazil are included
-    const formattedCities = allCitiesData.flat().filter((city, index, self) =>
-      index === self.findIndex((t) => (
-        t.value === city.value
-      )) && city.region === 'Brazil'
-    );
-    setCities(formattedCities);
-  } catch (error) {
-    console.error('Failed to fetch cities:', error);
-  }
-};
+        setCities(hardcodedCitiesData);
+      } catch (error) {
+        console.error('Failed to fetch cities:', error);
+      }
+    };
 
-  fetchCities();
-}, []);
+    fetchCities();
+  }, []);
 
-return {
-  getAll: () => cities,
+  return {
+    getAll: () => cities,
   };
 };
 

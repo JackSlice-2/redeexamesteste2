@@ -80,9 +80,9 @@ return (
           {city}
         </div>
         <div className='p-2 mt-1'>
-         <Map 
+         {/*<Map 
         center={[0,0]}
-        />
+        />*/}
         </div>
         </div>
       </div>

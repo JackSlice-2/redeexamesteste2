@@ -119,9 +119,9 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     
       <hr />
 
-        <Map
+        {/*<Map
         center={convertedLatlng}
-        />
+        />*/}
     </div>
   )
 }
