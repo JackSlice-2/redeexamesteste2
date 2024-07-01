@@ -73,7 +73,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
           <div className="hidden md:block text-sm font-semibold py-3 text-white px-4 rounded-full hover:bg-blue-300 transition cursor-pointer"
           onClick={onPartner}
           >
-              Adcione um Parceiro
+              Adicione um Parceiro
           </div>
         </>
         ) : null}
@@ -93,23 +93,23 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     {currentUser?.name || ''}
                 </div>
                   <MenuItem onClick={() => {router.push('/'); closeMenu();}}
-                  label='Inico'
+                  label='Início'
                   />
                   <MenuItem onClick={() => {router.push('/inactiveAds'); closeMenu();}}
-                  label='Anuncios Inativos'
+                  label='Anúncios Inativos'
                   />
                   <MenuItem onClick={() => {router.push('/partners'); closeMenu();}}
                   label='Meus Parceiros'
                   />
                   <MenuItem onClick={() => {router.push('/myAds'); closeMenu();}}
-                  label='Gerenciar Anuncios'
+                  label='Gerenciar Anúncios'
                   />
                   <hr />
                   <MenuItem onClick={() => signOut()}
                   label='Fazer Logout'
                   />
                   <MenuItem onClick={registerModal.onOpen}
-                  label='Criar um Novo Usuario'
+                  label='Criar um Novo Usuário'
                   />
                 </>
                   ) : (

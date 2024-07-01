@@ -30,9 +30,9 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
           Temos atendimento nos dias marcados em azul!
         </div>
         <div className="font-light text-sm text-neutral-600">
-          Ligue ja e confira se ainda ha vaga para os dias abaixo!
+          Ligue já e confira se há vaga para os dias abaixo!
           <br/>
-          Os dias em azul escuro sao os dias disponiveis para atendimento!
+          Os dias marcados como azul escuro são os disponíveis para atendimento!
         </div>
       </div>
       <hr />

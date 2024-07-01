@@ -29,7 +29,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <Head>
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <body className={font.className}>
         <ClientOnly>

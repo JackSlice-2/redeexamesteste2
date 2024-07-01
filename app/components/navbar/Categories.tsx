@@ -11,7 +11,7 @@ import { HiComputerDesktop } from 'react-icons/hi2';
 
 export const categories = [
     {
-        label: 'Consulta Presencial',
+        label: 'Consultas Presenciais',
         icon: FaPeopleGroup,
         description: 'Entre em contato para obter o endereço da sua consulta.'
     },

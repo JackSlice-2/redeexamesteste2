@@ -87,8 +87,8 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <div className='text-neutral-500 text-xs font-light'>
                 {data.company} 
                 <div className='text-neutral-500 text-sm'>
-                    Pagament Pix: {data.payNow} <br/>
-                    Pagament no Local: {data.payThere} <br/>
+                    Pagamento Pix: {data.payNow} <br/>
+                    Pagamento no Local: {data.payThere} <br/>
                     <div className='text-neutral-500 text-xs font-light'>
                         {data.firstComeFirstServe && data.byAppointmentOnly ? 'Ligue ja para informaçoes' :
                         data.firstComeFirstServe ? 'Ordem de Chegada' :
@@ -98,7 +98,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             </div>
             )}
               <div className='text-neutral-500 text-xs pb-2'>
-                    proximo atendimento: {format(new Date(data.dates[0]), 'dd/MM/yyyy')}
+                    Próximo Atendimento: {format(new Date(data.dates[0]), 'dd/MM/yyyy')}
                     <br/>
                     A partir das: {data.startTime} <br/>
                 </div>  

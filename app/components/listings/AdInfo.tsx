@@ -59,16 +59,16 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     <div className='col-span-4 flex flex-col gap-8'>
       <div className="flex flex-col gap-2">
         <div className="text-xl font-semibold text-center px-10 justify-between flex flex-row items-center gap-2">
-        <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://api.whatsapp.com/send/?phone=5551981859157&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">
             <div className='bg-green-400 hover:bg-green-600 hover:text-white hover:font-semibold cursor-pointer rounded-2xl text-center p-2 items-center flex gap-1 border-gray-200 border-2 shadow-md' >
               Chame no whatsApp!
-              <FaWhatsapp/> 
+              <FaWhatsapp className='mr-1' size={30}/> 
             </div>
         </a>
-        <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://t.me/redeexames?start=+55051981859157" target="_blank" rel="noopener noreferrer">
             <div className='bg-blue-400 hover:bg-blue-600 hover:text-white hover:font-semibold cursor-pointer rounded-2xl text-center p-2 items-center flex gap-1 border-gray-200 border-2 shadow-md' >
               Chame no Telegram!
-              <FaTelegram /> 
+              <FaTelegram className='mr-1' size={30}/> 
             </div>
         </a>
           </div>
@@ -78,7 +78,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
                   Cidade: <br/>{locationValue}
               </div>
               <div className='p-3 text-center hover:bg-sky-100 cursor-pointer'>
-                  Horario: <br/>{startTime} - {endTime}
+                  Horario: <br/>{startTime} <br/>até {endTime}
               </div>
               <div className='p-3 text-center hover:bg-sky-100 cursor-pointer'>
                   WhatsApp: <br/>51 985647950
@@ -87,14 +87,20 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
                   Telefone: <br/>51 985647988
               </div>
               <div className='p-3 text-center hover:bg-sky-100 cursor-pointer'>
-                  Fixo: <br/>3434-1422
+                  Fixo: <br/>51 34341422
               </div>
             </div>
           </div>
           <hr />
         <div>
-          {firstComeFirstServe ? <CheckmarkIcon /> : <PiXFill color='red' />} Ordem de Chegada
-          {byAppointmentOnly ? <CheckmarkIcon /> : <PiXFill color='red' />} Horario Marcado
+          <span className="flex pb-2 gap-1">
+            {firstComeFirstServe ? <CheckmarkIcon /> : <PiXFill size={20} color='red' />}
+            Ordem de Chegada
+          </span>
+          <span className="flex pt-2 gap-1">
+            {byAppointmentOnly ? <CheckmarkIcon /> : <PiXFill size={20} color='red' />}
+            Horario Marcado
+          </span>
         </div>
         <hr />
         {category && (

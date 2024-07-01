@@ -220,7 +220,7 @@ const PartnerModal = () => {
         bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading 
-                title='Adcione uma Foto'
+                title='Adicione uma Foto'
                 subtitle='Uma foto Illustrando o Serviço'
                 />
                 <div className='max-h-64'>
@@ -251,7 +251,7 @@ const PartnerModal = () => {
     actionLabel={actionLabel}
     secondaryActionLabel={secondaryActionLabel}
     secondaryAction={step === STEPS.INFO ? undefined : onBack}
-    title='Adcione um Parceiro'
+    title='Adicione um Parceiro'
     body={bodyContent}
     />
   )
