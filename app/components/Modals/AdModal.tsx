@@ -17,7 +17,6 @@ import CompanyInput from '../Inputs/CompanyInput';
 import CitySelect from '../Inputs/CitySelect';
 import { DayPicker } from 'react-day-picker';
 import { SafePartner } from '@/app/types';
-import getPartners from '@/app/actions/getPartners';
 
 enum STEPS {
     CATEGORY = 0,
@@ -267,8 +266,8 @@ useEffect(() => {
     if (step === STEPS.LOCATION) {
         bodyContent = (
             <div className='flex flex-col gap-8'>
-  <label>
- <input 
+    <label>
+    <input 
      className='h-6 w-6 border text-center font-medium border-gray-300 rounded-md checked:bg-blue-600 checked:border-transparent focus:outline-none'
 
     type="checkbox"
@@ -276,9 +275,9 @@ useEffect(() => {
     onChange={(e) => {
       setIsVirtual(e.target.checked);
     }}
- />
- É uma consulta virtual?
-</label>
+    />
+    É uma consulta virtual?
+    </label>
 
     {!isVirtual && (
       <>
