@@ -1,7 +1,7 @@
 "use client";
 
 import { SafeUser } from '@/app/types';
-import React from 'react'
+import React, { ReactComponentElement } from 'react'
 import Heading from '../Heading';
 import Image from 'next/image';
 import HeartButton from '../CloudButton';
@@ -12,6 +12,7 @@ interface ListingHeadProps {
     imageSrc: string;
     id: string;
     currentUser?: SafeUser | null;
+    heartButton?: Boolean;
 }
 
 const ListingHead: React.FC<ListingHeadProps> = ({
@@ -19,7 +20,8 @@ const ListingHead: React.FC<ListingHeadProps> = ({
     locationValue,
     imageSrc,
     id,
-    currentUser
+    currentUser,
+    heartButton
 }) => {
 
   return (
@@ -33,14 +35,16 @@ const ListingHead: React.FC<ListingHeadProps> = ({
         alt='image'
         src={imageSrc}
         fill
-        className='object-cover w-full'
+        className='object-contain w-full'
         />
+      {heartButton && (
         <div className="absolute top-5 right-5">
             <HeartButton 
             listingId={id}
             currentUser={currentUser}
             />
         </div>
+      )}
     </div>
     </>
   )

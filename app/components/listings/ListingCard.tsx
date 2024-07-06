@@ -58,13 +58,13 @@ const ListingCard: React.FC<ListingCardProps> = ({
     onClick={() => router.push(`/listings/${data.id}`)}
     >
       <div className="flex flex-col w-full">
-        <div className="aspect-square w-full relative overflow-hidden rounded-xl">
+        <div className="bg-gray-200 aspect-square w-full relative overflow-hidden rounded-xl">
             <Image
-            sizes='100%' 
+            sizes='100%'
             fill
             alt='listing'
             src={data.imageSrc}
-            className='object-cover h-full w-full group-hover:scale-110 transition'
+            className='object-contain h-full w-full group-hover:scale-110 transition'
             />
             <div className="absolute top-3 right-3">
                 <HeartButton 

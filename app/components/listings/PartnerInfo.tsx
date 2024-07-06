@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
 import { BiCopy, BiPencil, BiTrash } from 'react-icons/bi';
 import Image from 'next/image';
-import Link from 'next/link';
 import Button from '../Button';
 
 const Map = dynamic(() => import('../Map'), {
@@ -138,22 +137,6 @@ return (
             <BiCopy /> WhatsApp: <br/>
           <div className='font-medium text-xl'>
             {whatsApp}
-          </div>
-        </div>
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
-          onClick={() => copyToClipboard(telegram || '')}
-          >
-            <BiCopy /> Telegram: <br/>
-          <div className='font-medium text-xl'>
-            {telegram}
-          </div>
-        </div>
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
-          onClick={() => copyToClipboard(email || '')}
-          >
-            <BiCopy /> E-Mail: <br/>
-          <div className='font-medium text-xl'>
-            {email}
           </div>
         </div>
     </div>
