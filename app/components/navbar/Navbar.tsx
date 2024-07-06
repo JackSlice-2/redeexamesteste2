@@ -19,7 +19,11 @@ const Navbar: React.FC<Navbarprops> = ({
       <div className="py-4 bg-blue-400 rounded-b-3xl">
         <Container>
         <div className="flex flex-row items-center text-center justify-center md:justify-between gap-3 md:gap-0">
-        <Logo />
+        <Logo 
+          height={150}
+          width={170}
+          label="Rede Exames Online"
+        />
         <UserMenu currentUser={currentUser}/>
         </div>
         </Container>

@@ -135,6 +135,13 @@ const PartnerModal = () => {
         errors={errors}
         required
         />
+        {/*<Input 
+        id="cnpj"
+        label="C.N.P.J."
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        />*/}
         </div>
     )
 
@@ -160,7 +167,7 @@ const PartnerModal = () => {
         register={register}
         errors={errors}
         />
-        <Input 
+        {/*<Input 
         id="telegram"
         label="Telegram para Contato"
         disabled={isLoading}
@@ -180,7 +187,7 @@ const PartnerModal = () => {
         disabled={isLoading}
         register={register}
         errors={errors}
-        />
+        />*/}
     </div>
     )
 }

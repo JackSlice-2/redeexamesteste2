@@ -4,7 +4,17 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 
-const Logo = () => {
+interface LogoProps {
+  label?: string
+  width: number
+  height: number
+}
+
+const Logo: React.FC<LogoProps> = ({
+  label,
+  width,
+  height
+  }) => {
     const router = useRouter();
 
   return (
@@ -13,13 +23,13 @@ const Logo = () => {
       onClick={() => router.push('/')}
           alt='Logo'
           className='block cursor-pointer'
-          height="150"
-          width="170"
+          height={height}
+          width={width}
           priority
           src="/images/logo.png"
           />
           <div className="block cursor-pointer -mt-3" onClick={() => router.push('/')}>
-          Rede Exames Online
+          {label}
           </div>
     </div>
   )
