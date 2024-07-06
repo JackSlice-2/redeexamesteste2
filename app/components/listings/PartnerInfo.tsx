@@ -1,11 +1,12 @@
 "use client";
 
-import React from 'react'
+import React, { useCallback } from 'react'
 import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
-import { BiCopy, BiPencil } from 'react-icons/bi';
+import { BiCopy, BiPencil, BiTrash } from 'react-icons/bi';
 import Image from 'next/image';
 import Link from 'next/link';
+import Button from '../Button';
 
 const Map = dynamic(() => import('../Map'), {
     ssr: false
@@ -22,6 +23,10 @@ interface PartnerInfoProps {
     telegram?: string;
     website?: string;
     city?: string;
+    onAction?: (id: string) => void;
+    disabled?: boolean;
+    actionId?: string;
+    actionLabel?: string;
 }
 
 const PartnerInfo: React.FC<PartnerInfoProps> = ({
@@ -34,7 +39,11 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
   whatsApp,
   telegram,
   website,
-  city
+  city,
+  onAction,
+  disabled,
+  actionId = '',
+  actionLabel
 }) => {
 
   const copyToClipboard = (text: string) => {
@@ -45,6 +54,15 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
     });
  };
 
+ const handleCancel = useCallback(
+  (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+      if (disabled) {
+          return;
+      }
+      onAction?.(actionId);
+  }, [onAction, actionId, disabled]);
+
 return (
   <>
   <div className='flex justify-between w-full'>
@@ -53,15 +71,15 @@ return (
         <div className="text-3xl font-bold flex flex-row items-center gap-2 pb-8 pt-3">
             <div>Parceiro Atual: {title}</div>
           </div>
-          CNPJ: {cnpj}
-            <br/>
-          <span>
-            Site:
-              <Link href={website || ''}
-                className="underline hover:bg-gray-400 hover:text-white text-medium p-1 rounded-md pl-1">
-                {title}.com
-              </Link>
-            </span>
+          {onAction && actionLabel && (
+            <Button 
+            disabled={disabled}
+            label={actionLabel}
+            onClick={handleCancel}
+            red
+            icon={BiTrash}
+            />
+        )}
             <hr />
           <div className='pb-2'/>
              <div className='p-2 border-gray-400 flex justify-center items-center border rounded-xl'>

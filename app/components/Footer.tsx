@@ -1,5 +1,3 @@
-"use client";
-
 import React from 'react';
 import Container from './Container';
 import Logo from './navbar/Logo';
@@ -12,7 +10,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   return (
-    <div className='absolute w-full z-10 bg-blue-50'>
+    <div className='w-full z-10 bg-blue-50'>
       <div className="py-4 bg-blue-400 rounded-t-3xl">
         <Container>
           <div className="flex flex-row items-center text-center justify-center md:justify-between gap-3 md:gap-0 pt-3">
