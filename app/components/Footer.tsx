@@ -3,6 +3,7 @@ import Container from './Container';
 import Logo from './navbar/Logo';
 import { SafeUser } from '@/app/types';
 import { FaInstagram, FaTelegram, FaWhatsapp } from 'react-icons/fa';
+import Link from 'next/link';
 
 interface NavbarProps {
   currentUser?: SafeUser | null;
@@ -28,27 +29,34 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
                 </ul>
             </div>
             <div className='gap-3'>
-                <div>
+                <a target="_blank" href={"mailto:redeexamesfacil@gmail.com"}>
                     Redeexames.online@gmail. 
-                </div>
-                <div>
+                </a>
+                <br/>
+                <a target="_blank" href={"https://www.google.com/search?q=Av.%20Bento%20Gon%C3%A7alves%2C%2081%20Viam%C3%A3o%20RS#smwie=1"}>
                     Av. Bento Gonçalves, 81 Viamão RS
-                </div>
+                </a>
             </div>
             <div>
             <h1 className='font-semibold'>
                 Nos Siga Nas Redes Socias
                 </h1>
                 <ul className="gap-4 flex justify-center align-center p-1">
-                    <FaWhatsapp />
-                    <FaTelegram />
-                    <FaInstagram />
+                    <a target="_blank" href={"https://wa.me/5551981859157"}>
+                      <FaWhatsapp className='hover:scale-150 hover:text-green-800'/>
+                    </a>
+                    <a target="_blank" href={"https://t.me/redeexames?start=+55051981859157"}>
+                      <FaTelegram className='hover:scale-150 hover:text-blue-800' />
+                    </a>
+                    <a target="_blank" href={"https://instagram.com/_redesaude?igshid=OGQ5ZDc2ODk2ZA=="}>
+                      <FaInstagram className='hover:scale-150 hover:text-pink-800' />
+                    </a>
                 </ul>
             </div>
           </div>
         </Container>
         <div className="text-center text-xs">
-        © 2024 Rede Exames Online. All rights reserved. | Privacy Policy
+        © 2024 Rede Exames Online. | Todos os direitos reservados
       </div>
       </div>
     </div>

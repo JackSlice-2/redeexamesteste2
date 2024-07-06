@@ -34,7 +34,7 @@ const Input: React.FC<InputProps> = ({
     return (
         <div className='w-full relative'>
             {isMoneyInput && (
-                <span className='text-neutral-700 absolute top-5 left-4'>$</span>
+                <span className='text-neutral-700 absolute top-5 left-4'>R$</span>
             )}
             {isBooleanInput ? (
                 <input 
