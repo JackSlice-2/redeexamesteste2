@@ -235,8 +235,18 @@ const PartnerModal = () => {
     }
     
     const resetFormAndSteps = () => {
-    reset();
-    setStep(STEPS.INFO);
+        reset({
+            imageSrc: '',
+            title: '',
+            cnpj: '',
+            city: '',
+            address: '',
+            phone: '',
+            whatsApp: '',
+            telegram: '',
+            email: '',
+            website: '',
+        });    setStep(STEPS.INFO);
 }
     const handleClose = () => {
         partnerModal.onClose();
