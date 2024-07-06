@@ -135,13 +135,6 @@ const PartnerModal = () => {
         errors={errors}
         required
         />
-        <Input 
-        id="cnpj"
-        label="C.N.P.J."
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-        />
         </div>
     )
 
