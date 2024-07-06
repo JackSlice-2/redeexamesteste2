@@ -139,6 +139,29 @@ return (
             {whatsApp}
           </div>
         </div>
+        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
+        onClick={() => copyToClipboard(city || '')}
+        >{telegram && (
+          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
+            onClick={() => copyToClipboard(telegram)}
+          >
+            <BiCopy /> Telefone 2: <br/>
+            <div className='font-medium text-xl'>
+              {telegram}
+            </div>
+          </div>
+        )}
+        {email && (
+          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
+            onClick={() => copyToClipboard(email)}
+          >
+            <BiCopy /> Telefone 3: <br/>
+            <div className='font-medium text-xl'>
+              {email}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
       <div className='m-2 ml-4 flex gap-0.5 justify-center text-center transition text-white rounded-xl p-2 w-1/5 cursor-pointer bg-blue-500 hover:bg-blue-300 shadow-md hover:text-black hover:font-medium'
         onClick={() => copyToClipboard(

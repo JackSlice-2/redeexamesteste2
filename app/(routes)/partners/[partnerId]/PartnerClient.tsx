@@ -3,7 +3,7 @@
 import Container from '@/app/components/Container';
 import ListingHead from '@/app/components/listings/ListingHead';
 import { SafePartner, SafeUser } from '@/app/types';
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState } from 'react';
 import PartnerInfo from '@/app/components/listings/PartnerInfo';
 import Heading from '@/app/components/Heading';
 import axios from 'axios';

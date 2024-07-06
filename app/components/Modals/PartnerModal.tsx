@@ -167,20 +167,21 @@ const PartnerModal = () => {
         register={register}
         errors={errors}
         />
-        {/*<Input 
+        <Input 
         id="telegram"
-        label="Telegram para Contato"
+        label="Telefone 2"
         disabled={isLoading}
         register={register}
         errors={errors}
         />
         <Input 
         id="email"
-        label="E-Mail para Contato"
+        label="Telefone 3"
         disabled={isLoading}
         register={register}
         errors={errors}
         />
+        {/*
         <Input 
         id="website"
         label="Site do Parceiro"
