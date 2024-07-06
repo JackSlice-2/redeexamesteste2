@@ -451,14 +451,14 @@ useEffect(() => {
                 required
                 />
                 <hr/>
-                <Input 
+                {/*<Input 
                 id="description"
                 label="Que tipo de Medico ou Exame será?"
                 disabled={isLoading}
                 register={register}
                 errors={errors}
                 required
-                />
+                />*/}
             </div>
         )
     }
