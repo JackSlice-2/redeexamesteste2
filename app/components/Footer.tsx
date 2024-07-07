@@ -35,6 +35,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
                 <a target="_blank" href={"https://www.google.com/search?q=Av.%20Bento%20Gon%C3%A7alves%2C%2081%20Viam%C3%A3o%20RS#smwie=1"} className='hover:underline'>
                     Av. Bento Gonçalves, 81 Viamão RS
                 </a>
+                <hr className='md:hidden'/>
             </div>
             <div className='md:ml-auto'>
             <h1 className='font-semibold'>
