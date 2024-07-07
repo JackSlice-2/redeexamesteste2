@@ -191,10 +191,10 @@ useEffect(() => {
     
     const actionLabel = useMemo(() => {
         if (step === STEPS.CALENDAR) {
-            return 'Create';
+            return 'Criar';
         }
 
-        return 'Next';
+        return 'Proximo';
     }, [step])
 
     const secondaryActionLabel = useMemo(() => {
@@ -202,7 +202,7 @@ useEffect(() => {
             return undefined;
         }
 
-        return 'Back'
+        return 'Voltar'
     }, [step])
 
     let bodyContent = (
