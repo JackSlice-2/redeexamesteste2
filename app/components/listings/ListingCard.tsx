@@ -73,7 +73,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
                 />
             </div>
         </div>
-        <div className="text-lg">
+        <div className="text-md font-semibold w-fit">
             {data.title}
         </div>
         <div className="font-light text-neutral-500">

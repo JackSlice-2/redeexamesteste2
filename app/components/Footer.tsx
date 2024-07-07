@@ -18,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
             height={100}
             width={130}
             />
-            <div>
+            <div className="mr-auto">
             <h1 className='font-semibold'>
                     Fale Conosco
                 </h1>
@@ -36,7 +36,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
                     Av. Bento Gonçalves, 81 Viamão RS
                 </a>
             </div>
-            <div>
+            <div className='ml-auto'>
             <h1 className='font-semibold'>
                 Nos Siga Nas Redes Socias
                 </h1>
