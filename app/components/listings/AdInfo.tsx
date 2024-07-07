@@ -74,20 +74,14 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           </div>
           <hr />
             <div className='flex flex-row overflow-x-auto hide-scrollbar'>
-              <div className='p-3 text-center hover:bg-sky-100 cursor-pointer'>
+              <div className='mx-auto p-3 text-center hover:bg-sky-100 cursor-pointer'>
                   Cidade: <br/>{locationValue}
               </div>
-              <div className='p-3 text-center hover:bg-sky-100 cursor-pointer'>
+              <div className='mx-auto p-3 text-center hover:bg-sky-100 cursor-pointer'>
                   Horario: <br/>{startTime} <br/>até {endTime}
               </div>
-              <div className='p-3 text-center hover:bg-sky-100 cursor-pointer'>
-                  WhatsApp: <br/>51 985647950
-              </div>
-              <div className='p-3 text-center hover:bg-sky-100 cursor-pointer'>
-                  Telefone: <br/>51 985647988
-              </div>
-              <div className='p-3 text-center hover:bg-sky-100 cursor-pointer'>
-                  Fixo: <br/>51 34341422
+              <div className='mx-auto p-3 text-center hover:bg-sky-100 cursor-pointer'>
+                  Telefone: <br/>51 98185-9157
               </div>
             </div>
           </div>
