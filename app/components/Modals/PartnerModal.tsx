@@ -10,12 +10,11 @@ import Input from '../Inputs/Input';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
-import CitySelect from '../Inputs/CitySelect';
 
 enum STEPS {
     INFO = 0,
-    CONTACT= 1,
-    ADDRESS= 2,
+    ADDRESS= 1,
+    CONTACT= 2,
     IMAGES = 3,
 }
 
@@ -145,54 +144,6 @@ const PartnerModal = () => {
         </div>
     )
 
-    if (step === STEPS.CONTACT) {
-    bodyContent = (
-        <div className="flex flex-col gap-8">
-        <Heading 
-        title='Informaçoes de Contato'
-        subtitle='Informaçoes para Entrar em Contato com o Parceiro'
-        />
-        <Input 
-        id="phone"
-        label="Telefone de Contato"
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-        required
-        />
-        <Input 
-        id="whatsApp"
-        label="WhatsApp para Contato"
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-        />
-        <Input 
-        id="telegram"
-        label="Telefone 2"
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-        />
-        <Input 
-        id="email"
-        label="Telefone 3"
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-        />
-        {/*
-        <Input 
-        id="website"
-        label="Site do Parceiro"
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-        />*/}
-    </div>
-    )
-}
-
     if (step === STEPS.ADDRESS) {
         bodyContent = (
             <div className="flex flex-col gap-8">
@@ -214,6 +165,54 @@ const PartnerModal = () => {
             register={register}
             errors={errors}
             />
+        </div>
+        )
+    }
+
+    if (step === STEPS.CONTACT) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+            <Heading 
+            title='Informaçoes de Contato'
+            subtitle='Informaçoes para Entrar em Contato com o Parceiro'
+            />
+            <Input 
+            id="phone"
+            label="Telefone de Contato"
+            disabled={isLoading}
+            register={register}
+            errors={errors}
+            required
+            />
+            <Input 
+            id="whatsApp"
+            label="WhatsApp para Contato"
+            disabled={isLoading}
+            register={register}
+            errors={errors}
+            />
+            <Input 
+            id="telegram"
+            label="Telefone 2"
+            disabled={isLoading}
+            register={register}
+            errors={errors}
+            />
+            <Input 
+            id="email"
+            label="Telefone 3"
+            disabled={isLoading}
+            register={register}
+            errors={errors}
+            />
+            {/*
+            <Input 
+            id="website"
+            label="Site do Parceiro"
+            disabled={isLoading}
+            register={register}
+            errors={errors}
+            />*/}
         </div>
         )
     }
