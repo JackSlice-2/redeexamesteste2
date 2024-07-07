@@ -75,6 +75,7 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
                             city={partner.city || ''}
                             actionLabel="Apagar Parceiro"
                             onAction={() => onCancel(id)}
+                            cities={partner.cities || []}
                         />
                     </div>
                         <Heading
