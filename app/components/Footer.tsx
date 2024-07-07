@@ -3,7 +3,6 @@ import Container from './Container';
 import Logo from './navbar/Logo';
 import { SafeUser } from '@/app/types';
 import { FaInstagram, FaTelegram, FaWhatsapp } from 'react-icons/fa';
-import Link from 'next/link';
 
 interface NavbarProps {
   currentUser?: SafeUser | null;
@@ -29,11 +28,11 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
                 </ul>
             </div>
             <div className='gap-3'>
-                <a target="_blank" href={"mailto:redeexamesfacil@gmail.com"}>
+                <a target="_blank" href={"mailto:redeexamesfacil@gmail.com"} className='hover:underline'>
                     Redeexames.online@gmail. 
                 </a>
                 <br/>
-                <a target="_blank" href={"https://www.google.com/search?q=Av.%20Bento%20Gon%C3%A7alves%2C%2081%20Viam%C3%A3o%20RS#smwie=1"}>
+                <a target="_blank" href={"https://www.google.com/search?q=Av.%20Bento%20Gon%C3%A7alves%2C%2081%20Viam%C3%A3o%20RS#smwie=1"} className='hover:underline'>
                     Av. Bento Gonçalves, 81 Viamão RS
                 </a>
             </div>
