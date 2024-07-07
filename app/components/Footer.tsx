@@ -13,12 +13,12 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
     <div className='w-full z-10 bg-blue-50'>
       <div className="py-4 bg-blue-400 rounded-t-3xl">
         <Container>
-          <div className="flex flex-row items-center text-center justify-center md:justify-between gap-3 md:gap-0 pt-3">
+          <div className="flex flex-col md:flex-row items-center text-center justify-center md:justify-between gap-3 md:gap-0 pt-3">
             <Logo
             height={100}
             width={130}
             />
-            <div className="mr-auto">
+            <div className="md:mr-auto">
             <h1 className='font-semibold'>
                     Fale Conosco
                 </h1>
@@ -36,7 +36,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
                     Av. Bento Gonçalves, 81 Viamão RS
                 </a>
             </div>
-            <div className='ml-auto'>
+            <div className='md:ml-auto'>
             <h1 className='font-semibold'>
                 Nos Siga Nas Redes Socias
                 </h1>
