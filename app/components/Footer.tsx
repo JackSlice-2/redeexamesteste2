@@ -55,7 +55,11 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
           </div>
         </Container>
         <div className="text-center text-xs">
-        © 2024 Rede Exames Online. | Todos os direitos reservados
+        © 2024 
+        <a target="_blank" href={"https://redeexames.online/"}
+        className='hover:underline'>
+          Rede Exames Online.
+        </a> | Há mais de 16 anos no mercado | Todos os direitos reservados 
       </div>
       </div>
     </div>
