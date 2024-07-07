@@ -26,6 +26,7 @@ interface ListingInfoProps {
     startTime: string;
     endTime: string;
     latlng: string[];
+    title: string;
 }
 
 const ListingInfo: React.FC<ListingInfoProps> = ({
@@ -36,7 +37,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     locationValue,
     startTime,
     endTime,
-    latlng
+    latlng,
+    title
 }) => {
 
     const {
@@ -106,11 +108,10 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         )}
         <hr />
         <div className="text-lg font-light text-neutral-500">
-          {description}
+          {title}
       </div>
       <hr />
       {locationValue} <br />
-    
       <hr />
 
         {/*<Map

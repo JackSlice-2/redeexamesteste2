@@ -70,7 +70,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
 
   return (
         <Container>
-            <div className="max-w-screen-lg mx-auto mt-10">
+            <div className="max-w-screen-lg mx-auto mt-20">
                 <div className="flex flex-col gap-6">
                     <ListingHead
                     title={listing.title}
@@ -94,6 +94,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                         //@ts-ignore
                         locationValue={listing.locationValue}
                         latlng={listing.latlng}
+                        title={listing.title}
                         />
                         <div className="order-first mb-10 md:order-last md:col-span-3">
                             <ListingReservation

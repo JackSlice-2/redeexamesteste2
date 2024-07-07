@@ -13,6 +13,7 @@ export interface IListingsParams {
   company?: string;
   startTime?: string;
   endTime?: string;
+  title?: string
 }
 
 export default async function getListings(
@@ -29,6 +30,7 @@ export default async function getListings(
       latlng,
       category,
       company,
+      title,
       startTime,
       endTime
     } = params;
@@ -42,6 +44,10 @@ export default async function getListings(
     if (company) {
       query.company = company;
     }
+
+    if (title) {
+      query.title = title;
+    }    
 
     if (payNow) {
       query.payNow = payNow;
