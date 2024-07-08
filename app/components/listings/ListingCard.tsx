@@ -35,15 +35,17 @@ const ListingCard: React.FC<ListingCardProps> = ({
         listingId: data.id,
         currentUser
     });
-
-    const handleCancel = useCallback(
-        (e: React.MouseEvent<HTMLButtonElement>) => {
-            e.stopPropagation();
-            if (disabled) {
-                return;
-            }
-            onAction?.(actionId);
-        }, [onAction, actionId, disabled]);
+    const handleCancel = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation();
+        if (disabled) {
+            return;
+        }
+      
+        const confirmed = window.confirm("Are you sure you want to delete this item?");
+        if (confirmed) {
+            onAction?.(actionId); // Proceed with the action if the user confirms
+        }
+      }, [onAction, actionId, disabled]);
 
     const pathname = usePathname();
 

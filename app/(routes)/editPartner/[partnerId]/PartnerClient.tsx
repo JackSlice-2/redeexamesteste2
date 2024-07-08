@@ -5,11 +5,10 @@ import ListingHead from '@/app/components/listings/ListingHead';
 import { SafePartner, SafeUser } from '@/app/types';
 import React, { useCallback, useState } from 'react';
 import PartnerInfo from '@/app/components/listings/PartnerInfo';
-import Heading from '@/app/components/Heading';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Button from '@/app/components/Button';
-import { BiPencil } from 'react-icons/bi';
+import { FaFloppyDisk } from 'react-icons/fa6';
 import { useRouter } from 'next/navigation';
 
 interface PartnerClientProps {
@@ -57,7 +56,7 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
             <div className="max-w-screen-lg mx-auto">
                 <div className="flex flex-col gap-6">
                     <ListingHead
-                    title={partner.title}
+                    title={`Editando: ${partner.title}`}
                     imageSrc={partner.imageSrc}
                     //@ts-ignore
                     locationValue={partner.locationValue}
@@ -81,13 +80,10 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
                         />
                     </div>
                     <Button
-                    label="Editar Parceiro"
-                    icon={BiPencil}
-                    onClick={() => router.push(`/editPartner/${partnerId}`)}
+                    label="Salvar Mudanças"
+                    icon={FaFloppyDisk}
+                    onClick={() => router.push(`/partners/${partnerId}`)}
                     />
-                        <Heading
-                        title={`Lista de Anuncios da ${partner.title}`}
-                        />
                 </div>
             </div>
         </Container>

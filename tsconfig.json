@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/hooks/useCityGeoCoder.js", "app/components/CitySearchMap.jsx", "app/components/Inputs/CitySelect.jsx", "app/hooks/useCities.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/hooks/useCityGeoCoder.js", "app/components/CitySearchMap.jsx", "app/components/Inputs/CitySelect.jsx", "app/hooks/useCities.js", "app/libs/pt.js"],
   "exclude": ["node_modules"]
 }

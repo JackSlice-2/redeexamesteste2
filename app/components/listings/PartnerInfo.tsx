@@ -7,6 +7,7 @@ import { BiCopy, BiTrash } from 'react-icons/bi';
 import Image from 'next/image';
 import Button from '../Button';
 
+
 const Map = dynamic(() => import('../Map'), {
     ssr: false
 });
@@ -45,6 +46,7 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
   actionLabel
 }) => {
 
+
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {
       toast.success('Copied to clipboard');
@@ -53,14 +55,18 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
     });
  };
 
- const handleCancel = useCallback(
-  (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation();
-      if (disabled) {
-          return;
-      }
-      onAction?.(actionId);
-  }, [onAction, actionId, disabled]);
+ const handleCancel = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+  e.stopPropagation();
+  if (disabled) {
+      return;
+  }
+
+  const confirmed = window.confirm("Are you sure you want to delete this item?");
+  if (confirmed) {
+      onAction?.(actionId); // Proceed with the action if the user confirms
+  }
+}, [onAction, actionId, disabled]);
+
 
 return (
   <>
@@ -70,15 +76,6 @@ return (
         <div className="text-3xl font-bold flex flex-row items-center gap-2 pb-8 pt-3">
             <div>Parceiro Atual: {title}</div>
           </div>
-          {onAction && actionLabel && (
-            <Button 
-            disabled={disabled}
-            label={actionLabel}
-            onClick={handleCancel}
-            red
-            icon={BiTrash}
-            />
-        )}
             <hr />
           <div className='pb-2'/>
              <div className='p-2 border-gray-400 flex justify-center items-center border rounded-xl'>
@@ -178,6 +175,15 @@ return (
       </div>
       <div className='pt-5'/>
     <hr />
+    {onAction && actionLabel && (
+            <Button 
+            disabled={disabled}
+            label={actionLabel}
+            onClick={handleCancel}
+            red
+            icon={BiTrash}
+            />
+        )}
       </>
 )
 }
