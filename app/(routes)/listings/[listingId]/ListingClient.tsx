@@ -12,6 +12,8 @@ import { useRouter } from 'next/navigation';
 import React, { useCallback, useMemo, useState } from 'react'
 import { Range } from 'react-date-range';
 import toast from 'react-hot-toast';
+import { BiPencil } from 'react-icons/bi';
+import Button from '@/app/components/Button';
 
 const initialDateRange = {
     startDate: new Date(),
@@ -108,6 +110,13 @@ const ListingClient: React.FC<ListingClientProps> = ({
                     </div>
                 </div>
             </div>
+            {currentUser &&
+            <Button
+                    label="Editar Serviço"
+                    icon={BiPencil}
+                    onClick={() => router.push(`/editService/${listing.id}`)}
+                    />
+                    }
         </Container>
   )
 }
