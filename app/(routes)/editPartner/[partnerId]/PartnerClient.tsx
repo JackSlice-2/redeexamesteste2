@@ -4,12 +4,9 @@ import Container from '@/app/components/Container';
 import ListingHead from '@/app/components/listings/ListingHead';
 import { SafePartner, SafeUser } from '@/app/types';
 import React, { useCallback, useState } from 'react';
-import PartnerInfo from '@/app/components/listings/PartnerInfo';
+import PartnerInfo from './EditPartnerInfo';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import Button from '@/app/components/Button';
-import { FaFloppyDisk } from 'react-icons/fa6';
-import { useRouter } from 'next/navigation';
 
 interface PartnerClientProps {
     partner: SafePartner & {
@@ -25,9 +22,8 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
 
     // Extracting the ID from the URL
     const [id, setId] = useState('');
-    const router = useRouter()
-  const urlParts = window.location.pathname.split('/');
-  const partnerId = urlParts[urlParts.length - 1];
+    const urlParts = window.location.pathname.split('/');
+    const partnerId = urlParts[urlParts.length - 1];
 
     const [deletingId, setDeletingId] = useState('');
 
@@ -77,13 +73,10 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
                             city={partner.city || ''}
                             actionLabel="Apagar Parceiro"
                             onAction={() => onCancel(id)}
+                            currentUser={currentUser}
                         />
                     </div>
-                    <Button
-                    label="Salvar Mudanças"
-                    icon={FaFloppyDisk}
-                    onClick={() => router.push(`/partners/${partnerId}`)}
-                    />
+                   
                 </div>
             </div>
         </Container>

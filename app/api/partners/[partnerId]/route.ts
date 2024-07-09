@@ -33,7 +33,6 @@ export async function DELETE(
     return NextResponse.json(partner);
 }
 
-// Example of a PATCH endpoint in a Next.js API route
 export async function PATCH(request: Request, { params }: { params: IParams }) {
     const currentUser = await getCurrentUser();
 

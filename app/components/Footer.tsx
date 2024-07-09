@@ -48,7 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
                     <a target="_blank" href={"https://t.me/redeexames?start=+55051981859157"}>
                       <FaTelegram className='hover:scale-150 hover:text-blue-900' size={20}/>
                     </a>
-                    <a target="_blank" href={"https://facebook.com"}>
+                    <a target="_blank" href={"https://www.facebook.com/redesaudepopular?mibextid=ZbWKwL"}>
                       <FaFacebook className='hover:scale-150 hover:text-blue-600' size={20}/>
                     </a>
                     <a target="_blank" href={"https://instagram.com/_redesaude?igshid=OGQ5ZDc2ODk2ZA=="}>
@@ -58,12 +58,12 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
             </div>
           </div>
         </Container>
-        <div className="text-center text-xs">
+        <div className="text-center text-xs font-light">
         <a target="_blank" href={"https://redeexames.online/"}
-        className='hover:underline font-thin'>
+        className='hover:underline'>
         © 2024 Rede Exames Online
         </a> | Há mais de 16 anos no mercado 
-        <br/> Todos os direitos reservados
+        <br/> Todos os direitos reservados ®
       </div>
       </div>
     </div>

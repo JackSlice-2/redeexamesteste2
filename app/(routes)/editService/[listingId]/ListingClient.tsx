@@ -2,7 +2,7 @@
 
 import Container from '@/app/components/Container';
 import ListingHead from '@/app/components/listings/ListingHead';
-import ListingInfo from '@/app/components/listings/AdInfo';
+import ListingInfo from './editServiceInfo';
 import ListingReservation from '@/app/components/listings/ListingReservation';
 import { categories } from '@/app/components/navbar/Categories';
 import useLoginModal from '@/app/hooks/useLoginModal';
