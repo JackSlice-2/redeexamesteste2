@@ -117,7 +117,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <Button
             disabled={disabled}
             label={secondaryActionLabel}
-            onClick={() => router.push(`/editListings/${data.id}`)}
+            onClick={() => router.push(`/editService/${data.id}`)}
             icon={BiPencil}
             />
         )}
