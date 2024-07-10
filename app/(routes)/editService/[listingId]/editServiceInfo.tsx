@@ -1,7 +1,7 @@
 "use client";
 
 import { SafeListing, SafeUser } from '@/app/types';
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { IconType } from 'react-icons';
 import ListingCategory from '@/app/components/listings/ServiceCategory';
 import dynamic from 'next/dynamic';
@@ -56,6 +56,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
   console.log("Received dates prop:", dates);
   console.log("Received selectedDates prop:", selectedDates);
 
+
+
     const {
         watch,
     } = useForm<FieldValues>({
@@ -92,6 +94,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           toast.error('No currentUser');
           return;
         }  
+        const datesStringArray = selectedDates.map(date => date.toISOString());
 
            // Parse payNow and payThere to numbers
     const payNowNumber = Number(formData.payNow);
@@ -102,8 +105,14 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       toast.error('Invalid payment amount entered');
       return;
     }
+
+    const dataToSend = {
+      ...formData,
+      dates: datesStringArray,
+  };
         try {
-          const response = await axios.patch(`/api/listings/${listingId}`, formData, {
+          const response = await axios.patch(`/api/listings/${listingId}`, dataToSend, 
+            {
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${user.id}`,
