@@ -149,11 +149,14 @@ const ListingClient: React.FC<ListingClientProps> = ({
             </div>
             {currentUser &&
             <>
+            <div className='mb-3'>
             <Button
                     label="Editar Serviço"
                     icon={BiPencil}
                     onClick={() => router.push(`/editService/${listing.id}`)}
                     />
+                    </div>
+            <div className='mt-3'>
             <Button
             disabled={disabled}
             label="Apagar Serviço"
@@ -161,6 +164,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
             red
             icon={BiTrash}
             />
+            </div>
             </>
         }
         </Container>

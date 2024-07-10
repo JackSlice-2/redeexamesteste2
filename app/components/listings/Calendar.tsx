@@ -4,6 +4,8 @@ import React from 'react'
 import { Range } from 'react-date-range';
 import { DayPicker } from 'react-day-picker';
 import { SafeListing } from '@/app/types';
+import { ptBR } from 'date-fns/locale'; // Import the Portuguese locale
+
 
 
 interface ListingReservationProps {
@@ -41,6 +43,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
         selected={dateObjects}
         disabled={{ before: new Date() }}
         className="customDayPicker"
+        locale={ptBR}
         modifiersStyles={{
           selected: {
           backgroundColor: '#007BFF',
@@ -58,8 +61,8 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
             color: '#ccc',
             border: '0px solid lightblue',
             backgroundColor: 'transparent',
-          },
-      }}
+          }
+        }}
       />
       </div>
         <hr/>
