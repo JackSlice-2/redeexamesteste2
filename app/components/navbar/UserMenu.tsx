@@ -101,9 +101,6 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   <MenuItem onClick={() => {router.push('/partners'); closeMenu();}}
                   label='Meus Parceiros'
                   />
-                  <MenuItem onClick={() => {router.push('/myAds'); closeMenu();}}
-                  label='Gerenciar Anúncios'
-                  />
                   <hr />
                   <MenuItem onClick={() => signOut()}
                   label='Fazer Logout'

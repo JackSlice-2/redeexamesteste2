@@ -7,7 +7,6 @@ import { BiCopy, BiTrash } from 'react-icons/bi';
 import Image from 'next/image';
 import Button from '../Button';
 
-
 const Map = dynamic(() => import('../Map'), {
     ssr: false
 });

@@ -12,13 +12,13 @@ import { BiPencil, BiTrash } from 'react-icons/bi';
 
 interface ListingCardProps {
     data: SafeListing;
+    currentUser?: SafeUser | null;
+    locationValue: string;
+    secondaryActionLabel?: string;
     onAction?: (id: string) => void;
     disabled?: boolean;
     actionLabel?: string;
     actionId?: string;
-    currentUser?: SafeUser | null;
-    locationValue: string;
-    secondaryActionLabel?: string;
 }
 
 const ListingCard: React.FC<ListingCardProps> = ({

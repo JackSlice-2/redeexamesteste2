@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation';
 import React, { useCallback, useMemo, useState } from 'react'
 import { Range } from 'react-date-range';
 import toast from 'react-hot-toast';
-import { BiPencil } from 'react-icons/bi';
+import { BiPencil, BiTrash } from 'react-icons/bi';
 import Button from '@/app/components/Button';
 
 const initialDateRange = {
@@ -26,11 +26,17 @@ interface ListingClientProps {
         user: SafeUser
     };
     currentUser?: SafeUser | null
+    onAction?: (id: string) => void;
+    disabled?: boolean;
+    actionId?: string;
 }
 
 const ListingClient: React.FC<ListingClientProps> = ({
     listing,
     currentUser,
+    onAction,
+    disabled,
+    actionId = '',
 }) => {
 
     const loginModel = useLoginModal();
@@ -69,6 +75,37 @@ const ListingClient: React.FC<ListingClientProps> = ({
         return categories.find((item) =>
         item.label === listing.category);
     }, [listing.category]);
+
+    const handleCancel = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation();
+        if (disabled) {
+            return;
+        }
+      
+        const confirmed = window.confirm("Are you sure you want to delete this item?");
+        if (confirmed) {
+            onCancel(listing.id); 
+        }
+      }, [onAction, actionId, disabled]);
+
+
+      const [deletingId, setDeletingId] = useState('');
+
+      const onCancel = useCallback((id: string) => {
+        setDeletingId(id);
+    
+        axios.delete(`/api/listings/${id}`)
+        .then(() => {
+          toast.success('Anuncio Apagado');
+          router.refresh();
+        })
+        .catch((error) => {
+          toast.error(error?.response?.data?.error)
+        })
+        .finally(() => {
+          setDeletingId('');
+        })
+      }, [router]);
 
   return (
         <Container>
@@ -111,12 +148,21 @@ const ListingClient: React.FC<ListingClientProps> = ({
                 </div>
             </div>
             {currentUser &&
+            <>
             <Button
                     label="Editar Serviço"
                     icon={BiPencil}
                     onClick={() => router.push(`/editService/${listing.id}`)}
                     />
-                    }
+            <Button
+            disabled={disabled}
+            label="Apagar Serviço"
+            onClick={handleCancel}
+            red
+            icon={BiTrash}
+            />
+            </>
+        }
         </Container>
   )
 }
