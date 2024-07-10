@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from 'react'
 import Modal from './Modal'
-import usePartnerModal from '@/app/hooks/usePartnerModal'
+import usePartnerModal from '@/app/hooks/useCreatePartnerModal'
 import Heading from '../Heading';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import ImageUpload from '../Inputs/ImageUpload';

@@ -3,7 +3,7 @@
 import { SafeListing, SafeUser } from '@/app/types';
 import React, { useMemo } from 'react'
 import { IconType } from 'react-icons';
-import ListingCategory from './ListingCategory';
+import ListingCategory from './ServiceCategory';
 import dynamic from 'next/dynamic';
 import { FaTelegram, FaWhatsapp } from 'react-icons/fa';
 import { PiXFill } from 'react-icons/pi';

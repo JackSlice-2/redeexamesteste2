@@ -3,7 +3,7 @@
 import { SafeListing, SafeUser } from '@/app/types';
 import React, { useMemo, useState } from 'react'
 import { IconType } from 'react-icons';
-import ListingCategory from '@/app/components/listings/ListingCategory';
+import ListingCategory from '@/app/components/listings/ServiceCategory';
 import dynamic from 'next/dynamic';
 import { FaTelegram, FaWhatsapp } from 'react-icons/fa';
 import { PiXFill } from 'react-icons/pi';
@@ -82,7 +82,6 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           return;
         }  
         try {
-          console.log(`URL: /api/listings/${listingId}, ${formData}`);
           const response = await axios.patch(`/api/listings/${listingId}`, formData, {
             headers: {
               'Content-Type': 'application/json',

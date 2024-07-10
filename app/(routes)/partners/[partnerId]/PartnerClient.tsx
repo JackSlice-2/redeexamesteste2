@@ -1,7 +1,7 @@
 "use client";
 
 import Container from '@/app/components/Container';
-import ListingHead from '@/app/components/listings/ListingHead';
+import ListingHead from '@/app/components/listings/ServiceHead';
 import { SafePartner, SafeUser } from '@/app/types';
 import React, { useCallback, useState } from 'react';
 import PartnerInfo from '@/app/components/listings/PartnerInfo';

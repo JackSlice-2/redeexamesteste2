@@ -7,9 +7,9 @@ import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/app/types';
-import useRentModal from '@/app/hooks/useRentModal';
 import { useRouter } from 'next/navigation';
-import usePartnerModal from '@/app/hooks/usePartnerModal';
+import usePartnerModal from '@/app/hooks/useCreatePartnerModal';
+import useCreateServiceModal from '@/app/hooks/useCreateServiceModal';
 
 interface UserMenuProps {
   currentUser?: SafeUser | null
@@ -22,7 +22,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
     const [isOpen, setIsOpen] = useState(false);
-    const rentModal = useRentModal();
+    const rentModal = useCreateServiceModal();
     const partnerModal = usePartnerModal();
     const menuRef = useRef<HTMLDivElement | null>(null);    const closeMenu = useCallback(() => {
       setIsOpen(false);

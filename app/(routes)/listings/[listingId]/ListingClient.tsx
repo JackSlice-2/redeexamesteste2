@@ -1,9 +1,9 @@
 "use client";
 
 import Container from '@/app/components/Container';
-import ListingHead from '@/app/components/listings/ListingHead';
-import ListingInfo from '@/app/components/listings/AdInfo';
-import ListingReservation from '@/app/components/listings/ListingReservation';
+import ListingHead from '@/app/components/listings/ServiceHead';
+import ListingInfo from '@/app/components/listings/ServiceInfoCard';
+import ListingReservation from '@/app/components/listings/Calendar';
 import { categories } from '@/app/components/navbar/Categories';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { SafeListing, SafeUser } from '@/app/types';

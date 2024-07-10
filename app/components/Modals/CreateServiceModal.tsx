@@ -2,7 +2,6 @@
 
 import React, { useEffect, useMemo, useState } from 'react'
 import Modal from './Modal'
-import useRentModal from '@/app/hooks/useRentModal'
 import Heading from '../Heading';
 import { categories } from '../navbar/Categories';
 import CategoryInput from '../Inputs/CategoryInput';
@@ -17,6 +16,7 @@ import CompanyInput from '../Inputs/CompanyInput';
 import CitySelect from '../Inputs/CitySelect';
 import { DayPicker } from 'react-day-picker';
 import { SafePartner } from '@/app/types';
+import useCreateServiceModal from '@/app/hooks/useCreateServiceModal';
 
 enum STEPS {
     CATEGORY = 0,
@@ -29,7 +29,7 @@ enum STEPS {
 }
 
 const RentModal = () => {
-    const rentModal = useRentModal();
+    const rentModal = useCreateServiceModal();
     const router = useRouter();
     const [selectedDates, setSelectedDates] = useState<Date[]>([]);
 
@@ -453,7 +453,7 @@ useEffect(() => {
                 <hr/>
                 <Input 
                 id="description"
-                label="Que tipo de Medico ou Exame será?"
+                label="Precisa de algum preparo?"
                 disabled={isLoading}
                 register={register}
                 errors={errors}

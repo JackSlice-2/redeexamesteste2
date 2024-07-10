@@ -8,9 +8,9 @@ import RegisterModal from "./components/Modals/RegisterModal";
 import ToasterProvider from "./providers/ToasterProvider";
 import LoginModal from "./components/Modals/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
-import RentModal from "./components/Modals/AdModal";
+import RentModal from "./components/Modals/CreateServiceModal";
 import Head from "next/head";
-import PartnerModal from "./components/Modals/PartnerModal";
+import PartnerModal from "./components/Modals/CreatePartnerModal";
 import Footer from "./components/Footer";
 
 const font = Nunito({ subsets: ["latin"] });

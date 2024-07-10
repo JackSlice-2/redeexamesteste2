@@ -1,5 +1,5 @@
 import getCurrentUser from '@/app/actions/getCurrentUser';
-import getListingById from '@/app/actions/getListingById'
+import getListingById from '@/app/actions/getServicesById'
 import ClientOnly from '@/app/components/ClientOnly';
 import EmptyState from '@/app/components/EmptyState';
 import React from 'react'

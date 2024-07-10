@@ -1,15 +1,15 @@
 import { create } from 'zustand';
 
-interface PartnerModalStore {
+interface useCreateServiceModalStore {
     isOpen: boolean;
     onOpen: () => void;
     onClose: () => void;
 }
 
-const usePartnerModal = create<PartnerModalStore>((set) => ({
+const useCreateServiceModal = create<useCreateServiceModalStore>((set) => ({
     isOpen: false,
     onOpen: () => set({ isOpen: true }),
     onClose: () => set({ isOpen: false }),
 }));
 
-export default usePartnerModal;
+export default useCreateServiceModal;

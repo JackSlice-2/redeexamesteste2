@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeListing, SafeUser } from '../../types';
 import Container from '../../components/Container';
 import Heading from '../../components/Heading';
-import ListingCard from '../../components/listings/ListingCard';
+import ListingCard from '../../components/listings/ServiceCard';
 
 interface FavoritesClientProps {
     listings: SafeListing[];
