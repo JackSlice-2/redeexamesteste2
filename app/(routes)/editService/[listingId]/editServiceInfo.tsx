@@ -30,8 +30,8 @@ interface ListingInfoProps {
     latlng: string[];
     title: string;
     imageSrc: string;
-    payNow: string;
-    payThere: string;
+    payNow: number;
+    payThere: number;
 }
 
 const ListingInfo: React.FC<ListingInfoProps> = ({
@@ -63,8 +63,11 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         description: description || '',
         locationValue: locationValue || '',
         startTime: startTime || '',
-        endTime: endTime || ''
+        endTime: endTime || '',
+        payNow: payNow,
+        payThere: payThere
       });
+      console.log(formData)
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
@@ -175,8 +178,27 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
               value={formData.locationValue}
               onChange={handleChange}
             />
-      <br />
       <hr />
+      {user &&
+      <>
+      <div>Valor Pra Pagar no Pix: 
+        <input
+              type="text"
+              name="payNow"
+              value={formData.payNow}
+              onChange={handleChange}
+            />
+            </div>
+          <div>Valor Pra Pagar no Local:
+            <input
+              type="text"
+              name="payThere"
+              value={formData.payThere}
+              onChange={handleChange}
+            />
+      </div>
+      </>
+      }
         <hr />
        <button className='bg-blue-500 rounded-md w-full justify-center align-middle px-auto py-5 gap-1 font-semibold my-2 text-white' type="submit">
         <FaFloppyDisk className='m-auto'/> 

@@ -27,6 +27,8 @@ interface ListingInfoProps {
     endTime: string;
     latlng: string[];
     title: string;
+    payNow: number;
+    payThere: number;
 }
 
 const ListingInfo: React.FC<ListingInfoProps> = ({
@@ -38,7 +40,10 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     startTime,
     endTime,
     latlng,
-    title
+    title,
+    user,
+    payThere,
+    payNow
 }) => {
 
     const {
@@ -112,6 +117,16 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       <hr />
       {locationValue} <br />
       <hr />
+      {user &&
+      <>
+        <div>
+          Valor Pra Pagar no Pix: {payNow}
+        </div>
+        <div>
+          Valor Pra Pagar no Local: {payThere}
+        </div>
+      </>
+      }
 
         {/*<Map
         center={convertedLatlng}
