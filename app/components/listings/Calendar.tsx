@@ -4,7 +4,7 @@ import React from 'react'
 import { Range } from 'react-date-range';
 import { DayPicker } from 'react-day-picker';
 import { SafeListing } from '@/app/types';
-import { ptBR } from 'date-fns/locale'; // Import the Portuguese locale
+import { ptBR } from 'date-fns/locale'; 
 
 
 

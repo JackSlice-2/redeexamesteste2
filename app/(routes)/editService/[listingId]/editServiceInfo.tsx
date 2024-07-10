@@ -11,6 +11,7 @@ import toast, { CheckmarkIcon } from 'react-hot-toast';
 import { FieldValues, useForm } from 'react-hook-form';
 import { FaFloppyDisk } from 'react-icons/fa6';
 import axios from 'axios';
+import { DayPicker } from 'react-day-picker';
 
 interface ListingInfoProps {
     user: SafeUser;
@@ -51,6 +52,10 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     user
 }) => {
 
+  const [selectedDates, setSelectedDates] = useState<Date[]>(dates.map(dateStr => new Date(dateStr)));
+  console.log("Received dates prop:", dates);
+  console.log("Received selectedDates prop:", selectedDates);
+
     const {
         watch,
     } = useForm<FieldValues>({
@@ -58,21 +63,24 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
             location: null,
         }
     });
+
     const [formData, setFormData] = useState({
         title: title || '',
         description: description || '',
         locationValue: locationValue || '',
         startTime: startTime || '',
         endTime: endTime || '',
-        payNow: payNow,
-        payThere: payThere
+        payNow: Number(payNow),
+        payThere: Number(payThere),
+        dates: selectedDates,
       });
       console.log(formData)
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
-      };
+    };
+    
 
       const currentUrl = window.location.href;
       const listingId = currentUrl.split("/").pop();
@@ -84,6 +92,16 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           toast.error('No currentUser');
           return;
         }  
+
+           // Parse payNow and payThere to numbers
+    const payNowNumber = Number(formData.payNow);
+    const payThereNumber = Number(formData.payThere);
+
+    // Validate the parsed numbers
+    if (isNaN(payNowNumber) || isNaN(payThereNumber)) {
+      toast.error('Invalid payment amount entered');
+      return;
+    }
         try {
           const response = await axios.patch(`/api/listings/${listingId}`, formData, {
             headers: {
@@ -99,6 +117,17 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           toast.error('An error occurred after submitting the form.');
         }
       };
+    
+    const handleDayClick = (date: Date) => {
+        setSelectedDates(prevSelectedDates => {
+            if (prevSelectedDates.some(selectedDate => selectedDate.getTime() === date.getTime())) {
+                return prevSelectedDates.filter(selectedDate => selectedDate.getTime() !== date.getTime());
+            } else {
+                return [...prevSelectedDates, date];
+            }
+        });
+    };
+  
 
 
   return (
@@ -183,7 +212,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       <>
       <div>Valor Pra Pagar no Pix: 
         <input
-              type="text"
+              type="number"
               name="payNow"
               value={formData.payNow}
               onChange={handleChange}
@@ -191,7 +220,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
             </div>
           <div>Valor Pra Pagar no Local:
             <input
-              type="text"
+              type="number"
               name="payThere"
               value={formData.payThere}
               onChange={handleChange}
@@ -199,6 +228,36 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       </div>
       </>
       }
+            <div className='max-h-64 flex flex-col-2 border-t-2'>
+                    <div className='w-1/2 text-blue-800 border-l-2 p-2 border-b-2'>
+                        <DayPicker
+                            mode="multiple"
+                            className='customDayPickerAdModel'
+                            selected={selectedDates}
+                            onSelect={(date) => setSelectedDates(date || [])}
+                            onDayClick={handleDayClick}
+                            modifiers={{
+                            selected: selectedDates,
+                        }}
+                        modifiersStyles={{
+                            selected: {
+                            backgroundColor: '#007BFF',
+                            color: 'white',
+                            borderRadius: '1rem',
+                            border: '1px solid #007BFF',
+                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', 
+                            },
+                        }}
+                        />
+                    </div>
+                    <div className="selected-dates-list w-1/2 p-2 max-h-auto rounded-lg overflow-y-auto cursor-pointer gap-1 border-2 border-blue-100 border-t-0">
+                        {selectedDates.sort((a, b) => a.getTime() - b.getTime()).map((date, index) => (
+                            <div key={index} className="border-2 border-blue-200 text-blue-600 p-2 rounded-lg hover:text-white hover:font-semibold hover:bg-blue-400" onClick={() => handleDayClick(date)}>
+                                {date.toDateString()}
+                            </div>
+                        ))}
+                    </div>
+                </div>
         <hr />
        <button className='bg-blue-500 rounded-md w-full justify-center align-middle px-auto py-5 gap-1 font-semibold my-2 text-white' type="submit">
         <FaFloppyDisk className='m-auto'/> 

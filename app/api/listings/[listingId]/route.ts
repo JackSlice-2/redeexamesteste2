@@ -49,7 +49,7 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
             throw new Error("Invalid ID");
         }
 
-        const { title, description, imageSrc, category, company, payNow, payThere, firstComeFirstServe, byAppointmentOnly, startTime, endTime } = await request.json();
+        const { title, description, imageSrc, category, company, payNow, payThere, firstComeFirstServe, byAppointmentOnly, startTime, endTime, dates } = await request.json();
 
         // Additional validation of request body can go here
 
@@ -65,6 +65,7 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
                 category,
                 company,
                 payNow,
+                dates,
                 payThere,
                 startTime,
                 endTime,
