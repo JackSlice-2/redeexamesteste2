@@ -83,6 +83,7 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
                     <Button
                     label="Editar Parceiro"
                     icon={BiPencil}
+                    green
                     onClick={() => router.push(`/editPartner/${partnerId}`)}
                     />
                         <Heading

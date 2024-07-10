@@ -153,6 +153,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
             <Button
                     label="Editar Serviço"
                     icon={BiPencil}
+                    green
                     onClick={() => router.push(`/editService/${listing.id}`)}
                     />
                     </div>

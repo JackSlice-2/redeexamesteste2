@@ -11,6 +11,7 @@ interface ButtonProps {
     small?: boolean;
     red?: boolean;
     icon?: IconType;
+    green?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -20,7 +21,8 @@ const Button: React.FC<ButtonProps> = ({
     outline,
     small,
     red,
-    icon: Icon
+    icon: Icon,
+    green
 }) => {
   return (
     <button 
@@ -36,6 +38,8 @@ const Button: React.FC<ButtonProps> = ({
         ${small ? 'border-[1px]' : 'border-2'}
         ${red ? 'bg-red-500' : ''}
         ${red ? 'border-red-500' : ''}
+        ${green ? 'bg-green-600' : ''}
+        ${green ? 'border-green-600' : ''}
         `}>
         {Icon && (
             <Icon

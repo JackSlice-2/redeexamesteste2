@@ -104,9 +104,12 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   <hr />
                   <MenuItem onClick={() => signOut()}
                   label='Fazer Logout'
+                  small
                   />
+                  <hr />
                   <MenuItem onClick={registerModal.onOpen}
                   label='Criar um Novo Usuário'
+                  small
                   />
                 </>
                   ) : (
