@@ -29,6 +29,7 @@ interface ListingInfoProps {
     title: string;
     payNow: number;
     payThere: number;
+    company: string;
 }
 
 const ListingInfo: React.FC<ListingInfoProps> = ({
@@ -43,7 +44,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     title,
     user,
     payThere,
-    payNow
+    payNow,
+    company
 }) => {
 
     const {
@@ -110,6 +112,20 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           description={description}
           />
         )}
+        <hr />
+        {user &&
+          <div className='font-medium'>
+            {company}
+          </div>
+        }
+        {description &&
+         <div className='text-neutral-600'>
+            Preparo do Exame: 
+            <div className='text-black'>
+              {description}
+            </div>
+         </div>
+        }
         <hr />
         <div className="text-lg font-light text-neutral-500">
           {title}

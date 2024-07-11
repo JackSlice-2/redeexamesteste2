@@ -34,6 +34,7 @@ interface ListingInfoProps {
     imageSrc: string;
     payNow: number;
     payThere: number;
+    company: string;
 }
 
 const ListingInfo: React.FC<ListingInfoProps> = ({
@@ -50,7 +51,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     latlng,
     title,
     dates,
-    user
+    user,
+    company
 }) => {
 
   const [selectedDates, setSelectedDates] = useState<Date[]>(dates.map(dateStr => new Date(dateStr)));
@@ -83,6 +85,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         dates: selectedDates,
         firstComeFirstServe: FirstComeFirstServe,
         byAppointmentOnly: ByAppointmentOnly,
+        company: company
       });
       console.log(formData)
 
@@ -95,6 +98,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           endTime: endTime,
           payNow: payNow,
           payThere: payThere,
+          company: company,
           dates: selectedDates,
           firstComeFirstServe: FirstComeFirstServe,
           byAppointmentOnly: ByAppointmentOnly,
@@ -247,6 +251,12 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           />
         )}
         <hr />
+        {user &&
+          <div className='font-medium'>
+            {company}
+          </div>
+        }
+        <hr />
         <div className="text-lg font-light text-neutral-500">
         <input
               type="text"
@@ -255,6 +265,13 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
               onChange={handleChange}
             />
       </div>
+      Preparo do Exame:
+      <input
+              type="text"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+            />
       <hr />
       <input
               type="text"
@@ -314,7 +331,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
                     </div>
                 </div>
         <hr />
-       <button className='bg-blue-500 rounded-md w-full justify-center align-middle px-auto py-5 gap-1 font-semibold my-2 text-white' type="submit">
+       <button className='bg-green-600 rounded-md w-full justify-center align-middle px-auto py-5 gap-1 font-semibold my-2 text-white' type="submit">
         <FaFloppyDisk className='m-auto'/> 
         Salvar Alterações
       </button>

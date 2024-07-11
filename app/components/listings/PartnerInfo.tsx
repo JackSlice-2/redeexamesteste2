@@ -100,8 +100,7 @@ return (
         </div>
       </div>
       <div className='mt-3'/>
-    <div className='justify-center align-center items-center'>      
-        <div className='flex flex-row overflow-x-auto hide-scrollbar w-full pt-2 gap-3 justify-center text-center '>
+    <div className='justify-center align-center items-center flex flex-row overflow-x-auto hide-scrollbar w-full pt-2 gap-3 text-center'>      
 
         <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
       onClick={() => copyToClipboard(city || '')}
@@ -111,14 +110,7 @@ return (
             {city}
           </div>
         </div>
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
-          onClick={() => copyToClipboard(address || '')}
-          >
-            <BiCopy /> Endereço: <br/>
-          <div className='font-medium text-xl'>
-            {address}
-          </div>
-        </div>
+        
         <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
           onClick={() => copyToClipboard(phone || '')}
           >
@@ -127,6 +119,17 @@ return (
             {phone}
           </div>
         </div>
+        {address &&
+        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
+          onClick={() => copyToClipboard(address || '')}
+          >
+            <BiCopy /> Endereço: <br/>
+          <div className='font-medium text-xl'>
+            {address}
+          </div>
+        </div>
+        }
+        {whatsApp &&
         <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
           onClick={() => copyToClipboard(whatsApp || '')}
           >
@@ -135,9 +138,8 @@ return (
             {whatsApp}
           </div>
         </div>
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
-        onClick={() => copyToClipboard(city || '')}
-        >{telegram && (
+        }
+          {telegram && (
           <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
             onClick={() => copyToClipboard(telegram)}
           >
@@ -157,7 +159,6 @@ return (
             </div>
           </div>
         )}
-      </div>
     </div>
       <div className='m-2 ml-4 flex gap-0.5 justify-center text-center transition text-white rounded-xl p-2 w-1/5 cursor-pointer bg-blue-500 hover:bg-blue-300 shadow-md hover:text-black hover:font-medium'
         onClick={() => copyToClipboard(
@@ -170,7 +171,6 @@ return (
         )}
         >
         <BiCopy /> Copiar Todos
-      </div>
       </div>
       <div className='pt-5'/>
     <hr />

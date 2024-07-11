@@ -97,6 +97,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                         locationValue={listing.locationValue}
                         latlng={listing.latlng}
                         title={listing.title}
+                        company={listing.company || ''}
                         />
                         <div className="order-first mb-10 md:order-last md:col-span-3">
                             <ListingReservation
