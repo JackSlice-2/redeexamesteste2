@@ -39,7 +39,7 @@ const LoginModal = () => {
             setIsLoading(false);
 
             if (callback?.ok) {
-                toast.success('Logged In');
+                toast.success('Login Realizado com Sucesso!');
                 router.refresh();
                 loginModal.onClose();
             }
@@ -52,7 +52,8 @@ const LoginModal = () => {
     
     const bodyContent = (
         <div className="flex flex-col gap-4">
-            <Heading title='Bem-vindo de volta' subtitle='Faça login na sua conta!' 
+            <Heading title='Login de Administrador' 
+                subtitle='Acesso proibido a pessoas nao autorizadas' 
             />
             <Input 
             id='email'
@@ -75,9 +76,9 @@ const LoginModal = () => {
     );
 
     const footerContent = (
-        <div className="flex flex-col gap-4 mt-3">
+        <div className="flex flex-col gap-4">
             <hr />
-            <div className="text-neutral-500 text-center mt-4 font-light">
+            <div className="text-neutral-500 text-center font-light">
                 <div className='flex flex-row items-center gap-2 justify-center'>
                     <div>
                 Login Somente Para Pessoas Authorizadas
@@ -95,8 +96,8 @@ const LoginModal = () => {
     <Modal 
     disabled={isLoading}
     isOpen={loginModal.isOpen}
-    title='Login'
-    actionLabel='Continue'
+    title='Login Admin'
+    actionLabel='Entrar'
     onClose={loginModal.onClose}
     onSubmit={handleSubmit(onSubmit)}
     body={bodyContent}
