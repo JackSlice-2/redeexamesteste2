@@ -65,27 +65,22 @@ const UserMenu: React.FC<UserMenuProps> = ({
       <div className="flex flex-rox items-center gap-3">
         {currentUser ? (
           <>
-            <div className="hidden md:block text-sm font-semibold py-3 text-white px-4 rounded-full hover:bg-blue-300 transition cursor-pointer"
-          onClick={onRent}
-          >
-              Crie um Exame/Consulta
-          </div>
-          <div className="hidden md:block text-sm font-semibold py-3 text-white px-4 rounded-full hover:bg-blue-300 transition cursor-pointer"
-          onClick={onPartner}
-          >
-              Adicione um Parceiro
-          </div>
-        </>
-        ) : null}
-        <div className="p-4 hidden md:py-1 px-8 text-neutral-200 md:flex flex-row items-center gap-3 rounded-full cursor-pointer hovor:shadow-md transition"
+          Usuario Atual: {currentUser?.name || ''}
+            <div className="p-4 hidden md:py-1 px-8 text-neutral-200 md:flex flex-row items-center gap-3 rounded-full cursor-pointer hovor:shadow-md transition"
         onClick={toggleOpen}
         >
-            <AiOutlineMenu size={20} />
+            <AiOutlineMenu size={24}/>
         </div>
+        </>
+        ) : 
+          <div onClick={loginModal.onOpen} className='text-neutral-500 font-thin cursor-pointer hover:text-neutral-800'>
+            Admin
+          </div>
+        }
       </div>
 
       {isOpen && (
-        <div className="absolute rounded-xl shadow-md w-[40vw] md:w-4/5 bg-white font-medium overflow-hidden right-0 top-12 text-md">
+        <div className="absolute rounded-xl shadow-md w-[70vw] md:w-4/5 bg-white font-medium overflow-hidden right-0 top-12 text-md">
             <div className="flex flex-col">
                 {currentUser ? (
                 <>
@@ -100,6 +95,12 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   />
                   <MenuItem onClick={() => {router.push('/partners'); closeMenu();}}
                   label='Meus Parceiros'
+                  />
+                  <MenuItem onClick={onRent}
+                  label='Criar Novo Serviço'
+                  />
+                  <MenuItem onClick={onPartner}
+                  label='Criar Novo Parceiro'
                   />
                   <hr />
                   <MenuItem onClick={() => signOut()}

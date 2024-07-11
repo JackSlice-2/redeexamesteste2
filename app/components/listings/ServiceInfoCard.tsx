@@ -30,6 +30,7 @@ interface ListingInfoProps {
     payNow: number;
     payThere: number;
     company: string;
+    currentUser?: SafeUser | null
 }
 
 const ListingInfo: React.FC<ListingInfoProps> = ({
@@ -45,7 +46,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     user,
     payThere,
     payNow,
-    company
+    company,
+    currentUser
 }) => {
 
     const {
@@ -113,10 +115,10 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           />
         )}
         <hr />
-        {user &&
+        {currentUser ?(
           <div className='font-medium'>
             {company}
-          </div>
+          </div>) : null
         }
         {description &&
          <div className='text-neutral-600'>
@@ -133,7 +135,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       <hr />
       {locationValue} <br />
       <hr />
-      {user &&
+      {currentUser ? (
       <>
         <div>
           Valor Pra Pagar no Pix: {payNow}
@@ -142,7 +144,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           Valor Pra Pagar no Local: {payThere}
         </div>
       </>
-      }
+      ): null}
 
         {/*<Map
         center={convertedLatlng}
