@@ -238,7 +238,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
             />
       </div>
       </>
-      }{/*
+      }
             <div className='max-h-64 flex flex-col-2 border-t-2'>
                     <div className='w-1/2 text-blue-800 border-l-2 p-2 border-b-2'>
                         <DayPicker
@@ -268,7 +268,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
                             </div>
                         ))}
                     </div>
-                </div>*/}
+                </div>
         <hr />
        <button className='bg-blue-500 rounded-md w-full justify-center align-middle px-auto py-5 gap-1 font-semibold my-2 text-white' type="submit">
         <FaFloppyDisk className='m-auto'/> 
