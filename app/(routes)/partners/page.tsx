@@ -26,7 +26,12 @@ const PartnerPage = async ({ searchParams }: PartnerPageProps) => {
   return (
     <ClientOnly>
       <Container>
-        <div className="grid pt-40 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
+      {currentUser ? (
+        <p className="text-lg font-bold translate-y-28 text-black">
+          Parceiros Totais: {partners.length}
+        </p>
+          ): null}
+        <div className="grid pt-36 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
         {partners.map((partner) => {
           return (
             <ListingCard

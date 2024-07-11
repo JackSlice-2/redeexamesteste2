@@ -75,7 +75,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
         <div className="text-md font-semibold w-fit">
             {data.title}
         </div>
-        <div className=" text-neutral-600">
+        <div className=" text-neutral-600 hover:text-black">
             {data.category}
         </div>
         <div className="flex flex-col">
@@ -83,12 +83,12 @@ const ListingCard: React.FC<ListingCardProps> = ({
             {data.locationValue}
         </div>
         { currentUser && (
-            <div className='text-neutral-600 text-xs '>
+            <div className='text-neutral-600 hover:text-black text-xs '>
                 {data.company} 
-                <div className='text-neutral-600 text-sm'>
+                <div className='text-neutral-600 hover:text-black text-sm'>
                     Pagamento Pix: {data.payNow} <br/>
                     Pagamento no Local: {data.payThere} <br/>
-                    <div className='text-neutral-600 text-xs '>
+                    <div className='text-neutral-600 hover:text-black text-xs '>
                         {data.firstComeFirstServe && data.byAppointmentOnly ? 'Ligue ja para informaçoes' :
                         data.firstComeFirstServe ? 'Ordem de Chegada' :
                         data.byAppointmentOnly ? 'Horario Marcado' : null}
@@ -96,7 +96,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
                 </div> 
             </div>
             )}
-              <div className='text-neutral-600 text-xs pb-2'>
+              <div className='text-neutral-600 hover:text-black text-xs pb-2'>
                     Próximo Atendimento: {format(new Date(data.dates[0]), 'dd/MM/yyyy')}
                     <br/>
                     A partir das: {data.startTime} <br/>
