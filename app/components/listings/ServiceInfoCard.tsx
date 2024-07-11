@@ -93,13 +93,13 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           </div>
           <hr />
         <div>
-          <span className="flex pb-2 gap-1">
-            {firstComeFirstServe ? <CheckmarkIcon /> : <PiXFill size={20} color='red' />}
-            Ordem de Chegada
-          </span>
           <span className="flex pt-2 gap-1">
             {byAppointmentOnly ? <CheckmarkIcon /> : <PiXFill size={20} color='red' />}
             Horario Marcado
+          </span>
+          <span className="flex pb-2 gap-1">
+            {firstComeFirstServe ? <CheckmarkIcon /> : <PiXFill size={20} color='red' />}
+            Ordem de Chegada
           </span>
         </div>
         <hr />

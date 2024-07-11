@@ -12,6 +12,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { FaFloppyDisk } from 'react-icons/fa6';
 import axios from 'axios';
 import { DayPicker } from 'react-day-picker';
+import { useRouter } from 'next/navigation';
 
 interface ListingInfoProps {
     user: SafeUser;
@@ -53,9 +54,13 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
 }) => {
 
   const [selectedDates, setSelectedDates] = useState<Date[]>(dates.map(dateStr => new Date(dateStr)));
-  console.log("Received dates prop:", dates);
-  console.log("Received selectedDates prop:", selectedDates);
 
+  const [FirstComeFirstServe, setFirstComeFirstServe] = useState(firstComeFirstServe);
+  console.log(firstComeFirstServe)
+  console.log(FirstComeFirstServe)
+  const [ByAppointmentOnly, setByAppointmentOnly] = useState(byAppointmentOnly);
+  console.log(byAppointmentOnly);
+  console.log(ByAppointmentOnly);
 
 
     const {
@@ -66,6 +71,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         }
     });
 
+    
     const [formData, setFormData] = useState({
         title: title || '',
         description: description || '',
@@ -75,8 +81,26 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         payNow: payNow,
         payThere: payThere,
         dates: selectedDates,
+        firstComeFirstServe: FirstComeFirstServe,
+        byAppointmentOnly: ByAppointmentOnly,
       });
       console.log(formData)
+
+      const updateFormData = () => {
+        setFormData({
+          title: title,
+          description: description,
+          locationValue: locationValue,
+          startTime: startTime,
+          endTime: endTime,
+          payNow: payNow,
+          payThere: payThere,
+          dates: selectedDates,
+          firstComeFirstServe: FirstComeFirstServe,
+          byAppointmentOnly: ByAppointmentOnly,
+        });
+      };
+      
 
       const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
@@ -86,6 +110,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
 
       const currentUrl = window.location.href;
       const listingId = currentUrl.split("/").pop();
+      const router = useRouter();
+
       
       const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -123,6 +149,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       
           console.log('Service updated successfully:', response.data);
           toast.success('Service updated successfully');
+          router.push(`/listings/${listingId}`)
         } catch (error) {
           console.error('Error submitting form:', error);
           toast.error('An error occurred after submitting the form.');
@@ -138,9 +165,21 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
             }
         });
     };
-  
 
-
+    const toggleFirstComeFirstServe = (event: any) => {
+      event.preventDefault();
+      setFirstComeFirstServe(prevState => true); // Toggle the value
+      setByAppointmentOnly(prevState => false); 
+      updateFormData();
+    };
+    
+    const toggleByAppointmentOnly = (event: any) => {
+      event.preventDefault();
+      setByAppointmentOnly(prevState => true); // Toggle the value
+      setFirstComeFirstServe(prevState => false);
+      updateFormData();
+    };
+    
   return (
     <form onSubmit={handleSubmit} className='col-span-4 flex flex-col gap-8'>
       <div className="flex flex-col gap-2">
@@ -185,14 +224,19 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           </div>
           <hr />
         <div>
-          <span className="flex pb-2 gap-1">
-            {firstComeFirstServe ? <CheckmarkIcon /> : <PiXFill size={20} color='red' />}
-            Ordem de Chegada
-          </span>
-          <span className="flex pt-2 gap-1">
-            {byAppointmentOnly ? <CheckmarkIcon /> : <PiXFill size={20} color='red' />}
-            Horario Marcado
-          </span>
+    
+<span className="flex pt-2 gap-1">
+  <button onClick={toggleByAppointmentOnly}>
+    {ByAppointmentOnly ? <PiXFill size={20} color='red' /> : <CheckmarkIcon /> }
+  </button>
+  Horario Marcado
+</span>
+<span className="flex pb-2 gap-1">
+  <button onClick={toggleFirstComeFirstServe}>
+    {FirstComeFirstServe ? <PiXFill size={20} color='red' /> : <CheckmarkIcon /> }
+  </button>
+  Ordem de Chegada
+</span>
         </div>
         <hr />
         {category && (

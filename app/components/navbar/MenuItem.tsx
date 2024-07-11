@@ -14,8 +14,8 @@ const MenuItem: React.FC<MenuItemProps> = ({
     small
 }) => {
   return (
-    <div className={`px-4 py-3 hover:bg-blue-500 hover:text-white transition cursor-pointer
-      ${small ? 'py-0' : ''}
+    <div className={`px-3 hover:bg-blue-500 hover:text-white transition cursor-pointer
+      ${small ? 'py-1' : 'py-3'}
       ${small ? 'font-light' : ''}
       `}
     onClick={onClick}
