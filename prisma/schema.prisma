@@ -87,6 +87,7 @@ model Partner {
   website String?
   address String?
   city String?
+  cities String[]
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

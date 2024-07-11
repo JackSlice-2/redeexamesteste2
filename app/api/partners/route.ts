@@ -21,9 +21,12 @@ export async function POST(
         telegram,
         email,
         address,
-        city,
-        website
+        website,
+        cities
     } = body;
+
+    const citiesArray = Array.isArray(cities)? cities : [cities];
+
  
     const partner = await prisma.partner.create({
         data: {
@@ -36,7 +39,9 @@ export async function POST(
             telegram,
             email,
             address,
-            city,
+            cities: {
+                set: citiesArray.map(cityObj => cityObj.value)
+            },
             website
         }
     })

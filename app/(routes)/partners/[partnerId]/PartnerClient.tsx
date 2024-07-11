@@ -75,7 +75,7 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
                             telegram={partner.telegram || ''}
                             website={partner.website || ''}
                             address={partner.address || ''}
-                            city={partner.city || ''}
+                            cities={partner.cities || ''}
                             actionLabel="Apagar Parceiro"
                             onAction={() => onCancel(id)}
                         />

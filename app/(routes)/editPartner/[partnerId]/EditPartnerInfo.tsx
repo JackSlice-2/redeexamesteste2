@@ -10,12 +10,22 @@ import { FaFloppyDisk } from 'react-icons/fa6';
 import getCurrentUser from '@/app/actions/getCurrentUser';
 import { SafeUser } from '@/app/types';
 import axios from 'axios';
-import { redirect } from 'next/navigation';
+import CitySelect from '@/app/components/Inputs/CitySelect';
+import { useRouter } from 'next/navigation';
 
 
 const Map = dynamic(() => import('../../../components/Map'), {
     ssr: false
 });
+
+type CitySelectValue = {
+  flag: string;
+  label: string;
+  latlng: number[];
+  region: string;
+  value: string;
+};
+
 
 interface PartnerInfoProps {
     imageSrc: string;
@@ -27,12 +37,12 @@ interface PartnerInfoProps {
     whatsApp?: string;
     telegram?: string;
     website?: string;
-    city?: string;
     onAction?: (id: string) => void;
     disabled?: boolean;
     actionId?: string;
     actionLabel?: string;
-    currentUser?: SafeUser | null
+    currentUser?: SafeUser | null;
+    cities?: string[];
 }
 
 const PartnerInfo: React.FC<PartnerInfoProps> = ({
@@ -45,13 +55,34 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
   whatsApp,
   telegram,
   website,
-  city,
   onAction,
   disabled,
   actionId = '',
   actionLabel,
-  currentUser
+  currentUser,
+  cities
 }) => {
+
+  const [selectedCity, setSelectedCity] = useState<CitySelectValue | null>(null);
+console.log("LIVE selectedCity",selectedCity)
+console.log("LIVE cities prop",cities)
+const router = useRouter()
+
+useEffect(() => {
+  if (cities && cities.length > 0) {
+    // Assuming cities[0] contains the city name and you have a way to fetch or derive the rest of the properties needed for CitySelectValue
+    const cityObject: CitySelectValue = {
+      flag: '', // You need to fill this based on your application's requirements
+      label: cities[0], // Assuming cities[0] is the city name
+      latlng: [0, 0], // Placeholder values, replace with actual coordinates
+      region: '', // Placeholder, replace with actual region
+      value: cities[0], // Assuming the value is the same as the city name
+    };
+
+    setSelectedCity(cityObject);
+  }
+}, [cities]);
+
 
   const [formData, setFormData] = useState({
     title: title || '',
@@ -63,8 +94,9 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
     whatsApp: whatsApp || '',
     telegram: telegram || '',
     website: website || '',
-    city: city || ''
-  });
+    cities: cities ? cities.map(city => ({ label: city })) : [],
+    });
+  console.log(formData)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
@@ -91,6 +123,7 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
   
       console.log('Partner updated successfully:', response.data);
       toast.success('Partner updated successfully');
+      router.push(`/partners/${partnerId}`);
     } catch (error) {
       console.error('Error submitting form:', error);
       toast.error('An error occurred after submitting the form.');
@@ -108,6 +141,13 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
       onAction?.(actionId);
   }
 }, [onAction, actionId, disabled]);
+
+const removeCity = (indexToRemove: number) => {
+  setFormData(prevState => ({
+    ...prevState,
+    cities: prevState.cities.filter((_, index) => index !== indexToRemove),
+  }));
+};
 
 return (
   <>
@@ -139,7 +179,37 @@ return (
         </div>
         <div className='w-1/2 p-2 lg:mt-10 border-gray-300 h-1/2'>
         <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100 my-2'>
-        {city}
+        <CitySelect
+          value={selectedCity || {'flag': "",
+            'label': "",
+            'latlng': [0],
+            'region': "",
+            'value': ""}
+          }  onChange={(city) => {
+              setSelectedCity(city);
+              setFormData(prevState => ({
+                ...prevState,
+                cities: prevState.cities.includes(city) ? prevState.cities : [...prevState.cities, city],
+              }));
+            }}
+          />
+
+        </div>
+        <div className='mb-auto'>
+
+        {formData.cities.map((city, index) => (
+        <div key={index} className='mb-2 flex justify-between items-center m-2 p-4 text-center hover:bg-blue-400 cursor-pointer  rounded-2xl shadow-sm bg-blue-100 my-2'>
+          <span>
+            {city.label}
+          </span> 
+          <button onClick={(event) => {
+            event.preventDefault();
+            removeCity(index);
+          }} className='font-semibold hover:font-bold hover:bg-white rounded-xl p-1'>
+            Remove
+          </button>
+        </div>
+        ))}
         </div>
         <div className='p-2 mt-1'>
          {/*<Map 
@@ -150,22 +220,9 @@ return (
       </div>
       <div className='mt-3'/>
     <div className='justify-center align-center items-center'>      
-        <div className='flex flex-row overflow-x-auto hide-scrollbar w-full pt-2 gap-3 justify-center text-center '>
+        <div className='flex flex-row overflow-x-auto hide-scrollbar w-full pt-2 gap-3 text-center '>
         <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
       >
-          <BiCopy /> Cidade: <br/>
-          <div className='font-medium text-xl'>
-          <input
-            size={10}
-            type="text"
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-          />
-          </div>
-        </div>
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
-          >
             <BiCopy /> Endereço: <br/>
           <div className='font-medium text-xl'>
           <input
@@ -203,8 +260,6 @@ return (
           />
           </div>
         </div>
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
-        >
           <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
           >
             <BiCopy /> Telefone 2: <br/>
@@ -223,6 +278,7 @@ return (
             <BiCopy /> Telefone 3: <br/>
             <div className='font-medium text-xl'>
             <input
+            size={10}
             type="text"
             name="email"
             value={formData.email}
@@ -235,6 +291,7 @@ return (
             <BiCopy /> Telefone 4: <br/>
             <div className='font-medium text-xl'>
             <input
+            size={10}
             type="text"
             name="website"
             value={formData.website}
@@ -247,6 +304,7 @@ return (
             <BiCopy /> Telefone 5: <br/>
             <div className='font-medium text-xl'>
             <input
+            size={10}
             type="text"
             name="cnpj"
             value={formData.cnpj}
@@ -259,7 +317,6 @@ return (
       <div className='m-2 ml-4 flex gap-0.5 justify-center text-center transition text-white rounded-xl p-2 w-1/5 cursor-pointer bg-blue-500 hover:bg-blue-300 shadow-md hover:text-black hover:font-medium'
         >
         <BiCopy /> Copiar Todos
-      </div>
       </div>
       <div className='pt-5'/>
     <hr />

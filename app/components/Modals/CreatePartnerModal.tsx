@@ -10,6 +10,7 @@ import Input from '../Inputs/Input';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import CitySelect from '../Inputs/CitySelect';
 
 enum STEPS {
     INFO = 0,
@@ -38,18 +39,19 @@ const PartnerModal = () => {
             imageSrc: '',
             title: '',
             cnpj:  '',
-            city:  '',
             address: '',
             phone:  '',
             whatsApp:  '',
             telegram:  '',
             email:  '',
             website:  '',
+            cities: []
         }
     });
 
     const imageSrc = watch('imageSrc');
     const phone = watch('phone');
+    const cities = watch('cities');
 
 
     const setCustomValue = (id: string, value: any) => {
@@ -66,6 +68,12 @@ const PartnerModal = () => {
 
     const onNext = () => {
     switch (step) {
+        case STEPS.ADDRESS:
+            if (!cities) {
+                toast.error('city is required');
+                return;
+            }
+            break;
         case STEPS.IMAGES:
             if (!imageSrc) {
                 toast.error('Image is required');
@@ -134,13 +142,6 @@ const PartnerModal = () => {
         errors={errors}
         required
         />
-        {/*<Input 
-        id="cnpj"
-        label="C.N.P.J."
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-        />*/}
         </div>
     )
 
@@ -151,12 +152,9 @@ const PartnerModal = () => {
             title='Informaçoes de Endereço'
             subtitle='Aonde o Parceiro é Localizado?'
             />
-            <Input 
-            id="city"
-            label="Cidade do Parceiro"
-            disabled={isLoading}
-            register={register}
-            errors={errors}
+            <CitySelect
+            value={cities}
+            onChange={(value) => setCustomValue('cities', value)}
             />
             <Input 
             id="address"

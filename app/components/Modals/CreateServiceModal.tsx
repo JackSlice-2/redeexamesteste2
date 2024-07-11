@@ -285,7 +285,8 @@ useEffect(() => {
           title='Aonde fica o local da consulta?'
           subtitle='Selecione a cidade coorespondente'
         />
-        <CitySelect 
+        <CitySelect
+          isClearable
           value={location}
           onChange={(value) => setCustomValue('location', value)}
         />

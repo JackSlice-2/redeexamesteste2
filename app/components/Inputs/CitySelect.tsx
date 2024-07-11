@@ -9,17 +9,19 @@ export type CitySelectValue = {
     label: string,
     latlng: number[],
     region: string,
-    value: string
+    value: string,
 }
 
 interface CitySelectProps {
   value?: CitySelectValue;
   onChange: (value: CitySelectValue) => void;
+  isClearable?: boolean
 }
 
 const CitySelect: React.FC<CitySelectProps> = ({
     value,
-    onChange
+    onChange,
+    isClearable
 }) => {
   const { getAll } = useCities();
 
@@ -27,7 +29,7 @@ const CitySelect: React.FC<CitySelectProps> = ({
     <div>
       <Select 
       placeholder='Selecione uma Cidade'
-      isClearable
+      isClearable={isClearable}
       options={getAll()}
       value={value}
       onChange={(value) => onChange(value as CitySelectValue)}

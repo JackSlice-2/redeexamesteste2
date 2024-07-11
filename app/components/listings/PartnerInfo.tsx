@@ -21,11 +21,11 @@ interface PartnerInfoProps {
     whatsApp?: string;
     telegram?: string;
     website?: string;
-    city?: string;
     onAction?: (id: string) => void;
     disabled?: boolean;
     actionId?: string;
     actionLabel?: string;
+    cities?: string[];
 }
 
 const PartnerInfo: React.FC<PartnerInfoProps> = ({
@@ -38,11 +38,11 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
   whatsApp,
   telegram,
   website,
-  city,
   onAction,
   disabled,
   actionId = '',
-  actionLabel
+  actionLabel,
+  cities
 }) => {
 
 
@@ -89,9 +89,14 @@ return (
         </div>
         </div>
         <div className='w-1/2 p-2 lg:mt-10 border-gray-300 h-1/2'>
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100 my-2'>
-          {city}
-        </div>
+        
+                  {cities?.map((city, index) => (
+          <div key={index} className='flex justify-center items-center m-2 p-4 text-center hover:bg-blue-400 cursor-pointer  rounded-2xl shadow-sm bg-blue-100 my-2'>
+            <span>
+              {city}
+            </span>
+          </div>
+          ))}
         <div className='p-2 mt-1'>
          {/*<Map 
         center={[0,0]}
@@ -101,15 +106,6 @@ return (
       </div>
       <div className='mt-3'/>
     <div className='justify-center align-center items-center flex flex-row overflow-x-auto hide-scrollbar w-full pt-2 gap-3 text-center'>      
-
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
-      onClick={() => copyToClipboard(city || '')}
-      >
-          <BiCopy /> Cidade: <br/>
-          <div className='font-medium text-xl'>
-            {city}
-          </div>
-        </div>
         
         <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
           onClick={() => copyToClipboard(phone || '')}
@@ -166,9 +162,8 @@ return (
           `WhatsApp: ${whatsApp || ''}\n` +
           `Telegram: ${telegram || ''}\n` +
           `Telefone: ${phone || ''}\n` +
-          `Endereço: ${address || ''}\n` +
-          `Cidade: ${city || ''}`
-        )}
+          `Endereço: ${address || ''}
+          `)}
         >
         <BiCopy /> Copiar Todos
       </div>

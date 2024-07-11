@@ -46,7 +46,10 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
         throw new Error("Invalid ID");
     }
 
-    const { title, imageSrc, cnpj, phone, whatsApp, telegram, email, address, city, website } = await request.json();
+    const { title, imageSrc, cities, cnpj, phone, whatsApp, telegram, email, address, website } = await request.json();
+
+    const cityNames = cities.map((city:any) => city.label);
+
 
     const partner = await prisma.partner.update({
         where: {
@@ -62,8 +65,10 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
             telegram,
             email,
             address,
-            city,
-            website
+            website,
+            cities: {
+                set: cityNames,
+              }
         }
     });
 

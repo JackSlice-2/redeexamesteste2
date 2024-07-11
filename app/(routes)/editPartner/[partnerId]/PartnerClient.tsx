@@ -70,10 +70,10 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
                             telegram={partner.telegram || ''}
                             website={partner.website || ''}
                             address={partner.address || ''}
-                            city={partner.city || ''}
                             actionLabel="Apagar Parceiro"
                             onAction={() => onCancel(id)}
                             currentUser={currentUser}
+                            cities={partner.cities || []}
                         />
                     </div>
                    
