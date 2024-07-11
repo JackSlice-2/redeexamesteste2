@@ -13,6 +13,7 @@ import { FaFloppyDisk } from 'react-icons/fa6';
 import axios from 'axios';
 import { DayPicker } from 'react-day-picker';
 import { useRouter } from 'next/navigation';
+import ImageUpload from '@/app/components/Inputs/ImageUpload';
 
 interface ListingInfoProps {
     user: SafeUser;
@@ -85,13 +86,15 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         dates: selectedDates,
         firstComeFirstServe: FirstComeFirstServe,
         byAppointmentOnly: ByAppointmentOnly,
-        company: company
+        company: company,
+        imageSrc: imageSrc
       });
       console.log(formData)
 
       const updateFormData = () => {
         setFormData({
           title: title,
+          imageSrc: imageSrc,
           description: description,
           locationValue: locationValue,
           startTime: startTime,
@@ -182,6 +185,13 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       setByAppointmentOnly(prevState => true); // Toggle the value
       setFirstComeFirstServe(prevState => false);
       updateFormData();
+    };
+
+    const setValue = (field: keyof typeof formData, value: any) => {
+      setFormData(prevState => ({
+        ...prevState,
+        [field]: value,
+      }));
     };
     
   return (
@@ -331,6 +341,15 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
                     </div>
                 </div>
         <hr />
+        <div className='pb-2'/>
+             <div className='p-2 border-gray-400 flex justify-center items-center border rounded-xl'>
+              <ImageUpload
+                onChange={(value) => setValue("imageSrc", value)}
+                value={imageSrc}
+              />
+          </div>
+        <hr />
+
        <button className='bg-green-600 rounded-md w-full justify-center align-middle px-auto py-5 gap-1 font-semibold my-2 text-white' type="submit">
         <FaFloppyDisk className='m-auto'/> 
         Salvar Alterações

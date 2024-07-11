@@ -98,6 +98,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                         latlng={listing.latlng}
                         title={listing.title}
                         company={listing.company || ''}
+                        imageSrc={listing.imageSrc}
                         />
                         <div className="order-first mb-10 md:order-last md:col-span-3">
                             <ListingReservation

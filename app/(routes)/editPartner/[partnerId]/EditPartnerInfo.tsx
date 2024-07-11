@@ -12,6 +12,8 @@ import { SafeUser } from '@/app/types';
 import axios from 'axios';
 import CitySelect from '@/app/components/Inputs/CitySelect';
 import { useRouter } from 'next/navigation';
+import ImageUpload from '@/app/components/Inputs/ImageUpload';
+import { useForm } from 'react-hook-form';
 
 
 const Map = dynamic(() => import('../../../components/Map'), {
@@ -83,8 +85,8 @@ useEffect(() => {
   }
 }, [cities]);
 
-
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = 
+  useState({
     title: title || '',
     imageSrc: imageSrc || '',
     cnpj: cnpj || '',
@@ -149,6 +151,13 @@ const removeCity = (indexToRemove: number) => {
   }));
 };
 
+const setValue = (field: keyof typeof formData, value: any) => {
+  setFormData(prevState => ({
+    ...prevState,
+    [field]: value,
+  }));
+};
+
 return (
   <>
       <form onSubmit={handleSubmit}>
@@ -167,12 +176,9 @@ return (
             <hr />
           <div className='pb-2'/>
              <div className='p-2 border-gray-400 flex justify-center items-center border rounded-xl'>
-             <Image
-              alt='image'
-              src={imageSrc}
-              width={100}
-              height={75}
-              className='object-cover w-full rounded-md'
+              <ImageUpload
+                onChange={(value) => setValue("imageSrc", value)}
+                value={imageSrc}
               />
           </div>
         </div>
