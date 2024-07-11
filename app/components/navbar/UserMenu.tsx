@@ -65,7 +65,10 @@ const UserMenu: React.FC<UserMenuProps> = ({
       <div className="flex flex-rox items-center gap-3">
         {currentUser ? (
           <>
-          Usuario Atual: {currentUser?.name || ''}
+          <div className='font-semibold'>
+          {currentUser?.name || ''}
+          </div>
+
             <div className="p-4 hidden md:py-1 px-8 text-neutral-200 md:flex flex-row items-center gap-3 rounded-full cursor-pointer hovor:shadow-md transition"
         onClick={toggleOpen}
         >
@@ -73,7 +76,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
         </div>
         </>
         ) : 
-          <div onClick={loginModal.onOpen} className='text-neutral-500 font-thin cursor-pointer hover:text-neutral-800'>
+          <div onClick={loginModal.onOpen} className='text-neutral-500 font-thin cursor-pointer hover:text-neutral-800 hidden md:flex'>
             Admin
           </div>
         }

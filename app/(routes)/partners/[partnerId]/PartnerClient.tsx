@@ -86,9 +86,6 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
                     green
                     onClick={() => router.push(`/editPartner/${partnerId}`)}
                     />
-                        <Heading
-                        title={`Lista de Anuncios da ${partner.title}`}
-                        />
                 </div>
             </div>
         </Container>

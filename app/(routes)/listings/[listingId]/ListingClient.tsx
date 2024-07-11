@@ -96,7 +96,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
     
         axios.delete(`/api/listings/${id}`)
         .then(() => {
-          toast.success('Anuncio Apagado');
+          toast.success('Serviço Apagado');
           router.refresh();
         })
         .catch((error) => {
