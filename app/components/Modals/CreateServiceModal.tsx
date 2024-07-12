@@ -169,7 +169,7 @@ useEffect(() => {
         
         axios.post('/api/listings', data)
         .then(() => {
-            toast.success("Anuncio Criado com Successo!")
+            toast.success("Serviço Criado com Successo!")
             router.refresh();
             router.push('/')
             setStep(STEPS.CATEGORY);

@@ -33,7 +33,7 @@ const Home = async ({ searchParams }: HomeProps) => {
         <Container>
           {currentUser ? (
         <p className="text-lg font-bold translate-y-48 text-black">
-          Anuncios Totais: {listings.length}
+          Serviços Totais: {listings.length}
         </p>
           ): null}
           <div className="grid pt-56 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">

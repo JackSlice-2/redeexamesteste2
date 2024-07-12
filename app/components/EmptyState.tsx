@@ -12,7 +12,7 @@ interface EmptyStateProps {
 }
 
 const EmptyState: React.FC<EmptyStateProps> = ({
-    title = "Nenhum Anuncio Encontrado.",
+    title = "Nenhum Serviço Encontrado.",
     subtitle = "Tente alterar os filtros",
     showReset
 }) => {

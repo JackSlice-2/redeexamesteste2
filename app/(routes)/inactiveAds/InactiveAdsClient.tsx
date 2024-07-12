@@ -16,7 +16,7 @@ const FavoritesClient: React.FC<FavoritesClientProps> = ({ listings, users }) =>
 
     return (
         <Container>
-            <Heading title='Anuncios Inativos' subtitle='Lists de Anuncios Desativados' />
+            <Heading title='Serviços Inativos' subtitle='Lists de Serviços Desativados' />
             <div className="mt-10 gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
                 {uniqueListings.map((listing) => (
                     <ListingCard

@@ -14,8 +14,8 @@ const ListingPage = async () => {
   return (
     <ClientOnly>
         <EmptyState 
-        title='Nenhum Anuncio Inativo Encontrado'
-        subtitle='Todos os anuncios estão ativos.'
+        title='Nenhum Serviço Inativo Encontrado'
+        subtitle='Todos os Serviços estão ativos.'
         />
     </ClientOnly>
   )

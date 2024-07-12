@@ -98,29 +98,26 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           <hr />
         <div>
 
-          {byAppointmentOnly ? 
-          <span className="flex justify-center bg-green-300 my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1 font-semibold underline">
-            <CheckmarkIcon />
-            Horario Marcado
+        <span
+           className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1
+            ${byAppointmentOnly ? "bg-green-300" : "bg-red-300"}
+            ${byAppointmentOnly ? "underline" : "line-through"}
+            ${byAppointmentOnly ? "font-semibold" : "font-medium"}
+            `}>
+            {byAppointmentOnly ? <CheckmarkIcon /> : <PiXFill size={20} color='red' /> }
+          Horario Marcado
           </span>
-          :
-          <span className="flex justify-center bg-red-300 my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1 line-through font-medium">
-            {byAppointmentOnly ? <CheckmarkIcon /> : <PiXFill size={20} color='red' />}
-            Horario Marcado
-          </span>
-          }
-
-          {firstComeFirstServe ? 
-          <span className="flex justify-center bg-green-300 my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1 font-semibold underline">
-             <CheckmarkIcon />
-            Ordem de Chegada
-          </span> 
-          : 
-          <span className="flex justify-center bg-red-300 my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1 line-through font-medium">
-          <PiXFill size={20} color='red' />
+        
+        <span
+           className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1
+            ${firstComeFirstServe ? "bg-green-300" : "bg-red-300"}
+            ${firstComeFirstServe ? "underline" : "line-through"}
+            ${firstComeFirstServe ? "font-semibold" : "font-medium"}
+            `}>  
+            {firstComeFirstServe ? <CheckmarkIcon /> : <PiXFill size={20} color='red' /> }
           Ordem de Chegada
-        </span>
-          }
+          </span>
+
         </div>
         <hr />
         {category && (
@@ -157,18 +154,24 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       <hr />
       {currentUser ? (
       <>
-        <div>
-          Valor Pra Pagar no Pix: {payNow}
+        <div className='text-neutral-600'>
+          Valor Pra Pagar no Pix: 
+          <div className='font-semibold text-black'>
+            R$ {payNow}
+          </div>
         </div>
-        <div>
-          Valor Pra Pagar no Local: {payThere}
+        <div className='text-neutral-600'>
+          Valor Pra Pagar no Local: 
+          <div className='font-semibold text-black'>
+            R$ {payThere}
+          </div>
         </div>
       </>
       ): null}
-
         {/*<Map
         center={convertedLatlng}
         />*/}
+      <hr />
     </div>
   )
 }

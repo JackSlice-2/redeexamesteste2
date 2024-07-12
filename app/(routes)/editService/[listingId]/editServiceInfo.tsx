@@ -118,6 +118,10 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       const currentUrl = window.location.href;
       const listingId = currentUrl.split("/").pop();
       const router = useRouter();
+      console.log("byAppointmentOnly", byAppointmentOnly)
+      console.log("ByAppointmentOnly", ByAppointmentOnly)
+      console.log("firstComeFirstServe", firstComeFirstServe)
+      console.log("FirstComeFirstServe", FirstComeFirstServe)
 
       
       const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -220,6 +224,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
                   Horario: 
                   <br/>
                   <input
+                  className='justify-center border-2 rounded-xl border-gray-600 px-1'
                     type="text"
                     size={3}
                     name="startTime"
@@ -231,6 +236,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
                   até
                   </div>
                   <input
+                  className='justify-center border-2 rounded-xl border-gray-600 px-1'
                     type="text"
                     size={3}
                     name="endTime"
@@ -245,24 +251,26 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           </div>
           <hr />
         <div>
+          Clique na Opçao Desejada:
     
           <button onClick={toggleByAppointmentOnly}
            className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1
-            ${ByAppointmentOnly ? "bg-red-300" : "bg-green-300"}
-            ${ByAppointmentOnly ? "line-through" : "underline"}
-            ${ByAppointmentOnly ? "font-medium" : "font-semibold"}
+            ${ByAppointmentOnly ? "bg-green-300" : "bg-red-300"}
+            ${ByAppointmentOnly ? "underline" : "line-through"}
+            ${ByAppointmentOnly ? "font-semibold" : "font-medium"}
             `}>
-            {ByAppointmentOnly ? <PiXFill size={20} color='red' /> : <CheckmarkIcon /> }
+            {ByAppointmentOnly ? <CheckmarkIcon /> : <PiXFill size={20} color='red' /> }
           Horario Marcado
           </button>
         
 
         <button onClick={toggleFirstComeFirstServe}
            className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1
-            ${FirstComeFirstServe ? "bg-red-300" : "bg-green-300"}
-            ${ByAppointmentOnly ? "font-medium" : "font-semibold"}
+            ${FirstComeFirstServe ? "bg-green-300" : "bg-red-300"}
+            ${FirstComeFirstServe ? "underline" : "line-through"}
+            ${FirstComeFirstServe ? "font-semibold" : "font-medium"}
             `}>  
-            {FirstComeFirstServe ? <PiXFill size={20} color='red' /> : <CheckmarkIcon /> }
+            {FirstComeFirstServe ? <CheckmarkIcon /> : <PiXFill size={20} color='red' /> }
           Ordem de Chegada
           </button>
 
@@ -283,7 +291,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         }
         <hr />
         <div className="text-lg font-light text-neutral-500">
-        <input className='border-2 border-gray-700 rounded-xl px-1'
+        <input className='border-2 border-gray-700 rounded-lg px-1'
               type="text"
               name="title"
               size={35}
@@ -291,27 +299,36 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
               onChange={handleChange}
             />
       </div>
+      <div className='text-neutral-600'>
       Preparo do Exame:
-      <input className='border-2 border-gray-700 rounded-xl px-1'
-              type="text"
+      <div className='font-semibold text-black'>
+      <textarea className='border-2 border-gray-700 rounded-lg px-1'
               name="description"
               value={formData.description}
               onChange={handleChange}
             />
+            </div>
+            </div>
       <hr />
+      <div className='text-neutral-600'>
       Alterar Cidade do Exame/Consulta:
-      <input className='border-2 border-gray-700 rounded-xl px-1'
+      <div className='font-semibold text-black'>
+      <input className='border-2 border-gray-700 rounded-lg px-1'
               type="text"
               name="locationValue"
-              size={5}
+              size={30}
               value={formData.locationValue}
               onChange={handleChange}
             />
+            </div>
+            </div>
       <hr />
       {user &&
       <>
-      <div>Alterar Valor Pra Pagar no Pix: <br/>
-        <input className='border-2 border-gray-700 rounded-xl px-1'
+      <div className='text-neutral-600'>
+          Valor Pra Pagar no Pix: 
+          <div className='font-semibold text-black'>
+            R$ <input className='border-2 border-gray-700 rounded-lg px-1'
               type="number"
               name="payNow"
               size={5}
@@ -319,14 +336,18 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
               onChange={handleChange}
             />
             </div>
-          <div>Alterar Valor Pra Pagar no Local: <br/>
-          <input className='border-2 border-gray-700 rounded-xl px-1'
+            </div>
+            <div className='text-neutral-600'>
+          Valor Pra Pagar no Local: 
+          <div className='font-semibold text-black'>
+            R$ <input className='border-2 border-gray-700 rounded-lg px-1'
               type="number"
               name="payThere"
               size={5}
               value={formData.payThere}
               onChange={handleChange}
             />
+      </div>
       </div>
       </>
       }
