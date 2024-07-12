@@ -65,7 +65,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
       <div className="flex flex-rox items-center gap-3">
         {currentUser ? (
           <>
-          <div className='font-semibold'>
+          <div className='font-semibold cursor-default'>
           {currentUser?.name || ''}
           </div>
 
@@ -94,7 +94,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   label='Início'
                   />
                   <MenuItem onClick={() => {router.push('/inactiveAds'); closeMenu();}}
-                  label='Anúncios Inativos'
+                  label='Serviços Inativos'
                   />
                   <MenuItem onClick={() => {router.push('/partners'); closeMenu();}}
                   label='Meus Parceiros'

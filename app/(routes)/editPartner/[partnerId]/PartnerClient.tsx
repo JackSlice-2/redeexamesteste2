@@ -49,7 +49,7 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
 
     return (
         <Container>
-            <div className="max-w-screen-lg mx-auto">
+            <div className="max-w-screen-lg mx-auto mt-20">
                 <div className="flex flex-col gap-6">
                     <ListingHead
                     title={`Editando: ${partner.title}`}
