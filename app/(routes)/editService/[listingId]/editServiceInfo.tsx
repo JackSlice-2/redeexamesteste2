@@ -390,9 +390,11 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
               />
           </div>
         <hr />
-
-       <button className='bg-green-600 rounded-md w-full justify-center align-middle px-auto py-5 gap-1 font-semibold my-2 text-white' type="submit">
-        <FaFloppyDisk className='m-auto'/> 
+        <button className='relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full text-md my-2 bg-green-600 py-3 font-semibold text-white' type="submit">
+        <FaFloppyDisk 
+            size={22}
+            className="absolute left-4 top-3"
+            /> 
         Salvar Alterações
       </button>
         </form>

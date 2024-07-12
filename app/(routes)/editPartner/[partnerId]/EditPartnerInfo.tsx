@@ -175,6 +175,7 @@ return (
           </div>
             <hr />
           <div className='pb-2'/>
+          Para Editar a Imagem, Clique nela e Adcione uma Nova!
              <div className='p-2 border-gray-400 flex justify-center items-center border rounded-xl'>
               <ImageUpload
                 onChange={(value) => setValue("imageSrc", value)}
@@ -183,8 +184,11 @@ return (
           </div>
         </div>
         </div>
-        <div className='w-1/2 p-2 lg:mt-10 border-gray-300 h-1/2'>
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100 my-2'>
+        <div className='w-1/2 p-2 lg:mt-10 border-gray-300 h-1/2 '>
+        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer shadow-sm my-2 bg-blue-200 rounded-lg font-medium'>
+          <div className='pb-2'>
+            Clique para Alterar ou Adicionar Filiais!
+          </div>
         <CitySelect
           value={selectedCity || {'flag': "",
             'label': "",
@@ -227,11 +231,11 @@ return (
       <div className='mt-3'/>
     <div className='justify-center align-center items-center'>      
         <div className='flex flex-row overflow-x-auto hide-scrollbar w-full pt-2 gap-3 text-center '>
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
+        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
       >
-            <BiCopy /> Endereço: <br/>
+             Endereço: <br/>
           <div className='font-medium text-xl'>
-          <input
+          <input className='border-2 border-gray-700 rounded-lg px-1'
             size={10}
             type="text"
             name="address"
@@ -240,11 +244,11 @@ return (
           />
           </div>
         </div>
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
+        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
           >
-            <BiCopy /> Telefone: <br/>
+             Telefone: <br/>
           <div className='font-medium text-xl'>
-          <input
+          <input className='border-2 border-gray-700 rounded-lg px-1'
             size={10}
             type="text"
             name="phone"
@@ -253,11 +257,11 @@ return (
           />
           </div>
         </div>
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
+        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
           >
-            <BiCopy /> WhatsApp: <br/>
+             WhatsApp: <br/>
           <div className='font-medium text-xl'>
-          <input
+          <input className='border-2 border-gray-700 rounded-lg px-1'
             size={10}
             type="text"
             name="whatsApp"
@@ -266,11 +270,11 @@ return (
           />
           </div>
         </div>
-          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
+          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
           >
-            <BiCopy /> Telefone 2: <br/>
+             Telefone 2: <br/>
             <div className='font-medium text-xl'>
-            <input
+            <input className='border-2 border-gray-700 rounded-lg px-1'
             size={10}
             type="text"
             name="telegram"
@@ -279,11 +283,11 @@ return (
           />
             </div>
           </div>
-          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
+          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
           >
-            <BiCopy /> Telefone 3: <br/>
+             Telefone 3: <br/>
             <div className='font-medium text-xl'>
-            <input
+            <input className='border-2 border-gray-700 rounded-lg px-1'
             size={10}
             type="text"
             name="email"
@@ -292,11 +296,11 @@ return (
           />
             </div>
           </div>
-          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
+          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
           >
-            <BiCopy /> Telefone 4: <br/>
+             Telefone 4: <br/>
             <div className='font-medium text-xl'>
-            <input
+            <input className='border-2 border-gray-700 rounded-lg px-1'
             size={10}
             type="text"
             name="website"
@@ -305,11 +309,11 @@ return (
           />
             </div>
           </div>
-          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
+          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
           >
-            <BiCopy /> Telefone 5: <br/>
+             Telefone 5: <br/>
             <div className='font-medium text-xl'>
-            <input
+            <input className='border-2 border-gray-700 rounded-lg px-1'
             size={10}
             type="text"
             name="cnpj"
@@ -320,10 +324,6 @@ return (
           </div>
       </div>
     </div>
-      <div className='m-2 ml-4 flex gap-0.5 justify-center text-center transition text-white rounded-xl p-2 w-1/5 cursor-pointer bg-blue-500 hover:bg-blue-300 shadow-md hover:text-black hover:font-medium'
-        >
-        <BiCopy /> Copiar Todos
-      </div>
       <div className='pt-5'/>
     <hr />
     {onAction && actionLabel && (
@@ -335,8 +335,11 @@ return (
             icon={BiTrash}
             />
         )}
-       <button className='bg-blue-500 rounded-md w-full justify-center align-middle px-auto py-5 gap-1 font-semibold my-2 text-white' type="submit">
-        <FaFloppyDisk className='m-auto'/> 
+        <button className='relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full text-md my-2 bg-green-600 py-3 font-semibold text-white' type="submit">
+        <FaFloppyDisk 
+            size={22}
+            className="absolute left-4 top-3"
+            /> 
         Salvar Alterações
       </button>
         </form>

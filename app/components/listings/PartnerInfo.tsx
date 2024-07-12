@@ -91,7 +91,7 @@ return (
         <div className='w-1/2 p-2 lg:mt-10 border-gray-300 h-1/2'>
         
                   {cities?.map((city, index) => (
-          <div key={index} className='flex justify-center items-center m-2 p-4 text-center hover:bg-blue-400 cursor-pointer  rounded-2xl shadow-sm bg-blue-100 my-2'>
+          <div key={index} className='flex justify-center items-center m-2 p-4 text-center hover:bg-blue-400 cursor-pointer  rounded-2xl shadow-sm bg-blue-200 my-2'>
             <span>
               {city}
             </span>
@@ -107,7 +107,7 @@ return (
       <div className='mt-3'/>
     <div className='justify-center align-center items-center flex flex-row overflow-x-auto hide-scrollbar w-full pt-2 gap-3 text-center'>      
         
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
+        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
           onClick={() => copyToClipboard(phone || '')}
           >
             <BiCopy /> Telefone: <br/>
@@ -116,7 +116,7 @@ return (
           </div>
         </div>
         {address &&
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
+        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
           onClick={() => copyToClipboard(address || '')}
           >
             <BiCopy /> Endereço: <br/>
@@ -126,7 +126,7 @@ return (
         </div>
         }
         {whatsApp &&
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
+        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
           onClick={() => copyToClipboard(whatsApp || '')}
           >
             <BiCopy /> WhatsApp: <br/>
@@ -136,7 +136,7 @@ return (
         </div>
         }
           {telegram && (
-          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
+          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
             onClick={() => copyToClipboard(telegram)}
           >
             <BiCopy /> Telefone 2: <br/>
@@ -146,7 +146,7 @@ return (
           </div>
         )}
         {email && (
-          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100'
+          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
             onClick={() => copyToClipboard(email)}
           >
             <BiCopy /> Telefone 3: <br/>
