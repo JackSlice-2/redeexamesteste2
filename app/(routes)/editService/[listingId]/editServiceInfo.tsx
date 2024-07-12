@@ -249,7 +249,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       
           <button onClick={toggleByAppointmentOnly}
            className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1
-            ${ByAppointmentOnly ? "bg-red-400" : "bg-green-400"}
+            ${ByAppointmentOnly ? "bg-red-300" : "bg-green-300"}
             ${ByAppointmentOnly ? "line-through" : "underline"}
             `}>
             {ByAppointmentOnly ? <PiXFill size={20} color='red' /> : <CheckmarkIcon /> }
@@ -259,7 +259,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
 
         <button onClick={toggleFirstComeFirstServe}
            className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1
-            ${FirstComeFirstServe ? "bg-red-400" : "bg-green-400"}
+            ${FirstComeFirstServe ? "bg-red-300" : "bg-green-300"}
             ${FirstComeFirstServe ? "line-through" : "underline"}
             `}>  
             {FirstComeFirstServe ? <PiXFill size={20} color='red' /> : <CheckmarkIcon /> }
