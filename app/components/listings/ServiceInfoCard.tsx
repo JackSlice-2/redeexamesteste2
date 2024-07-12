@@ -104,7 +104,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
             Horario Marcado
           </span>
           :
-          <span className="flex justify-center bg-red-300 my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1 line-through">
+          <span className="flex justify-center bg-red-300 my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1 line-through font-medium">
             {byAppointmentOnly ? <CheckmarkIcon /> : <PiXFill size={20} color='red' />}
             Horario Marcado
           </span>
@@ -116,7 +116,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
             Ordem de Chegada
           </span> 
           : 
-          <span className="flex justify-center bg-red-300 my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1 line-through">
+          <span className="flex justify-center bg-red-300 my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1 line-through font-medium">
           <PiXFill size={20} color='red' />
           Ordem de Chegada
         </span>

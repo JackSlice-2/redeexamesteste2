@@ -246,11 +246,11 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           <hr />
         <div>
     
-      
           <button onClick={toggleByAppointmentOnly}
            className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1
             ${ByAppointmentOnly ? "bg-red-300" : "bg-green-300"}
             ${ByAppointmentOnly ? "line-through" : "underline"}
+            ${ByAppointmentOnly ? "font-medium" : "font-semibold"}
             `}>
             {ByAppointmentOnly ? <PiXFill size={20} color='red' /> : <CheckmarkIcon /> }
           Horario Marcado
@@ -260,7 +260,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         <button onClick={toggleFirstComeFirstServe}
            className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1
             ${FirstComeFirstServe ? "bg-red-300" : "bg-green-300"}
-            ${FirstComeFirstServe ? "line-through" : "underline"}
+            ${ByAppointmentOnly ? "font-medium" : "font-semibold"}
             `}>  
             {FirstComeFirstServe ? <PiXFill size={20} color='red' /> : <CheckmarkIcon /> }
           Ordem de Chegada
