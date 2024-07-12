@@ -30,12 +30,12 @@ const ListingHead: React.FC<ListingHeadProps> = ({
     title={title}
     subtitle={locationValue}
     />
-    <div className="w-full h-[60vh] overflow-hidden rounded-xl relative">
+    <div className="w-full h-[60vh] overflow-hidden rounded-xl relative border-2 p-1 border-neutral-500/50 object-contain">
         <Image
         alt='image'
         src={imageSrc}
         fill
-        className='object-contain w-full'
+        className='object-fill w-full'
         />
       {heartButton && (
         <div className="absolute top-5 right-5">

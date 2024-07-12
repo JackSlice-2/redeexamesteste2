@@ -83,52 +83,72 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         </a>
           </div>
           <hr />
-            <div className='flex flex-row overflow-x-auto hide-scrollbar'>
-              <div className='mx-auto p-3 text-center hover:bg-sky-100 cursor-pointer'>
+            <div className='flex flex-row overflow-x-auto hide-scrollbar font-medium justify-center align-middle items-center'>
+              <div className='mx-auto p-4 text-center hover:bg-sky-300 cursor-pointer rounded-xl'>
                   Cidade: <br/>{locationValue}
               </div>
-              <div className='mx-auto p-3 text-center hover:bg-sky-100 cursor-pointer'>
+              <div className='mx-auto p-4 text-center hover:bg-sky-300 cursor-pointer rounded-xl'>
                   Horario: <br/>{startTime} <br/>até {endTime}
               </div>
-              <div className='mx-auto p-3 text-center hover:bg-sky-100 cursor-pointer'>
+              <div className='mx-auto p-4 text-center hover:bg-sky-300 cursor-pointer rounded-xl'>
                   Telefone: <br/>51 98185-9157
               </div>
             </div>
           </div>
           <hr />
         <div>
-          <span className="flex pt-2 gap-1">
+
+          {byAppointmentOnly ? 
+          <span className="flex justify-center bg-green-500 my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1 font-semibold underline">
+            <CheckmarkIcon />
+            Horario Marcado
+          </span>
+          :
+          <span className="flex justify-center bg-red-500 my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1 line-through">
             {byAppointmentOnly ? <CheckmarkIcon /> : <PiXFill size={20} color='red' />}
             Horario Marcado
           </span>
-          <span className="flex pb-2 gap-1">
-            {firstComeFirstServe ? <CheckmarkIcon /> : <PiXFill size={20} color='red' />}
+          }
+
+          {firstComeFirstServe ? 
+          <span className="flex justify-center bg-green-500 my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1 font-semibold underline">
+             <CheckmarkIcon />
             Ordem de Chegada
-          </span>
+          </span> 
+          : 
+          <span className="flex justify-center bg-red-500 my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1 line-through">
+          <PiXFill size={20} color='red' />
+          Ordem de Chegada
+        </span>
+          }
         </div>
         <hr />
         {category && (
+          <>
           <ListingCategory
           icon={category.icon}
           label={category.label}
           description={description}
           />
-        )}
         <hr />
+        </>
+        )}
         {currentUser ?(
           <div className='font-medium'>
             {company}
           </div>) : null
         }
         {description &&
+          <>
          <div className='text-neutral-600'>
             Preparo do Exame: 
             <div className='text-black'>
               {description}
             </div>
          </div>
-        }
         <hr />
+        </>
+        }
         <div className="text-lg font-light text-neutral-500">
           {title}
       </div>

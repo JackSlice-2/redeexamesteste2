@@ -11,22 +11,22 @@ import { HiComputerDesktop } from 'react-icons/hi2';
 
 export const categories = [
     {
-        label: 'Consulta Presenciais',
+        label: 'Consultas Presenciais',
         icon: FaPeopleGroup,
         description: 'Entre em contato para obter o endereço da sua consulta.'
     },
     {
-        label: 'Consulta Online',
+        label: 'Consultas Online',
         icon: HiComputerDesktop,
         description: 'Entre em contato para obter o link da sua consulta.'
     },
     {
-        label: 'Exame',
+        label: 'Exames',
         icon: FaStethoscope,
         description: 'Entre em contato para obter o endereço da sua consulta.'
     },
     {
-        label: 'Exame de Sangue',
+        label: 'Exames de Sangue',
         icon: GiWaterDrop,
         description: 'Entre em contato para obter o endereço da sua consulta.'
     }

@@ -212,26 +212,33 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         </a>
           </div>
           <hr />
-            <div className='flex flex-row overflow-x-auto hide-scrollbar'>
-              <div className='mx-auto p-3 text-center hover:bg-sky-100 cursor-pointer'>
+          <div className='flex flex-row overflow-x-auto hide-scrollbar font-medium justify-center align-middle items-center'>
+              <div className='mx-auto p-4 text-center hover:bg-sky-300 cursor-pointer rounded-xl'>
                   Cidade: <br/>{locationValue}
               </div>
-              <div className='mx-auto p-3 text-center hover:bg-sky-100 cursor-pointer'>
-                  Horario: <br/>
+              <div className='mx-auto p-4 text-center hover:bg-sky-300 rounded-xl'>
+                  Horario: 
+                  <br/>
                   <input
-              type="text"
-              name="startTime"
-              value={formData.startTime}
-              onChange={handleChange}
-            /> <br/>até
-                <input
-              type="text"
-              name="endTime"
-              value={formData.endTime}
-              onChange={handleChange}
-            />
+                    type="text"
+                    size={3}
+                    name="startTime"
+                    value={formData.startTime}
+                    onChange={handleChange}
+                  /> 
+                  <br/>
+                  <div className='p-1'>
+                  até
+                  </div>
+                  <input
+                    type="text"
+                    size={3}
+                    name="endTime"
+                    value={formData.endTime}
+                    onChange={handleChange}
+                  />
               </div>
-              <div className='mx-auto p-3 text-center hover:bg-sky-100 cursor-pointer'>
+              <div className='mx-auto cursor-pointer p-4 text-center hover:bg-sky-300 rounded-xl'>
                   Telefone: <br/>51 98185-9157
               </div>
             </div>
@@ -239,18 +246,26 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           <hr />
         <div>
     
-<span className="flex pt-2 gap-1">
-  <button onClick={toggleByAppointmentOnly}>
-    {ByAppointmentOnly ? <PiXFill size={20} color='red' /> : <CheckmarkIcon /> }
-  </button>
-  Horario Marcado
-</span>
-<span className="flex pb-2 gap-1">
-  <button onClick={toggleFirstComeFirstServe}>
-    {FirstComeFirstServe ? <PiXFill size={20} color='red' /> : <CheckmarkIcon /> }
-  </button>
-  Ordem de Chegada
-</span>
+      
+          <button onClick={toggleByAppointmentOnly}
+           className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1
+            ${ByAppointmentOnly ? "bg-red-400" : "bg-green-400"}
+            ${ByAppointmentOnly ? "line-through" : "underline"}
+            `}>
+            {ByAppointmentOnly ? <PiXFill size={20} color='red' /> : <CheckmarkIcon /> }
+          Horario Marcado
+          </button>
+        
+
+        <button onClick={toggleFirstComeFirstServe}
+           className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1
+            ${FirstComeFirstServe ? "bg-red-400" : "bg-green-400"}
+            ${FirstComeFirstServe ? "line-through" : "underline"}
+            `}>  
+            {FirstComeFirstServe ? <PiXFill size={20} color='red' /> : <CheckmarkIcon /> }
+          Ordem de Chegada
+          </button>
+
         </div>
         <hr />
         {category && (
@@ -268,42 +283,47 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         }
         <hr />
         <div className="text-lg font-light text-neutral-500">
-        <input
+        <input className='border-2 border-gray-700 rounded-xl px-1'
               type="text"
               name="title"
+              size={35}
               value={formData.title}
               onChange={handleChange}
             />
       </div>
       Preparo do Exame:
-      <input
+      <input className='border-2 border-gray-700 rounded-xl px-1'
               type="text"
               name="description"
               value={formData.description}
               onChange={handleChange}
             />
       <hr />
-      <input
+      Alterar Cidade do Exame/Consulta:
+      <input className='border-2 border-gray-700 rounded-xl px-1'
               type="text"
               name="locationValue"
+              size={5}
               value={formData.locationValue}
               onChange={handleChange}
             />
       <hr />
       {user &&
       <>
-      <div>Valor Pra Pagar no Pix: 
-        <input
+      <div>Alterar Valor Pra Pagar no Pix: <br/>
+        <input className='border-2 border-gray-700 rounded-xl px-1'
               type="number"
               name="payNow"
+              size={5}
               value={formData.payNow}
               onChange={handleChange}
             />
             </div>
-          <div>Valor Pra Pagar no Local:
-            <input
+          <div>Alterar Valor Pra Pagar no Local: <br/>
+          <input className='border-2 border-gray-700 rounded-xl px-1'
               type="number"
               name="payThere"
+              size={5}
               value={formData.payThere}
               onChange={handleChange}
             />
