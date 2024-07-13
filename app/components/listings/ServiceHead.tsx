@@ -30,7 +30,7 @@ const ListingHead: React.FC<ListingHeadProps> = ({
     title={title}
     subtitle={locationValue}
     />
-    <div className="w-full h-[60vh] overflow-hidden rounded-xl relative border-2 p-1 border-neutral-500/50 object-contain">
+    <div className="w-5/6 h-[60vh] mx-auto overflow-hidden rounded-xl relative border-2 p-1 border-neutral-500/50 object-contain">
         <Image
         alt='image'
         src={imageSrc}
