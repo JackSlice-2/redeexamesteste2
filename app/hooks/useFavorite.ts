@@ -43,7 +43,7 @@ const toggleActive = useCallback(async (
 
             await request();
             router.refresh();
-            toast.success('Success');
+            toast.success('Item Arquivado');
 
         }   catch (error) {
             toast.error('something went wrong')

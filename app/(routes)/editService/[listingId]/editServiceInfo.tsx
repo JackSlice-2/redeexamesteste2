@@ -14,6 +14,7 @@ import { DayPicker } from 'react-day-picker';
 import { useRouter } from 'next/navigation';
 import ImageUpload from '@/app/components/Inputs/ImageUpload';
 import Button from '@/app/components/Button';
+import { ptBR } from 'date-fns/locale';
 
 interface ListingInfoProps {
     user: SafeUser;
@@ -285,9 +286,10 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         <hr />
         Selecione os dias Desejados:
         <div className='max-h-64 flex flex-col-2 border-t-2'>
-                    <div className='w-1/2 text-blue-800 border-l-2 p-2 border-b-2'>
+                    <div className='w-1/2 pl- text-blue-800 border-l-2 border-b-2'>
                         <DayPicker
                             mode="multiple"
+                            locale={ptBR}
                             className='customDayPickerAdModel'
                             selected={selectedDates}
                             onSelect={(date) => setSelectedDates(date || [])}
