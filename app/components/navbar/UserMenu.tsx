@@ -65,7 +65,10 @@ const UserMenu: React.FC<UserMenuProps> = ({
       <div className="flex flex-rox items-center gap-3">
         {currentUser ? (
           <>
-          <div className='font-semibold cursor-default'>
+          <div className='text-sm'>
+            Usuario atual:
+          </div>
+          <div className='font-semibold cursor-default border-3 shadow-lg bg-blue-500 border-blue-900 text-white rounded-2xl p-3'>
           {currentUser?.name || ''}
           </div>
 

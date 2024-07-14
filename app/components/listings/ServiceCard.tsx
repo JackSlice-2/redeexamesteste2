@@ -54,25 +54,23 @@ const ListingCard: React.FC<ListingCardProps> = ({
     }
 
   return (
-    <div className='col-span-1 cursor-pointer group rounded-md p-2 font-semibold'
-    >
-    <div 
-    onClick={() => router.push(`/listings/${data.id}`)}
-    >
+    <div className='col-span-1 cursor-pointer group rounded-md p-2 font-semibold'>
+    <div onClick={() => router.push(`/listings/${data.id}`)}>
       <div className="flex flex-col w-full">
-        <div className="aspect-square w-full relative overflow-hidden rounded-xl object-fill" 
+        <div className="aspect-square w-full relative overflow-hidden rounded-xl object-fill"
         style={{ backgroundImage: `url(${data.imageSrc})`, 
                  backgroundSize: 'cover', 
                  backgroundPosition: 'center' 
-                }}>
+                }}
+                >
             <div className="absolute top-3 right-3">
                 <HeartButton 
-                listingId={data.id}
-                currentUser={currentUser}
+                    listingId={data.id}
+                    currentUser={currentUser}
                 />
             </div>
         </div>
-        <div className="text-md font-semibold w-fit">
+        <div className="text-md font-semibold w-fit mt-1">
             {data.title}
         </div>
         <div className=" text-neutral-600 hover:text-black">
@@ -97,8 +95,8 @@ const ListingCard: React.FC<ListingCardProps> = ({
             </div>
             )}
               <div className='text-neutral-600 hover:text-black text-xs pb-2'>
-                    Próximo Atendimento: {format(new Date(data.dates[0]), 'dd/MM/yyyy')}
-                    <br/>
+              Próximo Atendimento: {data.dates[0] ? format(new Date(data.dates[0]), 'dd/MM/yyyy') : 'N/A'}
+              <br/>
                     A partir das: {data.startTime} <br/>
                 </div>  
             </div>
