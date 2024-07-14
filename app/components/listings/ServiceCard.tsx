@@ -151,14 +151,12 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <Button
             label='Chame no WhatsApp!'
             onClick={() => {}}
-             icon={FaWhatsapp}
              small
              green
             />
             <Button
             label='Chame no Telegram!'
             onClick={() => {}}
-             icon={FaTelegram}
              small
             />
             </div>
