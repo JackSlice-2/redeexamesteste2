@@ -16,6 +16,7 @@ import CitySelect from '../Inputs/CitySelect';
 import { DayPicker } from 'react-day-picker';
 import { SafePartner } from '@/app/types';
 import useCreateServiceModal from '@/app/hooks/useCreateServiceModal';
+import { ptBR } from 'date-fns/locale';
 
 enum STEPS {
     CATEGORY = 0,
@@ -480,6 +481,7 @@ useEffect(() => {
                 <div className='max-h-64 flex flex-col-2 border-t-2'>
                     <div className='w-1/2 text-blue-800 border-l-2 p-2 border-b-2'>
                         <DayPicker
+                            locale={ptBR}
                             mode="multiple"
                             className='customDayPickerAdModel'
                             selected={selectedDates}
