@@ -81,7 +81,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                     currentUser={currentUser}
                     floppyDiskButton
                     />
-                    <div className="grid grid-cols-1 md:grid-cols-7 md:gap-10 mt-6">
+                    <div className="mt-6">
                         <ListingInfo
                         startTime={listing.startTime || 'No Start Time'}
                         endTime={listing.endTime || 'No End Time'}
@@ -100,15 +100,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
                         company={listing.company || ''}
                         imageSrc={listing.imageSrc}
                         />
-                        <div className="order-first mb-10 md:order-last md:col-span-3">
-                            <ListingReservation
-                            endTime={listing.endTime || 'No End Time'}
-                            dates={listing.dates}
-                            dateRange={dateRange}
-                            onSubmit={onCreateReservation}
-                            disabled={isLoading}
-                            />
-                        </div>
                     </div>
                 </div>
             </div>

@@ -8,6 +8,7 @@ import FloppyDiskButton from '../FloppyDiskButton';
 import Button from '../Button';
 import useFavorite from '@/app/hooks/useFavorite';
 import { BiPencil, BiTrash } from 'react-icons/bi';
+import { FaTelegram, FaWhatsapp } from 'react-icons/fa';
 
 interface ListingCardProps {
     data: SafeListing;
@@ -88,13 +89,13 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <div className='hover:text-black'>
                 {data.company} 
             </div>
-            <div className='hover:text-black'>
+            <div className='hover:text-black text-sm'>
                 Pagamento Pix: {data.payNow}
             </div> 
-            <div className='hover:text-black'>
+            <div className='hover:text-black text-sm'>
                 Pagamento no Local: {data.payThere}
             </div> 
-            <div className='hover:text-black'>
+            <div className='hover:text-black text-sm'>
                 {
                     data.firstComeFirstServe ? 'Ordem de Chegada' 
                     :
@@ -106,7 +107,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
         </div>
     )}
     {data.dates[0] ?
-        <div className='text-neutral-600'>
+        <div className='text-neutral-600 text-sm'>
             <div className='hover:text-black'>
                 Próximo Atendimento: {data.dates[0] ? format(new Date(data.dates[0]), 'dd/MM/yyyy') : ''}
             </div>  
@@ -115,7 +116,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             </div>  
         </div>
         :
-        <div className='text-neutral-600'>
+        <div className='text-neutral-600 text-sm'>
             <div className='hover:text-black'>
                 Entre em Contato Para Saber Mais!
             </div>  
@@ -145,6 +146,23 @@ const ListingCard: React.FC<ListingCardProps> = ({
             icon={BiPencil}
             />
         )}
+        {!currentUser &&
+           <div className="text-center justify-center gap-1 flex mt-2">
+            <Button
+            label='Chame no WhatsApp!'
+            onClick={() => {}}
+             icon={FaWhatsapp}
+             small
+             green
+            />
+            <Button
+            label='Chame no Telegram!'
+            onClick={() => {}}
+             icon={FaTelegram}
+             small
+            />
+            </div>
+            }
     </div>
   )
 }

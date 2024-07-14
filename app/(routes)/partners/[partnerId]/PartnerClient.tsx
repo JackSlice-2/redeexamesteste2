@@ -23,30 +23,27 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
     currentUser,
 }) => {
 
-    // Extracting the ID from the URL
     const [id, setId] = useState('');
     const router = useRouter()
-  const urlParts = window.location.pathname.split('/');
-  const partnerId = urlParts[urlParts.length - 1];
-
+    const urlParts = window.location.pathname.split('/');
+    const partnerId = urlParts[urlParts.length - 1];
     const [deletingId, setDeletingId] = useState('');
 
     const onCancel = useCallback((id: string) => {
-      setDeletingId(partnerId);
-      console.log(`Deleting partner with ID: ${partnerId}`);
-      axios.delete(`/api/partners/${partnerId}`)
+        setDeletingId(partnerId);
+        console.log(`Deleting partner with ID: ${partnerId}`);
+        axios.delete(`/api/partners/${partnerId}`)
         .then(() => {
-          toast.success('Parceiro Apagado');
-          router.push('/partners')
+            toast.success('Parceiro Apagado');
+            router.push('/partners')
         })
         .catch((error) => {
-          toast.error(error?.response?.data?.error)
+            toast.error(error?.response?.data?.error)
         })
         .finally(() => {
-          setDeletingId('');
+            setDeletingId('');
         })
     }, [partnerId, router]);
-    
 
     return (
         <Container>

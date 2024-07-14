@@ -20,7 +20,6 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
     currentUser,
 }) => {
 
-    // Extracting the ID from the URL
     const [id, setId] = useState('');
     const urlParts = window.location.pathname.split('/');
     const partnerId = urlParts[urlParts.length - 1];

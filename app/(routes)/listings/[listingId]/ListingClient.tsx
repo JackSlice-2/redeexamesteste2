@@ -34,9 +34,7 @@ interface ListingClientProps {
 const ListingClient: React.FC<ListingClientProps> = ({
     listing,
     currentUser,
-    onAction,
     disabled,
-    actionId = '',
 }) => {
 
     const loginModel = useLoginModal();

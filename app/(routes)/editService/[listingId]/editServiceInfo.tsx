@@ -13,6 +13,7 @@ import axios from 'axios';
 import { DayPicker } from 'react-day-picker';
 import { useRouter } from 'next/navigation';
 import ImageUpload from '@/app/components/Inputs/ImageUpload';
+import Button from '@/app/components/Button';
 
 interface ListingInfoProps {
     user: SafeUser;
@@ -195,23 +196,31 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         [field]: value,
       }));
     };
+
+    const handleWhatsAppButton = () => {
+      const url = "https://api.whatsapp.com/send?phone=5551981859157&text=Hello%20from%20React!";
+      window.open(url, '_blank');
+    };
+    const handleTelegramButton = () => {
+      const url = "https://t.me/redeexames?start=+55051981859157";
+      window.open(url, '_blank');
+    };
     
   return (
     <form onSubmit={handleSubmit} className='col-span-4 flex flex-col gap-8'>
       <div className="flex flex-col gap-2">
-        <div className="text-xl font-semibold text-center px-10 justify-between flex flex-row items-center gap-2">
-        <a href="https://api.whatsapp.com/send/?phone=5551981859157&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">
-            <div className='bg-green-400 hover:bg-green-600 hover:text-white hover:font-semibold cursor-pointer rounded-2xl text-center p-2 items-center flex gap-1 border-gray-200 border-2 shadow-md' >
-              Chame no whatsApp!
-              <FaWhatsapp className='mr-1' size={30}/> 
-            </div>
-        </a>
-        <a href="https://t.me/redeexames?start=+55051981859157" target="_blank" rel="noopener noreferrer">
-            <div className='bg-blue-400 hover:bg-blue-600 hover:text-white hover:font-semibold cursor-pointer rounded-2xl text-center p-2 items-center flex gap-1 border-gray-200 border-2 shadow-md' >
-              Chame no Telegram!
-              <FaTelegram className='mr-1' size={30}/> 
-            </div>
-        </a>
+        <div className="text-xl font-semibold text-center px-10 justify-center flex flex-col items-center gap-2">
+          <Button
+          label='Chame no WhatsApp!'
+          onClick={handleWhatsAppButton}
+          green
+          icon={FaWhatsapp}
+          />
+          <Button 
+          label='Chame no Telegram!'
+          onClick={handleTelegramButton}
+          icon={FaTelegram}
+          />
           </div>
           <hr />
           <div className='flex flex-row overflow-x-auto hide-scrollbar font-medium justify-center align-middle items-center'>
@@ -274,6 +283,38 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
 
         </div>
         <hr />
+        Selecione os dias Desejados:
+        <div className='max-h-64 flex flex-col-2 border-t-2'>
+                    <div className='w-1/2 text-blue-800 border-l-2 p-2 border-b-2'>
+                        <DayPicker
+                            mode="multiple"
+                            className='customDayPickerAdModel'
+                            selected={selectedDates}
+                            onSelect={(date) => setSelectedDates(date || [])}
+                            onDayClick={handleDayClick}
+                            modifiers={{
+                            selected: selectedDates,
+                        }}
+                        modifiersStyles={{
+                            selected: {
+                            backgroundColor: '#007BFF',
+                            color: 'white',
+                            borderRadius: '1rem',
+                            border: '1px solid #007BFF',
+                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', 
+                            },
+                        }}
+                        />
+                    </div>
+                    <div className="selected-dates-list w-1/2 p-2 max-h-auto rounded-lg overflow-y-auto cursor-pointer gap-1 border-2 border-blue-100 border-t-0">
+                        {selectedDates.sort((a, b) => a.getTime() - b.getTime()).map((date, index) => (
+                            <div key={index} className="border-2 border-blue-200 text-blue-600 p-2 rounded-lg hover:text-white hover:font-semibold hover:bg-blue-400" onClick={() => handleDayClick(date)}>
+                                {date.toDateString()}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+          <hr />
         {category && (
           <ListingCategory
           icon={category.icon}
@@ -288,7 +329,9 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           </div>
         }
         <hr />
-        <div className="text-lg font-light text-neutral-500">
+        <div className="text-lg text-neutral-600">
+          Titulo:
+      <div className='font-semibold text-black'>
         <input className='border-2 border-gray-700 rounded-lg px-1'
               type="text"
               name="title"
@@ -296,6 +339,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
               value={formData.title}
               onChange={handleChange}
             />
+      </div>
       </div>
       <div className='text-neutral-600'>
       Preparo do Exame:
@@ -349,38 +393,10 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       </div>
       </>
       }
-            <div className='max-h-64 flex flex-col-2 border-t-2'>
-                    <div className='w-1/2 text-blue-800 border-l-2 p-2 border-b-2'>
-                        <DayPicker
-                            mode="multiple"
-                            className='customDayPickerAdModel'
-                            selected={selectedDates}
-                            onSelect={(date) => setSelectedDates(date || [])}
-                            onDayClick={handleDayClick}
-                            modifiers={{
-                            selected: selectedDates,
-                        }}
-                        modifiersStyles={{
-                            selected: {
-                            backgroundColor: '#007BFF',
-                            color: 'white',
-                            borderRadius: '1rem',
-                            border: '1px solid #007BFF',
-                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', 
-                            },
-                        }}
-                        />
-                    </div>
-                    <div className="selected-dates-list w-1/2 p-2 max-h-auto rounded-lg overflow-y-auto cursor-pointer gap-1 border-2 border-blue-100 border-t-0">
-                        {selectedDates.sort((a, b) => a.getTime() - b.getTime()).map((date, index) => (
-                            <div key={index} className="border-2 border-blue-200 text-blue-600 p-2 rounded-lg hover:text-white hover:font-semibold hover:bg-blue-400" onClick={() => handleDayClick(date)}>
-                                {date.toDateString()}
-                            </div>
-                        ))}
-                    </div>
-                </div>
         <hr />
-        <div className='pb-2'/>
+        <div className='text-neutral-600'>
+          Clique na Imagem abaixo para alterar:
+        </div>
              <div className='p-2 border-gray-400 flex justify-center items-center border rounded-xl'>
               <ImageUpload
                 onChange={(value) => setValue("imageSrc", value)}
