@@ -6,6 +6,7 @@ import Logo from './Logo'
 import UserMenu from './UserMenu'
 import { SafeUser } from '@/app/types';
 import Categories from './Categories';
+import Carosel from './Carosel';
 
 interface Navbarprops {
   currentUser?: SafeUser | null;
@@ -24,6 +25,9 @@ const Navbar: React.FC<Navbarprops> = ({
           width={170}
           label="Rede Exames Online"
         />
+        {!currentUser &&
+        <Carosel />
+        }
         <UserMenu currentUser={currentUser}/>
         </div>
         </Container>
