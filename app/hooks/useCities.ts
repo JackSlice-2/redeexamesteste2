@@ -1,17 +1,5 @@
 import { useState, useEffect } from 'react';
 
-interface CityData {
-  components: {
-    city: string;
-    country: string;
-  };
-  formatted: string;
-  geometry: {
-    lat: number;
-    lng: number;
-  };
-}
-
 interface FormattedCityData {
   value: string;
   label: string;

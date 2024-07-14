@@ -237,7 +237,6 @@ const PartnerModal = () => {
             imageSrc: '',
             title: '',
             cnpj: '',
-            city: '',
             address: '',
             phone: '',
             whatsApp: '',

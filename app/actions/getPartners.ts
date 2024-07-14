@@ -11,7 +11,6 @@ export interface IPartnersParams {
   whatsApp?: string;
   telegram?: string;
   website?: string;
-  city?: string[];
 }
 
 export default async function getPartners(
@@ -23,7 +22,6 @@ export default async function getPartners(
       cnpj,
       address,
       phone,
-      city,
       email,
       whatsApp,
       telegram,
@@ -43,9 +41,6 @@ export default async function getPartners(
     }
     if (phone) {
       query.phone = phone;
-    }
-    if (city) {
-      query.city = city;
     }
     if (email) {
       query.email = email;
