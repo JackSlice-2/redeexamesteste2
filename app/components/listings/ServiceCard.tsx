@@ -109,7 +109,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
     {data.dates[0] ?
         <div className='text-neutral-600 text-sm'>
             <div className='hover:text-black'>
-                Próximo Atendimento: {data.dates[0] ? format(new Date(data.dates[0]), 'dd/MM/yyyy') : ''}
+                Próximo Atendimento: {format(new Date(data.dates[0]), 'dd/MM/yyyy')}
             </div>  
             <div className='hover:text-black'>
                 A partir das: {data.startTime}
