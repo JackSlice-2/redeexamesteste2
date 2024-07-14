@@ -4,7 +4,7 @@ import { SafeUser } from '@/app/types';
 import React, { ReactComponentElement } from 'react'
 import Heading from '../Heading';
 import Image from 'next/image';
-import HeartButton from '../CloudButton';
+import FloppyDiskButton from '../FloppyDiskButton';
 
 interface ListingHeadProps {
     title: string;
@@ -12,7 +12,7 @@ interface ListingHeadProps {
     imageSrc: string;
     id: string;
     currentUser?: SafeUser | null;
-    heartButton?: Boolean;
+    floppyDiskButton?: Boolean;
 }
 
 const ListingHead: React.FC<ListingHeadProps> = ({
@@ -21,7 +21,7 @@ const ListingHead: React.FC<ListingHeadProps> = ({
     imageSrc,
     id,
     currentUser,
-    heartButton
+    floppyDiskButton
 }) => {
 
   return (
@@ -30,16 +30,16 @@ const ListingHead: React.FC<ListingHeadProps> = ({
     title={title}
     subtitle={locationValue}
     />
-    <div className="w-5/6 h-[60vh] mx-auto overflow-hidden rounded-xl relative border-2 p-1 border-neutral-500/50 object-contain">
+    <div className="w-full md:w-5/6 h-[50vh] mx-auto overflow-hidden rounded-xl relative border-2 p-1 border-neutral-500/50 object-contain">
         <Image
         alt='image'
         src={imageSrc}
         fill
         className='object-fill w-full'
         />
-      {heartButton && (
+      {floppyDiskButton && (
         <div className="absolute top-5 right-5">
-            <HeartButton 
+            <FloppyDiskButton 
             listingId={id}
             currentUser={currentUser}
             />

@@ -58,7 +58,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
             </div>
           </div>
         </Container>
-        <div className="text-center text-xs font-light">
+        <div className="text-center text-xs font-light md:pl-10">
         <a target="_blank" href={"https://redeexames.online/"}
         className='hover:underline'>
         © 2024 Rede Exames Online

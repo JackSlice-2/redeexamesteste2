@@ -11,11 +11,11 @@ interface HeartButtonProps {
     currentUser?: SafeUser | null;
 }
 
-const HeartButton: React.FC<HeartButtonProps> = ({
+const FloppyDiskButton: React.FC<HeartButtonProps> = ({
     listingId,
     currentUser
 }) => {
-    const { hasFavorited, toggleFavorite } = useFavorite({
+    const { isInactive, toggleActive } = useFavorite({
         listingId,
         currentUser
     })
@@ -26,21 +26,21 @@ const HeartButton: React.FC<HeartButtonProps> = ({
 
   return (
     <div 
-    onClick={toggleFavorite}
-    className='relative hover:opacity-80 transition cursor-pointer'>
-        {!hasFavorited ? (
+    onClick={toggleActive}
+    className='relative hover:opacity-80 transition cursor-pointer hover:scale-125'>
+        {!isInactive ? (
         <PiFloppyDiskFill
         size={35} 
-        className='text-blue-200 bg-gray-500/80 rounded-full p-1'
+        className='hover:text-blue-200 hover:bg-gray-500/80 bg-neutral-300 rounded-full p-1 text-gray-900'
         />
         ) : (
             <FaCloudDownloadAlt
             size={35}
-            className='text-blue-200 bg-gray-500/80 rounded-full p-1'
+            className='hover:text-blue-200 hover:bg-gray-500/80 bg-neutral-300 rounded-full p-1 text-black'
             />
         )}
     </div>
   );
 }
 
-export default HeartButton
+export default FloppyDiskButton

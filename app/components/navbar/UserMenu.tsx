@@ -79,7 +79,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
         </div>
         </>
         ) : 
-          <div onClick={loginModal.onOpen} className='text-neutral-500 font-thin cursor-pointer hover:text-neutral-800 hidden md:flex'>
+          <div onClick={loginModal.onOpen} className='text-neutral-400 font-thin cursor-pointer hover:text-neutral-800 hidden md:flex'>
             Admin
           </div>
         }

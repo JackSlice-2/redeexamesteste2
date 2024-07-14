@@ -26,7 +26,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
 
   return (
     <>
-    <div className='bg-white rounded-xl border-[1px] border-neutral-200 overflow-hidden'>
+    <div className='bg-white rounded-xl border-[1px] border-neutral-500 overflow-hidden p-1'>
       <div className="flex flex-col items-center gap-1 p-4">
         <div className="text-2xl font-semibold">
           Temos atendimento nos dias marcados em azul!
@@ -38,7 +38,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
         </div>
       </div>
       <hr />
-      <div className='flex justify-center items-center w-full py-4 cursor-pointer'>
+      <div className='flex text-center justify-center items-center w-full cursor-pointer'>
       <DayPicker
         selected={dateObjects}
         disabled={{ before: new Date() }}
@@ -61,6 +61,9 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
             color: '#ccc',
             border: '0px solid lightblue',
             backgroundColor: 'transparent',
+          },
+          label: {
+            color: 'red'
           }
         }}
       />

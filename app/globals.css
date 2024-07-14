@@ -53,9 +53,8 @@ body,
   justify-content: center;
   items-align: center;
   font-weight: semibold;
-  border-radius: 50px;
   background-color: #f0f8ff;
-  padding: 1em;
+  padding: 8px;
 }
 .customDayPickerAdModel {
     font-size: 1em;

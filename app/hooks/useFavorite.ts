@@ -17,14 +17,14 @@ const useFavorite = ({
     const router = useRouter();
     const loginModal = useLoginModal();
 
-    const hasFavorited = useMemo(() => {
+    const isInactive = useMemo(() => {
         const list = currentUser?.favoriteIds || []
 
         return list.includes(listingId)
     }, [listingId, currentUser])
 
 
-const toggleFavorite = useCallback(async (
+const toggleActive = useCallback(async (
         e: React.MouseEvent<HTMLDivElement>
     ) => {
         e.stopPropagation();
@@ -35,7 +35,7 @@ const toggleFavorite = useCallback(async (
         try {
             let request;
 
-            if (hasFavorited) {
+            if (isInactive) {
                 request = () => axios.delete(`/api/favorites/${listingId}`);
             } else {
                 request = () => axios.post(`/api/favorites/${listingId}`);
@@ -48,11 +48,11 @@ const toggleFavorite = useCallback(async (
         }   catch (error) {
             toast.error('something went wrong')
         }
-    }, [currentUser, hasFavorited, listingId, loginModal, router]);
+    }, [currentUser, isInactive, listingId, loginModal, router]);
     
     return {
-        hasFavorited,
-        toggleFavorite
+        isInactive,
+        toggleActive
     }
 }
 

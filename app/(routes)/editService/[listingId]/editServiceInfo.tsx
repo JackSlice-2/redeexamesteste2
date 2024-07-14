@@ -280,7 +280,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           <ListingCategory
           icon={category.icon}
           label={category.label}
-          description={description}
+          description={''}
           />
         )}
         <hr />
