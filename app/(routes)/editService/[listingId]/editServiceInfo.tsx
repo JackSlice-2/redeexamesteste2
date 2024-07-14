@@ -1,10 +1,9 @@
 "use client";
 
 import { SafeListing, SafeUser } from '@/app/types';
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import { IconType } from 'react-icons';
 import ListingCategory from '@/app/components/listings/ServiceCategory';
-import dynamic from 'next/dynamic';
 import { FaTelegram, FaWhatsapp } from 'react-icons/fa';
 import { PiXFill } from 'react-icons/pi';
 import toast, { CheckmarkIcon } from 'react-hot-toast';
@@ -49,7 +48,6 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     payThere,
     startTime,
     endTime,
-    latlng,
     title,
     dates,
     user,

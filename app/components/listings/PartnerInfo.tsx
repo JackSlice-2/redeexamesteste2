@@ -7,10 +7,6 @@ import { BiCopy, BiTrash } from 'react-icons/bi';
 import Image from 'next/image';
 import Button from '../Button';
 
-const Map = dynamic(() => import('../Map'), {
-    ssr: false
-});
-
 interface PartnerInfoProps {
     imageSrc: string;
     title: string;
@@ -97,11 +93,6 @@ return (
             </span>
           </div>
           ))}
-        <div className='p-2 mt-1'>
-         {/*<Map 
-        center={[0,0]}
-        />*/}
-        </div>
         </div>
       </div>
       <div className='mt-3'/>

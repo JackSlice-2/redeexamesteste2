@@ -44,6 +44,23 @@ const ListingClient: React.FC<ListingClientProps> = ({
 
     const [isLoading, setIsLoading] = useState(false)
     const [dateRange, setDateRange] = useState<Range>(initialDateRange);
+    const [deletingId, setDeletingId] = useState('');
+
+    const onCancel = useCallback((id: string) => {
+      setDeletingId(id);
+  
+      axios.delete(`/api/listings/${id}`)
+      .then(() => {
+        toast.success('Serviço Apagado');
+        router.push("/")
+      })
+      .catch((error) => {
+        toast.error(error?.response?.data?.error)
+      })
+      .finally(() => {
+        setDeletingId('');
+      })
+    }, [router]);
 
     const onCreateReservation = useCallback(() => {
         if (!currentUser) {
@@ -86,26 +103,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
         if (confirmed) {
             onCancel(listing.id); 
         }
-      }, [onAction, actionId, disabled]);
+      }, [disabled, listing, onCancel]);
 
-
-      const [deletingId, setDeletingId] = useState('');
-
-      const onCancel = useCallback((id: string) => {
-        setDeletingId(id);
-    
-        axios.delete(`/api/listings/${id}`)
-        .then(() => {
-          toast.success('Serviço Apagado');
-          router.refresh();
-        })
-        .catch((error) => {
-          toast.error(error?.response?.data?.error)
-        })
-        .finally(() => {
-          setDeletingId('');
-        })
-      }, [router]);
 
   return (
         <Container>

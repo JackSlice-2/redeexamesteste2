@@ -1,4 +1,4 @@
-import prisma from "@/app/libs/prismadb"; // adjust the path according to your project structure
+import prisma from "@/app/libs/prismadb";
 import getAllUsers from "./getAllUsers";
 
 export default async function getFavoriteListings() {

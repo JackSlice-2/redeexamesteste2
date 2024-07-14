@@ -31,11 +31,9 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
       setDeletingId(partnerId);
       console.log(`Deleting partner with ID: ${partnerId}`);
     
-      // Adjusted to use query parameter
       axios.delete(`/api/partners/${partnerId}`)
         .then(() => {
           toast.success('Parceiro Apagado');
-          // Refresh the page to reflect changes
           window.location.reload();
         })
         .catch((error) => {
@@ -44,7 +42,7 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
         .finally(() => {
           setDeletingId('');
         })
-    }, []);
+    }, [partnerId]);
     
 
     return (

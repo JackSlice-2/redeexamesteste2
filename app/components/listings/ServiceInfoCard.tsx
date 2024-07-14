@@ -8,6 +8,7 @@ import { FaTelegram, FaWhatsapp } from 'react-icons/fa';
 import { PiXFill } from 'react-icons/pi';
 import { CheckmarkIcon } from 'react-hot-toast';
 import { FieldValues, useForm } from 'react-hook-form';
+import Button from '../Button';
 
 interface ListingInfoProps {
     user: SafeUser;
@@ -40,9 +41,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     locationValue,
     startTime,
     endTime,
-    latlng,
     title,
-    user,
     payThere,
     payNow,
     company,
@@ -57,22 +56,30 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         }
     });
 
+    const handleWhatsAppButton = () => {
+      const url = "https://api.whatsapp.com/send?phone=5551981859157&text=Hello%20from%20React!";
+      window.open(url, '_blank');
+    };
+    const handleTelegramButton = () => {
+      const url = "https://t.me/redeexames?start=+55051981859157";
+      window.open(url, '_blank');
+    };
+
   return (
     <div className='col-span-4 flex flex-col gap-8'>
       <div className="flex flex-col gap-2">
-        <div className="text-xl font-semibold text-center px-10 justify-center flex flex-row items-center gap-2">
-        <a href="https://api.whatsapp.com/send/?phone=5551981859157&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">
-            <div className='bg-green-400 hover:bg-green-600 hover:text-white hover:font-semibold cursor-pointer rounded-2xl text-center p-2 items-center flex gap-1 border-gray-200 border-2 shadow-md' >
-              Chame no whatsApp!
-              <FaWhatsapp className='mr-1' size={30}/> 
-            </div>
-        </a>
-        <a href="https://t.me/redeexames?start=+55051981859157" target="_blank" rel="noopener noreferrer">
-            <div className='bg-blue-400 hover:bg-blue-600 hover:text-white hover:font-semibold cursor-pointer rounded-2xl text-center p-2 items-center flex gap-1 border-gray-200 border-2 shadow-md' >
-              Chame no Telegram!
-              <FaTelegram className='mr-1' size={30}/> 
-            </div>
-        </a>
+        <div className="text-xl font-semibold text-center px-10 justify-center flex flex-col items-center gap-2">
+          <Button 
+          label='Chame no WhatsApp!'
+          onClick={handleWhatsAppButton}
+          green
+          icon={FaWhatsapp}
+          />
+          <Button 
+          label='Chame no Telegram!'
+          onClick={handleTelegramButton}
+          icon={FaTelegram}
+          />
           </div>
           <hr />
             <div className='flex flex-row overflow-x-auto hide-scrollbar font-medium justify-center align-middle items-center'>

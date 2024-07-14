@@ -1,24 +1,15 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from 'react'
-import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
-import { BiCopy, BiTrash } from 'react-icons/bi';
-import Image from 'next/image';
+import { BiTrash } from 'react-icons/bi';
 import Button from '../../../components/Button';
 import { FaFloppyDisk } from 'react-icons/fa6';
-import getCurrentUser from '@/app/actions/getCurrentUser';
 import { SafeUser } from '@/app/types';
 import axios from 'axios';
 import CitySelect from '@/app/components/Inputs/CitySelect';
 import { useRouter } from 'next/navigation';
 import ImageUpload from '@/app/components/Inputs/ImageUpload';
-import { useForm } from 'react-hook-form';
-
-
-const Map = dynamic(() => import('../../../components/Map'), {
-    ssr: false
-});
 
 type CitySelectValue = {
   flag: string;
@@ -212,19 +203,18 @@ return (
           <span>
             {city.label}
           </span> 
-          <button onClick={(event) => {
+          <div className='w-1/3'>
+          <Button
+          label='Remover'
+          onClick={(event) => {
             event.preventDefault();
             removeCity(index);
-          }} className='font-semibold hover:font-bold hover:bg-white rounded-xl p-1'>
-            Remove
-          </button>
+          }}
+          outline
+          />
+        </div>
         </div>
         ))}
-        </div>
-        <div className='p-2 mt-1'>
-         {/*<Map 
-        center={[0,0]}
-        />*/}
         </div>
         </div>
       </div>

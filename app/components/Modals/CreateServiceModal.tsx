@@ -6,7 +6,6 @@ import Heading from '../Heading';
 import { categories } from '../navbar/Categories';
 import CategoryInput from '../Inputs/CategoryInput';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import dynamic from 'next/dynamic';
 import ImageUpload from '../Inputs/ImageUpload';
 import Input from '../Inputs/Input';
 import axios from 'axios';
@@ -87,11 +86,6 @@ useEffect(() => {
     const location = watch('location')
     const latlng = watch('latlng')
     const imageSrc = watch('imageSrc');
-
-    const Map = useMemo(() => dynamic(() => import('../Map'), {
-        ssr: false
-        //Map Depends on location, Ignore warning below
-    }), [location, latlng])
 
     const setCustomValue = (id: string, value: any) => {
         setValue(id, value, {
@@ -290,9 +284,6 @@ useEffect(() => {
           value={location}
           onChange={(value) => setCustomValue('location', value)}
         />
-        {/*<Map
-          center={location?.latlng}
-        />*/}
       </>
     )}
             </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import Modal from './Modal'
 import usePartnerModal from '@/app/hooks/useCreatePartnerModal'
 import Heading from '../Heading';

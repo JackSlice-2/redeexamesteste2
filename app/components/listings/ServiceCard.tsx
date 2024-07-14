@@ -40,11 +40,11 @@ const ListingCard: React.FC<ListingCardProps> = ({
             return;
         }
       
-        const confirmed = window.confirm("Are you sure you want to delete this item?");
+    const confirmed = window.confirm("Are you sure you want to delete this item?");
         if (confirmed) {
             onAction?.(actionId);
         }
-      }, [onAction, actionId, disabled]);
+    }, [onAction, actionId, disabled]);
 
     const pathname = usePathname();
 
@@ -61,73 +61,72 @@ const ListingCard: React.FC<ListingCardProps> = ({
     <div onClick={() => router.push(`/listings/${data.id}`)}>
       <div className="flex flex-col w-full">
         <div className="aspect-square w-full relative overflow-hidden rounded-xl object-fill"
-        style={{ backgroundImage: `url(${data.imageSrc})`, 
-                 backgroundSize: 'cover', 
-                 backgroundPosition: 'center' 
-                }}
-                >
-            <div className="absolute top-3 right-3">
-                <FloppyDiskButton 
-                    listingId={data.id}
-                    currentUser={currentUser}
-                />
-            </div>
+            style={{ backgroundImage: `url(${data.imageSrc})`, 
+                     backgroundSize: 'cover', 
+                     backgroundPosition: 'center' 
+                   }}
+                    >
+        <div className="absolute top-3 right-3">
+            <FloppyDiskButton 
+                listingId={data.id}
+                currentUser={currentUser}
+            />
         </div>
-        <div className="text-md font-semibold w-fit mt-1 hover:text-black">
-            {data.title}
-        </div>
-        <div className=" text-neutral-600 hover:text-black">
-            {data.category}
-        </div>
-        <div className="flex flex-col">
-        <div className="flex flex-row items-center gap-0.5 hover:text-black">
-            {data.locationValue}
-        </div>
-        { currentUser && (
-            <>
-            <div className='text-neutral-600 hover:text-black text-xs '>
+    </div>
+    <div className="text-md font-semibold w-fit mt-1 hover:text-black">
+        {data.title}
+    </div>
+    <div className=" text-neutral-600 hover:text-black">
+        {data.category}
+    </div>
+    <div className="flex flex-col">
+    <div className="flex flex-row items-center gap-0.5 hover:text-black">
+        {data.locationValue}
+    </div>
+    { currentUser && (
+        <div className="text-neutral-600">
+            <div className='hover:text-black'>
                 {data.company} 
-                </div>
-
-                <div className='text-neutral-600 hover:text-black text-sm'>
-                    Pagamento Pix: {data.payNow}
-                </div> 
-                <div className='text-neutral-600 hover:text-black text-sm'>
-                    Pagamento no Local: {data.payThere}
-                </div> 
-                    <div className='text-neutral-600 hover:text-black text-xs '>
-                        {
-                            data.firstComeFirstServe ? 'Ordem de Chegada' 
-                            :
-                            data.byAppointmentOnly ? 'Horario Marcado' 
-                            : 
-                            null
-                        }
-                </div>
-            </>
-            )}
-            {data.dates[0] ?
-            <>
-              <div className='text-neutral-600 hover:text-black text-xs'>
-              Próximo Atendimento: {data.dates[0] ? format(new Date(data.dates[0]), 'dd/MM/yyyy') : ''}
-            </div>  
-              <div className='text-neutral-600 hover:text-black text-xs '>
-                    A partir das: {data.startTime}
-                </div>  
-            </> 
-            :
-            <>
-                <div className='text-neutral-600 hover:text-black text-xs'>
-                    Entre em Contato Para Saber Mais!
-                </div>  
-                <div className='text-neutral-600 hover:text-black text-xs '>
-                    Ligua para saber quando terá atendimento! 
-                </div>  
-            </>
-              }
-
+            </div>
+            <div className='hover:text-black'>
+                Pagamento Pix: {data.payNow}
+            </div> 
+            <div className='hover:text-black'>
+                Pagamento no Local: {data.payThere}
+            </div> 
+            <div className='hover:text-black'>
+                {
+                    data.firstComeFirstServe ? 'Ordem de Chegada' 
+                    :
+                    data.byAppointmentOnly ? 'Horario Marcado' 
+                    : 
+                    null
+                }
             </div>
         </div>
+    )}
+    {data.dates[0] ?
+        <div className='text-neutral-600'>
+            <div className='hover:text-black'>
+                Próximo Atendimento: {data.dates[0] ? format(new Date(data.dates[0]), 'dd/MM/yyyy') : ''}
+            </div>  
+            <div className='hover:text-black'>
+                A partir das: {data.startTime}
+            </div>  
+        </div>
+        :
+        <div className='text-neutral-600'>
+            <div className='hover:text-black'>
+                Entre em Contato Para Saber Mais!
+            </div>  
+            <div className='hover:text-black'>
+                Ligua para saber quando terá atendimento! 
+            </div>  
+            </div>  
+            }
+
+        </div>
+    </div>
         </div>
         {onAction && actionLabel && (
             <Button 
