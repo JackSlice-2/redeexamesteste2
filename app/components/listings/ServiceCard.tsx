@@ -143,7 +143,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             />
         )}
         {!currentUser &&
-           <div className="text-center justify-center gap-1 flex mt-2">
+           <div className="text-center justify-center gap-1 flex mt-3">
             <Button
             label='Chame no WhatsApp!'
             onClick={() => {}}
