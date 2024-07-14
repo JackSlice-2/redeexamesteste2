@@ -5,7 +5,6 @@ import ListingHead from '@/app/components/listings/ServiceHead';
 import { SafePartner, SafeUser } from '@/app/types';
 import React, { useCallback, useState } from 'react';
 import PartnerInfo from '@/app/components/listings/PartnerInfo';
-import Heading from '@/app/components/Heading';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Button from '@/app/components/Button';
@@ -41,7 +40,7 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
         .then(() => {
           toast.success('Parceiro Apagado');
           // Refresh the page to reflect changes
-          window.location.reload();
+          router.push('/partners')
         })
         .catch((error) => {
           toast.error(error?.response?.data?.error)
@@ -49,7 +48,7 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
         .finally(() => {
           setDeletingId('');
         })
-    }, []);
+    }, [partnerId, router]);
     
 
     return (

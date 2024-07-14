@@ -22,7 +22,7 @@ const Logo: React.FC<LogoProps> = ({
       <Image
       onClick={() => router.push('/')}
           alt='Logo'
-          className='block cursor-pointer'
+          className='block cursor-pointer ml-2'
           height={height}
           width={width}
           priority
