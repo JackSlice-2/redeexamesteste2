@@ -38,11 +38,7 @@ const Home = async ({ searchParams }: HomeProps) => {
           <div className="grid pt-56 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
             {listings.map((listing, index) => (
               <div key={listing.id} 
-              className={`rounded-xl p-1 
-              ${index % 2 === 0 ? 'hover:text-blue-700' : 'hover:text-blue-700'}
-              ${index % 2 === 0 ? 'hover:bg-blue-400' : 'hover:bg-blue-400'}
-              ${index % 2 === 0 ? 'bg-blue-200' : 'bg-blue-300'}
-              `}>
+              className='rounded-xl p-1 hover:text-blue-700 bg-blue-200 hover:bg-blue-400'>
               <ListingCard
                 locationValue="location"
                 currentUser={currentUser}
