@@ -74,12 +74,6 @@ const PartnerModal = () => {
                 return;
             }
             break;
-        case STEPS.IMAGES:
-            if (!imageSrc) {
-                toast.error('Image is required');
-                return;
-            }
-            break;
             case STEPS.CONTACT:
             if (!phone) {
                 toast.error('Telefone de Contato is required');
@@ -96,6 +90,10 @@ const PartnerModal = () => {
         if (step != STEPS.IMAGES) {
             return onNext();
         }
+            if (!imageSrc) {
+                toast.error('Image is required');
+                return;
+            }
         setIsLoading(true); 
         //(console.log(data))
         

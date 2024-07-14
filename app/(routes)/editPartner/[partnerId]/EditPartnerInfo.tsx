@@ -57,9 +57,7 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
 }) => {
 
   const [selectedCity, setSelectedCity] = useState<CitySelectValue | null>(null);
-console.log("LIVE selectedCity",selectedCity)
-console.log("LIVE cities prop",cities)
-const router = useRouter()
+  const router = useRouter()
 
 useEffect(() => {
   if (cities && cities.length > 0) {
@@ -89,7 +87,6 @@ useEffect(() => {
     website: website || '',
     cities: cities ? cities.map(city => ({ label: city })) : [],
     });
-  console.log(formData)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
@@ -106,7 +103,6 @@ useEffect(() => {
       return;
     }  
     try {
-      console.log(`URL: /api/partners/${partnerId}`);
       const response = await axios.patch(`/api/partners/${partnerId}`, formData, {
         headers: {
           'Content-Type': 'application/json',
@@ -114,11 +110,9 @@ useEffect(() => {
         },
       });
   
-      console.log('Partner updated successfully:', response.data);
       toast.success('Partner updated successfully');
       router.push(`/partners/${partnerId}`);
     } catch (error) {
-      console.error('Error submitting form:', error);
       toast.error('An error occurred after submitting the form.');
     }
   };

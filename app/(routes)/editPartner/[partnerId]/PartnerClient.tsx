@@ -28,7 +28,6 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
 
     const onCancel = useCallback((id: string) => {
       setDeletingId(partnerId);
-      console.log(`Deleting partner with ID: ${partnerId}`);
     
       axios.delete(`/api/partners/${partnerId}`)
         .then(() => {

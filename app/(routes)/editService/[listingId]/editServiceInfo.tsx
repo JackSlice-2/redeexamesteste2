@@ -59,11 +59,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
   const [selectedDates, setSelectedDates] = useState<Date[]>(dates.map(dateStr => new Date(dateStr)));
 
   const [FirstComeFirstServe, setFirstComeFirstServe] = useState(firstComeFirstServe);
-  console.log(firstComeFirstServe)
-  console.log(FirstComeFirstServe)
   const [ByAppointmentOnly, setByAppointmentOnly] = useState(byAppointmentOnly);
-  console.log(byAppointmentOnly);
-  console.log(ByAppointmentOnly);
 
 
     const {
@@ -89,7 +85,6 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         company: company,
         imageSrc: imageSrc
       });
-      console.log(formData)
 
       const updateFormData = () => {
         setFormData({
@@ -118,10 +113,6 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       const currentUrl = window.location.href;
       const listingId = currentUrl.split("/").pop();
       const router = useRouter();
-      console.log("byAppointmentOnly", byAppointmentOnly)
-      console.log("ByAppointmentOnly", ByAppointmentOnly)
-      console.log("firstComeFirstServe", firstComeFirstServe)
-      console.log("FirstComeFirstServe", FirstComeFirstServe)
 
       
       const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -158,7 +149,6 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
             },
           });
       
-          console.log('Service updated successfully:', response.data);
           toast.success('Service updated successfully');
           router.push(`/listings/${listingId}`)
         } catch (error) {

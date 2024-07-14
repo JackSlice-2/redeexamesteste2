@@ -52,10 +52,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
     if (isInactive && pathname !== '/inactiveAds' && pathname !== '/partners') {
         return null;
     }
-    
-    if (!data.dates[0]){
-     console.log("EXPIRED",data.title)
-    }
 
   return (
     <div className='col-span-1 cursor-pointer group rounded-md p-3 font-semibold'>
