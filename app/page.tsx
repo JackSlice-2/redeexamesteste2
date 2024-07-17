@@ -16,6 +16,7 @@ const Home = async ({ searchParams }: HomeProps) => {
   const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
 
+  // Sort listings randomly
   listings.sort(() => Math.random() - 0.5);
 
   if (listings.length === 0) {
@@ -30,27 +31,21 @@ const Home = async ({ searchParams }: HomeProps) => {
     <>
       <ClientOnly>
         <Container>
-          {currentUser ? (
-        <p className="text-lg font-bold translate-y-48 text-black">
-          Serviços Totais: {listings.length}
-        </p>
-          ): null}
-          <div className="grid pt-56 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
-            {listings.map((listing, index) => (
-              <div key={listing.id}>
-              <ServiceCard
-                locationValue="location"
-                currentUser={currentUser}
-                key={listing.id}
-                data={listing}
-              />
-              </div>
-            ))}
+          <div className="grid pt-60 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
+            {listings.map((listing) => {
+              return (
+                <ServiceCard
+                  locationValue="location"
+                  currentUser={currentUser}
+                  key={listing.id}
+                  data={listing}
+                />
+              );
+            })}
           </div>
         </Container>
       </ClientOnly>
     </>
   );
 };
-
 export default Home;

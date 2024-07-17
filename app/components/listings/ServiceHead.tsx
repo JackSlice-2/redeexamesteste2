@@ -1,7 +1,7 @@
 "use client";
 
 import { SafeUser } from '@/app/types';
-import React, { ReactComponentElement } from 'react'
+import React from 'react'
 import Heading from '../Heading';
 import Image from 'next/image';
 import FloppyDiskButton from '../FloppyDiskButton';

@@ -19,7 +19,6 @@ type CitySelectValue = {
   value: string;
 };
 
-
 interface PartnerInfoProps {
     imageSrc: string;
     title: string;
