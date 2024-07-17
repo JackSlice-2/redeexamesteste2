@@ -19,7 +19,7 @@ const Logo: React.FC<LogoProps> = ({
 
   return (
     <div className='text-white font-semibold text-xl -mt-7'>
-      <Image
+      <Image 
       onClick={() => router.push('/')}
           alt='Logo'
           className='block cursor-pointer ml-2'

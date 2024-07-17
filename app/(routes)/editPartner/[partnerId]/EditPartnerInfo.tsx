@@ -162,7 +162,7 @@ return (
           Para Editar a Imagem, Cliqua nela!
              <div className='p-2 border-gray-400 flex justify-center items-center border rounded-xl'>
               <ImageUpload
-                onChange={(value) => setValue("imageSrc", value)}
+                onChange={(value:any) => setValue("imageSrc", value)}
                 value={imageSrc}
               />
           </div>

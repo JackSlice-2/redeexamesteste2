@@ -22,7 +22,8 @@ const ServiceCategory: React.FC<ServiceCategoryProps> = ({
       <div className="flex flex-row items-center gap-4">
       {imageSrc ? (
         <>
-          <Image src={imageSrc} width={50} height={50} alt={label} className='w-16 h-16 rounded-lg' /> 
+          <Image 
+            loading="lazy" src={imageSrc} width={50} height={50} alt={label} className='w-16 h-16 rounded-lg' /> 
         </>
       ) : Icon ? (
         <Icon size={40} className='text-neutral-600' />

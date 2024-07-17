@@ -52,7 +52,8 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
                     </div>
                     {value && (
                         <div className="absolute inset-0 w-full h-full">
-                            <Image
+                            <Image 
+                            loading="lazy"
                             sizes='100% 100%'
                             alt='upload'
                             fill

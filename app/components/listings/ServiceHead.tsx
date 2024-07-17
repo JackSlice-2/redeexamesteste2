@@ -31,7 +31,8 @@ const ServiceHead: React.FC<ServiceHeadProps> = ({
     subtitle={locationValue}
     />
     <div className="w-full md:w-5/6 h-[50vh] mx-auto overflow-hidden rounded-xl relative border-2 p-1 border-neutral-500/50 object-contain">
-        <Image
+        <Image 
+        loading="lazy"
         alt='image'
         src={imageSrc}
         fill

@@ -421,7 +421,7 @@ useEffect(() => {
                 <div className='max-h-64'>
                     <ImageUpload
                     value={imageSrc}
-                    onChange={(value) => setCustomValue('imageSrc', value)}
+                    onChange={(value:any) => setCustomValue('imageSrc', value)}
                     />
                 </div>
             </div>

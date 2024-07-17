@@ -22,7 +22,8 @@ const PartnerCard: React.FC<PartnerCardProps> = ({
     >
       <div className="flex flex-col w-full">
         <div className="aspect-square w-full relative overflow-hidden rounded-xl">
-            <Image
+            <Image 
+            loading="lazy"
             sizes='100%' 
             fill
             alt='partner'

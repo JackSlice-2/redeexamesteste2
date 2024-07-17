@@ -72,7 +72,8 @@ return (
             <hr />
           <div className='pb-2'/>
              <div className='p-2 border-gray-400 flex justify-center items-center border rounded-xl'>
-             <Image
+             <Image 
+              loading="lazy"
               alt='image'
               src={imageSrc}
               width={100}

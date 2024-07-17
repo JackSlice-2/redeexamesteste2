@@ -18,7 +18,8 @@ const CompanyInput: React.FC<CompanyInputProps> = ({ partner, selected, onClick 
       ${selected? 'hover:bg-blue-900' : ''}
       ${selected? 'border-blue-900' : ''}
       `}>
-          <Image src={partner.imageSrc} alt={partner.title} width={80} height={40} />
+          <Image 
+            loading="lazy" src={partner.imageSrc} alt={partner.title} width={80} height={40} />
           <div className='font-bold'>{partner.title}</div>
       </div>
   );
