@@ -4,14 +4,14 @@ import Image from 'next/image';
 import React from 'react'
 import { IconType } from 'react-icons';
 
-interface ListingCategoryProps {
+interface ServiceCategoryProps {
     icon?: IconType;
     imageSrc?: string;
     label: string;
     description: string;
 }
 
-const ListingCategory: React.FC<ListingCategoryProps> = ({
+const ServiceCategory: React.FC<ServiceCategoryProps> = ({
     icon: Icon,
     imageSrc,
     label,
@@ -40,4 +40,4 @@ const ListingCategory: React.FC<ListingCategoryProps> = ({
   )
 }
 
-export default ListingCategory
+export default ServiceCategory

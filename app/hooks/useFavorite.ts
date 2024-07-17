@@ -37,16 +37,17 @@ const toggleActive = useCallback(async (
 
             if (isInactive) {
                 request = () => axios.delete(`/api/favorites/${listingId}`);
+            toast.success('Serviço Reativado com Sucesso!');
             } else {
                 request = () => axios.post(`/api/favorites/${listingId}`);
+            toast.success('Serviço Desativado com Sucesso!');
             }
 
             await request();
             router.refresh();
-            toast.success('Item Arquivado');
 
         }   catch (error) {
-            toast.error('something went wrong')
+            toast.error('Algo deu errado! Se persistir Contate o Administrador.')
         }
     }, [currentUser, isInactive, listingId, loginModal, router]);
     

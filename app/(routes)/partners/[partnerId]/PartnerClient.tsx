@@ -1,7 +1,7 @@
 "use client";
 
 import Container from '@/app/components/Container';
-import ListingHead from '@/app/components/listings/ServiceHead';
+import ServiceHead from '@/app/components/listings/ServiceHead';
 import { SafePartner, SafeUser } from '@/app/types';
 import React, { useCallback, useState } from 'react';
 import PartnerInfo from '@/app/components/listings/PartnerInfo';
@@ -48,7 +48,7 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
         <Container>
             <div className="max-w-screen-lg mx-auto mt-20">
                 <div className="flex flex-col gap-6">
-                    <ListingHead
+                    <ServiceHead
                     title={partner.title}
                     imageSrc={partner.imageSrc}
                     //@ts-ignore

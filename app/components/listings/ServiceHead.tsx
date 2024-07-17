@@ -6,7 +6,7 @@ import Heading from '../Heading';
 import Image from 'next/image';
 import FloppyDiskButton from '../FloppyDiskButton';
 
-interface ListingHeadProps {
+interface ServiceHeadProps {
     title: string;
     locationValue: string;
     imageSrc: string;
@@ -15,7 +15,7 @@ interface ListingHeadProps {
     floppyDiskButton?: Boolean;
 }
 
-const ListingHead: React.FC<ListingHeadProps> = ({
+const ServiceHead: React.FC<ServiceHeadProps> = ({
     title,
     locationValue,
     imageSrc,
@@ -50,4 +50,4 @@ const ListingHead: React.FC<ListingHeadProps> = ({
   )
 }
 
-export default ListingHead
+export default ServiceHead

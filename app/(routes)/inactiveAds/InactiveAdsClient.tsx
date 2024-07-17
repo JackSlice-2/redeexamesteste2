@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeListing, SafeUser } from '../../types';
 import Container from '../../components/Container';
 import Heading from '../../components/Heading';
-import ListingCard from '../../components/listings/ServiceCard';
+import ServiceCard from '../../components/listings/ServiceCard';
 
 interface FavoritesClientProps {
     listings: SafeListing[];
@@ -19,7 +19,7 @@ const FavoritesClient: React.FC<FavoritesClientProps> = ({ listings, users }) =>
             <Heading title='Serviços Inativos' subtitle='Lists de Serviços Desativados' />
             <div className="mt-10 gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
                 {uniqueListings.map((listing) => (
-                    <ListingCard
+                    <ServiceCard
                         locationValue="location"
                         key={listing.id}
                         data={listing}

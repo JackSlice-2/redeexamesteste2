@@ -3,7 +3,7 @@
 import { SafeListing, SafeUser } from '@/app/types';
 import React, { useState } from 'react'
 import { IconType } from 'react-icons';
-import ListingCategory from '@/app/components/listings/ServiceCategory';
+import ServiceCategory from '@/app/components/listings/ServiceCategory';
 import { FaTelegram, FaWhatsapp } from 'react-icons/fa';
 import { PiXFill } from 'react-icons/pi';
 import toast, { CheckmarkIcon } from 'react-hot-toast';
@@ -16,7 +16,7 @@ import ImageUpload from '@/app/components/Inputs/ImageUpload';
 import Button from '@/app/components/Button';
 import { ptBR } from 'date-fns/locale';
 
-interface ListingInfoProps {
+interface ServiceInfoProps {
     user: SafeUser;
     data: SafeListing;
     description: string;
@@ -39,7 +39,7 @@ interface ListingInfoProps {
     company: string;
 }
 
-const ListingInfo: React.FC<ListingInfoProps> = ({
+const ServiceInfo: React.FC<ServiceInfoProps> = ({
     description,
     firstComeFirstServe,
     byAppointmentOnly,
@@ -309,7 +309,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           <hr />
           
         {category && (
-          <ListingCategory
+          <ServiceCategory
           icon={category.icon}
           label={category.label}
           description={''}
@@ -408,4 +408,4 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
   )
 }
 
-export default ListingInfo
+export default ServiceInfo

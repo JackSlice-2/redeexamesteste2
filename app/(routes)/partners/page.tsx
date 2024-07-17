@@ -3,7 +3,7 @@ import getPartners, { IPartnersParams } from "../../actions/getPartners";
 import ClientOnly from "../../components/ClientOnly";
 import Container from "../../components/Container";
 import EmptyState from "../../components/EmptyState";
-import ListingCard from "../../components/listings/PartnerCard";
+import ServiceCard from "../../components/listings/PartnerCard";
 
 interface PartnerPageProps {
   searchParams: IPartnersParams
@@ -40,7 +40,7 @@ const PartnerPage = async ({ searchParams }: PartnerPageProps) => {
             ${index % 2 === 0 ? 'hover:bg-blue-400' : 'hover:bg-blue-400'}
             ${index % 2 === 0 ? 'bg-blue-200' : 'bg-blue-300'}
             `}>
-            <ListingCard
+            <ServiceCard
             data={partner}
             currentUser={currentUser}
             key={partner.id}

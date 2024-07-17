@@ -4,7 +4,7 @@ import getListings, { IListingsParams } from "./actions/getServices";
 import ClientOnly from "./components/ClientOnly";
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
-import ListingCard from "./components/listings/ServiceCard";
+import ServiceCard from "./components/listings/ServiceCard";
 
 interface HomeProps {
   searchParams: IListingsParams;
@@ -37,9 +37,8 @@ const Home = async ({ searchParams }: HomeProps) => {
           ): null}
           <div className="grid pt-56 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
             {listings.map((listing, index) => (
-              <div key={listing.id} 
-              className='rounded-xl p-1 hover:text-blue-700 bg-blue-200 hover:bg-blue-400'>
-              <ListingCard
+              <div key={listing.id}>
+              <ServiceCard
                 locationValue="location"
                 currentUser={currentUser}
                 key={listing.id}

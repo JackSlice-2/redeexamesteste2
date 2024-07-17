@@ -1,8 +1,8 @@
 "use client";
 
 import Container from '@/app/components/Container';
-import ListingHead from '@/app/components/listings/ServiceHead';
-import ListingInfo from './editServiceInfo';
+import ServiceHead from '@/app/components/listings/ServiceHead';
+import ServiceInfo from './editServiceInfo';
 import ListingReservation from '@/app/components/listings/Calendar';
 import { categories } from '@/app/components/navbar/Categories';
 import useLoginModal from '@/app/hooks/useLoginModal';
@@ -72,7 +72,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
         <Container>
             <div className="max-w-screen-lg mx-auto mt-20">
                 <div className="flex flex-col gap-6">
-                    <ListingHead
+                    <ServiceHead
                     title={listing.title}
                     imageSrc={listing.imageSrc}
                     //@ts-ignore
@@ -82,7 +82,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                     floppyDiskButton
                     />
                     <div className="mt-6">
-                        <ListingInfo
+                        <ServiceInfo
                         startTime={listing.startTime || 'No Start Time'}
                         endTime={listing.endTime || 'No End Time'}
                         dates={listing.dates}

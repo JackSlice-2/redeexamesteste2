@@ -61,13 +61,12 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
 
 useEffect(() => {
   if (cities && cities.length > 0) {
-    // Assuming cities[0] contains the city name and you have a way to fetch or derive the rest of the properties needed for CitySelectValue
     const cityObject: CitySelectValue = {
-      flag: '', // You need to fill this based on your application's requirements
-      label: cities[0], // Assuming cities[0] is the city name
-      latlng: [0, 0], // Placeholder values, replace with actual coordinates
-      region: '', // Placeholder, replace with actual region
-      value: cities[0], // Assuming the value is the same as the city name
+      flag: '',
+      label: cities[0],
+      latlng: [0, 0],
+      region: '',
+      value: cities[0],
     };
 
     setSelectedCity(cityObject);

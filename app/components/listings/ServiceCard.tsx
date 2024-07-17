@@ -8,9 +8,8 @@ import FloppyDiskButton from '../FloppyDiskButton';
 import Button from '../Button';
 import useFavorite from '@/app/hooks/useFavorite';
 import { BiPencil, BiTrash } from 'react-icons/bi';
-import { FaTelegram, FaWhatsapp } from 'react-icons/fa';
 
-interface ListingCardProps {
+interface ServiceCardProps {
     data: SafeListing;
     currentUser?: SafeUser | null;
     locationValue: string;
@@ -21,7 +20,7 @@ interface ListingCardProps {
     actionId?: string;
 }
 
-const ListingCard: React.FC<ListingCardProps> = ({
+const ServiceCard: React.FC<ServiceCardProps> = ({
     data,
     onAction,
     actionLabel,
@@ -48,13 +47,14 @@ const ListingCard: React.FC<ListingCardProps> = ({
     }, [onAction, actionId, disabled]);
 
     const pathname = usePathname();
-
+    
     if (isInactive && pathname !== '/inactiveAds' && pathname !== '/partners') {
         return null;
     }
 
+
   return (
-    <div className='col-span-1 cursor-pointer group rounded-md p-3 font-semibold'>
+    <div className='col-span-1 cursor-pointer group font-semibold rounded-xl p-3 hover:text-blue-700 bg-blue-200 hover:bg-blue-400'>
     <div onClick={() => router.push(`/listings/${data.id}`)}>
       <div className="flex flex-col w-full">
         <div className="aspect-square w-full relative overflow-hidden rounded-xl object-fill"
@@ -161,4 +161,4 @@ const ListingCard: React.FC<ListingCardProps> = ({
   )
 }
 
-export default ListingCard
+export default ServiceCard
