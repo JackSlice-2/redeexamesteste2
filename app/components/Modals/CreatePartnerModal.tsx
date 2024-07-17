@@ -221,8 +221,7 @@ const PartnerModal = () => {
                 subtitle='Uma foto Illustrando o Serviço'
                 />
                 <div className='max-h-64'>
-                    <Image 
-loading="lazy"Upload
+                    <ImageUpload
                     value={imageSrc}
                     onChange={(value) => setCustomValue('imageSrc', value)}
                     />

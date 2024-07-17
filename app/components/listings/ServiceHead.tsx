@@ -36,7 +36,7 @@ const ServiceHead: React.FC<ServiceHeadProps> = ({
         alt='image'
         src={imageSrc}
         fill
-        className='object-fill w-full'
+        className='object-cover w-full'
         />
       {floppyDiskButton && (
         <div className="absolute top-5 right-5">

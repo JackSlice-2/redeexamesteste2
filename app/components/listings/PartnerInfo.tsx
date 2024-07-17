@@ -55,7 +55,7 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
       return;
   }
 
-  const confirmed = window.confirm("Are you sure you want to delete this item?");
+  const confirmed = window.confirm("Clique em OK para Apagar e clique em CANCEL para voltar");
   if (confirmed) {
       onAction?.(actionId);
   }
@@ -66,10 +66,12 @@ return (
   <div className='flex justify-between w-full'>
     <div className='w-1/2 flex flex-col gap-8'>
       <div className="flex flex-col gap-2">
-        <div className="text-3xl font-bold flex flex-row items-center gap-2 pb-8 pt-3">
-            <div>Parceiro Atual: {title}</div>
+        <div className="text-3xl font-bold flex items-center gap-2 pb-8 pt-3">
+          <div className='text-neutral-500 font-semibold'>
+            Parceiro Atual: 
           </div>
-            <hr />
+            {title}
+          </div>
           <div className='pb-2'/>
              <div className='p-2 border-gray-400 flex justify-center items-center border rounded-xl'>
              <Image 
@@ -77,8 +79,8 @@ return (
               alt='image'
               src={imageSrc}
               width={100}
-              height={75}
-              className='object-cover w-full rounded-md'
+              height={100}
+              className='object-contain w-full rounded-md'
               />
           </div>
         </div>

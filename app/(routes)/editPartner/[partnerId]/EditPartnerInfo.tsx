@@ -278,9 +278,6 @@ return (
           />
             </div>
           </div>
-          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
-          >
-          </div>
       </div>
     </div>
       <div className='pt-5'/>

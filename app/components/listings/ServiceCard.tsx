@@ -40,7 +40,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             return;
         }
       
-    const confirmed = window.confirm("Are you sure you want to delete this item?");
+    const confirmed = window.confirm("Clique em OK para Apagar e clique em CANCEL para voltar");
         if (confirmed) {
             onAction?.(actionId);
         }
