@@ -104,7 +104,7 @@ useEffect(() => {
     switch (step) {
         case STEPS.CATEGORY:
             if (!category) {
-                toast.error('Category is required');
+                toast.error('Category é required');
                 return;
             }
             break;
@@ -124,13 +124,13 @@ useEffect(() => {
                 const byAppointmentOnly = watch('byAppointmentOnly');
                 const firstComeFirstServe = watch('firstComeFirstServe');
                 if (byAppointmentOnly === firstComeFirstServe) {
-                    toast.error('PorFavor Selecione o tipo de atendimento');
+                    toast.error('Porfavor selecione o tipo de atendimento');
                     return;
                 }
                 break;
         case STEPS.IMAGES:
             if (!imageSrc) {
-                toast.error('Image is required');
+                toast.error('É preciso ter uma imagem ma Imagem');
                 return;
             }
             break;
@@ -146,7 +146,7 @@ useEffect(() => {
             return onNext();
         }
         if (step === STEPS.CALENDAR && selectedDates.length === 0) {
-            toast.error('At least one date must be selected');
+            toast.error('É preciso preencher no minimo uma data');
             return;
         }
     
@@ -178,7 +178,7 @@ useEffect(() => {
         })
         .catch(() => {
             //console.log(errors)
-            toast.error('Algo Deu Errado');
+            toast.error('Um Erro Occoreu. Se Persistir Entre em Contato com o Adminsitrador');
         }).finally(() => {
             setIsLoading(false);
         })

@@ -1,7 +1,6 @@
 "use client";
 
 import Container from '@/app/components/Container';
-import ServiceHead from '@/app/components/listings/ServiceHead';
 import { SafePartner, SafeUser } from '@/app/types';
 import React, { useCallback, useState } from 'react';
 import PartnerInfo from './EditPartnerInfo';
@@ -31,7 +30,7 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
     
       axios.delete(`/api/partners/${partnerId}`)
         .then(() => {
-          toast.success('Parceiro Apagado');
+          toast.success('Parceiro Apagado com Sucesso!');
           window.location.reload();
         })
         .catch((error) => {
@@ -42,19 +41,10 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
         })
     }, [partnerId]);
     
-
     return (
         <Container>
             <div className="max-w-screen-lg mx-auto mt-20">
                 <div className="flex flex-col gap-6">
-                    <ServiceHead
-                    title={`Editando: ${partner.title}`}
-                    imageSrc={partner.imageSrc}
-                    //@ts-ignore
-                    locationValue={partner.locationValue}
-                    id={partner.id}
-                    currentUser={currentUser}
-                    />
                     <div className="grid-cols-1 md:grid-cols-7 md:gap-10 mt-6">
                         <PartnerInfo
                             title={partner.title}
@@ -72,7 +62,6 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
                             cities={partner.cities || []}
                         />
                     </div>
-                   
                 </div>
             </div>
         </Container>

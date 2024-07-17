@@ -3,21 +3,9 @@
 import Container from '@/app/components/Container';
 import ServiceHead from '@/app/components/listings/ServiceHead';
 import ServiceInfo from './editServiceInfo';
-import ListingReservation from '@/app/components/listings/Calendar';
 import { categories } from '@/app/components/navbar/Categories';
-import useLoginModal from '@/app/hooks/useLoginModal';
 import { SafeListing, SafeUser } from '@/app/types';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import React, { useCallback, useMemo, useState } from 'react'
-import { Range } from 'react-date-range';
-import toast from 'react-hot-toast';
-
-const initialDateRange = {
-    startDate: new Date(),
-    endDate: new Date(),
-    key: 'selection'
-};
+import React, { useMemo } from 'react'
 
 interface ListingClientProps {
     listing: SafeListing & {
@@ -31,38 +19,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
     currentUser,
 }) => {
 
-    const loginModel = useLoginModal();
-    const router = useRouter();
-
-    const [isLoading, setIsLoading] = useState(false)
-    const [dateRange, setDateRange] = useState<Range>(initialDateRange);
-
-    const onCreateReservation = useCallback(() => {
-        if (!currentUser) {
-            return loginModel.onOpen();
-        }
-
-        setIsLoading(true)
-        
-        axios.post('/api/reservations', {
-            startDate: dateRange.startDate,
-            endDate: dateRange.endDate,
-            listingId: listing?.id
-        })
-        .then(() => {
-            toast.success('Listing Reserved');
-            setDateRange(initialDateRange);
-
-            router.push('/trips')
-        })
-        .catch(() => {
-            toast.error('something went wrong');
-        })
-        .finally(() => {
-            setIsLoading(false)
-        })
-    }, [dateRange, listing?.id, router, currentUser, loginModel])
-
     const category = useMemo(() => {
         return categories.find((item) =>
         item.label === listing.category);
@@ -72,15 +28,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
         <Container>
             <div className="max-w-screen-lg mx-auto mt-20">
                 <div className="flex flex-col gap-6">
-                    <ServiceHead
-                    title={listing.title}
-                    imageSrc={listing.imageSrc}
-                    //@ts-ignore
-                    locationValue={listing.locationValue}
-                    id={listing.id}
-                    currentUser={currentUser}
-                    floppyDiskButton
-                    />
                     <div className="mt-6">
                         <ServiceInfo
                         startTime={listing.startTime || 'No Start Time'}

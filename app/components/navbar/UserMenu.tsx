@@ -96,11 +96,11 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   <MenuItem onClick={() => {router.push('/'); closeMenu();}}
                   label='Início'
                   />
-                  <MenuItem onClick={() => {router.push('/inactiveAds'); closeMenu();}}
-                  label='Serviços Inativos'
-                  />
                   <MenuItem onClick={() => {router.push('/partners'); closeMenu();}}
                   label='Meus Parceiros'
+                  />
+                  <MenuItem onClick={() => {router.push('/inactiveAds'); closeMenu();}}
+                  label='Serviços Inativos'
                   />
                   <MenuItem onClick={onRent}
                   label='Criar Novo Serviço'

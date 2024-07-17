@@ -5,21 +5,13 @@ import ServiceHead from '@/app/components/listings/ServiceHead';
 import ServiceInfo from '@/app/components/listings/ServiceInfoCard';
 import ListingReservation from '@/app/components/listings/Calendar';
 import { categories } from '@/app/components/navbar/Categories';
-import useLoginModal from '@/app/hooks/useLoginModal';
 import { SafeListing, SafeUser } from '@/app/types';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React, { useCallback, useMemo, useState } from 'react'
-import { Range } from 'react-date-range';
 import toast from 'react-hot-toast';
 import { BiPencil, BiTrash } from 'react-icons/bi';
 import Button from '@/app/components/Button';
-
-const initialDateRange = {
-    startDate: new Date(),
-    endDate: new Date(),
-    key: 'selection'
-};
 
 interface ListingClientProps {
     listing: SafeListing & {
@@ -37,11 +29,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
     disabled,
 }) => {
 
-    const loginModel = useLoginModal();
     const router = useRouter();
 
-    const [isLoading, setIsLoading] = useState(false)
-    const [dateRange, setDateRange] = useState<Range>(initialDateRange);
     const [deletingId, setDeletingId] = useState('');
 
     const onCancel = useCallback((id: string) => {
@@ -49,7 +38,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
   
       axios.delete(`/api/listings/${id}`)
       .then(() => {
-        toast.success('Serviço Apagado');
+        toast.success('Serviço Apagado com Sucesso');
         router.push("/")
       })
       .catch((error) => {
@@ -59,32 +48,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
         setDeletingId('');
       })
     }, [router]);
-
-    const onCreateReservation = useCallback(() => {
-        if (!currentUser) {
-            return loginModel.onOpen();
-        }
-
-        setIsLoading(true)
-        
-        axios.post('/api/reservations', {
-            startDate: dateRange.startDate,
-            endDate: dateRange.endDate,
-            listingId: listing?.id
-        })
-        .then(() => {
-            toast.success('Listing Reserved');
-            setDateRange(initialDateRange);
-
-            router.push('/trips')
-        })
-        .catch(() => {
-            toast.error('something went wrong');
-        })
-        .finally(() => {
-            setIsLoading(false)
-        })
-    }, [dateRange, listing?.id, router, currentUser, loginModel])
 
     const category = useMemo(() => {
         return categories.find((item) =>
@@ -140,9 +103,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                             <ListingReservation
                             endTime={listing.endTime || 'No End Time'}
                             dates={listing.dates}
-                            dateRange={dateRange}
-                            onSubmit={onCreateReservation}
-                            disabled={isLoading}
+                            
                             />
                         </div>
                     </div>

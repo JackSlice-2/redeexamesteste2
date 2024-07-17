@@ -4,7 +4,6 @@ import { SafeListing, SafeUser } from '@/app/types';
 import React, { useState } from 'react'
 import { IconType } from 'react-icons';
 import ServiceCategory from '@/app/components/listings/ServiceCategory';
-import { FaTelegram, FaWhatsapp } from 'react-icons/fa';
 import { PiXFill } from 'react-icons/pi';
 import toast, { CheckmarkIcon } from 'react-hot-toast';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -13,7 +12,6 @@ import axios from 'axios';
 import { DayPicker } from 'react-day-picker';
 import { useRouter } from 'next/navigation';
 import ImageUpload from '@/app/components/Inputs/ImageUpload';
-import Button from '@/app/components/Button';
 import { ptBR } from 'date-fns/locale';
 
 interface ServiceInfoProps {
@@ -61,15 +59,12 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
   const [FirstComeFirstServe, setFirstComeFirstServe] = useState(firstComeFirstServe);
   const [ByAppointmentOnly, setByAppointmentOnly] = useState(byAppointmentOnly);
 
-
     const {
-        watch,
     } = useForm<FieldValues>({
         defaultValues: {
             location: null,
         }
     });
-
     
     const [formData, setFormData] = useState({
         title: title || '',
@@ -117,22 +112,15 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
       
       const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-      
-        if (!user) {
-          toast.error('No currentUser');
-          return;
-        }  
+
         const datesStringArray = selectedDates.map(date => date.toISOString());
+        const payNowNumber = Number(formData.payNow);
+        const payThereNumber = Number(formData.payThere);
 
-           // Parse payNow and payThere to numbers
-    const payNowNumber = Number(formData.payNow);
-    const payThereNumber = Number(formData.payThere);
-
-    // Validate the parsed numbers
-    if (isNaN(payNowNumber) || isNaN(payThereNumber)) {
-      toast.error('Invalid payment amount entered');
+      if (isNaN(payNowNumber) || isNaN(payThereNumber)) {
+        toast.error('Invalid payment amount entered');
       return;
-    }
+      }
 
     const dataToSend = {
       ...formData,
@@ -149,11 +137,10 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
             },
           });
       
-          toast.success('Service updated successfully');
+          toast.success('Serviço Atualizado com Sucesso!');
           router.push(`/listings/${listingId}`)
         } catch (error) {
-          console.error('Error submitting form:', error);
-          toast.error('An error occurred after submitting the form.');
+          toast.error('Um Erro Occoreu. Se Persistir Entre em Contato com o Adminsitrador');
         }
       };
     
@@ -169,14 +156,14 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
 
     const toggleFirstComeFirstServe = (event: any) => {
       event.preventDefault();
-      setFirstComeFirstServe(prevState => true); // Toggle the value
+      setFirstComeFirstServe(prevState => true);
       setByAppointmentOnly(prevState => false); 
       updateFormData();
     };
     
     const toggleByAppointmentOnly = (event: any) => {
       event.preventDefault();
-      setByAppointmentOnly(prevState => true); // Toggle the value
+      setByAppointmentOnly(prevState => true);
       setFirstComeFirstServe(prevState => false);
       updateFormData();
     };
@@ -188,31 +175,10 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
       }));
     };
 
-    const handleWhatsAppButton = () => {
-      const url = "https://api.whatsapp.com/send?phone=5551981859157&text=Hello%20from%20React!";
-      window.open(url, '_blank');
-    };
-    const handleTelegramButton = () => {
-      const url = "https://t.me/redeexames?start=+55051981859157";
-      window.open(url, '_blank');
-    };
     
   return (
     <form onSubmit={handleSubmit} className='col-span-4 flex flex-col gap-8'>
       <div className="flex flex-col gap-2">
-        <div className="text-xl font-semibold text-center px-10 justify-center flex flex-col items-center gap-2">
-          <Button
-          label='Chame no WhatsApp!'
-          onClick={handleWhatsAppButton}
-          green
-          icon={FaWhatsapp}
-          />
-          <Button 
-          label='Chame no Telegram!'
-          onClick={handleTelegramButton}
-          icon={FaTelegram}
-          />
-          </div>
           <hr />
           <div className='flex flex-row overflow-x-auto hide-scrollbar font-medium justify-center align-middle items-center'>
               <div className='mx-auto p-4 text-center hover:bg-sky-300 cursor-pointer rounded-xl'>
@@ -275,30 +241,42 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
         </div>
         <hr />
         Selecione os dias Desejados:
-        <div className='max-h-64 flex flex-col-2 border-t-2'>
-                    <div className='w-1/2 pl- text-blue-800 border-l-2 border-b-2'>
+        <div className='flex flex-col md:flex-col-2 rounded-lg border-2'>
+                    <div className='w-1/2 p-5 text-blue-800'>
                         <DayPicker
                             mode="multiple"
                             locale={ptBR}
-                            className='customDayPickerAdModel'
                             selected={selectedDates}
                             onSelect={(date) => setSelectedDates(date || [])}
                             onDayClick={handleDayClick}
+                            className='customDayPicker'
                             modifiers={{
                             selected: selectedDates,
-                        }}
-                        modifiersStyles={{
-                            selected: {
-                            backgroundColor: '#007BFF',
-                            color: 'white',
-                            borderRadius: '1rem',
-                            border: '1px solid #007BFF',
-                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', 
-                            },
-                        }}
+                            }}
+                            modifiersStyles={{
+                              selected: {
+                              backgroundColor: '#007BFF',
+                              color: 'white',
+                              borderRadius: '1rem',
+                              border: '1px solid lightblue',
+                              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                              },
+                              today: {
+                                color: 'blue',
+                                backgroundColor: 'transparent',
+                                border: '2px solid lightblue',
+                              },
+                              disabled: {
+                                color: '#ccc',
+                                border: '0px solid lightblue',
+                                backgroundColor: 'transparent',
+                              },
+                              weekdaysShort: {
+                              }
+                            }}
                         />
                     </div>
-                    <div className="selected-dates-list w-1/2 p-2 max-h-auto rounded-lg overflow-y-auto cursor-pointer gap-1 border-2 border-blue-100 border-t-0">
+                    <div className="selected-dates-list w-full md:w-1/2 p-2 max-h-auto rounded-lg overflow-y-auto cursor-pointer gap-1 border-blue-100">
                         {selectedDates.sort((a, b) => a.getTime() - b.getTime()).map((date, index) => (
                             <div key={index} className="border-2 border-blue-200 text-blue-600 p-2 rounded-lg hover:text-white hover:font-semibold hover:bg-blue-400" onClick={() => handleDayClick(date)}>
                                 {date.toDateString()}

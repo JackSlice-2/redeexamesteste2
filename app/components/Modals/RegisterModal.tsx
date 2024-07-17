@@ -33,12 +33,12 @@ const RegisterModal = () => {
 
         axios.post('/api/register', data)
         .then(() => {
-            toast.success("Account Created")
+            toast.success("Conta Criada com Sucesso")
             registerModal.onClose();
             loginModal.onOpen();
         })
         .catch((error) => {
-            toast.error("Internal Server Error")
+            toast.error("Um Erro Occoreu. Se Persistir Entre em Contato com o Adminsitrador")
         })
         .finally(() => {
             setIsLoading(false);

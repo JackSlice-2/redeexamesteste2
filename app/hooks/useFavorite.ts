@@ -47,7 +47,7 @@ const toggleActive = useCallback(async (
             router.refresh();
 
         }   catch (error) {
-            toast.error('Algo deu errado! Se persistir Contate o Administrador.')
+            toast.error('Um Erro Occoreu. Se Persistir Entre em Contato com o Adminsitrador')
         }
     }, [currentUser, isInactive, listingId, loginModal, router]);
     

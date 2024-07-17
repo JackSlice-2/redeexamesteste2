@@ -108,10 +108,10 @@ useEffect(() => {
         },
       });
   
-      toast.success('Partner updated successfully');
-      router.push(`/partners/${partnerId}`);
+      toast.success('Parceiro Atualizado com Sucesso!');
+      router.push(`/partners`);
     } catch (error) {
-      toast.error('An error occurred after submitting the form.');
+      toast.error('Um Erro Occoreu. Se Persistir Entre em Contato com o Adminsitrador');
     }
   };
   
@@ -121,7 +121,7 @@ useEffect(() => {
       return;
   }
 
-  const confirmed = window.confirm("Are you sure you want to delete this item?");
+  const confirmed = window.confirm("Clique em OK para Apagar e clique em CANCEL para voltar");
   if (confirmed) {
       onAction?.(actionId);
   }

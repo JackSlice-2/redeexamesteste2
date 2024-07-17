@@ -7,10 +7,6 @@ import { SafeListing } from '@/app/types';
 import { ptBR } from 'date-fns/locale'; 
 
 interface ListingReservationProps {
-    dateRange: Range;
-    data?: SafeListing;
-    onSubmit: () => void;
-    disabled?: boolean;
     dates?: string[];
     endTime?: string;
 }
