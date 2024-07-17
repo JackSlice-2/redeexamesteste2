@@ -15,17 +15,19 @@ export async function POST(
     const {
         title,
         imageSrc,
-        cnpj,
+        branchPhone,
         phone,
         whatsApp,
         telegram,
         email,
         address,
-        website,
+        branchAddress,
         cities
     } = body;
 
     const citiesArray = Array.isArray(cities)? cities : [cities];
+    const branchPhoneArray = Array.isArray(branchPhone)? branchPhone : [branchPhone];
+    const branchAddressArray = Array.isArray(branchAddress)? branchAddress : [branchAddress];
 
  
     const partner = await prisma.partner.create({
@@ -33,16 +35,20 @@ export async function POST(
             title,
             imageSrc,
             userId: currentUser.id,
-            cnpj,
+            branchPhone: {
+                set: branchPhoneArray.map(branchPhoneObj => branchPhoneObj.value)
+            },
             phone,
             whatsApp,
             telegram,
             email,
             address,
+            branchAddress: {
+                set: branchAddressArray.map(branchAddressObj => branchAddressObj.value)
+            },
             cities: {
                 set: citiesArray.map(cityObj => cityObj.value)
-            },
-            website
+            }
         }
     })
 

@@ -10,13 +10,13 @@ import Button from '../Button';
 interface PartnerInfoProps {
     imageSrc: string;
     title: string;
-    cnpj?: string;
+    branchPhone?: string[];
     address?: string;
     phone?: string;
     email?: string;
     whatsApp?: string;
     telegram?: string;
-    website?: string;
+    branchAddress?: string[];
     onAction?: (id: string) => void;
     disabled?: boolean;
     actionId?: string;
@@ -27,20 +27,19 @@ interface PartnerInfoProps {
 const PartnerInfo: React.FC<PartnerInfoProps> = ({
   imageSrc,
   title,
-  cnpj,
+  branchPhone,
   address,
   phone,
   email,
   whatsApp,
   telegram,
-  website,
+  branchAddress,
   onAction,
   disabled,
   actionId = '',
   actionLabel,
   cities
 }) => {
-
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -58,10 +57,9 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
 
   const confirmed = window.confirm("Are you sure you want to delete this item?");
   if (confirmed) {
-      onAction?.(actionId); // Proceed with the action if the user confirms
+      onAction?.(actionId);
   }
 }, [onAction, actionId, disabled]);
-
 
 return (
   <>

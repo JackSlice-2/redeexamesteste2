@@ -49,12 +49,12 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
                         <PartnerInfo
                             title={partner.title}
                             imageSrc={partner.imageSrc}
-                            cnpj={partner.cnpj || ''}
+                            branchPhone={partner.branchPhone || ''}
                             phone={partner.phone || ''}
                             email={partner.email || ''}
                             whatsApp={partner.whatsApp || ''}
                             telegram={partner.telegram || ''}
-                            website={partner.website || ''}
+                            branchAddress={partner.branchAddress || ''}
                             address={partner.address || ''}
                             actionLabel="Apagar Parceiro"
                             onAction={() => onCancel(id)}

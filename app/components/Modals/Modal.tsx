@@ -99,13 +99,13 @@ const Modal: React.FC<ModalProps> = ({
                                 label={secondaryActionLabel}
                                 onClick={handleSecondaryAction}
                                 disabled={disabled}
-                                outline
                             />
                             )}
                             <Button 
                                 label={actionLabel}
                                 onClick={handleSubmit}
                                 disabled={disabled}
+                                blue
                             />
                         </div>
                         {footer}

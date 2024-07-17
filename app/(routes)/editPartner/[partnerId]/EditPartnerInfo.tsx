@@ -22,13 +22,13 @@ type CitySelectValue = {
 interface PartnerInfoProps {
     imageSrc: string;
     title: string;
-    cnpj?: string;
+    branchPhone?: string;
     address?: string;
     phone?: string;
     email?: string;
     whatsApp?: string;
     telegram?: string;
-    website?: string;
+    branchAddress?: string;
     onAction?: (id: string) => void;
     disabled?: boolean;
     actionId?: string;
@@ -40,13 +40,13 @@ interface PartnerInfoProps {
 const PartnerInfo: React.FC<PartnerInfoProps> = ({
   imageSrc,
   title,
-  cnpj,
+  branchPhone,
   address,
   phone,
   email,
   whatsApp,
   telegram,
-  website,
+  branchAddress,
   onAction,
   disabled,
   actionId = '',
@@ -76,13 +76,13 @@ useEffect(() => {
   useState({
     title: title || '',
     imageSrc: imageSrc || '',
-    cnpj: cnpj || '',
+    branchPhone: branchPhone || '',
     address: address || '',
     phone: phone || '',
     email: email || '',
     whatsApp: whatsApp || '',
     telegram: telegram || '',
-    website: website || '',
+    branchAddress: branchAddress || '',
     cities: cities ? cities.map(city => ({ label: city })) : [],
     });
 
@@ -148,9 +148,10 @@ return (
     <div className='w-1/2 flex flex-col gap-8'>
       <div className="flex flex-col gap-2">
         <div className="text-3xl font-bold flex flex-row items-center gap-2 pb-8 pt-3">
-            <div>Editando: 
-            <input
+            <div>Editando: <br/>
+            <input className='border-2 border-gray-700 rounded-lg px-1'
               type="text"
+              size={15}
               name="title"
               value={formData.title}
               onChange={handleChange}
@@ -158,7 +159,7 @@ return (
           </div>
             <hr />
           <div className='pb-2'/>
-          Para Editar a Imagem, Clique nela e Adcione uma Nova!
+          Para Editar a Imagem, Cliqua nela!
              <div className='p-2 border-gray-400 flex justify-center items-center border rounded-xl'>
               <ImageUpload
                 onChange={(value) => setValue("imageSrc", value)}
@@ -202,7 +203,6 @@ return (
             event.preventDefault();
             removeCity(index);
           }}
-          outline
           />
         </div>
         </div>
@@ -280,29 +280,6 @@ return (
           </div>
           <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
           >
-             Telefone 4: <br/>
-            <div className='font-medium text-xl'>
-            <input className='border-2 border-gray-700 rounded-lg px-1'
-            size={10}
-            type="text"
-            name="website"
-            value={formData.website}
-            onChange={handleChange}
-          />
-            </div>
-          </div>
-          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
-          >
-             Telefone 5: <br/>
-            <div className='font-medium text-xl'>
-            <input className='border-2 border-gray-700 rounded-lg px-1'
-            size={10}
-            type="text"
-            name="cnpj"
-            value={formData.cnpj}
-            onChange={handleChange}
-          />
-            </div>
           </div>
       </div>
     </div>

@@ -4,13 +4,13 @@ export interface IPartnersParams {
   userId?: string;
   title?: string;
   description?: string;
-  cnpj?: string;
+  branchPhone?: string;
   address?: string;
   phone?: string;
   email?: string;
   whatsApp?: string;
   telegram?: string;
-  website?: string;
+  branchAddress?: string;
 }
 
 export default async function getPartners(
@@ -19,13 +19,13 @@ export default async function getPartners(
   try {
     const {
       title,
-      cnpj,
+      branchPhone,
       address,
       phone,
       email,
       whatsApp,
       telegram,
-      website,
+      branchAddress,
     } = params;
 
     let query: any = {};
@@ -33,8 +33,8 @@ export default async function getPartners(
     if (title) {
       query.title = title;
     }
-    if (cnpj) {
-      query.cnpj = cnpj;
+    if (branchPhone) {
+      query.branchPhone = branchPhone;
     }
     if (address) {
       query.address = address;
@@ -51,8 +51,8 @@ export default async function getPartners(
     if (telegram) {
       query.telegram = telegram;
     }
-    if (website) {
-      query.website = website;
+    if (branchAddress) {
+      query.branchAddress = branchAddress;
     }
     const partners = await prisma.partner.findMany({
       where: query,

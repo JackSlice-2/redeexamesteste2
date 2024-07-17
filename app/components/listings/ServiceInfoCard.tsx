@@ -76,6 +76,7 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
           icon={FaWhatsapp}
           />
           <Button 
+          blue
           label='Chame no Telegram!'
           onClick={handleTelegramButton}
           icon={FaTelegram}

@@ -7,21 +7,21 @@ interface ButtonProps {
     label: string;
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
     disabled?: boolean;
-    outline?: boolean;
     small?: boolean;
     red?: boolean;
     icon?: IconType;
     green?: boolean;
+    blue?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
     label,
     onClick,
     disabled,
-    outline,
     small,
-    red,
     icon: Icon,
+    blue,
+    red,
     green
 }) => {
   return (
@@ -29,15 +29,17 @@ const Button: React.FC<ButtonProps> = ({
     onClick={onClick}
     disabled={disabled}
     className={`relative disabled:opacity-70 disabled:cursor-not-allowed rounded-xl hover:opacity-50 transition w-full font-medium
-        ${outline ? 'bg-white' : 'bg-blue-500'}
-        ${outline ? 'border-blue-500' : 'border-blue-500'}
-        ${outline ? 'text-blue-500' : 'text-white'}
+        ${blue ? 'bg-blue-500' : ''}
+        ${blue ? 'border-blue-500' : 'border-blue-500'}
+        ${blue ?  'text-white' : 'text-blue-500'}
         ${small ? 'py-1' : 'py-3'}
         ${small ? 'text-sm' : 'text-md'}
         ${small ? 'font-light' : 'font-semibold'}
         ${small ? 'border-[1px]' : 'border-2'}
         ${red ? 'bg-red-500' : ''}
         ${red ? 'border-red-500' : ''}
+        ${red ?  'text-white' : 'text-blue-500'}
+        ${green ?  'text-white' : 'text-blue-500'}
         ${green ? 'bg-green-600' : ''}
         ${green ? 'border-green-600' : ''}
         `}>

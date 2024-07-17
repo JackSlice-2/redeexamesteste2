@@ -138,6 +138,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             <Button
             disabled={disabled}
             label={secondaryActionLabel}
+            green
             onClick={() => router.push(`/editService/${data.id}`)}
             icon={BiPencil}
             />
@@ -153,7 +154,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             <Button
             label='Chame no Telegram!'
             onClick={() => {}}
-             small
+            small
+            blue
             />
             </div>
             }

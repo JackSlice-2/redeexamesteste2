@@ -9,7 +9,10 @@ interface FavoritesClientProps {
     users: SafeUser[];
 }
 
-const FavoritesClient: React.FC<FavoritesClientProps> = ({ listings, users }) => {
+const FavoritesClient: React.FC<FavoritesClientProps> = ({ 
+    listings, 
+    users 
+}) => {
     const uniqueListings = Array.from(new Set(listings.map(listing => listing.id)))
         .map(id => listings.find(listing => listing.id === id))
         .filter(listing => listing !== undefined) as SafeListing[];

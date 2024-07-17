@@ -79,12 +79,12 @@ model Partner {
   title String
   imageSrc String
   createdAt DateTime @default(now())
-  cnpj String?
+  branchPhone String[]
   phone String?
   whatsApp String?
   telegram String?
   email String?
-  website String?
+  branchAddress String[]
   address String?
   cities String[]
 

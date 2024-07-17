@@ -38,13 +38,13 @@ const PartnerModal = () => {
         defaultValues: {
             imageSrc: '',
             title: '',
-            cnpj:  '',
+            branchPhone:  [],
             address: '',
             phone:  '',
             whatsApp:  '',
             telegram:  '',
             email:  '',
-            website:  '',
+            branchAddress:  [],
             cities: []
         }
     });
@@ -203,7 +203,7 @@ const PartnerModal = () => {
             />
             {/*
             <Input 
-            id="website"
+            id="branchAddress"
             label="Site do Parceiro"
             disabled={isLoading}
             register={register}
@@ -234,13 +234,11 @@ const PartnerModal = () => {
         reset({
             imageSrc: '',
             title: '',
-            cnpj: '',
             address: '',
             phone: '',
             whatsApp: '',
             telegram: '',
             email: '',
-            website: '',
         });    setStep(STEPS.INFO);
 }
     const handleClose = () => {

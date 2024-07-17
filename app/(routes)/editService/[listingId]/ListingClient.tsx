@@ -1,7 +1,6 @@
 "use client";
 
 import Container from '@/app/components/Container';
-import ServiceHead from '@/app/components/listings/ServiceHead';
 import ServiceInfo from './editServiceInfo';
 import { categories } from '@/app/components/navbar/Categories';
 import { SafeListing, SafeUser } from '@/app/types';
@@ -16,7 +15,6 @@ interface ListingClientProps {
 
 const ListingClient: React.FC<ListingClientProps> = ({
     listing,
-    currentUser,
 }) => {
 
     const category = useMemo(() => {
