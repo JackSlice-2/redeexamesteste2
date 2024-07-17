@@ -4,7 +4,7 @@ export interface IPartnersParams {
   userId?: string;
   title?: string;
   description?: string;
-  branchPhone?: string;
+  branchPhone?: string[];
   address?: string;
   phone?: string;
   email?: string;

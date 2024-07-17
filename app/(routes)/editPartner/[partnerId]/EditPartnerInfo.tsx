@@ -22,13 +22,13 @@ type CitySelectValue = {
 interface PartnerInfoProps {
     imageSrc: string;
     title: string;
-    branchPhone?: string;
+    branchPhone?: string[];
     address?: string;
     phone?: string;
     email?: string;
     whatsApp?: string;
     telegram?: string;
-    branchAddress?: string;
+    branchAddress?: string[];
     onAction?: (id: string) => void;
     disabled?: boolean;
     actionId?: string;
