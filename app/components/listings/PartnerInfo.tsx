@@ -61,6 +61,17 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
   }
 }, [onAction, actionId, disabled]);
 
+// Assuming cities is an array of JSON strings
+const parsedCities = cities?.map(cityJsonString => {
+  const cityObj = JSON.parse(cityJsonString);
+  return {
+    value: cityObj.value,
+    address: cityObj.address,
+    phone: cityObj.phoneNumber
+  };
+});
+
+
 return (
   <>
   <div className='flex justify-between w-full'>
@@ -86,14 +97,37 @@ return (
         </div>
         </div>
         <div className='w-1/2 p-2 lg:mt-10 border-gray-300 h-1/2'>
-        
-                  {cities?.map((city, index) => (
-          <div key={index} className='flex justify-center items-center m-2 p-4 text-center hover:bg-blue-400 cursor-pointer  rounded-2xl shadow-sm bg-blue-200 my-2'>
-            <span>
-              {city}
-            </span>
+        {parsedCities?.length === 0 &&
+        <div className='bg-blue-600/30 text-xl border-dashed border-8 rounded-xl border-blue-700 text-center p-5 ml-2 font-semibold'>
+            Esse Parceiro NAO tem nenhuma Filial.
+            Clique em Editar Parceiros Abaixo para Adicionar Filiais!
           </div>
-          ))}
+        }
+         {parsedCities?.map((city, index) => (
+  <div key={index}>
+    <div className='flex justify-center items-center m-2 p-4 text-center hover:bg-blue-400 cursor-pointer font-semibold rounded-2xl shadow-sm bg-blue-200 my-2'>
+      <span>
+        {city.value}
+      </span>
+    </div>
+    <div className='flex'>
+      {city.address && (
+        <div className='w-1/2 justify-center text-sm items-center m-2 p-2 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'>
+          <span>
+            {city.address}
+          </span>
+        </div>
+      )}
+      {city.phone && (
+        <div className='w-1/2 justify-center text-sm items-center m-2 p-2 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'>
+          <span>
+            {city.phone}
+          </span>
+        </div>
+      )}
+    </div>
+  </div>
+))}
         </div>
       </div>
       <div className='mt-3'/>

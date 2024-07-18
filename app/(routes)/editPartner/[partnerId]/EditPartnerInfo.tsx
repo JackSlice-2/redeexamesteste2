@@ -17,6 +17,8 @@ type CitySelectValue = {
   latlng: number[];
   region: string;
   value: string;
+  address: string;
+  phoneNumber: string;
 };
 
 interface PartnerInfoProps {
@@ -66,30 +68,45 @@ useEffect(() => {
       latlng: [0, 0],
       region: '',
       value: cities[0],
+      address: '',
+      phoneNumber: ''
     };
-
     setSelectedCity(cityObject);
   }
-}, [cities]);
+}, [cities, branchPhone, branchAddress]);
 
   const [formData, setFormData] = 
   useState({
     title: title || '',
     imageSrc: imageSrc || '',
-    branchPhone: branchPhone || '',
     address: address || '',
     phone: phone || '',
     email: email || '',
     whatsApp: whatsApp || '',
     telegram: telegram || '',
-    branchAddress: branchAddress || '',
-    cities: cities ? cities.map(city => ({ label: city })) : [],
-    });
+    
+    branchAddress: cities ? cities.map((city, index) => ({ label: city, address: branchAddress?.[index] || '' })) : [],
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    branchPhone: cities ? cities.map((city, index) => ({ label: city, phoneNumber: branchPhone?.[index] || '' })) : [],
+
+    cities: cities ? cities.map((city, index) => JSON.parse(city)) : []
+  });
+    console.log("DATA FORM", formData)
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = event.target;
+      const index = parseInt(name.split('[')[1].split(']')[0]);
+    
+      setFormData(prevState => ({
+        ...prevState,
+        cities: prevState.cities.map((city, idx) =>
+          idx === index ? { ...city, [name.split('.')[1]]: value } : city
+        )
+      }));
+    };
+
+
+
   const currentUrl = window.location.href;
   const partnerId = currentUrl.split("/").pop();
   
@@ -127,12 +144,6 @@ useEffect(() => {
   }
 }, [onAction, actionId, disabled]);
 
-const removeCity = (indexToRemove: number) => {
-  setFormData(prevState => ({
-    ...prevState,
-    cities: prevState.cities.filter((_, index) => index !== indexToRemove),
-  }));
-};
 
 const setValue = (field: keyof typeof formData, value: any) => {
   setFormData(prevState => ({
@@ -140,6 +151,8 @@ const setValue = (field: keyof typeof formData, value: any) => {
     [field]: value,
   }));
 };
+
+
 
 return (
   <>
@@ -169,42 +182,79 @@ return (
         </div>
         </div>
         <div className='w-1/2 p-2 lg:mt-10 border-gray-300 h-1/2 '>
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer shadow-sm my-2 bg-blue-200 rounded-lg font-medium'>
+        <div className='p-4 border-2 border-dashed border-blue-900 text-center hover:bg-blue-400 cursor-pointer shadow-sm my-2 bg-blue-200 rounded-lg font-medium'>
           <div className='pb-2'>
             Clique para Alterar ou Adicionar Filiais!
           </div>
-        <CitySelect
-          value={selectedCity || {'flag': "",
-            'label': "",
-            'latlng': [0],
-            'region': "",
-            'value': ""}
-          }  onChange={(city) => {
-              setSelectedCity(city);
-              setFormData(prevState => ({
-                ...prevState,
-                cities: prevState.cities.includes(city) ? prevState.cities : [...prevState.cities, city],
-              }));
-            }}
-          />
+          <CitySelect
+  value={selectedCity || {'flag': "", 'label': "", 'latlng': [0],'region': "", 'value': "", 'address': "", 'phoneNumber': ""}}
+  onChange={(city) => {
+    setSelectedCity(city);
+    setFormData(prevState => {
+      // Check if the city already exists
+      const existingCityIndex = prevState.cities.findIndex(c => c.value === city.value);
+      if (existingCityIndex >= 0) {
+        // Merge the new city properties into the existing city
+        let updatedCities = [...prevState.cities];
+        updatedCities[existingCityIndex] = { ...updatedCities[existingCityIndex], ...city };
+        return { ...prevState, cities: updatedCities };
+      } else {
+        // Add the new city to the array
+        return { ...prevState, cities: [...prevState.cities, city] };
+      }
+    });
+  }}
+/>
 
         </div>
         <div className='mb-auto'>
 
         {formData.cities.map((city, index) => (
-        <div key={index} className='mb-2 flex justify-between items-center m-2 p-4 text-center hover:bg-blue-400 cursor-pointer  rounded-2xl shadow-sm bg-blue-100 my-2'>
-          <span>
-            {city.label}
-          </span> 
-          <div className='w-1/3'>
-          <Button
+        <div key={index} className='flex p-3 hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-100 m-2 flex-col'>
+          <div className='flex justify-between items-center'>
+            <span className='font-semibold pb-2'>
+              {city.label}
+            </span> 
+            <div className='w-1/3 pb-1'>
+            <Button
           label='Remover'
           onClick={(event) => {
             event.preventDefault();
-            removeCity(index);
+            // Filter out the city and its associated branchAddress and branchPhone
+            setFormData(prevState => ({
+              ...prevState,
+              cities: prevState.cities.filter((_city, _index) => _index !== index),
+            }));
           }}
-          />
-        </div>
+        />
+      </div>
+    </div>
+    <div className='justify-between p-1 flex text-sm'>
+      <div>Endereço:</div>
+      <input
+  className='border-2 border-gray-700 rounded-lg px-1'
+  size={20}
+  type="text"
+  name={`cities[${index}].address`}
+  value={city.address}
+  onChange={handleChange}
+/>
+
+          </div>
+          <div className='justify-between px-1 flex text-sm'>
+          <div>
+            Telefone: 
+          </div>
+          <input
+  className='border-2 border-gray-700 rounded-lg px-1'
+  size={20}
+  type="text"
+  name={`cities[${index}].phoneNumber`}
+      value={city.phoneNumber}
+      onChange={handleChange}
+/>
+
+          </div>
         </div>
         ))}
         </div>

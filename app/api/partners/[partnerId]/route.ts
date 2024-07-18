@@ -48,9 +48,12 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
 
     const { title, imageSrc, cities, branchPhone, phone, whatsApp, telegram, email, address, branchAddress } = await request.json();
 
-    const cityNames = cities.map((city:any) => city.label);
-    const branchAdresses = branchAddress.map((branchAddress:any) => branchAddress.label);
-    const branchPhones = branchPhone.map((branchPhone:any) => branchPhone.label);
+        const cityNames = cities.map((city:any) => city.label);
+        const branchPhoneString = branchPhone.map((PhoneObj:any) => PhoneObj.phoneNumber);
+
+        const branchAddressString = branchAddress.map((AddrObj:any) => AddrObj.address);
+
+        const serializedUpdatedCities = cities.map(JSON.stringify);
 
 
     const partner = await prisma.partner.update({
@@ -62,18 +65,17 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
             title,
             imageSrc,
             branchPhone: {
-                set: branchPhones,
+                set: branchPhoneString,
               },
             phone,
             whatsApp,
             telegram,
-            email,
             address,
             branchAddress: {
-                set: branchAdresses,
+                set: branchAddressString,
               },
             cities: {
-                set: cityNames,
+                set: serializedUpdatedCities,
               }
         }
     });

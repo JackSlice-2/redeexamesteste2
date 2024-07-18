@@ -10,6 +10,8 @@ export type CitySelectValue = {
     latlng: number[],
     region: string,
     value: string,
+    address: string,
+    phoneNumber: string
 }
 
 interface CitySelectProps {
