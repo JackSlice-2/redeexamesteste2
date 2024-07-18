@@ -44,14 +44,14 @@ const PartnerModal = () => {
             whatsApp:  '',
             telegram:  '',
             email:  '',
-            branchAddress:  [],
-            cities: []
+            cities:  [],
+            branchAddress: []
         }
     });
 
     const imageSrc = watch('imageSrc');
     const phone = watch('phone');
-    const cities = watch('cities');
+    const branchAddress = watch('branchAddress');
 
 
     const setCustomValue = (id: string, value: any) => {
@@ -69,7 +69,7 @@ const PartnerModal = () => {
     const onNext = () => {
     switch (step) {
         case STEPS.ADDRESS:
-            if (!cities) {
+            if (!branchAddress) {
                 toast.error('city is required');
                 return;
             }
@@ -151,8 +151,8 @@ const PartnerModal = () => {
             subtitle='Aonde o Parceiro é Localizado?'
             />
             <CitySelect
-            value={cities}
-            onChange={(value) => setCustomValue('cities', value)}
+            value={branchAddress}
+            onChange={(value) => setCustomValue('branchAddress', value)}
             />
             <Input 
             id="address"

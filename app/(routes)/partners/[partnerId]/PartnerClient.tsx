@@ -29,16 +29,16 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
     const onCancel = useCallback((id: string) => {
         setDeletingId(partnerId);
         axios.delete(`/api/partners/${partnerId}`)
-        .then(() => {
-            toast.success('Parceiro Apagado');
-            router.push('/partners')
-        })
-        .catch((error) => {
-            toast.error(error?.response?.data?.error)
-        })
-        .finally(() => {
-            setDeletingId('');
-        })
+            .then(() => {
+                toast.success('Parceiro Apagado');
+                router.push('/partners')
+            })
+            .catch((error) => {
+                toast.error(error?.response?.data?.error)
+            })
+            .finally(() => {
+                setDeletingId('');
+            })
     }, [partnerId, router]);
 
     return (
@@ -62,10 +62,10 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
                         />
                     </div>
                     <Button
-                    label="Editar Parceiro"
-                    icon={BiPencil}
-                    green
-                    onClick={() => router.push(`/editPartner/${partnerId}`)}
+                        label="Editar Parceiro"
+                        icon={BiPencil}
+                        green
+                        onClick={() => router.push(`/editPartner/${partnerId}`)}
                     />
                 </div>
             </div>
