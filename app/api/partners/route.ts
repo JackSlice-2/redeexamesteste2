@@ -21,11 +21,13 @@ export async function POST(
         telegram,
         email,
         address,
-        branchAddress
+        branchAddress,
+        cities
     } = body;
 
-    const citiesArray = Array.isArray(branchAddress)? branchAddress : [branchAddress];
+    const citiesArray = Array.isArray(cities)? cities : [cities];
     const branchPhoneArray = Array.isArray(branchPhone)? branchPhone : [branchPhone];
+    const branchAddressArray = Array.isArray(branchAddress)? branchAddress : [branchAddress];
 
  
     const partner = await prisma.partner.create({
@@ -42,7 +44,10 @@ export async function POST(
             email,
             address,
             branchAddress: {
-                set: citiesArray.map(branchAddress => branchAddress.value)
+                set: branchAddressArray.map(branchAddressObj => branchAddressObj.value)
+            },
+            cities: {
+                set: citiesArray.map(cityObj => cityObj.value)
             }
         }
     })

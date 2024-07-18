@@ -201,14 +201,6 @@ const PartnerModal = () => {
             register={register}
             errors={errors}
             />
-            {/*
-            <Input 
-            id="branchAddress"
-            label="Site do Parceiro"
-            disabled={isLoading}
-            register={register}
-            errors={errors}
-            />*/}
         </div>
         )
     }
