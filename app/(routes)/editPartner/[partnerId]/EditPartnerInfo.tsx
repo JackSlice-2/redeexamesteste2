@@ -90,7 +90,6 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
 
         cities: cities ? cities.map((city, index) => JSON.parse(city)) : []
     });
-    console.log("DATA FORM", formData)
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -103,6 +102,16 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
             )
         }));
     };
+
+    const handleSimpleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = event.target;
+  
+      setFormData(prevState => ({
+          ...prevState,
+          [name]: value, // Directly update the field based on the 'name' attribute
+      }));
+  };
+  
 
 
 
@@ -166,7 +175,7 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
                     size={15}
                     name="title"
                     value={formData.title}
-                    onChange={handleChange}
+                    onChange={handleSimpleChange}
                   /></div>
                 </div>
                   <hr />
@@ -271,7 +280,7 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
               type="text"
               name="address"
               value={formData.address}
-              onChange={handleChange}
+              onChange={handleSimpleChange}
             />
             </div>
           </div>
@@ -284,7 +293,7 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
               type="text"
               name="phone"
               value={formData.phone}
-              onChange={handleChange}
+              onChange={handleSimpleChange}
             />
             </div>
           </div>
@@ -297,7 +306,7 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
               type="text"
               name="whatsApp"
               value={formData.whatsApp}
-              onChange={handleChange}
+              onChange={handleSimpleChange}
             />
             </div>
           </div>
@@ -310,7 +319,7 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
               type="text"
               name="telegram"
               value={formData.telegram}
-              onChange={handleChange}
+              onChange={handleSimpleChange}
             />
               </div>
             </div>
@@ -323,7 +332,7 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
               type="text"
               name="email"
               value={formData.email}
-              onChange={handleChange}
+              onChange={handleSimpleChange}
             />
               </div>
             </div>
