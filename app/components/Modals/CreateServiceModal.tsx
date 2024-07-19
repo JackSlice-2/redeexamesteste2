@@ -4,19 +4,18 @@ import React, { useEffect, useMemo, useState } from 'react'
 import Modal from './Modal'
 import Heading from '../Heading';
 import { categories } from '../navbar/Categories';
-import CategoryInput from '../Inputs/CategoryInput';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import ImageUpload from '../Inputs/ImageUpload';
 import Input from '../Inputs/Input';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
-import CompanyInput from '../Inputs/CompanyInput';
 import CitySelect from '../Inputs/CitySelect';
 import { DayPicker } from 'react-day-picker';
 import { SafePartner } from '@/app/types';
 import useCreateServiceModal from '@/app/hooks/useCreateServiceModal';
 import { ptBR } from 'date-fns/locale';
+import ObjectInput from '../Inputs/ObjectInput';
 
 enum STEPS {
     CATEGORY = 0,
@@ -209,7 +208,7 @@ useEffect(() => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
                 {categories.map((item) => (
                     <div key={item.label} className='col-span-1'>
-                            <CategoryInput
+                            <ObjectInput
                             onClick={(category) => setCustomValue('category', category)}
                             selected={category === item.label}
                             label={item.label}
@@ -232,7 +231,7 @@ useEffect(() => {
                     Se o Parceiro nao esta aparecendo, reinicie a pagina e tente novamente.
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
                 {partners.map((partner) => (
-            <CompanyInput
+            <ObjectInput
                 key={partner.id}
                 partner={partner}
                 selected={company === partner.title}

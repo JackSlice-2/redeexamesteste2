@@ -41,7 +41,6 @@ const UserMenu: React.FC<UserMenuProps> = ({
     };
   }, [handleClickOutside]);
 
-
     const toggleOpen = useCallback(() => {
         setIsOpen((value) => !value);
     }, [])

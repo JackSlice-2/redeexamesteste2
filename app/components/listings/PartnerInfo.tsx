@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useCallback } from 'react'
-import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
 import { BiCopy, BiTrash } from 'react-icons/bi';
 import Image from 'next/image';
