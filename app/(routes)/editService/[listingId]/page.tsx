@@ -3,7 +3,7 @@ import getListingById from '@/app/actions/getServicesById'
 import ClientOnly from '@/app/components/ClientOnly';
 import EmptyState from '@/app/components/EmptyState';
 import React from 'react'
-import ListingClient from './ListingClient';
+import ListingClient from './EditServiceClient';
 
 interface IParams {
   listingId?: string;

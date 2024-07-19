@@ -3,7 +3,7 @@
 import Container from '@/app/components/Container';
 import ServiceHead from '@/app/components/listings/ServiceHead';
 import ServiceInfo from '@/app/components/listings/ServiceInfoCard';
-import ListingReservation from '@/app/components/listings/Calendar';
+import Calendar from '@/app/components/listings/Calendar';
 import { categories } from '@/app/components/navbar/Categories';
 import { SafeListing, SafeUser } from '@/app/types';
 import axios from 'axios';
@@ -66,7 +66,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
         }
       }, [disabled, listing, onCancel]);
 
-
   return (
         <Container>
             <div className="max-w-screen-lg mx-auto mt-20">
@@ -100,10 +99,9 @@ const ListingClient: React.FC<ListingClientProps> = ({
                         currentUser={currentUser}
                         />
                         <div className="order-first mb-10 md:order-last md:col-span-3">
-                            <ListingReservation
+                            <Calendar
                             endTime={listing.endTime || 'No End Time'}
                             dates={listing.dates}
-                            
                             />
                         </div>
                     </div>

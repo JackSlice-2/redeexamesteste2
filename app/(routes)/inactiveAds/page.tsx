@@ -3,7 +3,7 @@ import ClientOnly from '../../components/ClientOnly';
 import EmptyState from '../../components/EmptyState';
 import getFavoriteListings from '../../actions/getFavoriteListings';
 import getAllUsers from '../../actions/getAllUsers';
-import FavoritesClient from './InactiveAdsClient';
+import FavoritesClient from './InactiveServiceClient';
 
 const ListingPage = async () => {
     const listings = await getFavoriteListings();

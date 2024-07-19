@@ -85,12 +85,10 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
     };
-    
 
       const currentUrl = window.location.href;
       const listingId = currentUrl.split("/").pop();
       const router = useRouter();
-
       
       const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

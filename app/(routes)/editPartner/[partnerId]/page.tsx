@@ -3,7 +3,7 @@ import getPartnerById from '@/app/actions/getPartnerById'
 import ClientOnly from '@/app/components/ClientOnly';
 import EmptyState from '@/app/components/EmptyState';
 import React from 'react'
-import PartnerClient from './PartnerClient';
+import PartnerClient from './EditPartnerClient';
 
 interface IParams {
   partnerId?: string;
