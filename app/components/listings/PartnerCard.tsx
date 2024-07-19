@@ -15,12 +15,12 @@ const PartnerCard: React.FC<PartnerCardProps> = ({
     const router = useRouter();
 
   return (
-    <div className='col-span-1 cursor-pointer group rounded-md p-2 font-semibold'
+    <div className='col-span-1 cursor-pointer group rounded-md font-bold'
     >
     <div 
     onClick={() => router.push(`/partners/${data.id}`)}
     >
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full hover:text-neutral-100">
         <div className="aspect-square w-full relative overflow-hidden rounded-xl">
             <Image 
             loading="lazy"
@@ -31,7 +31,7 @@ const PartnerCard: React.FC<PartnerCardProps> = ({
             className='object-cover h-full w-full group-hover:scale-110 transition'
             />
         </div>
-        <div className="text-lg">
+        <div className="text-lg pt-8 text-center">
             {data.title}
         </div>
         </div>

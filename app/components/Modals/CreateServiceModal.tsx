@@ -229,6 +229,7 @@ useEffect(() => {
                     title='Escolha o Parceiro Correspondente'
                     subtitle='Escolha uma Empresa'
                     />
+                    Se o Parceiro nao esta aparecendo, reinicie a pagina e tente novamente.
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
                 {partners.map((partner) => (
             <CompanyInput

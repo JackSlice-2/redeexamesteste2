@@ -79,25 +79,7 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
         byAppointmentOnly: ByAppointmentOnly,
         company: company,
         imageSrc: imageSrc
-      });
-
-      const updateFormData = () => {
-        setFormData({
-          title: title,
-          imageSrc: imageSrc,
-          description: description,
-          locationValue: locationValue,
-          startTime: startTime,
-          endTime: endTime,
-          payNow: payNow,
-          payThere: payThere,
-          company: company,
-          dates: selectedDates,
-          firstComeFirstServe: FirstComeFirstServe,
-          byAppointmentOnly: ByAppointmentOnly,
-        });
-      };
-      
+      });      
 
       const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
@@ -154,27 +136,24 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
         });
     };
 
-    const toggleFirstComeFirstServe = (event: any) => {
+    const toggleBoolean = (event: any) => {
       event.preventDefault();
-      setFirstComeFirstServe(prevState => true);
-      setByAppointmentOnly(prevState => false); 
-      updateFormData();
+      if (FirstComeFirstServe) {
+        setFirstComeFirstServe(false);
+        setByAppointmentOnly(true);
+      } else {
+        setFirstComeFirstServe(true);
+        setByAppointmentOnly(false);
+      }
+      console.log("by", byAppointmentOnly, "first", firstComeFirstServe);
     };
     
-    const toggleByAppointmentOnly = (event: any) => {
-      event.preventDefault();
-      setByAppointmentOnly(prevState => true);
-      setFirstComeFirstServe(prevState => false);
-      updateFormData();
-    };
-
     const setValue = (field: keyof typeof formData, value: any) => {
       setFormData(prevState => ({
         ...prevState,
         [field]: value,
       }));
     };
-
     
   return (
     <form onSubmit={handleSubmit} className='col-span-4 flex flex-col gap-8'>
@@ -217,7 +196,7 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
         <div>
           Clique na Opçao Desejada:
     
-          <button onClick={toggleByAppointmentOnly}
+          <button onClick={toggleBoolean}
            className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1
             ${ByAppointmentOnly ? "bg-green-300" : "bg-red-300"}
             ${ByAppointmentOnly ? "underline" : "line-through"}
@@ -228,7 +207,7 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
           </button>
         
 
-        <button onClick={toggleFirstComeFirstServe}
+        <button onClick={toggleBoolean}
            className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1
             ${FirstComeFirstServe ? "bg-green-300" : "bg-red-300"}
             ${FirstComeFirstServe ? "underline" : "line-through"}

@@ -61,7 +61,6 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
   }
 }, [onAction, actionId, disabled]);
 
-// Assuming cities is an array of JSON strings
 const parsedCities = cities?.map(cityJsonString => {
   const cityObj = JSON.parse(cityJsonString);
   return {
@@ -71,7 +70,6 @@ const parsedCities = cities?.map(cityJsonString => {
   };
 });
 
-
 return (
   <>
   <div className='flex justify-between w-full'>
@@ -79,19 +77,19 @@ return (
       <div className="flex flex-col gap-2">
         <div className="text-3xl font-bold flex items-center gap-2 pb-8 pt-3">
           <div className='text-neutral-500 font-semibold'>
-            Parceiro Atual: 
+            Parceiro: 
           </div>
             {title}
           </div>
           <div className='pb-2'/>
-             <div className='p-2 border-gray-400 flex justify-center items-center border rounded-xl'>
+             <div className='p-2 border-gray-400 flex justify-center items-center border rounded-xl object-contain'>
              <Image 
               loading="lazy"
               alt='image'
               src={imageSrc}
-              width={100}
-              height={100}
-              className='object-contain w-full rounded-md'
+              width={250}
+              height={250}
+              className='object-fill w-full rounded-md'
               />
           </div>
         </div>
@@ -104,34 +102,47 @@ return (
           </div>
         }
          {parsedCities?.map((city, index) => (
-  <div key={index}>
-    <div className='flex justify-center items-center m-2 p-4 text-center hover:bg-blue-400 cursor-pointer font-semibold rounded-2xl shadow-sm bg-blue-200 my-2'>
-      <span>
-        {city.value}
-      </span>
-    </div>
-    <div className='flex'>
-      {city.address && (
-        <div className='w-1/2 justify-center text-sm items-center m-2 p-2 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'>
-          <span>
-            {city.address}
-          </span>
-        </div>
-      )}
-      {city.phone && (
-        <div className='w-1/2 justify-center text-sm items-center m-2 p-2 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'>
-          <span>
-            {city.phone}
-          </span>
-        </div>
-      )}
-    </div>
-  </div>
-))}
+            <div key={index}>
+              <div className='flex justify-center items-center m-2 p-4 text-center hover:bg-blue-400 cursor-pointer font-semibold rounded-2xl shadow-sm bg-blue-200 my-2'>
+                <span>
+                  {city.value}
+                </span>
+              </div>
+              <div className='flex'>
+                {city.address && (
+                  <div className='w-1/2 justify-center text-sm items-center p-2 mx-2 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
+                  onClick={() => copyToClipboard(city.address || '')}
+                  >
+                    <BiCopy /> 
+                    <span>
+                      {city.address}
+                    </span>
+                  </div>
+                )}
+                {city.phone && (
+                  <div className='w-1/2 justify-center text-sm items-center mx-2 p-2 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
+                  onClick={() => copyToClipboard(city.phone || '')}
+                  >
+                    <BiCopy /> 
+                    <span>
+                      {city.phone}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
       <div className='mt-3'/>
-    <div className='justify-center align-center items-center flex flex-row overflow-x-auto hide-scrollbar w-full pt-2 gap-3 text-center'>      
+      <div className='font-semibold'>
+            Informaçoes de Contato
+            {parsedCities?.length !== 0 && " da Matriz"}
+            </div>
+            <div className='text-xl py-2'>
+            {branchAddress}
+          </div>
+    <div className='flex flex-row overflow-x-auto hide-scrollbar w-full pt-2 gap-3 text-center'>     
         
         <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
           onClick={() => copyToClipboard(phone || '')}

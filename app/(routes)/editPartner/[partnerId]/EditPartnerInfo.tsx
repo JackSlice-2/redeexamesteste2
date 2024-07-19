@@ -83,11 +83,7 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
         email: email || '',
         whatsApp: whatsApp || '',
         telegram: telegram || '',
-      
-        branchAddress: cities ? cities.map((city, index) => ({ label: city, address: branchAddress?.[index] || '' })) : [],
-
-        branchPhone: cities ? cities.map((city, index) => ({ label: city, phoneNumber: branchPhone?.[index] || '' })) : [],
-
+        branchPhone: [],
         cities: cities ? cities.map((city, index) => JSON.parse(city)) : []
     });
 
@@ -111,9 +107,6 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
           [name]: value, // Directly update the field based on the 'name' attribute
       }));
   };
-  
-
-
 
     const currentUrl = window.location.href;
     const partnerId = currentUrl.split("/").pop();
@@ -160,8 +153,6 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
       }));
     };
 
-
-
     return (
         <>
             <form onSubmit={handleSubmit}>
@@ -195,24 +186,24 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
               Clique para Alterar ou Adicionar Filiais!
             </div>
             <CitySelect
-    value={selectedCity || {'flag': "", 'label': "", 'latlng': [0],'region': "", 'value': "", 'address': "", 'phoneNumber': ""}}
-    onChange={(city) => {
-      setSelectedCity(city);
-      setFormData(prevState => {
-        // Check if the city already exists
-        const existingCityIndex = prevState.cities.findIndex(c => c.value === city.value);
-        if (existingCityIndex >= 0) {
-          // Merge the new city properties into the existing city
-          let updatedCities = [...prevState.cities];
-          updatedCities[existingCityIndex] = { ...updatedCities[existingCityIndex], ...city };
-          return { ...prevState, cities: updatedCities };
-        } else {
-          // Add the new city to the array
-          return { ...prevState, cities: [...prevState.cities, city] };
-        }
-      });
-    }}
-  />
+            value={ '' || {'flag': "", 'label': "", 'latlng': [0],'region': "", 'value': "", 'address': "", 'phoneNumber': ""}}
+            onChange={(city) => {
+            setSelectedCity(city);
+            setFormData(prevState => {
+              // Check if the city already exists
+              const existingCityIndex = prevState.cities.findIndex(c => c.value === city.value);
+              if (existingCityIndex >= 0) {
+                // Merge the new city properties into the existing city
+                let updatedCities = [...prevState.cities];
+                updatedCities[existingCityIndex] = { ...updatedCities[existingCityIndex], ...city };
+                return { ...prevState, cities: updatedCities };
+              } else {
+                // Add the new city to the array
+                return { ...prevState, cities: [...prevState.cities, city] };
+              }
+            });
+          }}
+        />
 
           </div>
           <div className='mb-auto'>
@@ -228,7 +219,6 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
                                   label='Remover'
                                   onClick={(event) => {
                                     event.preventDefault();
-                                    // Filter out the city and its associated branchAddress and branchPhone
                                     setFormData(prevState => ({
                                       ...prevState,
                                       cities: prevState.cities.filter((_city, _index) => _index !== index),

@@ -46,12 +46,12 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
         throw new Error("Invalid ID");
     }
 
-    const { title, imageSrc, cities, branchPhone, phone, whatsApp, telegram, email, address, branchAddress } = await request.json();
+    const { title, imageSrc, cities, branchPhone, phone, whatsApp, telegram, email, address } = await request.json();
 
-        const cityNames = cities.map((city:any) => city.label);
+    //for use when branchAddress[] recives the updates cityName
+        //const cityNames = cities.map((city:any) => city.label);
+
         const branchPhoneString = branchPhone.map((PhoneObj:any) => PhoneObj.phoneNumber);
-
-        const branchAddressString = branchAddress.map((AddrObj:any) => AddrObj.address);
 
         const serializedUpdatedCities = cities.map(JSON.stringify);
 
@@ -64,6 +64,7 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
         data: {
             title,
             imageSrc,
+            email,
             branchPhone: {
                 set: branchPhoneString,
               },
@@ -71,9 +72,6 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
             whatsApp,
             telegram,
             address,
-            branchAddress: {
-                set: branchAddressString,
-              },
             cities: {
                 set: serializedUpdatedCities,
               }
