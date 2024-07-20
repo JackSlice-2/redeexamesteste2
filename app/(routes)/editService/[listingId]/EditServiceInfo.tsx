@@ -13,6 +13,17 @@ import { DayPicker } from 'react-day-picker';
 import { useRouter } from 'next/navigation';
 import ImageUpload from '@/app/components/Inputs/ImageUpload';
 import { ptBR } from 'date-fns/locale';
+import CitySelect from '@/app/components/Inputs/CitySelect';
+
+type CitySelectValue = {
+  flag: string;
+  label: string;
+  latlng: number[];
+  region: string;
+  value: string;
+  address: string;
+  phoneNumber: string;
+};
 
 interface ServiceInfoProps {
     user: SafeUser;
@@ -58,6 +69,9 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
 
   const [FirstComeFirstServe, setFirstComeFirstServe] = useState(firstComeFirstServe);
   const [ByAppointmentOnly, setByAppointmentOnly] = useState(byAppointmentOnly);
+
+  const [selectedCity, setSelectedCity] = useState<CitySelectValue | null>(null);
+
 
     const {
     } = useForm<FieldValues>({
@@ -118,7 +132,7 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
           });
       
           toast.success('Serviço Atualizado com Sucesso!');
-          router.push(`/listings/${listingId}`)
+          router.push(`/`)
         } catch (error) {
           toast.error('Um Erro Occoreu. Se Persistir Entre em Contato com o Adminsitrador');
         }
@@ -152,6 +166,12 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
         [field]: value,
       }));
     };
+
+    const setCustomValue = (id: string, value: CitySelectValue) => {
+      setValue(id as keyof typeof formData, value);
+    };
+
+    console.log(formData.locationValue)
     
   return (
     <form onSubmit={handleSubmit} className='col-span-4 flex flex-col gap-8'>
@@ -218,49 +238,49 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
         </div>
         <hr />
         Selecione os dias Desejados:
-        <div className='flex flex-col md:flex-col-2 rounded-lg border-2'>
-                    <div className='w-1/2 p-5 text-blue-800'>
-                        <DayPicker
-                            mode="multiple"
-                            locale={ptBR}
-                            selected={selectedDates}
-                            onSelect={(date) => setSelectedDates(date || [])}
-                            onDayClick={handleDayClick}
-                            className='customDayPicker'
-                            modifiers={{
-                            selected: selectedDates,
-                            }}
-                            modifiersStyles={{
-                              selected: {
-                              backgroundColor: '#007BFF',
-                              color: 'white',
-                              borderRadius: '1rem',
-                              border: '1px solid lightblue',
-                              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                              },
-                              today: {
-                                color: 'blue',
-                                backgroundColor: 'transparent',
-                                border: '2px solid lightblue',
-                              },
-                              disabled: {
-                                color: '#ccc',
-                                border: '0px solid lightblue',
-                                backgroundColor: 'transparent',
-                              },
-                              weekdaysShort: {
-                              }
-                            }}
-                        />
+        <div className='flex flex-col md:flex-row rounded-lg border-2'>
+            <div className='w-1/2 p-5 text-blue-800'>
+                <DayPicker
+                    mode="multiple"
+                    locale={ptBR}
+                    selected={selectedDates}
+                    onSelect={(date) => setSelectedDates(date || [])}
+                    onDayClick={handleDayClick}
+                    className='customDayPicker'
+                    modifiers={{
+                    selected: selectedDates,
+                    }}
+                    modifiersStyles={{
+                      selected: {
+                      backgroundColor: '#007BFF',
+                      color: 'white',
+                      borderRadius: '1rem',
+                      border: '1px solid lightblue',
+                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                      },
+                      today: {
+                        color: 'blue',
+                        backgroundColor: 'transparent',
+                        border: '2px solid lightblue',
+                      },
+                      disabled: {
+                        color: '#ccc',
+                        border: '0px solid lightblue',
+                        backgroundColor: 'transparent',
+                      },
+                      weekdaysShort: {
+                      }
+                    }}
+                />
+            </div>
+            <div className="selected-dates-list w-full md:w-1/2 p-2 max-h-auto rounded-lg overflow-y-auto cursor-pointer gap-1 border-blue-100 md:border-l-2">
+                {selectedDates.sort((a, b) => a.getTime() - b.getTime()).map((date, index) => (
+                    <div key={index} className="border-2 border-blue-200 text-blue-600 p-2 rounded-lg hover:text-white hover:font-semibold hover:bg-blue-400" onClick={() => handleDayClick(date)}>
+                        {date.toDateString()}
                     </div>
-                    <div className="selected-dates-list w-full md:w-1/2 p-2 max-h-auto rounded-lg overflow-y-auto cursor-pointer gap-1 border-blue-100">
-                        {selectedDates.sort((a, b) => a.getTime() - b.getTime()).map((date, index) => (
-                            <div key={index} className="border-2 border-blue-200 text-blue-600 p-2 rounded-lg hover:text-white hover:font-semibold hover:bg-blue-400" onClick={() => handleDayClick(date)}>
-                                {date.toDateString()}
-                            </div>
-                        ))}
-                    </div>
+                  ))}
                 </div>
+              </div>
           <hr />
           
         {category && (
@@ -302,14 +322,15 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
       <hr />
       <div className='text-neutral-600'>
       Alterar Cidade do Exame/Consulta:
-      <div className='font-semibold text-black'>
-      <input className='border-2 border-gray-700 rounded-lg px-1'
-              type="text"
-              name="locationValue"
-              size={30}
-              value={formData.locationValue}
-              onChange={handleChange}
-            />
+      <div className='font-semibold text-black w-1/2'>
+        <CitySelect
+        //@ts-ignore
+        value={formData.locationValue[0]}
+        onChange={(value) => {
+          setSelectedCity(value);
+          setCustomValue('locationValue', value);
+        }}
+        />
             </div>
             </div>
       <hr />

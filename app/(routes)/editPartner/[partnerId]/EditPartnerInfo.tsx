@@ -158,7 +158,6 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
       }
     }, [onAction, actionId, disabled]);
 
-
     const setValue = (field: keyof typeof formData, value: any) => {
       setFormData(prevState => ({
         ...prevState,
@@ -169,7 +168,6 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
     const setCustomValue = (id: string, value: CitySelectValue) => {
       setValue(id as keyof typeof formData, value);
     };   
-
 
   console.log(formData)
 
