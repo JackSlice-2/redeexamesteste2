@@ -180,6 +180,7 @@ const PartnerModal = () => {
             errors={errors}
             required
             />
+            <div>
             <Input 
             id="whatsApp"
             label="WhatsApp para Contato"
@@ -187,6 +188,11 @@ const PartnerModal = () => {
             register={register}
             errors={errors}
             />
+             <div className='text-neutral-500 text-sm'>
+            (opcional)
+            </div>
+            </div>
+            <div>
             <Input 
             id="telegram"
             label="Telefone 2"
@@ -194,6 +200,11 @@ const PartnerModal = () => {
             register={register}
             errors={errors}
             />
+            <div className='text-neutral-500 text-sm'>
+           (opcional)
+           </div>
+           </div>
+            <div>
             <Input 
             id="email"
             label="Telefone 3"
@@ -201,6 +212,10 @@ const PartnerModal = () => {
             register={register}
             errors={errors}
             />
+            <div className='text-neutral-500 text-sm'>
+           (opcional)
+           </div>
+           </div>
         </div>
         )
     }

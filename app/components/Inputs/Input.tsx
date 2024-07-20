@@ -34,13 +34,14 @@ const Input: React.FC<InputProps> = ({
     return (
         <div className='w-full relative'>
             {isMoneyInput && (
-                <span className='text-neutral-700 absolute top-5 left-4'>R$</span>
+                <span className='absolute top-5 left-3'>R$</span>
             )}
             {isBooleanInput ? (
                 <input 
                 id={id}
                 disabled={disabled}
                 {...register(id)}
+                placeholder={label}
                 type="checkbox"
                 className={` hidden
                 text-center font-wrap p-6 font-light bg-white border-2 rounded-md outline-none disabled:opacity-70 disabled:cursor-not-allowed
@@ -54,7 +55,7 @@ const Input: React.FC<InputProps> = ({
                 id={id}
                 disabled={disabled}
                 {...register(id, { required })}
-                placeholder=' '
+                placeholder={label}
                 type={type}
                 className={`
                 peer w-full p-4 pt-6 font-light bg-white border-2 rounded-md outline-none disabled:opacity-70 disabled:cursor-not-allowed
@@ -64,17 +65,6 @@ const Input: React.FC<InputProps> = ({
                 `}
                 />
             )}
-            <label className={`
-            absolute text-md duration-150 transform -translate-y-3 top-5 z-10 origin-[0]
-            ${formatPrice ? 'left-9' : 'left-4'}
-            peer-placeholder-shown:scale-100
-            peer-placeholder-shown:translate-y-0
-            peer-focus:scale-75
-            peer-focus:-translate-y-47
-            ${errors[id] ? 'text-rose-500' : 'text-zinc-400'}
-            `}>
-                {label}
-            </label>
         </div>
     )
 }

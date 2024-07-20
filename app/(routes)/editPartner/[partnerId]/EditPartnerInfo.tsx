@@ -183,7 +183,7 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
                   <div>Editando: <br/>
                   <input className='border-2 border-gray-700 rounded-lg px-1'
                     type="text"
-                    size={15}
+                    size={20}
                     name="title"
                     value={formData.title}
                     onChange={handleSimpleChange}

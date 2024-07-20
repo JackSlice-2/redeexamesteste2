@@ -75,10 +75,14 @@ return (
     <div className='w-1/2 flex flex-col gap-8'>
       <div className="flex flex-col gap-2">
         <div className="text-3xl font-bold flex items-center gap-2 pb-8 pt-3">
+          <div className='flex-col-1'>
           <div className='text-neutral-500 font-semibold'>
             Parceiro: 
-          </div>
+            </div>
+          <div className='font-bold'>
             {title}
+            </div>
+          </div>
           </div>
           <div className='pb-2'/>
              <div className='p-2 border-gray-400 flex justify-center items-center border rounded-xl object-contain'>

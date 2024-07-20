@@ -301,6 +301,7 @@ useEffect(() => {
                 title='Detalhes do Atendimento'
                 subtitle='Preencha os campos com atenção'
                 />
+                <div className='flex gap-2'>
                 <Input 
                 id="payNow"
                 label="Valor a ser Pago No Pix"
@@ -319,6 +320,7 @@ useEffect(() => {
                 errors={errors}
                 required
                 />
+                </div>
                 <div className='flex flex-row gap-2 text-blue-500 justify-between'>
                 <div className='text-center font-bold text-md'>
                     Selecione um tipo de atendimento:
@@ -359,6 +361,10 @@ useEffect(() => {
                                     errors={errors}
                                     checked={selectedOption === 'byAppointmentOnly'}
                                 />
+                                <div className='flex gap-2 items-center'>
+                                <div className='p-1'>
+                                Das
+                                </div>
                                 <Input 
                                     id="startTime"
                                     label="Ex.: 8:00"
@@ -367,6 +373,9 @@ useEffect(() => {
                                     errors={errors}
                                     required
                                 />
+                                <div className='p-1 text-nowrap'>
+                                Até As
+                                </div>
                                 <Input 
                                     id="endTime"
                                     label="Ex.: 12:00"
@@ -375,6 +384,7 @@ useEffect(() => {
                                     errors={errors}
                                     required
                                 />
+                                </div>
                             </>
                         )}
                         {selectedOption === 'firstComeFirstServe' && (
@@ -388,6 +398,10 @@ useEffect(() => {
                                     errors={errors}
                                     checked={selectedOption === 'firstComeFirstServe'}
                                 />
+                                <div className='flex gap-2 items-center'>
+                                <div className='p-1'>
+                                Das
+                                </div>
                                 <Input 
                                     id="startTime"
                                     label="Ex.: 8:00"
@@ -396,6 +410,9 @@ useEffect(() => {
                                     errors={errors}
                                     required
                                 />
+                                <div className='p-1 text-nowrap'>
+                                Até As
+                                </div>
                                 <Input 
                                     id="endTime"
                                     label="Ex.: 12:00"
@@ -404,6 +421,7 @@ useEffect(() => {
                                     errors={errors}
                                     required
                                 />
+                                </div>
                             </>
                         )}
                     </>
@@ -445,6 +463,7 @@ useEffect(() => {
                 required
                 />
                 <hr/>
+                <div>
                 <Input 
                 id="description"
                 label="Precisa de algum preparo?"
@@ -452,6 +471,10 @@ useEffect(() => {
                 register={register}
                 errors={errors}
                 />
+                    <div className='text-neutral-500 text-sm'>
+                    (opcional)
+                    </div>
+                </div>
             </div>
         )
     }
