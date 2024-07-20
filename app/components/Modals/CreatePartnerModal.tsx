@@ -148,11 +148,7 @@ const PartnerModal = () => {
             <div className="flex flex-col gap-8">
             <Heading 
             title='Informaçoes de Endereço'
-            subtitle='Aonde o Parceiro é Localizado?'
-            />
-            <CitySelect
-            value={branchAddress}
-            onChange={(value) => setCustomValue('branchAddress', value)}
+            subtitle='Aonde a Central do Parceiro é Localizado?'
             />
             <Input 
             id="address"
@@ -160,6 +156,10 @@ const PartnerModal = () => {
             disabled={isLoading}
             register={register}
             errors={errors}
+            />
+            <CitySelect
+            value={branchAddress}
+            onChange={(value) => setCustomValue('branchAddress', value)}
             />
         </div>
         )
