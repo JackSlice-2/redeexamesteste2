@@ -4,10 +4,11 @@ import axios from 'axios';
 import React, { useCallback, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Modal from './Modal';
-import Heading from '../Heading';
+
 import Input from '../Inputs/Input';
 import toast from 'react-hot-toast';
 import useLoginModal from '@/app/hooks/useLoginModal';
+import Header from '../listings/Header';
 
 const RegisterModal = () => {
     const registerModal = useRegisterModal();
@@ -52,7 +53,7 @@ const RegisterModal = () => {
 
     const bodyContent = (
         <div className="flex flex-col gap-4">
-            <Heading title='Seja bem-Vindo a RedeExames!' subtitle='Crie sua Conta!' 
+            <Header title='Seja bem-Vindo a RedeExames!' subtitle='Crie sua Conta!' 
             />
             <Input 
             id='email'

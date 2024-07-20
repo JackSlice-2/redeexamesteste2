@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from 'react'
 import Modal from './Modal'
-import Heading from '../Heading';
+
 import { categories } from '../navbar/Categories';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import ImageUpload from '../Inputs/ImageUpload';
@@ -16,6 +16,7 @@ import { SafePartner } from '@/app/types';
 import useCreateServiceModal from '@/app/hooks/useCreateServiceModal';
 import { ptBR } from 'date-fns/locale';
 import ObjectInput from '../Inputs/ObjectInput';
+import Header from '../listings/Header';
 
 enum STEPS {
     CATEGORY = 0,
@@ -201,7 +202,7 @@ useEffect(() => {
 
     let bodyContent = (
         <div className="flex flex-col gap-8">
-            <Heading 
+            <Header
             title='Selecione o Tipo de Atendimento'
             subtitle='Escolha uma categoria'
             />
@@ -224,7 +225,7 @@ useEffect(() => {
         
         bodyContent = (
             <div className="flex flex-col gap-8">
-                    <Heading 
+                    <Header 
                     title='Escolha o Parceiro Correspondente'
                     subtitle='Escolha uma Empresa'
                     />
@@ -276,7 +277,7 @@ useEffect(() => {
 
     {!isVirtual && (
       <>
-        <Heading
+        <Header
           title='Aonde fica o local da consulta?'
           subtitle='Selecione a cidade coorespondente'
         />
@@ -296,7 +297,7 @@ useEffect(() => {
     if (step === STEPS.INFO) {
         bodyContent = (
             <div className="flex flex-col gap-8">
-                <Heading
+                <Header
                 title='Detalhes do Atendimento'
                 subtitle='Preencha os campos com atenção'
                 />
@@ -414,7 +415,7 @@ useEffect(() => {
     if (step === STEPS.IMAGES) {
         bodyContent = (
             <div className="flex flex-col gap-8">
-                <Heading 
+                <Header 
                 title='Adicione uma Foto'
                 subtitle='Uma foto Illustrando o Serviço'
                 />
@@ -431,7 +432,7 @@ useEffect(() => {
     if (step === STEPS.DESCRIPTION) {
         bodyContent = (
             <div className="flex flex-col gap-8">
-                <Heading 
+                <Header 
                 title='Qual o Nome do Atendimento?'
                 subtitle='Nome do Exame ou Especialidade do Medico'
                 />
@@ -474,7 +475,7 @@ useEffect(() => {
     if (step === STEPS.CALENDAR) {
         bodyContent = (
             <div className="flex flex-col gap-8">
-                <Heading 
+                <Header 
                     title='Selecione os dias do Atendimento'
                     subtitle='Selecione todos os dias que tera atendimento disponivel'
                 />

@@ -2,34 +2,40 @@
 
 import { SafeUser } from '@/app/types';
 import React from 'react'
-import Heading from '../Heading';
 import Image from 'next/image';
 import FloppyDiskButton from '../FloppyDiskButton';
 
-interface ServiceHeadProps {
-    title: string;
-    locationValue: string;
-    imageSrc: string;
-    id: string;
+interface HeaderProps {
+    imageSrc?: string;
+    id?: string;
     currentUser?: SafeUser | null;
     floppyDiskButton?: Boolean;
+    title?: string;
+    subtitle?: string;
+    center?: boolean;
 }
 
-const ServiceHead: React.FC<ServiceHeadProps> = ({
+const Header: React.FC<HeaderProps> = ({
     title,
-    locationValue,
     imageSrc,
     id,
     currentUser,
-    floppyDiskButton
+    floppyDiskButton,
+    subtitle,
+    center,
 }) => {
 
   return (
     <>
-    <Heading 
-    title={title}
-    subtitle={locationValue}
-    />
+    <div className={center ? 'text-center' : 'text-start'}>
+        <div className="text-2xl font-bold">
+            {title}
+        </div>
+        <div className="font-light text-neutral-500 mt-2">
+            {subtitle}
+        </div>
+    </div>
+    {imageSrc &&
     <div className="w-full md:w-5/6 h-[50vh] mx-auto overflow-hidden rounded-xl relative border-2 p-1 border-neutral-500/50 object-contain">
         <Image 
         loading="lazy"
@@ -41,14 +47,15 @@ const ServiceHead: React.FC<ServiceHeadProps> = ({
       {floppyDiskButton && (
         <div className="absolute top-5 right-5">
             <FloppyDiskButton 
-            listingId={id}
+            listingId={id || ''}
             currentUser={currentUser}
             />
         </div>
       )}
     </div>
+}
     </>
   )
 }
 
-export default ServiceHead
+export default Header

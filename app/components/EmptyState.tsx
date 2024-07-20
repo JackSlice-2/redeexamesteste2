@@ -2,8 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 import React from 'react'
-import Heading from './Heading';
 import Button from './Button';
+import Header from './listings/Header';
 
 interface EmptyStateProps {
     title?: string;
@@ -19,7 +19,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
     const router = useRouter();
   return (
     <div className='h-[60vh] flex flex-col gap-2 justify-center items-center min-h-screen'>
-      <Heading
+      <Header
       title={title}
       subtitle={subtitle}
       center

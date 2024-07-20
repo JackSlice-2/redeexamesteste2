@@ -1,8 +1,8 @@
 "use client";
 
 import Container from '@/app/components/Container';
-import ServiceHead from '@/app/components/listings/ServiceHead';
-import ServiceInfo from '@/app/components/listings/ServiceInfoCard';
+import Header from '@/app/components/listings/Header';
+import ServiceInfo from '@/app/components/listings/ServiceInfo';
 import Calendar from '@/app/components/listings/Calendar';
 import { categories } from '@/app/components/navbar/Categories';
 import { SafeListing, SafeUser } from '@/app/types';
@@ -70,7 +70,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
         <Container>
             <div className="max-w-screen-lg mx-auto mt-20">
                 <div className="flex flex-col gap-6">
-                    <ServiceHead
+                    <Header
                     title={listing.title}
                     imageSrc={listing.imageSrc}
                     //@ts-ignore

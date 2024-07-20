@@ -3,7 +3,6 @@
 import React, { useMemo, useState } from 'react'
 import Modal from './Modal'
 import usePartnerModal from '@/app/hooks/useCreatePartnerModal'
-import Heading from '../Heading';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import ImageUpload from '../Inputs/ImageUpload';
 import Input from '../Inputs/Input';
@@ -11,6 +10,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import CitySelect from '../Inputs/CitySelect';
+import Header from '../listings/Header';
 
 enum STEPS {
     INFO = 0,
@@ -128,7 +128,7 @@ const PartnerModal = () => {
 
     let bodyContent = (
         <div className="flex flex-col gap-8">
-        <Heading 
+        <Header 
         title='Informaçoes Basicas do Parceiro'
         subtitle='Informaçoes de Identificaçao'
         />
@@ -146,7 +146,7 @@ const PartnerModal = () => {
     if (step === STEPS.ADDRESS) {
         bodyContent = (
             <div className="flex flex-col gap-8">
-            <Heading 
+            <Header 
             title='Informaçoes de Endereço'
             subtitle='Aonde a Central do Parceiro é Localizado?'
             />
@@ -168,7 +168,7 @@ const PartnerModal = () => {
     if (step === STEPS.CONTACT) {
         bodyContent = (
             <div className="flex flex-col gap-8">
-            <Heading 
+            <Header 
             title='Informaçoes de Contato'
             subtitle='Informaçoes para Entrar em Contato com o Parceiro'
             />
@@ -208,7 +208,7 @@ const PartnerModal = () => {
     if (step === STEPS.IMAGES) {
         bodyContent = (
             <div className="flex flex-col gap-8">
-                <Heading 
+                <Header 
                 title='Adicione uma Foto'
                 subtitle='Uma foto Illustrando o Serviço'
                 />
