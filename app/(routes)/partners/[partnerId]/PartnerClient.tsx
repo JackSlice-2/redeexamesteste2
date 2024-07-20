@@ -44,7 +44,7 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
     return (
         <Container>
             <div className="max-w-screen-lg mx-auto mt-20">
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-3">
                     <div className="grid-cols-1 md:grid-cols-7 md:gap-10 mt-6">
                         <PartnerInfo
                             title={partner.title}

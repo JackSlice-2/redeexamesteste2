@@ -46,15 +46,14 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
         throw new Error("Invalid ID");
     }
 
-    const { title, imageSrc, cities, branchPhone, phone, whatsApp, telegram, email, address } = await request.json();
+    const { title, imageSrc, cities, branchPhone, phone, whatsApp, telegram, email, branchAddress, address } = await request.json();
 
-    //for use when branchAddress[] recives the updates cityName
-        //const cityNames = cities.map((city:any) => city.label);
+    const branchAddressArray = Array.isArray(branchAddress)? branchAddress : [branchAddress];    const branchPhoneString = branchPhone.map((PhoneObj:any) => PhoneObj.phoneNumber);
 
-        const branchPhoneString = branchPhone.map((PhoneObj:any) => PhoneObj.phoneNumber);
+    const serializedUpdatedCities = cities.map(JSON.stringify);
 
-        const serializedUpdatedCities = cities.map(JSON.stringify);
-
+    console.log(branchAddress)
+    console.log(request.json)
 
     const partner = await prisma.partner.update({
         where: {
@@ -68,6 +67,9 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
             branchPhone: {
                 set: branchPhoneString,
               },
+            branchAddress: {
+                set: branchAddressArray.map(branchAddressObj => branchAddressObj.value)
+            },
             phone,
             whatsApp,
             telegram,

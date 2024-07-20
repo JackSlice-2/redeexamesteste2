@@ -136,22 +136,15 @@ return (
       <div className='mt-3'/>
       <div className='font-semibold'>
             Informaçoes de Contato
-            {parsedCities?.length !== 0 && " da Matriz"}
+            {parsedCities?.length !== 0 && " da Matriz Localizada em:"}
             </div>
-            <div className='text-xl py-2'>
+            <div className='text-2xl font-semibold py-2'>
             {branchAddress}
           </div>
+          
     <div className='flex flex-row overflow-x-auto hide-scrollbar w-full pt-2 gap-3 text-center'>     
-        
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
-          onClick={() => copyToClipboard(phone || '')}
-          >
-            <BiCopy /> Telefone: <br/>
-          <div className='font-medium text-xl'>
-            {phone}
-          </div>
-        </div>
-        {address &&
+
+    {address &&
         <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
           onClick={() => copyToClipboard(address || '')}
           >
@@ -161,6 +154,16 @@ return (
           </div>
         </div>
         }
+        
+        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
+          onClick={() => copyToClipboard(phone || '')}
+          >
+            <BiCopy /> Telefone: <br/>
+          <div className='font-medium text-xl'>
+            {phone}
+          </div>
+        </div>
+        
         {whatsApp &&
         <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
           onClick={() => copyToClipboard(whatsApp || '')}
@@ -192,19 +195,7 @@ return (
           </div>
         )}
     </div>
-      <div className='m-2 ml-4 flex gap-0.5 justify-center text-center transition text-white rounded-xl p-2 w-1/5 cursor-pointer bg-blue-500 hover:bg-blue-300 shadow-md hover:text-black hover:font-medium'
-        onClick={() => copyToClipboard(
-          `E-Mail: ${email || ''}\n` +
-          `WhatsApp: ${whatsApp || ''}\n` +
-          `Telegram: ${telegram || ''}\n` +
-          `Telefone: ${phone || ''}\n` +
-          `Endereço: ${address || ''}
-          `)}
-        >
-        <BiCopy /> Copiar Todos
-      </div>
       <div className='pt-5'/>
-    <hr />
     {onAction && actionLabel && (
             <Button 
             disabled={disabled}

@@ -72,7 +72,7 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
             };
             setSelectedCity(cityObject);
         }
-    }, [cities, branchPhone, branchAddress]);
+    }, [cities]);
 
     const [formData, setFormData] = 
     useState({
@@ -84,7 +84,16 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
         whatsApp: whatsApp || '',
         telegram: telegram || '',
         branchPhone: [],
-        cities: cities ? cities.map((city, index) => JSON.parse(city)) : []
+        branchAddress: branchAddress ? branchAddress.map(city => ({
+          label: city,
+          flag: "",
+          latlng: [0, 0],
+          region: "",
+          value: city,
+          address: "",
+          phoneNumber: "",
+      })) : [],
+              cities: cities ? cities.map((city, index) => JSON.parse(city)) : []
     });
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -116,6 +125,10 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
       
         if (!currentUser) {
           toast.error('No currentUser');
+          return;
+        }  
+        if (!branchAddress) {
+          toast.error('No branchAddress');
           return;
         }  
         try {
@@ -152,6 +165,13 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
         [field]: value,
       }));
     };
+
+    const setCustomValue = (id: string, value: CitySelectValue) => {
+      setValue(id as keyof typeof formData, value);
+    };   
+
+
+  console.log(formData)
 
     return (
         <>
@@ -258,7 +278,17 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
           </div>
           </div>
         </div>
-        <div className='mt-3'/>
+        <div className="w-1/2 py-2">
+          Clique para Mudar a Cidade da Matriz: <br/>
+          <CitySelect 
+            value={formData.branchAddress[0]}
+            onChange={(value) => {
+              setSelectedCity(value);
+              setCustomValue('branchAddress', value);
+            }}
+          />
+
+        </div>
       <div className='justify-center align-center items-center'>      
           <div className='flex flex-row overflow-x-auto hide-scrollbar w-full pt-2 gap-3 text-center '>
           <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
