@@ -9,6 +9,8 @@ interface PartnerPageProps {
   searchParams: IPartnersParams
 }
 
+export const dynamic = 'force-dynamic';
+
 const PartnerPage = async ({ searchParams }: PartnerPageProps) => {
   const partners = await getPartners(searchParams);
   const currentUser = await getCurrentUser();
