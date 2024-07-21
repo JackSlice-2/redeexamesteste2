@@ -26,7 +26,7 @@ const Logo: React.FC<LogoProps> = ({
           height={height}
           width={width}
           priority
-          src="/images/logo.png"
+          src="/images/logo.webp"
           />
           <div className="block cursor-pointer -mt-3" onClick={() => router.push('/')}>
           {label}

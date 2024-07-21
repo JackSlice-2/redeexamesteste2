@@ -17,7 +17,8 @@ const font = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "RedeExames.Online",
-  description: "Um App de Marcaçao de Serviços",
+  description: "Um App para Marcaçao de Serviços Medicos",
+  icons: "./favicon.ico"
 };
 
 export default async function RootLayout({
@@ -29,9 +30,6 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <body className={font.className}>
         <ClientOnly>
           <ToasterProvider />

@@ -10,11 +10,13 @@ import useLoginModal from '@/app/hooks/useLoginModal';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Header from '../listings/Header';
+import { PiEye, PiEyeClosed } from 'react-icons/pi';
 
 const LoginModal = () => {
     const router = useRouter();
     const loginModal = useLoginModal();
     const [isLoading, setIsLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false)
 
     const {
         register,
@@ -49,6 +51,10 @@ const LoginModal = () => {
             }
         })
     }
+
+    const togglePasswordVisibility =() => {
+        setShowPassword(!showPassword);
+    };
     
     const bodyContent = (
         <div className="flex flex-col gap-4">
@@ -64,15 +70,20 @@ const LoginModal = () => {
             errors={errors}
             required
             />
-            <Input 
-            id='password'
-            label='Senha'
-            type='password'
-            disabled={isLoading}
-            register={register}
-            errors={errors}
-            required
-            />
+            <div className='relative'>
+                <Input 
+                id='password'
+                label='Senha'
+                type={showPassword ? 'text' : 'password'}
+                disabled={isLoading}
+                register={register}
+                errors={errors}
+                required
+                />
+                <button onClick={togglePasswordVisibility} className='absolute right-0 top-0 mt-3 mr-2'>
+                    {showPassword ? <PiEye size={40} /> : <PiEyeClosed size={40} />}
+                </button>
+            </div>
         </div>
     );
 
