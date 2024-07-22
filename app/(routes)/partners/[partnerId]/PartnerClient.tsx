@@ -65,7 +65,7 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
                         label="Editar Parceiro"
                         icon={BiPencil}
                         green
-                        onClick={() => router.push(`/editPartner/${partnerId}`)}
+                        onClick={() => router.push(`/partners/editPartner/${partnerId}`)}
                     />
                 </div>
             </div>

@@ -125,24 +125,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         </div>
     </div>
         </div>
-        {onAction && actionLabel && (
-            <Button 
-            disabled={disabled}
-            label={actionLabel}
-            onClick={handleCancel}
-            red
-            icon={BiTrash}
-            />
-        )}
-        {onAction && secondaryActionLabel && (
-            <Button
-            disabled={disabled}
-            label={secondaryActionLabel}
-            green
-            onClick={() => router.push(`/editService/${data.id}`)}
-            icon={BiPencil}
-            />
-        )}
         {!currentUser &&
            <div className="text-center justify-center gap-1 flex mt-3">
             <Button

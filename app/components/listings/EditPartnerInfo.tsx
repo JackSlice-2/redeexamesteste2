@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { BiTrash } from 'react-icons/bi';
-import Button from '../../../components/Button';
+import Button from "@/app/components/Button";
 import { FaFloppyDisk } from 'react-icons/fa6';
 import { SafeUser } from '@/app/types';
 import axios from 'axios';

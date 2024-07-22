@@ -40,10 +40,8 @@ const ObjectInput: React.FC<CompanyInputProps> = ({
       {partner && (
         <div
           className={`absolute inset-0 bg-black flex flex-col justify-center items-center rounded-xl 
-            ${selected ? '' : 'hover:bg-opacity-30'}
-            ${selected ? 'bg-opacity-90' : 'bg-opacity-50'}
-            ${selected ? 'border-2' : ''}
-            ${selected ? 'border-black' : ''}
+            ${selected ? 
+            'border-2 border-black bg-opacity-90' : 'bg-opacity-50 hover:bg-opacity-30'}
             `}
         />
       )}

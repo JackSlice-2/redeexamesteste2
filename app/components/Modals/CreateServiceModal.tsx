@@ -261,8 +261,9 @@ useEffect(() => {
         bodyContent = (
             <div className='flex flex-col gap-8'>
             <label className={`flex flex-col mx-auto border-2 border-blue-400 rounded-xl p-2
-            ${isVirtual ? 'hover:bg-blue-200/40' : 'hover:bg-blue-400'}
-            ${isVirtual ? 'bg-blue-400' : 'bg-blue-200/40'}
+            ${isVirtual ? 
+            'hover:bg-blue-200/40 bg-blue-400' : 
+            'hover:bg-blue-400 bg-blue-200/40'}
                 `}>
                 <input 
                 className='h-6 w-6 border text-center font-medium border-gray-300 rounded-md checked:bg-blue-600 checked:border-transparent focus:outline-none m-auto'
@@ -302,7 +303,7 @@ useEffect(() => {
                 subtitle='Preencha os campos com atenção'
                 />
                 <div className='flex gap-2'>
-                <Input 
+                <Input
                 id="payNow"
                 label="Valor a ser Pago No Pix"
                 formatPrice
@@ -361,7 +362,7 @@ useEffect(() => {
                                     errors={errors}
                                     checked={selectedOption === 'byAppointmentOnly'}
                                 />
-                                <div className='flex gap-2 items-center'>
+                                <div className='flex gap-2 justify-between'>
                                     <div>
                                 <div className='p-1'>
                                 Das:
