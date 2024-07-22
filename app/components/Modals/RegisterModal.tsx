@@ -9,13 +9,11 @@ import Input from '../Inputs/Input';
 import toast from 'react-hot-toast';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import Header from '../listings/Header';
-import { PiEye, PiEyeClosed } from 'react-icons/pi';
 
 const RegisterModal = () => {
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
     const [isLoading, setIsLoading] = useState(false);
-    const [showPassword, setShowPassword] = useState(false)
 
     const {
         register,
@@ -53,9 +51,6 @@ const RegisterModal = () => {
         loginModal.onOpen();
     }, [loginModal, registerModal])
 
-    const togglePasswordVisibility =() => {
-        setShowPassword(!showPassword);
-    };
     const bodyContent = (
         <div className="flex flex-col gap-4">
             <Header title='Seja bem-Vindo a RedeExames!' subtitle='Crie sua Conta!' 
@@ -80,36 +75,15 @@ const RegisterModal = () => {
                 <Input 
                 id='password'
                 label='Senha'
-                type={showPassword ? 'text' : 'password'}
                 disabled={isLoading}
                 register={register}
                 errors={errors}
                 required
+                isPassword
                 />
-                <button onClick={togglePasswordVisibility} className='absolute right-0 top-0 mt-3 mr-2'>
-                    {showPassword ? <PiEye size={40} /> : <PiEyeClosed size={40} />}
-                </button>
             </div>
         </div>
     );
-
-    const footerContent = (
-        <div className="flex flex-col gap-4 mt-3">
-            <hr />
-            <div className="text-neutral-500 text-center mt-4 font-light">
-                <div className='flex flex-row items-center gap-2 justify-center'>
-                    <div>
-                Ja tem uma conta?
-                    </div>
-                    <div 
-                    onClick={toggle}
-                    className='text-neutral-800 cursor-pointer hover:underline'>
-                Faça Log in
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
 
   return (
     <Modal 
@@ -120,7 +94,6 @@ const RegisterModal = () => {
     onClose={registerModal.onClose}
     onSubmit={handleSubmit(onSubmit)}
     body={bodyContent}
-    footer={footerContent}
     />
   )
 }

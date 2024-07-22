@@ -1,5 +1,8 @@
-import React from 'react';
+'use cleint'
+
+import React, { useState } from 'react';
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+import { PiEye, PiEyeSlash } from 'react-icons/pi';
 
 interface InputProps {
     id: string;
@@ -15,6 +18,7 @@ interface InputProps {
     firstComeFirstServe?: boolean;
     byAppointmentOnly?: boolean;
     checked?: boolean;
+    isPassword?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -26,10 +30,17 @@ const Input: React.FC<InputProps> = ({
     register,
     required,
     errors,
+    isPassword
 }) => {
+    const [showPassword, setShowPassword] = useState(false)
     const isBooleanInput = id === 'firstComeFirstServe' || id === 'byAppointmentOnly';
 
     const isMoneyInput = formatPrice;
+
+    const togglePasswordVisibility =() => {
+        setShowPassword(!showPassword);
+    };
+    
 
     return (
         <div className='w-full relative'>
@@ -41,7 +52,7 @@ const Input: React.FC<InputProps> = ({
                     disabled={disabled}
                     {...register(id, { required })}
                     placeholder={label}
-                    type={type}
+                    type={isPassword ? (`${showPassword ? 'text' : 'password'}`) : type}
                     className={`
                         font-light bg-white border-2 rounded-md outline-none disabled:opacity-70 disabled:cursor-not-allowed
                         ${isBooleanInput ? 'hidden' : 'peer'}
@@ -53,6 +64,10 @@ const Input: React.FC<InputProps> = ({
                         ${errors[id] ? 'focus:border-rose-500' : 'focus:border-black'}
                     `}
                 />
+                {isPassword && 
+                <button onClick={togglePasswordVisibility} className='absolute right-0 top-0 mt-4 mr-2'>
+                {showPassword ? <PiEyeSlash size={30} /> : <PiEye size={30} />}
+                </button>}
             </div>
     )
 }
