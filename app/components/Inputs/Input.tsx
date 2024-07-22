@@ -36,36 +36,24 @@ const Input: React.FC<InputProps> = ({
             {isMoneyInput && (
                 <span className='absolute font-semibold top-6 left-3'>R$</span>
             )}
-            {isBooleanInput ? (
                 <input 
-                id={id}
-                disabled={disabled}
-                {...register(id)}
-                placeholder={label}
-                type="checkbox"
-                className={` hidden
-                text-center font-wrap p-6 font-light bg-white border-2 rounded-md outline-none disabled:opacity-70 disabled:cursor-not-allowed
-                ${formatPrice ? 'pl-9' : 'pl-4'}
-                ${errors[id] ? 'border-rose-500' : 'border-neutral-300'}
-                ${errors[id] ? 'focus:border-rose-500' : 'focus:border-black'}
-                `}
+                    id={id}
+                    disabled={disabled}
+                    {...register(id, { required })}
+                    placeholder={label}
+                    type={type}
+                    className={`
+                        font-light bg-white border-2 rounded-md outline-none disabled:opacity-70 disabled:cursor-not-allowed
+                        ${isBooleanInput ? 'hidden' : 'peer'}
+                        ${isBooleanInput ? 'text-center' : 'w-full'}
+                        ${isBooleanInput ? 'p-6' : 'p-4'}
+                        ${isBooleanInput ? 'font-wrap' : 'pt-6'}
+                        ${formatPrice ? 'pl-9' : 'pl-4'}
+                        ${errors[id] ? 'border-rose-500' : 'border-neutral-300'}
+                        ${errors[id] ? 'focus:border-rose-500' : 'focus:border-black'}
+                    `}
                 />
-            ) : (
-                <input 
-                id={id}
-                disabled={disabled}
-                {...register(id, { required })}
-                placeholder={label}
-                type={type}
-                className={`
-                peer w-full p-4 pt-6 font-light bg-white border-2 rounded-md outline-none disabled:opacity-70 disabled:cursor-not-allowed
-                ${formatPrice ? 'pl-9' : 'pl-4'}
-                ${errors[id] ? 'border-rose-500' : 'border-neutral-300'}
-                ${errors[id] ? 'focus:border-rose-500' : 'focus:border-black'}
-                `}
-                />
-            )}
-        </div>
+            </div>
     )
 }
 

@@ -1,10 +1,8 @@
 "use client";
 
 import React from 'react'
-import { Range } from 'react-date-range';
 import { DayPicker } from 'react-day-picker';
-import { SafeListing } from '@/app/types';
-import { ptBR } from 'date-fns/locale'; 
+import { ptBR } from 'date-fns/locale';
 
 interface CalendarProps {
     dates?: string[];
@@ -37,14 +35,16 @@ const Calendar: React.FC<CalendarProps> = ({
         selected={dateObjects}
         disabled={{ before: new Date() }}
         className="customDayPicker"
+        showOutsideDays
+        disableNavigation        
         locale={ptBR}
         modifiersStyles={{
           selected: {
-          backgroundColor: '#007BFF',
-          color: 'white',
-          borderRadius: '1rem',
-          border: '1px solid lightblue',
-          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+            backgroundColor: '#007BFF',
+            color: 'white',
+            borderRadius: '1rem',
+            border: '1px solid lightblue',
+            boxShadow: '3px 3px 3px 3px rgba(0, 0, 0, 0.1)',
           },
           today: {
             color: 'blue',
@@ -56,8 +56,10 @@ const Calendar: React.FC<CalendarProps> = ({
             border: '0px solid lightblue',
             backgroundColor: 'transparent',
           },
-          label: {
-            color: 'red'
+          outside: {
+            color: '#ccc',
+            border: '0px solid lightblue',
+            backgroundColor: 'transparent',
           }
         }}
       />
