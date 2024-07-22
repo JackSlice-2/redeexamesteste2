@@ -113,7 +113,7 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
   
       setFormData(prevState => ({
           ...prevState,
-          [name]: value, // Directly update the field based on the 'name' attribute
+          [name]: value,
       }));
   };
 
@@ -168,8 +168,6 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
     const setCustomValue = (id: string, value: CitySelectValue) => {
       setValue(id as keyof typeof formData, value);
     };   
-
-  console.log(formData)
 
     return (
         <>

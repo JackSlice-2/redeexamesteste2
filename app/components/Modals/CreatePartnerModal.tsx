@@ -245,7 +245,8 @@ const PartnerModal = () => {
             whatsApp: '',
             telegram: '',
             email: '',
-        });    setStep(STEPS.INFO);
+        });    
+        setStep(STEPS.INFO);
 }
     const handleClose = () => {
         partnerModal.onClose();

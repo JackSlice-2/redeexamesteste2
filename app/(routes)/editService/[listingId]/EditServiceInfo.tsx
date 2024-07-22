@@ -122,6 +122,7 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
       payThere: payThereNumber,
       dates: datesStringArray,
   };
+  console.log(dataToSend)
         try {
           const response = await axios.patch(`/api/listings/${listingId}`, dataToSend, 
             {
