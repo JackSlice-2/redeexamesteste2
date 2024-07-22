@@ -92,8 +92,8 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
           value: city,
           address: "",
           phoneNumber: "",
-      })) : [],
-              cities: cities ? cities.map((city, index) => JSON.parse(city)) : []
+        })) : [],
+        cities: cities ? cities.map((city, index) => JSON.parse(city)) : []
     });
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -181,7 +181,7 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
                   <div>Editando: <br/>
                   <input className='border-2 border-gray-700 rounded-lg px-1'
                     type="text"
-                    size={20}
+                    size={15}
                     name="title"
                     value={formData.title}
                     onChange={handleSimpleChange}
@@ -193,18 +193,18 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
               <div className='p-2 border-gray-400 flex justify-center items-center border rounded-xl'>
                 <ImageUpload
                   onChange={(value:any) => setValue("imageSrc", value)}
-                  value={imageSrc}
+                  value={formData.imageSrc || imageSrc}
                 />
             </div>
           </div>
           </div>
-          <div className='w-1/2 p-2 lg:mt-10 border-gray-300 h-1/2 '>
+          <div className='w-1/2 p-4 lg:mt-10 border-gray-300 h-1/2 '>
           <div className='p-4 border-2 border-dashed border-blue-900 text-center hover:bg-blue-400 cursor-pointer shadow-sm my-2 bg-blue-200 rounded-lg font-medium'>
             <div className='pb-2'>
               Clique para Alterar ou Adicionar Filiais!
             </div>
             <CitySelect
-            value={ '' || {'flag': "", 'label': "", 'latlng': [0],'region': "", 'value': "", 'address': "", 'phoneNumber': ""}}
+            value={ selectedCity || {'flag': "", 'label': "", 'latlng': [0],'region': "", 'value': "", 'address': "", 'phoneNumber': ""}}
             onChange={(city) => {
             setSelectedCity(city);
             setFormData(prevState => {
@@ -304,19 +304,6 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
           </div>
           <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
             >
-              Telefone: <br/>
-            <div className='font-medium text-xl'>
-            <input className='border-2 border-gray-700 rounded-lg px-1'
-              size={10}
-              type="text"
-              name="phone"
-              value={formData.phone}
-              onChange={handleSimpleChange}
-            />
-            </div>
-          </div>
-          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
-            >
               WhatsApp: <br/>
             <div className='font-medium text-xl'>
             <input className='border-2 border-gray-700 rounded-lg px-1'
@@ -324,6 +311,19 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
               type="text"
               name="whatsApp"
               value={formData.whatsApp}
+              onChange={handleSimpleChange}
+            />
+            </div>
+          </div>
+          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
+            >
+              Telefone: <br/>
+            <div className='font-medium text-xl'>
+            <input className='border-2 border-gray-700 rounded-lg px-1'
+              size={10}
+              type="text"
+              name="phone"
+              value={formData.phone}
               onChange={handleSimpleChange}
             />
             </div>

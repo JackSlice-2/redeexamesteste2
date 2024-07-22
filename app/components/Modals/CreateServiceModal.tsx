@@ -65,7 +65,7 @@ useEffect(() => {
                     0,
                     0
                 ],
-                "region": "Default Region"
+                "region": "Online"
             },
             latlng: [],
             payNow: '',
@@ -207,16 +207,16 @@ useEffect(() => {
             subtitle='Escolha uma categoria'
             />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
-                {categories.map((item) => (
-                    <div key={item.label} className='col-span-1'>
-                            <ObjectInput
-                            onClick={(category) => setCustomValue('category', category)}
-                            selected={category === item.label}
-                            label={item.label}
-                            icon={item.icon}
-                            />
-                        </div>
-                ))}
+            {categories.map((item) => (
+                <div key={item.label} className='col-span-1'>
+                    <ObjectInput
+                    onClick={(category) => setCustomValue('category', category)}
+                    selected={category === item.label}
+                    label={item.label}
+                    icon={item.icon}
+                    />
+                </div>
+            ))}
             </div>
         </div>
     )
@@ -225,21 +225,19 @@ useEffect(() => {
         
         bodyContent = (
             <div className="flex flex-col gap-8">
-                    <Header 
-                    title='Escolha o Parceiro Correspondente'
-                    subtitle='Escolha uma Empresa'
-                    />
-                    Se o Parceiro nao esta aparecendo, reinicie a pagina e tente novamente.
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
+                <Header 
+                title='Escolha o Parceiro Correspondente'
+                subtitle='Se o Parceiro nao aparecer, reinicie a pagina e tente novamente.'
+                />
+                <div className="px-2 grid grid-cols-1 md:grid-cols-3 gap-3 max-h-[50vh] overflow-y-auto">
                 {partners.map((partner) => (
-            <ObjectInput
-                key={partner.id}
-                partner={partner}
-                selected={company === partner.title}
-                onClick={(value) => setCustomValue('company', value)}
-            />
+                    <ObjectInput
+                        key={partner.id}
+                        partner={partner}
+                        selected={company === partner.title}
+                        onClick={(value) => setCustomValue('company', value)}
+                    />
                 ))}
-
                 </div>
             </div>
         )
@@ -254,7 +252,7 @@ useEffect(() => {
                 value: "Online",
                 label: "Online",
                 latlng: [0, 0],
-                region: "Default Region"
+                region: "Online"
             });
         }
     }, [isVirtual, setValue]);
@@ -262,18 +260,20 @@ useEffect(() => {
     if (step === STEPS.LOCATION) {
         bodyContent = (
             <div className='flex flex-col gap-8'>
-    <label>
-    <input 
-     className='h-6 w-6 border text-center font-medium border-gray-300 rounded-md checked:bg-blue-600 checked:border-transparent focus:outline-none'
-
-    type="checkbox"
-    checked={isVirtual}
-    onChange={(e) => {
-      setIsVirtual(e.target.checked);
-    }}
-    />
-    É uma consulta virtual?
-    </label>
+            <label className={`flex flex-col mx-auto border-2 border-blue-400 rounded-xl p-2
+            ${isVirtual ? 'hover:bg-blue-200/40' : 'hover:bg-blue-400'}
+            ${isVirtual ? 'bg-blue-400' : 'bg-blue-200/40'}
+                `}>
+                <input 
+                className='h-6 w-6 border text-center font-medium border-gray-300 rounded-md checked:bg-blue-600 checked:border-transparent focus:outline-none m-auto'
+                type="checkbox"
+                checked={isVirtual}
+                onChange={(e) => {
+                setIsVirtual(e.target.checked);
+                }}
+                />
+                É uma consulta virtual?
+            </label>
 
     {!isVirtual && (
       <>
@@ -296,7 +296,7 @@ useEffect(() => {
 
     if (step === STEPS.INFO) {
         bodyContent = (
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-6">
                 <Header
                 title='Detalhes do Atendimento'
                 subtitle='Preencha os campos com atenção'
@@ -321,31 +321,31 @@ useEffect(() => {
                 required
                 />
                 </div>
-                <div className='flex flex-row gap-2 text-blue-500 justify-between'>
-                <div className='text-center font-bold text-md'>
-                    Selecione um tipo de atendimento:
-                </div>
-                <button onClick={() => {
-                    setSelectedOption('byAppointmentOnly');
-                    setValue('byAppointmentOnly', true);
-                    setValue('firstComeFirstServe', false);
-                }}
-                    className={`p-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-outhover:font-medium
-                    ${selectedOption === 'byAppointmentOnly' ? 'bg-blue-600 text-white font-bold shadow-lg border-2 border-blue-600' : 'bg-blue-200 text-gray-400'}`}
-                >
-                    Horario Marcado
-                </button>
-                
-                <button onClick={() => {
-                    setSelectedOption('firstComeFirstServe');
-                    setValue('byAppointmentOnly', false);
-                    setValue('firstComeFirstServe', true);
-                }}
-                    className={`p-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-outhover:font-medium
-                    ${selectedOption === 'firstComeFirstServe' ? 'bg-blue-600 text-white font-bold shadow-lg border-2 border-blue-600' : 'bg-blue-200 text-gray-400'}`}
-                >
-                    Por Ordem de Chegada
-                </button>
+                <div className='flex flex-col gap-2 text-blue-500 justify-between'>
+                    <div className='text-center font-bold text-md'>
+                        Selecione um tipo de atendimento:
+                    </div>
+                    <button onClick={() => {
+                        setSelectedOption('byAppointmentOnly');
+                        setValue('byAppointmentOnly', true);
+                        setValue('firstComeFirstServe', false);
+                    }}
+                        className={`p-2 rounded-md hover:bg-blue-600 hover:text-white transition-colors duration-300 ease-in-outhover:font-medium
+                        ${selectedOption === 'byAppointmentOnly' ? 'bg-blue-600 text-white font-bold shadow-lg border-2 border-blue-600' : 'bg-blue-200 text-gray-400'}`}
+                    >
+                        Horario Marcado
+                    </button>
+                    
+                    <button onClick={() => {
+                        setSelectedOption('firstComeFirstServe');
+                        setValue('byAppointmentOnly', false);
+                        setValue('firstComeFirstServe', true);
+                    }}
+                        className={`p-2 rounded-md hover:bg-blue-600 hover:text-white transition-colors duration-300 ease-in-outhover:font-medium
+                        ${selectedOption === 'firstComeFirstServe' ? 'bg-blue-600 text-white font-bold shadow-lg border-2 border-blue-600' : 'bg-blue-200 text-gray-400'}`}
+                    >
+                        Por Ordem de Chegada
+                    </button>
                 </div>
                 {selectedOption && (
                     <>
@@ -362,19 +362,22 @@ useEffect(() => {
                                     checked={selectedOption === 'byAppointmentOnly'}
                                 />
                                 <div className='flex gap-2 items-center'>
+                                    <div>
                                 <div className='p-1'>
-                                Das
+                                Das:
                                 </div>
                                 <Input 
                                     id="startTime"
-                                    label="Ex.: 8:00"
+                                    label="Ex.: 08:00"
                                     disabled={isLoading}
                                     register={register}
                                     errors={errors}
                                     required
                                 />
-                                <div className='p-1 text-nowrap'>
-                                Até As
+                                </div>
+                                <div>
+                                <div className='p-1'>
+                                Até As:
                                 </div>
                                 <Input 
                                     id="endTime"
@@ -384,6 +387,7 @@ useEffect(() => {
                                     errors={errors}
                                     required
                                 />
+                                </div>
                                 </div>
                             </>
                         )}
@@ -398,20 +402,23 @@ useEffect(() => {
                                     errors={errors}
                                     checked={selectedOption === 'firstComeFirstServe'}
                                 />
-                                <div className='flex gap-2 items-center'>
+                               <div className='flex gap-2 items-center'>
+                                    <div>
                                 <div className='p-1'>
-                                Das
+                                Das:
                                 </div>
                                 <Input 
                                     id="startTime"
-                                    label="Ex.: 8:00"
+                                    label="Ex.: 08:00"
                                     disabled={isLoading}
                                     register={register}
                                     errors={errors}
                                     required
                                 />
-                                <div className='p-1 text-nowrap'>
-                                Até As
+                                </div>
+                                <div>
+                                <div className='p-1'>
+                                Até As:
                                 </div>
                                 <Input 
                                     id="endTime"
@@ -421,6 +428,7 @@ useEffect(() => {
                                     errors={errors}
                                     required
                                 />
+                                </div>
                                 </div>
                             </>
                         )}

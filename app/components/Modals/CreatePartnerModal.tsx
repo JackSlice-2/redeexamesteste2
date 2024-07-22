@@ -95,7 +95,6 @@ const PartnerModal = () => {
                 return;
             }
         setIsLoading(true); 
-        //(console.log(data))
         
         axios.post('/api/partners', data)
         .then(() => {
@@ -116,14 +115,14 @@ const PartnerModal = () => {
         if (step === STEPS.IMAGES) {
             return 'Criar';
         }
-        return 'Next';
+        return 'Próximo';
     }, [step])
 
     const secondaryActionLabel = useMemo(() => {
         if (step === STEPS.INFO) {
             return undefined;
         }
-        return 'Back'
+        return 'Voltar'
     }, [step])
 
     let bodyContent = (
@@ -225,7 +224,7 @@ const PartnerModal = () => {
             <div className="flex flex-col gap-8">
                 <Header 
                 title='Adicione uma Foto'
-                subtitle='Uma foto Illustrando o Serviço'
+                subtitle='Uma Foto do Logo ou da Empresa do Parceiro'
                 />
                 <div className='max-h-64'>
                     <ImageUpload

@@ -254,7 +254,9 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
                       selected: {
                       backgroundColor: '#007BFF',
                       color: 'white',
-                      borderRadius: '1rem',
+                      borderRadius: '50px',
+                      padding: '1px',
+                      margin: '1px',
                       border: '1px solid lightblue',
                       boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
                       },
@@ -267,8 +269,6 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
                         color: '#ccc',
                         border: '0px solid lightblue',
                         backgroundColor: 'transparent',
-                      },
-                      weekdaysShort: {
                       }
                     }}
                 />
@@ -312,10 +312,12 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
       <div className='text-neutral-600'>
       Preparo do Exame:
       <div className='font-semibold text-black'>
-      <textarea className='border-2 border-gray-700 rounded-lg px-1'
+        <textarea 
+          className='border-2 border-gray-700 rounded-lg px-1'
               name="description"
               value={formData.description}
               onChange={handleChange}
+              placeholder='Jejum de 8 Horas'
             />
             </div>
             </div>
@@ -337,7 +339,7 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
       {user &&
       <>
       <div className='text-neutral-600'>
-          Valor Pra Pagar no Pix: 
+          Valor A Ser Pago no Pix: 
           <div className='font-semibold text-black'>
             R$ <input className='border-2 border-gray-700 rounded-lg px-1'
               type="number"
@@ -349,7 +351,7 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
             </div>
             </div>
             <div className='text-neutral-600'>
-          Valor Pra Pagar no Local: 
+            Valor A Ser Pago no Local: 
           <div className='font-semibold text-black'>
             R$ <input className='border-2 border-gray-700 rounded-lg px-1'
               type="number"
@@ -363,14 +365,16 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
       </>
       }
         <hr />
-        <div className='text-neutral-600'>
+        <div>
+        <div className='text-neutral-600 py-1'>
           Clique na Imagem abaixo para alterar:
         </div>
-             <div className='p-2 border-gray-400 flex justify-center items-center border rounded-xl'>
+             <div className='p-2 border-gray-400 flex justify-center items-center border rounded-xl w-1/2'>
               <ImageUpload
                 onChange={(value: any) => setValue("imageSrc", value)}
-                value={imageSrc}
+                value={formData.imageSrc || imageSrc}
               />
+          </div>
           </div>
         <hr />
         <button className='relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full text-md my-2 bg-green-600 py-3 font-semibold text-white' type="submit">

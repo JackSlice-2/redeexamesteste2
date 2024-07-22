@@ -23,17 +23,22 @@ const ObjectInput: React.FC<CompanyInputProps> = ({
  }) => {
   return (
     <>
-    {partner &&
-      <div onClick={() => onClick(partner.title)} className={`rounded-xl border-2 p-2 flex flex-col text-center items-center hover:border-blue-900 hover:bg-blue-100 transition cursor-pointer 
-      ${selected? 'bg-blue-100' : ''}
-      ${selected? 'hover:bg-blue-900' : ''}
-      ${selected? 'border-blue-900' : ''}
+{partner && (
+  <div 
+    onClick={() => onClick(partner.title)} 
+    className='overflow-x-hidden relative rounded-xl flex flex-col text-center items-center justify-center align-middle hover:border-blue-900 transition cursor-pointer h-28'
+    style={{ backgroundImage: `url(${partner.imageSrc})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+  >
+    <div className={`absolute inset-0 bg-black flex flex-col justify-center items-center hover:bg-opacity-100 text-white
+    ${selected ? 'bg-opacity-80' : 'bg-opacity-40'}
+    ${selected ? 'font-bold' : ''}
+    ${selected ? 'underline' : ''}
       `}>
-          <Image 
-            loading="lazy" src={partner.imageSrc} alt={partner.title} width={80} height={40} />
-          <div className='font-bold'>{partner.title}</div>
-      </div>
-    }
+      <span className='font-semibold text-wrap w-full'>{partner.title}</span>
+    </div>
+  </div>
+)}
+
 
       {label &&
       <div onClick={() => onClick(label)}

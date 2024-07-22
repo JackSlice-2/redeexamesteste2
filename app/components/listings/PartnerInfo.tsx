@@ -98,12 +98,6 @@ return (
         </div>
         </div>
         <div className='w-1/2 p-2 lg:mt-10 border-gray-300 h-1/2'>
-        {parsedCities?.length === 0 &&
-        <div className='bg-blue-600/30 text-xl border-dashed border-8 rounded-xl border-blue-700 text-center p-5 ml-2 font-semibold'>
-            Esse Parceiro NAO tem nenhuma Filial.
-            Clique em Editar Parceiros Abaixo para Adicionar Filiais!
-          </div>
-        }
          {parsedCities?.map((city, index) => (
             <div key={index}>
               <div className='flex justify-center items-center m-2 p-4 text-center hover:bg-blue-400 cursor-pointer font-semibold rounded-2xl shadow-sm bg-blue-200 my-2'>
@@ -135,6 +129,12 @@ return (
               </div>
             </div>
           ))}
+        {parsedCities?.length === 0 &&
+        <div className='bg-blue-600/30 text-xl border-dashed border-8 rounded-xl border-blue-700 text-center p-5 ml-2 font-semibold mt-36'>
+            Esse Parceiro NAO tem nenhuma Filial.
+            Clique em Editar Parceiros Abaixo para Adicionar Filiais!
+          </div>
+        }
         </div>
       </div>
       <div className='mt-3'/>
@@ -157,16 +157,7 @@ return (
             {address}
           </div>
         </div>
-        }
-        
-        <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
-          onClick={() => copyToClipboard(phone || '')}
-          >
-            <BiCopy /> Telefone: <br/>
-          <div className='font-medium text-xl'>
-            {phone}
-          </div>
-        </div>
+      }  
         
         {whatsApp &&
         <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
@@ -178,6 +169,16 @@ return (
           </div>
         </div>
         }
+
+          <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
+          onClick={() => copyToClipboard(phone || '')}
+          >
+            <BiCopy /> Telefone 1: <br/>
+          <div className='font-medium text-xl'>
+            {phone}
+          </div>
+        </div>
+        
           {telegram && (
           <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
             onClick={() => copyToClipboard(telegram)}
