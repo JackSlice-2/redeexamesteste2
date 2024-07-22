@@ -185,7 +185,7 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
                   Horario: 
                   <br/>
                   <input
-                  className='justify-center border-2 rounded-xl border-gray-600 px-1'
+                  className='justify-center border-2 rounded-xl border-gray-700 px-1'
                     type="text"
                     size={3}
                     name="startTime"
@@ -197,7 +197,7 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
                   até
                   </div>
                   <input
-                  className='justify-center border-2 rounded-xl border-gray-600 px-1'
+                  className='justify-center border-2 rounded-xl border-gray-700 px-1'
                     type="text"
                     size={3}
                     name="endTime"
@@ -215,7 +215,7 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
           Clique na Opçao Desejada:
     
           <button onClick={toggleBoolean}
-           className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1
+           className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-700 w-1/2 p-1
             ${ByAppointmentOnly ? "bg-green-300" : "bg-red-300"}
             ${ByAppointmentOnly ? "underline" : "line-through"}
             ${ByAppointmentOnly ? "font-semibold" : "font-medium"}
@@ -226,7 +226,7 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
         
 
         <button onClick={toggleBoolean}
-           className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-600 w-1/2 p-1
+           className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-700 w-1/2 p-1
             ${FirstComeFirstServe ? "bg-green-300" : "bg-red-300"}
             ${FirstComeFirstServe ? "underline" : "line-through"}
             ${FirstComeFirstServe ? "font-semibold" : "font-medium"}
@@ -313,12 +313,16 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
       Preparo do Exame:
       <div className='font-semibold text-black'>
         <textarea 
-          className='border-2 border-gray-700 rounded-lg px-1'
+          className='border-2 border-gray-700 rounded-lg px-1 w-1/2'
+          rows={5}
               name="description"
               value={formData.description}
               onChange={handleChange}
               placeholder='Jejum de 8 Horas'
             />
+            <div className='text-neutral-500 text-sm font-light'>
+              (Opcional)
+            </div>
             </div>
             </div>
       <hr />

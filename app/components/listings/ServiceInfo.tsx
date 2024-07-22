@@ -139,7 +139,7 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
           <>
          <div className='text-neutral-600'>
             Preparo do Exame: 
-            <div className='text-black flex max-w-10 border-box word-wrap'>
+            <div className='text-black flex max-w-max border-box word-wrap'>
               {description}
             </div>
          </div>

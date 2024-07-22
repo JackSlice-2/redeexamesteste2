@@ -37,14 +37,13 @@ const CitySelect: React.FC<CitySelectProps> = ({
       onChange={(value) => onChange(value as CitySelectValue)}
       formatOptionLabel={(option: any) => (
         <div className='flex flex-row items-center gap-3'>
-        <div>{option.label}, </div>
-        <span className='text-neutral-500 ml-1'>
-            {option.region}
-        </span>
+        <div>
+          {option.label}        
+        </div>
         </div>
       )}
       classNames={{
-        control: () => 'p-3 border-2',
+        control: () => 'p-1 border-2 ',
         input: () => 'text-lg',
         option: () => 'text-lg'
       }}
