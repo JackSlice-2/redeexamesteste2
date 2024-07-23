@@ -16,17 +16,17 @@ export async function POST(request: Request, { params }: { params: IParams }) {
   // Fetch all users
   const users = await prisma.user.findMany();
  
-  // Iterate over all users and update their favoriteIds
+  // Iterate over all users and update their inactiveServiceIds
   for (const user of users) {
-     let favoriteIds = [...(user.favoriteIds || [])];
-     favoriteIds.push(listingId);
+     let inactiveServiceIds = [...(user.inactiveServiceIds || [])];
+     inactiveServiceIds.push(listingId);
  
      await prisma.user.update({
        where: {
          id: user.id
        },
        data: {
-         favoriteIds
+         inactiveServiceIds
        }
      });
   }
@@ -46,17 +46,17 @@ export async function POST(request: Request, { params }: { params: IParams }) {
   // Fetch all users
   const users = await prisma.user.findMany();
  
-  // Iterate over all users and update their favoriteIds
+  // Iterate over all users and update their inactiveServiceIds
   for (const user of users) {
-     let favoriteIds = [...(user.favoriteIds || [])];
-     favoriteIds = favoriteIds.filter((id) => id !== listingId);
+     let inactiveServiceIds = [...(user.inactiveServiceIds || [])];
+     inactiveServiceIds = inactiveServiceIds.filter((id) => id !== listingId);
  
      await prisma.user.update({
        where: {
          id: user.id
        },
        data: {
-         favoriteIds
+         inactiveServiceIds
        }
      });
   }

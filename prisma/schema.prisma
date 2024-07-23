@@ -22,8 +22,7 @@ model User {
   hashedPassword String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  favoriteIds String[] @db.ObjectId
-  inactiveAdIds String[] @db.ObjectId
+  inactiveServiceIds String[] @db.ObjectId
 
   accounts Account[]
   listings Listing[]

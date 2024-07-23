@@ -18,7 +18,7 @@ const useFavorite = ({
     const loginModal = useLoginModal();
 
     const isInactive = useMemo(() => {
-        const list = currentUser?.favoriteIds || []
+        const list = currentUser?.inactiveServiceIds || []
 
         return list.includes(listingId)
     }, [listingId, currentUser])

@@ -9,7 +9,7 @@ export default async function getFavoriteListings() {
         const userFavorites = await prisma.listing.findMany({
             where: {
                 id: {
-                    in: user.favoriteIds,
+                    in: user.inactiveServiceIds,
                 },
             },
         });
