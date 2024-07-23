@@ -6,7 +6,6 @@ import React from 'react'
 import Button from '../Button';
 import { BiPencil } from 'react-icons/bi';
 import { useRouter } from 'next/navigation';
-import toast from 'react-hot-toast';
 import Container from '../Container';
 
 interface SettingsInfoProps {
@@ -56,7 +55,10 @@ const SettingsInfo: React.FC<SettingsInfoProps> = ({
                         Email Verificado: {currentUser.emailVerified ? 'Yes' : 'No'}
                     </p>
                     <p className="text-gray-700">
-                        Admin: Yes
+                        isAdmin: {currentUser.isAdmin ? 'Yes' : "No"}
+                    </p>
+                    <p className="text-gray-700">
+                        Role: {currentUser.role}
                     </p>
                     </div>
 

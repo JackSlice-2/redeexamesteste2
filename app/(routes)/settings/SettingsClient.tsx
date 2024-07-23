@@ -31,10 +31,14 @@ const SettingsClient: React.FC<SettingsClientProps> = ({
             <SettingsInfo 
                 currentUser={currentUser}
                 partners={partners}
-                services={services}/>
+                services={services}
+            />
+            {currentUser?.isAdmin &&
             <SettingsCarosel 
                 users={users}
-                />
+                isAdmin={currentUser?.isAdmin || false}
+            />
+        }
         </>
     );
 };

@@ -12,6 +12,7 @@ interface ButtonProps {
     icon?: IconType;
     green?: boolean;
     blue?: boolean;
+    className?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -22,13 +23,14 @@ const Button: React.FC<ButtonProps> = ({
     icon: Icon,
     blue,
     red,
-    green
+    green,
+    className
 }) => {
   return (
     <button 
     onClick={onClick}
     disabled={disabled}
-    className={`relative disabled:opacity-70 disabled:cursor-not-allowed rounded-xl hover:opacity-50 transition w-full font-medium
+    className={`${className} relative disabled:opacity-70 disabled:cursor-not-allowed rounded-xl hover:opacity-50 transition w-full font-medium
         ${blue ? 'bg-blue-500' : ''}
         ${blue ? 'border-blue-500' : 'border-blue-500'}
         ${blue ?  'text-white' : 'text-blue-500'}

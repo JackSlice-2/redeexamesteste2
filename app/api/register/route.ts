@@ -10,6 +10,8 @@ export async function POST(
         email,
         name,
         password,
+        role,
+        isAdmin,
     } = body;
 
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -18,7 +20,9 @@ export async function POST(
         data: {
             email,
             name,
-            hashedPassword
+            hashedPassword,
+            role,
+            isAdmin,
         }
     });
 

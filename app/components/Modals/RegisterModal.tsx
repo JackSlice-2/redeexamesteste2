@@ -1,19 +1,25 @@
 "use client";
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 import axios from 'axios';
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Modal from './Modal';
-
 import Input from '../Inputs/Input';
 import toast from 'react-hot-toast';
-import useLoginModal from '@/app/hooks/useLoginModal';
 import Header from '../listings/Header';
+import Button from '../Button';
+import { SafeUser } from '@/app/types';
 
-const RegisterModal = () => {
+interface RegisterModalProps {
+    currentUser?: SafeUser | null
+}
+
+const RegisterModal: React.FC<RegisterModalProps> = ({
+    currentUser
+}) => {
     const registerModal = useRegisterModal();
-    const loginModal = useLoginModal();
     const [isLoading, setIsLoading] = useState(false);
+    const [role, setRole] = useState('');
 
     const {
         register,
@@ -22,21 +28,36 @@ const RegisterModal = () => {
             errors,
         }
     } = useForm<FieldValues>({
+        mode: "onChange",
         defaultValues: {
             name: '',
             email: '',
-            password: ''
+            password: '',
+            role: role,
+            isAdmin: false
         }
     });
+    console.log("Before Submit",role)
+
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
+        if (data.password !== data.confirmPassword) {
+            toast.error("As senhas não coincidem");
+            return
+        }
+        const dataToSend = {
+            ...data,
+            isAdmin: role === 'admin',
+            role: role || 'client',
+        };
+        console.log("After Submit",role)
+        console.log(dataToSend)
         setIsLoading(true);
 
-        axios.post('/api/register', data)
+        axios.post('/api/register', dataToSend)
         .then(() => {
             toast.success("Conta Criada com Sucesso")
             registerModal.onClose();
-            loginModal.onOpen();
         })
         .catch((error) => {
             toast.error("Um Erro Occoreu. Se Persistir Entre em Contato com o Adminsitrador")
@@ -45,11 +66,6 @@ const RegisterModal = () => {
             setIsLoading(false);
         })
     }
-
-    const toggle = useCallback(() => {
-        registerModal.onClose();
-        loginModal.onOpen();
-    }, [loginModal, registerModal])
 
     const bodyContent = (
         <div className="flex flex-col gap-4">
@@ -81,6 +97,34 @@ const RegisterModal = () => {
                 required
                 isPassword
                 />
+                <Input 
+                id='confirmPassword'
+                label='Confirmar Senha'
+                disabled={isLoading}
+                register={register}
+                errors={errors}
+                required
+                isPassword
+                />
+            </div>
+            <div className='p-1'>
+                <div className='pb-2'>
+                    Select the new user's role:
+                </div>
+                <div className="role-selection gap-2 text-white flex">
+                    <Button label='Gerente'
+                    onClick={() => setRole('manager')}
+                    className={`${role === "manager" ? 'bg-blue-500 text-white' : ''}`}
+                    />
+                    <Button label='Admin'
+                    onClick={() => setRole('admin')}
+                    className={`${role === "admin" ? 'bg-blue-500 text-white' : ''}`}
+                    />
+                    <Button label='Dev'
+                    onClick={() => setRole('dev')}
+                    className={`${role === "dev" ? 'bg-blue-500 text-white' : ''}`}
+                    />
+                </div>
             </div>
         </div>
     );

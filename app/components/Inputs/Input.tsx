@@ -19,6 +19,7 @@ interface InputProps {
     byAppointmentOnly?: boolean;
     checked?: boolean;
     isPassword?: boolean;
+    isBooleanInput?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
