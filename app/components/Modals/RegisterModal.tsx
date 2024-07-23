@@ -15,7 +15,6 @@ interface RegisterModalProps {
 }
 
 const RegisterModal: React.FC<RegisterModalProps> = ({
-    currentUser
 }) => {
     const registerModal = useRegisterModal();
     const [isLoading, setIsLoading] = useState(false);
@@ -107,7 +106,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({
             </div>
             <div className='p-1'>
                 <div className='pb-2'>
-                    Select the new user's role:
+                    Selecione o Cargo do Usuario:
                 </div>
                 <div className="role-selection gap-2 text-white flex">
                     <Button label='Gerente'
