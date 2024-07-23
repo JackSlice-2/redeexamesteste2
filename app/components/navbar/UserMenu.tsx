@@ -10,6 +10,7 @@ import { SafeUser } from '@/app/types';
 import { useRouter } from 'next/navigation';
 import usePartnerModal from '@/app/hooks/useCreatePartnerModal';
 import useCreateServiceModal from '@/app/hooks/useCreateServiceModal';
+import Avatar from './Avatar';
 
 interface UserMenuProps {
   currentUser?: SafeUser | null
@@ -70,11 +71,14 @@ const UserMenu: React.FC<UserMenuProps> = ({
           <div className='font-semibold cursor-default border-3 shadow-lg bg-blue-500 border-blue-900 text-white rounded-2xl p-3'>
           {currentUser?.name || ''}
           </div>
-
-            <div className="p-4 hidden md:py-1 px-8 text-neutral-200 md:flex flex-row items-center gap-3 rounded-full cursor-pointer hovor:shadow-md transition"
-        onClick={toggleOpen}
+          <div className='rounded-full border-neutral-100/50 p-1 flex flex-row border-2 justify-between cursor-pointer'
+          onClick={toggleOpen}
+          >
+            <Avatar src={currentUser.image}/>
+            <div className="p-3 hidden md:py-1 text-neutral-200 md:flex flex-row items-center gap-3 rounded-full hovor:shadow-md transition"
         >
             <AiOutlineMenu size={24}/>
+        </div>
         </div>
         </>
         ) : 
@@ -95,17 +99,20 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   <MenuItem onClick={() => {router.push('/'); closeMenu();}}
                   label='Início'
                   />
+                  <MenuItem onClick={onRent}
+                  label='Criar Novo Serviço'
+                  />
+                  <MenuItem onClick={onPartner}
+                  label='Criar Novo Parceiro'
+                  />
                   <MenuItem onClick={() => {router.push('/partners'); closeMenu();}}
                   label='Meus Parceiros'
                   />
                   <MenuItem onClick={() => {router.push('/inactiveAds'); closeMenu();}}
                   label='Serviços Inativos'
                   />
-                  <MenuItem onClick={onRent}
-                  label='Criar Novo Serviço'
-                  />
-                  <MenuItem onClick={onPartner}
-                  label='Criar Novo Parceiro'
+                  <MenuItem onClick={() => {router.push('/settings'); closeMenu();}}
+                  label='Configurações'
                   />
                   <hr />
                   <MenuItem onClick={() => signOut()}

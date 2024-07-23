@@ -15,8 +15,6 @@ export const dynamic = "force-dynamic";
 const Home = async ({ searchParams }: HomeProps) => {
   const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
-
-  // Sort listings randomly
   listings.sort(() => Math.random() - 0.5);
 
   if (listings.length === 0) {
