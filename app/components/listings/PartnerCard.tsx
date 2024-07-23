@@ -25,7 +25,8 @@ const PartnerCard: React.FC<PartnerCardProps> = ({
             <Image 
             loading="lazy"
             sizes='100%' 
-            fill
+            width={400}
+            height={400}
             alt='partner'
             src={data.imageSrc}
             className='object-cover h-full w-full group-hover:scale-110 transition'

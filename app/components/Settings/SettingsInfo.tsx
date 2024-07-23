@@ -1,6 +1,12 @@
+'use client'
+
 import { SafeUser } from '@/app/types'
 import Image from 'next/image';
 import React from 'react'
+import Button from '../Button';
+import { BiPencil } from 'react-icons/bi';
+import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 interface SettingsInfoProps {
     currentUser?: SafeUser | null;
@@ -13,6 +19,9 @@ const SettingsInfo: React.FC<SettingsInfoProps> = ({
     partners,
     services
 }) => {
+
+    const router = useRouter()
+
     if (!currentUser) {
         return null
     }
@@ -38,9 +47,17 @@ const SettingsInfo: React.FC<SettingsInfoProps> = ({
         <p className="text-gray-700">Criou a Conta: {new Date(currentUser.createdAt).toLocaleDateString()}</p>
         <p className="text-gray-700">Ultima Atualização: {new Date(currentUser.updatedAt).toLocaleDateString()}</p>
         <p className="text-gray-700">Email Verificado: {currentUser.emailVerified ? 'Yes' : 'No'}</p>
+        <div className='w-1/3 ml-auto'>
+        {/*onClick={() => router.push(`/settings/editSettings/${currentUser.id}`)}*/}
+        <Button
+        onClick={() => toast.error('Em Manutençao. Implementaremos essa Função em Breve...')}
+        label='Editar Usuario'
+        green
+        icon={BiPencil}
+     />
     </div>
+        </div>
     </div>
-
     </div>
   )
 }
