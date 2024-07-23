@@ -12,6 +12,7 @@ export async function POST(
         password,
         role,
         isAdmin,
+        isClient
     } = body;
 
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -23,6 +24,7 @@ export async function POST(
             hashedPassword,
             role,
             isAdmin,
+            isClient
         }
     });
 

@@ -37,8 +37,6 @@ const RegisterModal: React.FC<RegisterModalProps> = ({
             isAdmin: false
         }
     });
-    console.log("Before Submit",role)
-
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         if (data.password !== data.confirmPassword) {
