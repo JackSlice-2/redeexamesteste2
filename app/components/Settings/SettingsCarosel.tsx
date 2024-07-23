@@ -5,6 +5,7 @@ import { SafeUser } from '@/app/types';
 import Image from 'next/image';
 import React from 'react';
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
+import Container from '../Container';
 
 interface SettingsCaroselProps {
     currentUser?: SafeUser | null;
@@ -36,17 +37,20 @@ const SettingsCarosel: React.FC<SettingsCaroselProps> = ({
     };
 
     return (
+        <Container>
         <div className="bg-white shadow-md rounded-lg py-6 mx-4">
             <h1 className="text-3xl font-bold mb-6 text-center">
-                Outros Usiarios Ativos
+                Usuarios Ativos
             </h1>
             <div className="carousel-container relative w-full h-[40vh] overflow-hidden py-10">
                 {users.map((user, index) => (
                     <>
                     <div
                         key={index}
-                        className={`mt-5 absolute w-full h-full flex items-center justify-center transition-all duration-500 ease-in-out ${
-                            index === activeSlideIndex ? 'transform translate-x-0' : 'transform translate-x-[50%]'
+                        className={`mt-5 absolute w-full h-full flex items-center justify-center transition-all duration-500 ease-in-out 
+                            ${index === activeSlideIndex ? 
+                            'transform -translate-x-[15%]' : 
+                            'transform translate-x-[45%] lg:translate-x-[30%]'
                         }`}
                     >
                         <div className="max-w-4xl mx-auto px-4 py-8 my-5">
@@ -86,6 +90,7 @@ const SettingsCarosel: React.FC<SettingsCaroselProps> = ({
             </button>
             </div>
         </div>
+        </Container>
     );
 };
 

@@ -6,29 +6,30 @@ import React, { useCallback, useState } from 'react';
 import PartnerInfo from '../../../../components/listings/EditPartnerInfo';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import EditUserInfo from '@/app/components/Settings/EditUserInfo';
 
-interface PartnerClientProps {
-    partner: SafePartner & {
+interface UserClientProps {
+    partners?: SafePartner & {
         user: SafeUser
     };
     currentUser?: SafeUser | null
 }
 
-const PartnerClient: React.FC<PartnerClientProps> = ({
-    partner,
+const UserClient: React.FC<UserClientProps> = ({
+    partners,
     currentUser,
 }) => {
 
     const [id, setId] = useState('');
     const urlParts = window.location.pathname.split('/');
-    const partnerId = urlParts[urlParts.length - 1];
+    const userId = urlParts[urlParts.length - 1];
 
     const [deletingId, setDeletingId] = useState('');
 
     const onCancel = useCallback((id: string) => {
-      setDeletingId(partnerId);
+      setDeletingId(userId);
     
-      axios.delete(`/api/partners/${partnerId}`)
+      axios.delete(`/api/partners/${userId}`)
         .then(() => {
           toast.success('Parceiro Apagado com Sucesso!');
           window.location.reload();
@@ -39,28 +40,21 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
         .finally(() => {
           setDeletingId('');
         })
-    }, [partnerId]);
+    }, [userId]);
     
     return (
         <Container>
             <div className="max-w-screen-lg mx-auto mt-20">
                 <div className="flex flex-col gap-6">
                     <div className="grid-cols-1 md:grid-cols-7 md:gap-10 mt-6">
-                    <PartnerInfo
-                            title={partner.title}
-                            imageSrc={partner.imageSrc}
-                            branchPhone={partner.branchPhone || ''}
-                            phone={partner.phone || ''}
-                            email={partner.email || ''}
-                            whatsApp={partner.whatsApp || ''}
-                            telegram={partner.telegram || ''}
-                            branchAddress={partner.branchAddress || ''}
-                            address={partner.address || ''}
-                            actionLabel="Apagar Parceiro"
-                            onAction={() => onCancel(id)}
-                            currentUser={currentUser}
-                            cities={partner.cities || []}
-                        />
+                    <EditUserInfo
+                    currentUser={currentUser}
+                    id={currentUser?.id || ''}
+                    email={currentUser?.email || ''}
+                    image={currentUser?.image || ''}
+                    name={currentUser?.name || ''}
+                    userId={userId}
+                     />
                     </div>
                 </div>
             </div>
@@ -68,4 +62,4 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
     )
 }
 
-export default PartnerClient;
+export default UserClient;

@@ -4,6 +4,7 @@ import { SafeUser } from '@/app/types';
 import React from 'react';
 import SettingsInfo from '@/app/components/Settings/SettingsInfo';
 import SettingsCarosel from '@/app/components/Settings/SettingsCarosel';
+import Container from '@/app/components/Container';
 
 interface SettingsClientProps {
     currentUser?: SafeUser | null;
@@ -24,7 +25,10 @@ const SettingsClient: React.FC<SettingsClientProps> = ({
     }
     
     return (
-        <>
+        <Container>
+            <h1 className="text-3xl font-bold mt-6">
+            Configurações
+            </h1>
             <SettingsInfo 
                 currentUser={currentUser}
                 partners={partners}
@@ -32,7 +36,7 @@ const SettingsClient: React.FC<SettingsClientProps> = ({
             <SettingsCarosel 
                 users={users}
                 />
-        </>
+        </Container>
     );
 };
 

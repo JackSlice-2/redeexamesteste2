@@ -1,9 +1,8 @@
 import getCurrentUser from '@/app/actions/getCurrentUser';
-import getPartnerById from '@/app/actions/getPartnerById'
 import ClientOnly from '@/app/components/ClientOnly';
 import EmptyState from '@/app/components/EmptyState';
 import React from 'react'
-import PartnerClient from './EditUserClient';
+import UserClient from './EditUserClient';
 
 interface IParams {
   partnerId?: string;
@@ -11,9 +10,8 @@ interface IParams {
 
 const PartnerPage = async ({ params }: { params: IParams }) => {
   //@ts-ignore
-  const partner = await getPartnerById(params);
   const currentUser = await getCurrentUser();
-  if (!partner) {
+  if (!currentUser) {
     return (
       <ClientOnly>
         <EmptyState />
@@ -23,8 +21,7 @@ const PartnerPage = async ({ params }: { params: IParams }) => {
 
   return (
     <ClientOnly>
-      <PartnerClient
-      partner={partner}
+      <UserClient
       currentUser={currentUser}
       />
     </ClientOnly>
