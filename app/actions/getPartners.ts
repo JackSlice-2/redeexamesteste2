@@ -9,8 +9,8 @@ export interface IPartnersParams {
   phone?: string;
   email?: string;
   whatsApp?: string;
-  telegram?: string;
-  branchAddress?: string;
+  phone2?: string;
+  mainCity?: string;
 }
 
 export default async function getPartners(
@@ -24,8 +24,8 @@ export default async function getPartners(
       phone,
       email,
       whatsApp,
-      telegram,
-      branchAddress,
+      phone2,
+      mainCity,
     } = params;
 
     let query: any = {};
@@ -48,11 +48,11 @@ export default async function getPartners(
     if (whatsApp) {
       query.whatsApp = whatsApp;
     }
-    if (telegram) {
-      query.telegram = telegram;
+    if (phone2) {
+      query.phone2 = phone2;
     }
-    if (branchAddress) {
-      query.branchAddress = branchAddress;
+    if (mainCity) {
+      query.mainCity = mainCity;
     }
     const partners = await prisma.partner.findMany({
       where: query,

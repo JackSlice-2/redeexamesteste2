@@ -53,8 +53,8 @@ const PartnerClient: React.FC<PartnerClientProps> = ({
                             phone={partner.phone || ''}
                             email={partner.email || ''}
                             whatsApp={partner.whatsApp || ''}
-                            telegram={partner.telegram || ''}
-                            branchAddress={partner.branchAddress || ''}
+                            phone2={partner.phone2 || ''}
+                            mainCity={partner.mainCity || ''}
                             address={partner.address || ''}
                             actionLabel="Apagar Parceiro"
                             onAction={() => onCancel(id)}

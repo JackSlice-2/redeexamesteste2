@@ -14,8 +14,8 @@ interface PartnerInfoProps {
     phone?: string;
     email?: string;
     whatsApp?: string;
-    telegram?: string;
-    branchAddress?: string[];
+    phone2?: string;
+    mainCity?: string[];
     onAction?: (id: string) => void;
     disabled?: boolean;
     actionId?: string;
@@ -31,8 +31,8 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
   phone,
   email,
   whatsApp,
-  telegram,
-  branchAddress,
+  phone2,
+  mainCity,
   onAction,
   disabled,
   actionId = '',
@@ -143,7 +143,7 @@ return (
             {parsedCities?.length !== 0 && " da Matriz Localizada em:"}
             </div>
             <div className='text-2xl font-semibold py-2'>
-            {branchAddress}
+            {mainCity}
           </div>
           
     <div className='flex flex-row overflow-x-auto hide-scrollbar w-full pt-2 gap-3 text-center'>     
@@ -179,13 +179,13 @@ return (
           </div>
         </div>
         
-          {telegram && (
+          {phone2 && (
           <div className='p-4 text-center hover:bg-blue-400 cursor-pointer rounded-2xl shadow-sm bg-blue-200'
-            onClick={() => copyToClipboard(telegram)}
+            onClick={() => copyToClipboard(phone2)}
           >
             <BiCopy /> Telefone 2: <br/>
             <div className='font-medium text-xl'>
-              {telegram}
+              {phone2}
             </div>
           </div>
         )}

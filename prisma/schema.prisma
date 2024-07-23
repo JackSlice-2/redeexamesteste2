@@ -78,14 +78,15 @@ model Partner {
   title String
   imageSrc String
   createdAt DateTime @default(now())
-  phone String?
   whatsApp String?
-  telegram String?
+  phone String?
+  phone2 String?
+  phone3 String?
   email String?
   address String?
   cities String[]
   branchPhone String[]
-  branchAddress String[]
+  mainCity String[]
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

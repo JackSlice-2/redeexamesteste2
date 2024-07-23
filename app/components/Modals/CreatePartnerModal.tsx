@@ -42,16 +42,16 @@ const PartnerModal = () => {
             address: '',
             phone:  '',
             whatsApp:  '',
-            telegram:  '',
+            phone2:  '',
             email:  '',
             cities:  [],
-            branchAddress: []
+            mainCity: []
         }
     });
 
     const imageSrc = watch('imageSrc');
     const phone = watch('phone');
-    const branchAddress = watch('branchAddress');
+    const mainCity = watch('mainCity');
 
 
     const setCustomValue = (id: string, value: any) => {
@@ -69,7 +69,7 @@ const PartnerModal = () => {
     const onNext = () => {
     switch (step) {
         case STEPS.ADDRESS:
-            if (!branchAddress) {
+            if (!mainCity) {
                 toast.error('city is required');
                 return;
             }
@@ -157,8 +157,8 @@ const PartnerModal = () => {
             errors={errors}
             />
             <CitySelect
-            value={branchAddress}
-            onChange={(value) => setCustomValue('branchAddress', value)}
+            value={mainCity}
+            onChange={(value) => setCustomValue('mainCity', value)}
             />
         </div>
         )
@@ -193,7 +193,7 @@ const PartnerModal = () => {
             </div>
             <div>
             <Input 
-            id="telegram"
+            id="phone2"
             label="Telefone 2"
             disabled={isLoading}
             register={register}
@@ -243,7 +243,7 @@ const PartnerModal = () => {
             address: '',
             phone: '',
             whatsApp: '',
-            telegram: '',
+            phone2: '',
             email: '',
         });    
         setStep(STEPS.INFO);

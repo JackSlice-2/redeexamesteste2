@@ -362,8 +362,8 @@ useEffect(() => {
                                     errors={errors}
                                     checked={selectedOption === 'byAppointmentOnly'}
                                 />
-                                <div className='flex gap-2 justify-between'>
-                                    <div>
+                                <div className='flex gap-2 justify-center'>
+                                    <div className='w-1/2'>
                                 <div className='p-1'>
                                 Das:
                                 </div>
@@ -376,7 +376,7 @@ useEffect(() => {
                                     required
                                 />
                                 </div>
-                                <div>
+                                <div className='w-1/2'>
                                 <div className='p-1'>
                                 Até As:
                                 </div>

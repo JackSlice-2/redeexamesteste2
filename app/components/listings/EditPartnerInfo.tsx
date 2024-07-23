@@ -29,8 +29,8 @@ interface PartnerInfoProps {
   phone?: string;
   email?: string;
   whatsApp?: string;
-  telegram?: string;
-  branchAddress?: string[];
+  phone2?: string;
+  mainCity?: string[];
   onAction?: (id: string) => void;
   disabled?: boolean;
   actionId?: string;
@@ -47,8 +47,8 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
     phone,
     email,
     whatsApp,
-    telegram,
-    branchAddress,
+    phone2,
+    mainCity,
     onAction,
     disabled,
     actionId = "",
@@ -82,9 +82,9 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
         phone: phone || '',
         email: email || '',
         whatsApp: whatsApp || '',
-        telegram: telegram || '',
+        phone2: phone2 || '',
         branchPhone: [],
-        branchAddress: branchAddress ? branchAddress.map(city => ({
+        mainCity: mainCity ? mainCity.map(city => ({
           label: city,
           flag: "",
           latlng: [0, 0],
@@ -127,8 +127,8 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
           toast.error('No currentUser');
           return;
         }  
-        if (!branchAddress) {
-          toast.error('No branchAddress');
+        if (!mainCity) {
+          toast.error('No mainCity');
           return;
         }  
         try {
@@ -277,10 +277,10 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
         <div className="w-1/2 py-2">
           Clique para Mudar a Cidade da Matriz: <br/>
           <CitySelect 
-            value={formData.branchAddress[0]}
+            value={formData.mainCity[0]}
             onChange={(value) => {
               setSelectedCity(value);
-              setCustomValue('branchAddress', value);
+              setCustomValue('mainCity', value);
             }}
           />
 
@@ -333,8 +333,8 @@ const PartnerInfo: React.FC<PartnerInfoProps> = ({
               <input className='border-2 border-gray-700 rounded-lg px-1'
               size={10}
               type="text"
-              name="telegram"
-              value={formData.telegram}
+              name="phone2"
+              value={formData.phone2}
               onChange={handleSimpleChange}
             />
               </div>
