@@ -27,28 +27,8 @@ model User {
   isClient Boolean?
   role String? @default("client")
 
-  accounts Account[]
   listings Listing[]
   partners Partner[]
-}
-
-model Account {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
-  type String
-  provider String
-  providerAccountId String
-  refresh_token String? @db.String
-  access_token String? @db.String
-  expires_at Int?
-  token_type String?
-  id_token String? @db.String
-  session_state String?
-  scope String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([provider, providerAccountId])
 }
 
 model Listing {

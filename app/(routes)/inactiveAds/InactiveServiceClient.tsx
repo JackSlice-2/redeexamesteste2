@@ -4,12 +4,12 @@ import Container from '../../components/Container';
 import ServiceCard from '../../components/listings/ServiceCard';
 import Header from '@/app/components/listings/Header';
 
-interface FavoritesClientProps {
+interface InactiveServiceClientProps {
     listings: SafeListing[];
     users: SafeUser[];
 }
 
-const FavoritesClient: React.FC<FavoritesClientProps> = ({ 
+const InactiveServiceClient: React.FC<InactiveServiceClientProps> = ({ 
     listings, 
     users 
 }) => {
@@ -37,4 +37,4 @@ const FavoritesClient: React.FC<FavoritesClientProps> = ({
     );
 }
 
-export default FavoritesClient;
+export default InactiveServiceClient;

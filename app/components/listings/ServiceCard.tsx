@@ -7,7 +7,6 @@ import { format } from 'date-fns';
 import FloppyDiskButton from '../FloppyDiskButton';
 import Button from '../Button';
 import useFavorite from '@/app/hooks/useFavorite';
-import { BiPencil, BiTrash } from 'react-icons/bi';
 
 interface ServiceCardProps {
     data: SafeListing;

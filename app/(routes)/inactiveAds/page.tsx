@@ -3,7 +3,7 @@ import ClientOnly from '../../components/ClientOnly';
 import EmptyState from '../../components/EmptyState';
 import getFavoriteListings from '../../actions/getFavoriteListings';
 import getAllUsers from '../../actions/getAllUsers';
-import FavoritesClient from './InactiveServiceClient';
+import InactiveServiceClient from './InactiveServiceClient';
 
 const ListingPage = async () => {
     const listings = await getFavoriteListings();
@@ -23,7 +23,7 @@ const ListingPage = async () => {
 
 return (
     <ClientOnly>
-        <FavoritesClient
+        <InactiveServiceClient
         listings={listings}
         users={users}
         />
