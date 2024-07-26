@@ -3,13 +3,11 @@
 import { SafeUser } from '@/app/types';
 import React from 'react'
 import Image from 'next/image';
-import FloppyDiskButton from '../FloppyDiskButton';
 
 interface HeaderProps {
     imageSrc?: string;
     id?: string;
     currentUser?: SafeUser | null;
-    floppyDiskButton?: Boolean;
     title?: string;
     subtitle?: string;
     center?: boolean;
@@ -20,7 +18,6 @@ const Header: React.FC<HeaderProps> = ({
     imageSrc,
     id,
     currentUser,
-    floppyDiskButton,
     subtitle,
     center,
 }) => {
@@ -44,14 +41,6 @@ const Header: React.FC<HeaderProps> = ({
         fill
         className='object-cover w-full'
         />
-      {floppyDiskButton && (
-        <div className="absolute top-5 right-5">
-            <FloppyDiskButton 
-            listingId={id || ''}
-            currentUser={currentUser}
-            />
-        </div>
-      )}
     </div>
 }
     </>

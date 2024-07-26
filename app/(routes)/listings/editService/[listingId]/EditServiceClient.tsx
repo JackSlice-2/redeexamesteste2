@@ -15,6 +15,7 @@ interface ListingClientProps {
 
 const ListingClient: React.FC<ListingClientProps> = ({
     listing,
+    currentUser
 }) => {
 
     const category = useMemo(() => {
@@ -44,6 +45,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
                         title={listing.title}
                         company={listing.company || ''}
                         imageSrc={listing.imageSrc}
+                        isActive={listing.isActive ?? true}
+                        currentUser={currentUser}
                         />
                     </div>
                 </div>

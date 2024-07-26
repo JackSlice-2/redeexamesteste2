@@ -30,16 +30,15 @@ const Home = async ({ searchParams }: HomeProps) => {
       <ClientOnly>
         <Container>
           <div className="grid pt-60 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
-            {listings.map((listing) => {
-              return (
+          {listings.filter(listing => listing.isActive).map((activeListing) => 
+               (
                 <ServiceCard
                   locationValue="location"
                   currentUser={currentUser}
-                  key={listing.id}
-                  data={listing}
+                  key={activeListing.id}
+                  data={activeListing}
                 />
-              );
-            })}
+              ))}
           </div>
         </Container>
       </ClientOnly>

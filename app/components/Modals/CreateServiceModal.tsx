@@ -79,6 +79,7 @@ useEffect(() => {
             description: '',
             startTime: '',
             endTime: '',
+            isActive: true
         }
     });
 

@@ -13,9 +13,6 @@ const InactiveServiceClient: React.FC<InactiveServiceClientProps> = ({
     listings, 
     users 
 }) => {
-    const uniqueListings = Array.from(new Set(listings.map(listing => listing.id)))
-        .map(id => listings.find(listing => listing.id === id))
-        .filter(listing => listing !== undefined) as SafeListing[];
 
     return (
         <Container>
@@ -24,12 +21,12 @@ const InactiveServiceClient: React.FC<InactiveServiceClientProps> = ({
                 subtitle='Lists de Serviços Desativados' 
             />
             <div className="mt-10 gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-                {uniqueListings.map((listing) => (
+            {listings.filter(listing => !listing.isActive).map((inactiveListing) => (
                     <ServiceCard
                         locationValue="location"
-                        key={listing.id}
-                        data={listing}
-                        currentUser={users.find((user) => user.id === listing.userId) as SafeUser}
+                        key={inactiveListing.id}
+                        data={inactiveListing}
+                        currentUser={users.find((user) => user.id === inactiveListing.userId) as SafeUser}
                     />
                 ))}
             </div>

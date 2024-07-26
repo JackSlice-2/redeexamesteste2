@@ -24,7 +24,8 @@ export async function POST(request: Request) {
             location,
             latlng,
             startTime,
-            endTime
+            endTime,
+            isActive
         } = body;
 
         const datesArray = Array.isArray(dates)? dates : [dates];
@@ -50,7 +51,8 @@ export async function POST(request: Request) {
                     set: datesArray
                 },
                 locationValue: location.value,
-                userId: currentUser.id
+                userId: currentUser.id,
+                isActive
             }
         })
 

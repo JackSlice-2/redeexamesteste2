@@ -14,6 +14,7 @@ import { useRouter } from 'next/navigation';
 import ImageUpload from '@/app/components/Inputs/ImageUpload';
 import { ptBR } from 'date-fns/locale';
 import CitySelect from '@/app/components/Inputs/CitySelect';
+import { BiCloudDownload, BiCloudUpload } from 'react-icons/bi';
 
 type CitySelectValue = {
   flag: string;
@@ -46,6 +47,7 @@ interface ServiceInfoProps {
     payNow: number;
     payThere: number;
     company: string;
+    isActive: boolean;
 }
 
 const ServiceInfo: React.FC<ServiceInfoProps> = ({
@@ -62,16 +64,15 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
     title,
     dates,
     user,
-    company
+    company,
+    isActive,
 }) => {
 
   const [selectedDates, setSelectedDates] = useState<Date[]>(dates.map(dateStr => new Date(dateStr)));
-
   const [FirstComeFirstServe, setFirstComeFirstServe] = useState(firstComeFirstServe);
   const [ByAppointmentOnly, setByAppointmentOnly] = useState(byAppointmentOnly);
-
   const [selectedCity, setSelectedCity] = useState<CitySelectValue | null>(null);
-
+  const [IsActive, setIsActive] = useState(isActive);
 
     const {
     } = useForm<FieldValues>({
@@ -79,6 +80,14 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
             location: null,
         }
     });
+
+    React.useEffect(() => {
+      setFormData(prevState => ({
+        ...prevState,
+        isActive: IsActive,
+      }));
+    }, [IsActive]);
+    
     
     const [formData, setFormData] = useState({
         title: title || '',
@@ -92,7 +101,8 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
         firstComeFirstServe: FirstComeFirstServe,
         byAppointmentOnly: ByAppointmentOnly,
         company: company,
-        imageSrc: imageSrc
+        imageSrc: imageSrc,
+        isActive: IsActive
       });      
 
       const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -122,7 +132,6 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
       payThere: payThereNumber,
       dates: datesStringArray,
   };
-  console.log(dataToSend)
         try {
           const response = await axios.patch(`/api/listings/${listingId}`, dataToSend, 
             {
@@ -158,9 +167,13 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
         setFirstComeFirstServe(true);
         setByAppointmentOnly(false);
       }
-      console.log("by", byAppointmentOnly, "first", firstComeFirstServe);
     };
-    
+
+    const toggleIsActive = (event: any) => {
+      event.preventDefault();
+      setIsActive(!IsActive);
+    };
+        
     const setValue = (field: keyof typeof formData, value: any) => {
       setFormData(prevState => ({
         ...prevState,
@@ -171,8 +184,6 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
     const setCustomValue = (id: string, value: CitySelectValue) => {
       setValue(id as keyof typeof formData, value);
     };
-
-    console.log(formData.locationValue)
     
   return (
     <form onSubmit={handleSubmit} className='col-span-4 flex flex-col gap-8'>
@@ -212,11 +223,11 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
             </div>
           </div>
           <hr />
-        <div>
-          Clique na Opçao Desejada:
-    
-          <button onClick={toggleBoolean}
-           className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-700 w-1/2 p-1
+        Clique na Opçao Desejada:
+        <div className='flex flex-row justify-between'>
+    <div className='w-full p-3'>
+    <button onClick={toggleBoolean}
+           className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-700 w-2/3 p-1
             ${ByAppointmentOnly ? "bg-green-300" : "bg-red-300"}
             ${ByAppointmentOnly ? "underline" : "line-through"}
             ${ByAppointmentOnly ? "font-semibold" : "font-medium"}
@@ -224,18 +235,44 @@ const ServiceInfo: React.FC<ServiceInfoProps> = ({
             {ByAppointmentOnly ? <CheckmarkIcon /> : <PiXFill size={20} color='red' /> }
           Horario Marcado
           </button>
-        
 
         <button onClick={toggleBoolean}
-           className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-700 w-1/2 p-1
-            ${FirstComeFirstServe ? "bg-green-300" : "bg-red-300"}
-            ${FirstComeFirstServe ? "underline" : "line-through"}
-            ${FirstComeFirstServe ? "font-semibold" : "font-medium"}
+           className={`flex justify-center my-2 gap-1 border-2 rounded-xl border-gray-700 w-2/3 p-1
+            ${FirstComeFirstServe ? 
+              "bg-green-300 underline font-semibold" 
+              : 
+              "bg-red-300 line-through font-medium"
+            }
             `}>  
             {FirstComeFirstServe ? <CheckmarkIcon /> : <PiXFill size={20} color='red' /> }
           Ordem de Chegada
           </button>
-
+          </div>
+          <div className='w-7/12 text-center'>
+          {IsActive ? 
+            "Servico esta na pagina inicial" 
+            :
+            "Servico NÃO esta na pagina inicial"
+          }
+          <button onClick={toggleIsActive}
+            className={`flex justify-between mt-2 gap-1 border-2 rounded-xl border-gray-700 w-full p-5 text-2xl font-semibold
+              ${IsActive ? 
+                "bg-green-300" 
+                :
+                "bg-red-300"
+              }`}>
+              {IsActive ? 
+                <BiCloudDownload size={30} /> 
+                : 
+                <BiCloudUpload size={30} color='red' /> 
+              }
+              {IsActive ? 
+                "Desativar Serviço" 
+                : 
+                "Ativar Serviço" 
+              }
+          </button>
+        </div>
         </div>
         <hr />
         Selecione os dias Desejados:

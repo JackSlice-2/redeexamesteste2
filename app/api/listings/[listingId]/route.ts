@@ -49,12 +49,11 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
             throw new Error("Invalid ID");
         }
 
-        const { title, description, imageSrc, category, company, payNow, payThere, firstComeFirstServe, byAppointmentOnly, startTime, endTime, dates, locationValue } = await request.json();
+        const { title, description, imageSrc, category, company, payNow, payThere, firstComeFirstServe, byAppointmentOnly, startTime, endTime, dates, locationValue, isActive } = await request.json();
 
         const listing = await prisma.listing.update({
             where: {
                 id: listingId,
-                userId: currentUser.id,
             },
             data: {
                 title,
@@ -71,6 +70,7 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
                 byAppointmentOnly,
                 userId: currentUser.id,
                 locationValue: locationValue.value,
+                isActive
             },
         });
 
