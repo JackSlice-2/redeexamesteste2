@@ -3,7 +3,7 @@ import getPartners, { IPartnersParams } from "../../actions/getPartners";
 import ClientOnly from "../../components/ClientOnly";
 import Container from "../../components/Container";
 import EmptyState from "../../components/EmptyState";
-import PartnerCard from "../../components/listings/PartnerCard";
+import PartnerCard from "../../components/Database/PartnerCard";
 
 interface PartnerPageProps {
   searchParams: IPartnersParams

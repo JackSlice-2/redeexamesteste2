@@ -1,9 +1,9 @@
 "use client";
 
 import Container from '@/app/components/Container';
-import Header from '@/app/components/listings/Header';
-import ServiceInfo from '@/app/components/listings/ServiceInfo';
-import Calendar from '@/app/components/listings/Calendar';
+import Header from '@/app/components/Database/Header';
+import ServiceInfo from '@/app/components/Database/ServiceInfo';
+import Calendar from '@/app/components/Database/Calendar';
 import { categories } from '@/app/components/navbar/Categories';
 import { SafeListing, SafeUser } from '@/app/types';
 import axios from 'axios';

@@ -10,7 +10,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import CitySelect from '../Inputs/CitySelect';
-import Header from '../listings/Header';
+import Header from '../Database/Header';
 
 enum STEPS {
     INFO = 0,

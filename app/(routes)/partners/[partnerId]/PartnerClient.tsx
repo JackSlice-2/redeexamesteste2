@@ -3,7 +3,7 @@
 import Container from '@/app/components/Container';
 import { SafePartner, SafeUser } from '@/app/types';
 import React, { useCallback, useState } from 'react';
-import PartnerInfo from '@/app/components/listings/PartnerInfo';
+import PartnerInfo from '@/app/components/Database/PartnerInfo';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Button from '@/app/components/Button';

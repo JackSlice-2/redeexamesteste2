@@ -1,7 +1,7 @@
 "use client";
 
 import Container from '@/app/components/Container';
-import ServiceInfo from '../../../../components/listings/EditServiceInfo';
+import ServiceInfo from '../../../../components/Database/EditServiceInfo';
 import { categories } from '@/app/components/navbar/Categories';
 import { SafeListing, SafeUser } from '@/app/types';
 import React, { useMemo } from 'react'

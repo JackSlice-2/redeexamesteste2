@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';;
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import Header from '../listings/Header';
+import Header from '../Database/Header';
 
 const LoginModal = () => {
     const router = useRouter();

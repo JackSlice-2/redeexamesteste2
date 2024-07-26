@@ -3,7 +3,7 @@
 import { SafeListing, SafeUser } from '@/app/types';
 import React, { useState } from 'react'
 import { IconType } from 'react-icons';
-import ServiceCategory from '@/app/components/listings/ServiceCategory';
+import ServiceCategory from '@/app/components/Database/ServiceCategory';
 import { PiXFill } from 'react-icons/pi';
 import toast, { CheckmarkIcon } from 'react-hot-toast';
 import { FieldValues, useForm } from 'react-hook-form';

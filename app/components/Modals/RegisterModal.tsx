@@ -6,7 +6,7 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Modal from './Modal';
 import Input from '../Inputs/Input';
 import toast from 'react-hot-toast';
-import Header from '../listings/Header';
+import Header from '../Database/Header';
 import Button from '../Button';
 import { SafeUser } from '@/app/types';
 

@@ -4,7 +4,7 @@ import getListings, { IListingsParams } from "./actions/getServices";
 import ClientOnly from "./components/ClientOnly";
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
-import ServiceCard from "./components/listings/ServiceCard";
+import ServiceCard from "./components/Database/ServiceCard";
 
 interface HomeProps {
   searchParams: IListingsParams;
